@@ -1,2 +1,10 @@
-# bash-vimrc
-A repo for my bashrc and .vimrc settings
+# dotfiles
+A repo for my dotfiles.
+
+### .vimrc
+
+
+### .bashrc
+
+
+### .gitconfig
