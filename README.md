@@ -11,10 +11,18 @@ My .vimrc also has the plugins set up which use vundle. My plugins require vim w
 To download the vim source code, install `hg` and run:
 
 ```bash
-hg clone https://vim.googlecode.com/hg && cd vim && \
-./configure --enable-rubyinterp --enable-perlinterp --enable-pythoninterp --enable-gui=no --enable-multibyte --prefix=/usr/share/vim/vim74
-
-make && make install
+hg clone https://vim.googlecode.com/hg vim
+cd vim
+./configure --with-features=huge \
+            --enable-multibyte \
+            --enable-rubyinterp \
+            --enable-perlinterp \
+            --enable-pythoninterp \
+            --enable-gui=no \
+            --enable-cscope \
+            --prefix=/usr
+make 
+sudo make install
 ```
 
 Once vim has been fully installed, you can install vundle and install the plugins with:
@@ -29,7 +37,7 @@ Finally, you need to setup/install a few of the plugins.
 CommandT:
 
 ```bash
-d ~/.vim/bundle/command-t/ruby/command-t
+cd ~/.vim/bundle/command-t/ruby/command-t
 ruby extconf.rb
 make
 ```
@@ -45,12 +53,17 @@ cd ~/.vim/bundle/YouCompleteMe
 This just has my usual aliases.
 
 ### .bash_profile
+Specific login environment variables. Requires a re-login to work.
 
 
 ### .gitconfig
 
 
 ### Fedora VM
-sudo dnf groupinstall "Development Tools"
+```bash
+sudo dnf groupinstall "Development Tools" ncurses-devel perl perl-devel \
+perl-ExtUtils-ParseXS perl-ExtUtils-Xspp perl-ExtUtils-CBuilder \
+perl-ExtUtils-Embed cmake
+```
 
-> yum has been moved to `dnf` which requires some migrate thing I forgot to copy.
+

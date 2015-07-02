@@ -72,6 +72,15 @@ nmap <leader>Q :q!<cr>
 " Line Numbers
 set nu
 
+" Ignore dist and build folders
+set wildignore+=*/dist/**,*/target/**,*/build/**
+
+" Ignore libs
+set wildignore+=*/lib/**,*/_3rd_party_/**,*/node_modules/**,*/bower_components/**
+
+" Ignore images, pdfs, and font files
+set wildignore+=*.png,*.PNG,*.jpg,*.jpeg,*.JPG,*.JPEG,*.pdf
+set wildignore+=*.ttf,*.otf,*.woff,*.woff2,*.eot
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -83,7 +92,7 @@ set so=7
 set wildmenu
 
 " Ignore compiled files
-set wildignore=*.o,*~,*.pyc
+set wildignore+=*.o,*~,*.pyc
 
 "Always show current position
 set ruler
