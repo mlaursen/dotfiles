@@ -10,6 +10,6 @@ fi
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 # add npm location for global installs
-PATH=$PATH:/.npm/bin
+PATH=$PATH:~/.npm/bin
 
 export PATH
