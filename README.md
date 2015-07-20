@@ -66,4 +66,7 @@ perl-ExtUtils-ParseXS perl-ExtUtils-Xspp perl-ExtUtils-CBuilder \
 perl-ExtUtils-Embed cmake
 ```
 
-
+### Nodejs stuff
+```bash
+npm config set prefix ~/.npm
+```
