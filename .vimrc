@@ -69,6 +69,9 @@ nmap <leader>q :q<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>Q :q!<cr>
 
+nmap <F5> :checktime<CR>L<cr>:CommandTFlush<CR>
+nmap <F6> :checktime<CR>L<cr>
+
 " Line Numbers
 set nu
 

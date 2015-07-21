@@ -3,10 +3,11 @@
   email = mlaursen03@gmail.com
 [core]
   editor = vim
+  autocrlf = true
 [push]
   default = upstream
 [alias]
-  cbk = checkout -b
+  ckb = checkout -b
   lg = log --name-status --no-merges
   currbranch = rev-parse --abbrev-ref HEAD
   push1 = "!sh -c \"git push --set-upstream origin `git currbranch`\""
