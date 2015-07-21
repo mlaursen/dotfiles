@@ -13,3 +13,5 @@
   push1 = "!sh -c \"git push --set-upstream origin `git currbranch`\""
 [color]
   ui = auto
+[credential]
+  helper = store
