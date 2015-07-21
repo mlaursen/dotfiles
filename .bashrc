@@ -17,4 +17,4 @@ alias cp='cp -r'
 
 # Allows <ctrl-s> for Command-T
 stty -ixon
-PS1='\[\e]0;\w\a\]\n\[\e[32m\]\h @ \[\e[33m\]\w\[\e[0m\]/\n$ '
+PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u @ \[\e[33m\]\w\[\e[0m\]/\n$ '
