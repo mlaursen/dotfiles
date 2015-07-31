@@ -10,11 +10,10 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 
-Plugin 'ervandew/supertab'             " helps if using ultisnips and YouCompleteMe
 Plugin 'SirVer/ultisnips'
 
 " Existing snippets from other sources. Optional
-Plugin 'honza/vim-snippets'
+" Plugin 'honza/vim-snippets'
 
 " React plugins and snippets
 Plugin 'pangloss/vim-javascript'
@@ -24,22 +23,25 @@ Plugin 'mlaursen/vim-react-snippets'
 " Completion menu
 Plugin 'Valloric/YouCompleteMe'         " requires python and a build after install
 
+Plugin 'marijnh/tern_for_vim'
+
 call vundle#end()           " required
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Make YCM compatible with UltiSnips (with supertab)
-let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType='<C-n>'
+" Opens up the autocomplete help in the YouCompleteMe menu instead of a preview buffer
+set completeopt=menuone
+
+" Show function definition in the menu
+let g:tern_show_signature_in_pum=1
 
 " update key bindings for UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsListSnippets="<c-h>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-right>"
+let g:UltiSnipsJumpBackwardTrigger="<c-left>"
 let g:UltiSnipsEditSplit="vertical"
 
 " allow jsx syntax in .js files

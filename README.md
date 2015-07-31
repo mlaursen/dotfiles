@@ -49,6 +49,13 @@ cd ~/.vim/bundle/YouCompleteMe
 ./install.sh
 ```
 
+tern_for_vim
+
+```bash
+cd ~/.vim/bundle/tern_for_vim
+npm install
+```
+
 ### .bashrc
 This just has my usual aliases.
 
@@ -59,14 +66,5 @@ Specific login environment variables. Requires a re-login to work.
 ### .gitconfig
 
 
-### Fedora VM
-```bash
-sudo dnf groupinstall "Development Tools" ncurses-devel perl perl-devel \
-perl-ExtUtils-ParseXS perl-ExtUtils-Xspp perl-ExtUtils-CBuilder \
-perl-ExtUtils-Embed cmake
-```
-
-### Nodejs stuff
-```bash
-npm config set prefix ~/.npm
-```
+### .tern-project
+An example .tern-project to add to a node javascript project to get code completion
