@@ -46,7 +46,7 @@ let g:UltiSnipsEditSplit="vertical"
 " allow jsx syntax in .js files
 let g:jsx_ext_required=0
 
-# The Eclim completion will now work with YCM
+" The Eclim completion will now work with YCM
 let g:EclimCompletionMethod='omnifunc'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
