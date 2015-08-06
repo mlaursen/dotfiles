@@ -18,3 +18,5 @@ alias cp='cp -r'
 # Allows <ctrl-s> for Command-T
 stty -ixon
 PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u @ \[\e[33m\]\w\[\e[0m\]/\n$ '
+
+export ECLIPSE_HOME=/tools/eclipse

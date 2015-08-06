@@ -4,6 +4,8 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 Plugin 'gmarik/vundle' " required
 
+Plugin 'altercation/vim-colors-solarized'
+
 Plugin 'wincent/command-t'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -11,9 +13,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 
 Plugin 'SirVer/ultisnips'
-
-" Existing snippets from other sources. Optional
-" Plugin 'honza/vim-snippets'
 
 " React plugins and snippets
 Plugin 'pangloss/vim-javascript'
@@ -47,6 +46,9 @@ let g:UltiSnipsEditSplit="vertical"
 " allow jsx syntax in .js files
 let g:jsx_ext_required=0
 
+# The Eclim completion will now work with YCM
+let g:EclimCompletionMethod='omnifunc'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -71,8 +73,19 @@ nmap <leader>q :q<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>Q :q!<cr>
 
-nmap <F5> :checktime<CR>L<cr>:CommandTFlush<CR>
-nmap <F6> :checktime<CR>L<cr>
+
+autocmd Filetype javascript nmap <F1> :TernType<CR>
+autocmd Filetype javascript nmap <F2> :TernDoc<CR>
+autocmd Filetype javascript nmap <F3> :TernDef<CR>
+
+autocmd Filetype java nmap <F3> :JavaSearchContext<CR>
+autocmd Filetype java nmap <c-s-i> :JavaImport<cr>
+autocmd Filetype java nmap <c-s-o> :JavaImportOrganize<cr>
+autocmd Filetype java nmap <c-1> :JavaCorrect<cr>
+
+nmap <F5> :checktime<CR>L<CR>:CommandTFlush<CR>
+nmap <F6> :CommandTFlush<CR>
+nmap <F7> :checktime<CR>L<CR>
 
 " Line Numbers
 set nu
@@ -87,6 +100,13 @@ set wildignore+=*/lib/**,*/_3rd_party_/**,*/node_modules/**,*/bower_components/*
 set wildignore+=*.png,*.PNG,*.jpg,*.jpeg,*.JPG,*.JPEG,*.pdf
 set wildignore+=*.ttf,*.otf,*.woff,*.woff2,*.eot
 
+" Ignore compiled files
+set wildignore+=*.class
+let g:basewildignore=&wildignore
+
+
+autocmd VimEnter * call CheckEclipse()
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -95,9 +115,6 @@ set so=7
 
 " Turn on the WiLd menu
 set wildmenu
-
-" Ignore compiled files
-set wildignore+=*.o,*~,*.pyc
 
 "Always show current position
 set ruler
@@ -148,8 +165,15 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
-colorscheme desert
+
 set background=dark
+
+if $TERM == "xterm-256color"
+  set t_Co=256
+  colorscheme solarized
+else
+  colorscheme desert
+endif
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -417,4 +441,22 @@ function! <SID>BufcloseCloseIt()
    if buflisted(l:currentBufNum)
      execute("bdelete! ".l:currentBufNum)
    endif
+endfunction
+
+
+function! CheckEclipse()
+  let l:gitdir=system("git rev-parse --show-toplevel")
+  if matchstr(gitdir, '^fatal:.*')
+    return
+  endif
+
+  " Remove the newline character from the folder name
+  let l:gitdir=substitute(gitdir, '\n', '\1', '')
+  if filereadable(gitdir . "/.project")
+    set wildignore+=*/bin/**
+  endif
+endfunction
+
+function! ResetWildignore()
+  let &wildignore=g:basewildignore
 endfunction

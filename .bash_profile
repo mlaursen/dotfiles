@@ -8,8 +8,6 @@ fi
 # User specific environment and startup programs
 
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
-
-# add npm location for global installs
-PATH=$PATH:~/.npm/bin
+PATH=$PATH:/tools/npm/bin
 
 export PATH

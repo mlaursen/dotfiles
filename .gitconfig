@@ -6,12 +6,25 @@
   autocrlf = input
 [push]
   default = upstream
+[merge]
+  keepBackup = false
+  tool = p4merge
+[mergetool]
+  prompt = false
+[mergetool "p4merge"]
+  cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  trustExitCode = false
+  keepBackup = false
+  keepTemporaries = false
 [alias]
   ckb = checkout -b
   lg = log --name-status --no-merges
+  pb = "!sh -c \"git pull origin `git currbranch`\""
   currbranch = rev-parse --abbrev-ref HEAD
   push1 = "!sh -c \"git push --set-upstream origin `git currbranch`\""
 [color]
   ui = auto
 [credential]
   helper = store
+[commit]
+	template = /home/laursenm/.gitmessage.txt
