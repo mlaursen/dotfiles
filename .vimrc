@@ -1,3 +1,26 @@
+function! SetPlugins()
+  let l:gitdir=system("git rev-parse --show-toplevel")
+  if matchstr(gitdir, '^fatal:.*')
+    return
+  endif
+
+  " Remove the newline character from the folder name
+  let l:gitdir=substitute(gitdir, '\n', '\1', '')
+  if filereadable(gitdir . "/project.clj")
+    Plugin 'guns/vim-clojure-static'
+    Plugin 'clojure-emacs/cider-nrepl'
+    Plugin 'tpope/vim-fireplace'
+    Plugin 'tpope/vim-salve'
+    Plugin 'vim-scripts/paredit.vim'
+  elseif filereadable(gitdir . "/.tern-project")
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'mxw/vim-jsx'
+    Plugin 'mlaursen/vim-react-snippets'
+    Plugin 'marijnh/tern_for_vim'
+  endif
+endfunction
+
+
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle
@@ -13,16 +36,10 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 
 Plugin 'SirVer/ultisnips'
-
-" React plugins and snippets
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'mlaursen/vim-react-snippets'
-
 " Completion menu
 Plugin 'Valloric/YouCompleteMe'         " requires python and a build after install
 
-Plugin 'marijnh/tern_for_vim'
+call SetPlugins()
 
 call vundle#end()           " required
 
@@ -218,7 +235,7 @@ set tw=500
 
 set ai "Auto indent
 set si "Smart indent
-set wrap "Wrap lines
+set nowrap "Wrap lines
 
 
 """"""""""""""""""""""""""""""
@@ -255,6 +272,9 @@ map <leader>bd :Bclose<cr>
 
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
+
+" Close all buffers except current
+map <leader>bo :BufOnly<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
