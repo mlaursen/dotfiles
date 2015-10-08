@@ -12,7 +12,7 @@ function! SetPlugins()
     Plugin 'tpope/vim-fireplace'
     Plugin 'tpope/vim-salve'
     Plugin 'vim-scripts/paredit.vim'
-  elseif filereadable(gitdir . "/.tern-project")
+  elseif filereadable(gitdir . "/package.json")
     Plugin 'pangloss/vim-javascript'
     Plugin 'mxw/vim-jsx'
     Plugin 'mlaursen/vim-react-snippets'
