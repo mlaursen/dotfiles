@@ -11,7 +11,9 @@ My .vimrc also has the plugins set up which use vundle. My plugins require vim w
 To download the vim source code, install `hg` and run:
 
 ```bash
-hg clone https://vim.googlecode.com/hg vim
+
+checking for locale.h... yes
+git clone https://github.com/vim/vim.git
 cd vim
 ./configure --with-features=huge \
             --enable-multibyte \
@@ -66,5 +68,5 @@ Specific login environment variables. Requires a re-login to work.
 ### .gitconfig
 
 
-### .tern-project
-An example .tern-project to add to a node javascript project to get code completion
+### .tern-config
+An global tern config file for neat tern stuff
