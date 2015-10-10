@@ -28,6 +28,7 @@ call vundle#rc()
 Plugin 'gmarik/vundle' " required
 
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-scripts/BufOnly.vim'
 
 Plugin 'wincent/command-t'
 Plugin 'scrooloose/nerdtree'
