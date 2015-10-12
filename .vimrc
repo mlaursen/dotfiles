@@ -12,6 +12,7 @@ function! SetPlugins()
     Plugin 'tpope/vim-fireplace'
     Plugin 'tpope/vim-salve'
     Plugin 'vim-scripts/paredit.vim'
+    Plugin 'venantius/vim-cljfmt'
   elseif filereadable(gitdir . "/package.json")
     Plugin 'pangloss/vim-javascript'
     Plugin 'mxw/vim-jsx'
@@ -407,6 +408,8 @@ map <leader>pp :setlocal paste!<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+command! -nargs=1 Silent | execute ':silent !'.<q-args> | execute ':redraw!'
+
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
