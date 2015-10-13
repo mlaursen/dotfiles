@@ -30,6 +30,7 @@ Plugin 'gmarik/vundle' " required
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-scripts/BufOnly.vim'
+Plugin 'scrooloose/syntastic'
 
 Plugin 'wincent/command-t'
 Plugin 'scrooloose/nerdtree'
@@ -67,6 +68,16 @@ let g:jsx_ext_required=0
 
 " The Eclim completion will now work with YCM
 let g:EclimCompletionMethod='omnifunc'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_javascript_checkers=['eslint']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -314,7 +325,7 @@ set viminfo^=%
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
