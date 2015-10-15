@@ -3,7 +3,7 @@
   email = mlaursen03@gmail.com
 [core]
   editor = vim
-  autocrlf = true
+  autocrlf = input
 [push]
   default = upstream
 [merge]
