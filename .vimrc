@@ -13,7 +13,9 @@ function! SetPlugins()
     Plugin 'tpope/vim-salve'
     Plugin 'vim-scripts/paredit.vim'
     Plugin 'venantius/vim-cljfmt'
-  elseif filereadable(gitdir . "/package.json")
+  endif
+
+  if filereadable(gitdir . "/package.json")
     Plugin 'pangloss/vim-javascript'
     Plugin 'mxw/vim-jsx'
     Plugin 'mlaursen/vim-react-snippets'
@@ -102,7 +104,7 @@ let g:mapleader = "\\"
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 nmap <leader>wq :wq<cr>
-nmap <leader>Q :q!<cr>
+nmap <leader>Q :qall!<cr>
 
 
 autocmd Filetype javascript nmap <F1> :TernType<CR>

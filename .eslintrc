@@ -52,10 +52,10 @@
     "no-regex-spaces": 2, // disallow multiple spaces in a regular expression literal
     "no-sparse-arrays": 2, // disallow sparse arrays
     "no-unreachable": 2, // disallow unreachable statements after a return, throw, continue, or break statement
-    "valid-jsdoc": 2, // Ensure JSDoc comments are valid (off by default)
     "valid-typeof": 2, // Ensure that the results of typeof are compared against a valid string
 
     // Best Practices
+    "semi": [2, "always"],
     "curly": 2, // specify curly brace conventions for all control statements
     "default-case": 2, // require default case in switch statements (off by default)
     "dot-notation": 2, // encourages use of dot notation whenever possible

@@ -27,4 +27,4 @@
 [credential]
   helper = store
 [commit]
-	template = /home/laursenm/.gitmessage.txt
+	template = ~/.gitmessage.txt
