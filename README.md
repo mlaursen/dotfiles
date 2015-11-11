@@ -89,6 +89,13 @@ $ npm install
 > `let g:tern#command=['node', '/code/.vim/bundle/tern_for_vim/node_modules/tern/bin/tern', '--no-port-file']
 
 
+##### scss_lint
+
+```bash
+$ gem install scss_lint
+```
+
+
 ### .bashrc
 This just has my usual aliases.
 

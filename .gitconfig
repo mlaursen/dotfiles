@@ -22,6 +22,11 @@
   pb = "!sh -c \"git pull origin `git currbranch`\""
   currbranch = rev-parse --abbrev-ref HEAD
   push1 = "!sh -c \"git push --set-upstream origin `git currbranch`\""
+  messages = log --pretty=\"%an %ad %h %s\" --date=short --no-merges
+  commits = log --pretty='%H'
+  files = "!sh -c \"git diff --name-status --no-merges $1\""
+  find = "!sh -c \"git messages --name-status --all --grep='$1'\""
+  finda = "!sh -c \"git find $1 --author='$2'\""
 [color]
   ui = auto
 [credential]
