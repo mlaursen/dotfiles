@@ -7,4 +7,4 @@
 !README.md
 !.gitmessage.txt
 !.eslintrc
-
+!.lein/profiles.clj

@@ -106,6 +106,7 @@ nmap <leader>q :q<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>Q :qall!<cr>
 
+nmap <leader>] :NERDTreeToggle<cr>
 
 autocmd Filetype javascript nmap <F1> :TernType<CR>
 autocmd Filetype javascript nmap <F2> :TernDoc<CR>
