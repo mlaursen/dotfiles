@@ -125,7 +125,7 @@ nmap <F7> :checktime<CR>L<CR>
 set nu
 
 " Ignore dist and build folders
-set wildignore+=*/dist/**,*/target/**,*/build/**
+set wildignore+=*/dist*/**,*/target/**,*/build/**
 
 " Ignore libs
 set wildignore+=*/lib/**,*/_3rd_party_/**,*/node_modules/**,*/bower_components/**
@@ -137,6 +137,7 @@ set wildignore+=*.ttf,*.otf,*.woff,*.woff2,*.eot
 " Ignore compiled files
 set wildignore+=*.class
 let g:basewildignore=&wildignore
+let g:NERDTreeIgnore=['dist*[[dir]]', 'node_modules[[dir]]']
 
 
 autocmd VimEnter * call CheckEclipse()
