@@ -11,7 +11,6 @@ function! SetPlugins()
     Plugin 'clojure-emacs/cider-nrepl'
     Plugin 'tpope/vim-fireplace'
     Plugin 'tpope/vim-salve'
-    Plugin 'vim-scripts/paredit.vim'
     Plugin 'venantius/vim-cljfmt'
   endif
 
@@ -39,6 +38,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'Raimondi/delimitMate'
+Plugin 'docunext/closetag.vim'
 
 Plugin 'SirVer/ultisnips'
 " Completion menu
@@ -80,7 +81,11 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
-let g:syntastic_javascript_checkers=['eslint','scss_lint']
+let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_scss_checkers=['scss_lint']
+
+let g:closetag_html_style=1
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -111,6 +116,7 @@ nmap <leader>] :NERDTreeToggle<cr>
 autocmd Filetype javascript nmap <F1> :TernType<CR>
 autocmd Filetype javascript nmap <F2> :TernDoc<CR>
 autocmd Filetype javascript nmap <F3> :TernDef<CR>
+autocmd Filetype javascript.jsx,html,xml source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
 
 autocmd Filetype java nmap <F3> :JavaSearchContext<CR>
 autocmd Filetype java nmap <c-s-i> :JavaImport<cr>
