@@ -19,6 +19,7 @@ function! SetPlugins()
     Plugin 'mxw/vim-jsx'
     Plugin 'mlaursen/vim-react-snippets'
     Plugin 'marijnh/tern_for_vim'
+    Plugin 'cakebaker/scss-syntax.vim'
   endif
 endfunction
 
@@ -38,6 +39,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 Plugin 'Raimondi/delimitMate'
 Plugin 'docunext/closetag.vim'
 
