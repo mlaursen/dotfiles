@@ -6,7 +6,6 @@ function! SetPlugins()
 
   " Remove the newline character from the folder name
   let l:gitdir=substitute(gitdir, '\n', '\1', '')
-
   if filereadable(gitdir . "/project.clj")
     Plugin 'guns/vim-clojure-static'
     Plugin 'clojure-emacs/cider-nrepl'
@@ -62,7 +61,7 @@ set completeopt=menuone
 
 " Show function definition in the menu
 let g:tern_show_signature_in_pum=1
-" let g:tern#command=['node', '/code/.vim/bundle/tern_for_vim/node_modules/tern/bin/tern', '--no-port-file']
+let g:tern#command=['node', '/usr/local/bin/tern', '--no-port-file']
 
 " update key bindings for UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"

@@ -1,6 +1,5 @@
 *
 !.gitignore
-!.bashrc
 !.bash_profile
 !.vimrc
 !.tern-config
