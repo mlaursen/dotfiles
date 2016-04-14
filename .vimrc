@@ -6,6 +6,7 @@ function! SetPlugins()
 
   " Remove the newline character from the folder name
   let l:gitdir=substitute(gitdir, '\n', '\1', '')
+
   if filereadable(gitdir . "/project.clj")
     Plugin 'guns/vim-clojure-static'
     Plugin 'clojure-emacs/cider-nrepl'
@@ -18,6 +19,7 @@ function! SetPlugins()
     Plugin 'pangloss/vim-javascript'
     Plugin 'mxw/vim-jsx'
     Plugin 'mlaursen/vim-react-snippets'
+    Plugin 'mlaursen/mlaursen-vim-snippets'
     Plugin 'marijnh/tern_for_vim'
     Plugin 'cakebaker/scss-syntax.vim'
   endif
@@ -65,8 +67,8 @@ let g:tern_show_signature_in_pum=1
 " update key bindings for UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsListSnippets="<c-h>"
-let g:UltiSnipsJumpForwardTrigger="<c-right>"
-let g:UltiSnipsJumpBackwardTrigger="<c-left>"
+let g:UltiSnipsJumpForwardTrigger="<c-s-right>"
+let g:UltiSnipsJumpBackwardTrigger="<c-s-left>"
 let g:UltiSnipsEditSplit="vertical"
 
 " allow jsx syntax in .js files
@@ -115,15 +117,17 @@ nmap <leader>Q :qall!<cr>
 
 nmap <leader>] :NERDTreeToggle<cr>
 
-autocmd Filetype javascript nmap <F1> :TernType<CR>
-autocmd Filetype javascript nmap <F2> :TernDoc<CR>
-autocmd Filetype javascript nmap <F3> :TernDef<CR>
-autocmd Filetype javascript.jsx,html,xml source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
+command XMLint exec ":silent %!xmllint --format --recover - 2>/dev/null"
 
-autocmd Filetype java nmap <F3> :JavaSearchContext<CR>
-autocmd Filetype java nmap <c-s-i> :JavaImport<cr>
-autocmd Filetype java nmap <c-s-o> :JavaImportOrganize<cr>
-autocmd Filetype java nmap <c-1> :JavaCorrect<cr>
+au Filetype javascript nmap <F1> :TernType<CR>
+au Filetype javascript nmap <F2> :TernDoc<CR>
+au Filetype javascript nmap <F3> :TernDef<CR>
+au Filetype javascript.jsx,html,xml source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
+
+au Filetype java nmap <F3> :JavaSearchContext<CR>
+au Filetype java nmap <c-s-i> :JavaImport<cr>
+au Filetype java nmap <c-s-o> :JavaImportOrganize<cr>
+au Filetype java nmap <c-1> :JavaCorrect<cr>
 
 nmap <F5> :checktime<CR>L<CR>:CommandTFlush<CR>
 nmap <F6> :CommandTFlush<CR>
@@ -145,9 +149,10 @@ set wildignore+=*.ttf,*.otf,*.woff,*.woff2,*.eot
 " Ignore compiled files
 set wildignore+=*.class
 let g:basewildignore=&wildignore
-let g:NERDTreeIgnore=['dist*[[dir]]', 'node_modules[[dir]]']
+let g:NERDTreeIgnore=['dist*[[dir]]', 'node_modules[[dir]]', 'build*[[dir]]', 'target[[dir]]', 'node[[dir]]', 'etc[[dir]]']
 
 
+autocmd VimEnter * call GitignoreWildignore()
 autocmd VimEnter * call CheckEclipse()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -491,6 +496,10 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
+function! FormatXml()
+  execute("silent %!xmllint --format --recover - 2>/dev/null")
+endfunction
+
 
 function! CheckEclipse()
   let l:gitdir=system("git rev-parse --show-toplevel")
@@ -507,4 +516,29 @@ endfunction
 
 function! ResetWildignore()
   let &wildignore=g:basewildignore
+endfunction
+
+function! GitignoreWildignore()
+  let l:gitdir=system("git rev-parse --show-toplevel")
+  if matchstr(gitdir, '^fatal:.*')
+    return
+  endif
+
+  " Remove the newline character from the folder name
+  let l:gitdir=substitute(gitdir, '\n', '\1', '')
+
+  let filename = '.gitignore'
+  if filereadable(gitdir . filename)
+    let igstring = ''
+    for oline in readfile(filename)
+      let line = substitute(oline, '\s|\n|\r', '', "g")
+      if line =~ '^#' | con | endif
+      if line == '' | con  | endif
+      if line =~ '^!' | con  | endif
+      if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
+      let igstring .= "," . line
+    endfor
+    let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
+    execute execstring
+  endif
 endfunction
