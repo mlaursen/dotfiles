@@ -88,6 +88,7 @@ let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_scss_checkers=['scss_lint']
 
 let g:closetag_html_style=1
+let g:javascript_enable_domhtmlcss=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
