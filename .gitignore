@@ -7,3 +7,4 @@
 !.gitmessage.txt
 !.eslintrc
 !.lein/profiles.clj
+!.gitignore_global
