@@ -14,10 +14,27 @@ A repo for my dotfiles on a MacBook.
   - Extract zip and double click `iterm-2-colors-solarized/Solarized Dark.itermcolors`
 5. Open iterm
 
-### Initilizing VIM
+### Installing Neovim
 
 ```bash
-$ brew install CMake vim macvim 
+$ brew install CMake neovim fzf
+$ /usr/local/opt/fzf/install --all
+
+$ mkdir ~/.config/nvim
+$ ln -s ~/.vimrc ~/.config/nvim/init.vim
+
+# Install dein.vim for package management
+$ curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh && sh ./installer.sh ~/.dein
+
+# Install plugins
+$ touch package.json project.clj && nvim +qall && rm package.json project.clj
+$ cd ~/.dein/repos/github.com/Valloric/YouCompleteMe && ./install.py --tern-completer
+```
+
+### Initilizing VIM (Instead of Neovim)
+
+```bash
+$ brew install CMake vim macvim
 $ brew link macvim
 $ mkdir ~/.vim/bundle && git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/vundle
 

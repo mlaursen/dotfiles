@@ -1,67 +1,100 @@
-function! SetPlugins()
-  let l:gitdir=system("git rev-parse --show-toplevel")
-  if matchstr(gitdir, '^fatal:.*')
-    return
+"Check if the git base directory has a file
+function! ProjectIncludes(file)
+  let l:gitdir=system('git rev-parse --show-toplevel')
+  if matchstr(gitdir ,'^fatal:.*')
+    return 0
   endif
 
   " Remove the newline character from the folder name
   let l:gitdir=substitute(gitdir, '\n', '\1', '')
-  if filereadable(gitdir . "/project.clj")
-    Plugin 'guns/vim-clojure-static'
-    Plugin 'clojure-emacs/cider-nrepl'
-    Plugin 'tpope/vim-fireplace'
-    Plugin 'tpope/vim-salve'
-    Plugin 'venantius/vim-cljfmt'
-  endif
 
-  if filereadable(gitdir . "/package.json")
-    Plugin 'pangloss/vim-javascript'
-    Plugin 'mxw/vim-jsx'
-    Plugin 'mlaursen/vim-react-snippets'
-    Plugin 'mlaursen/mlaursen-vim-snippets'
-    Plugin 'marijnh/tern_for_vim'
-    Plugin 'cakebaker/scss-syntax.vim'
+  if filereadable(gitdir . '/' . a:file)
+    return 1
+  else
+    return 0
   endif
 endfunction
 
+if &compatible
+  set nocompatible
+endif
 
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-Plugin 'gmarik/vundle' " required
+set rtp^=~/.dein/repos/github.com/Shougo/dein.vim
 
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-scripts/BufOnly.vim'
-Plugin 'scrooloose/syntastic'
+call dein#begin(expand('~/.dein'))
+call dein#add('Shougo/dein.vim')
 
-Plugin 'wincent/command-t'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'Raimondi/delimitMate'
-Plugin 'docunext/closetag.vim'
+"Colors
+call dein#add('altercation/vim-colors-solarized')
 
-Plugin 'SirVer/ultisnips'
-" Completion menu
-Plugin 'Valloric/YouCompleteMe'         " requires python and a build after install
+"Buffers
+call dein#add('vim-scripts/BufOnly.vim')
 
-call SetPlugins()
+"Linters
+call dein#add('neomake/neomake')
 
-call vundle#end()           " required
+"File managers
+call dein#add('mileszs/ack.vim')
+call dein#add('scrooloose/nerdtree')
+call dein#add('Xuyuanp/nerdtree-git-plugin')
+call dein#add('tpope/vim-fugitive')
+
+"Code completers and autofillers
+call dein#add('tpope/vim-surround')
+call dein#add('tpope/vim-repeat')
+call dein#add('Raimondi/delimitMate')
+call dein#add('docunext/closetag.vim')
+call dein#add('SirVer/ultisnips')
+
+"Clojure specific plugins
+if ProjectIncludes('project.clj')
+  call dein#add('guns/vim-clojure-static')
+  call dein#add('clojure-emacs/cider-nrepl')
+  call dein#add('tpope/vim-fireplace')
+  call dein#add('tpope/vim-salve')
+  call dein#add('venatius/vim-cljfmt')
+endif
+
+"Frontend specific plugins
+if ProjectIncludes('package.json')
+  "Code completions
+  call dein#add('mlaursen/vim-react-snippets')
+  call dein#add('mlaursen/mlaursen-vim-snippets')
+
+  "Context assist
+  call dein#add('marijnh/tern_for_vim')
+
+  "Formatting/colors
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('mxw/vim-jsx')
+  call dein#add('cakebaker/scss-syntax.vim')
+endif
+
+"Context assist
+call dein#add('Valloric/YouCompleteMe')
+call dein#end()
+
+"Auto install missing plugins on start
+if dein#check_install()
+  call dein#install()
+endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"Allow fzf in runtime path
+set rtp+=/usr/local/Cellar/fzf/latest
+
 " Opens up the autocomplete help in the YouCompleteMe menu instead of a preview buffer
 set completeopt=menuone
 
 " Show function definition in the menu
 let g:tern_show_signature_in_pum=1
-let g:tern#command=['node', '/usr/local/bin/tern', '--no-port-file']
+
+" Need to specify global node instead of any that are used from nvm
+let g:tern#command=['/usr/local/bin/node', '/usr/local/bin/tern', '--no-port-file']
 
 " update key bindings for UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -70,26 +103,65 @@ let g:UltiSnipsJumpForwardTrigger="<c-s-right>"
 let g:UltiSnipsJumpBackwardTrigger="<c-s-left>"
 let g:UltiSnipsEditSplit="vertical"
 
+"Ignore more stuff in nerdtree
+let g:NERDTreeIgnore=['dist*[[dir]]', 'node_modules[[dir]]', 'build*[[dir]]', 'target[[dir]]', 'node[[dir]]', 'etc[[dir]]']
+
 " allow jsx syntax in .js files
 let g:jsx_ext_required=0
 
 " The Eclim completion will now work with YCM
 let g:EclimCompletionMethod='omnifunc'
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"Neomake configs
+let g:neomake_javascript_enabled_makers=['eslint']
+let g:neomake_jsx_enabled_makers=['eslint']
+let g:neomake_scss_enabled_makers=['scsslint']
 
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_scss_checkers=['scss_lint']
+"Always open location list
+let g:neomake_open_list=2
 
 let g:closetag_html_style=1
+let g:closetag_filenes='*.html,*.xhtml,*.jsx,*.js,*.jsp,*.jsf,*.jspf'
 let g:javascript_enable_domhtmlcss=1
 
+"Update fzf to ignore files that can't be opened by vim
+let $FZF_DEFAULT_COMMAND='ag -l --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf)" -g ""'
+
+"When linting, go to next and previous errors
+nmap <leader>n :lnext<cr>
+nmap <leader>p :lprev<cr>
+
+"Use ag instead of ack
+if executable('ag')
+  let g:ackprg='ag --vimgrep'
+endif
+
+"Use ag for grepping
+nmap <leader>g :Ack<space>
+
+"Use tern stuff for javascript files
+au Filetype javascript nmap <F1> :TernType<CR>
+au Filetype javascript nmap <F2> :TernDoc<CR>
+au Filetype javascript nmap <F3> :TernDef<CR>
+
+"Java eclim stuff
+au Filetype java nmap <F3> :JavaSearchContext<CR>
+au Filetype java nmap <c-s-i> :JavaImport<cr>
+au Filetype java nmap <c-s-o> :JavaImportOrganize<cr>
+au Filetype java nmap <c-1> :JavaCorrect<cr>
+
+
+nmap <leader>] :NERDTreeToggle<cr>
+
+
+" Allow fzf search as \t
+nmap <leader>t :FZF<cr>
+nmap <leader>l :Neomake<cr>
+nmap <leader>f :FixJS<cr>
+
+
+" Lint after every save
+au! BufWritePost * Neomake
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -111,27 +183,11 @@ let g:mapleader = "\\"
 
 " Fast saving
 nmap <leader>w :w!<cr>
-nmap <leader>q :q<cr>
+nmap <leader>q :lclose<cr>:q<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>Q :qall!<cr>
 
-nmap <leader>] :NERDTreeToggle<cr>
-
 command XMLint exec ":silent %!xmllint --format --recover - 2>/dev/null"
-
-au Filetype javascript nmap <F1> :TernType<CR>
-au Filetype javascript nmap <F2> :TernDoc<CR>
-au Filetype javascript nmap <F3> :TernDef<CR>
-au Filetype javascript.jsx,html,xml source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
-
-au Filetype java nmap <F3> :JavaSearchContext<CR>
-au Filetype java nmap <c-s-i> :JavaImport<cr>
-au Filetype java nmap <c-s-o> :JavaImportOrganize<cr>
-au Filetype java nmap <c-1> :JavaCorrect<cr>
-
-nmap <F5> :checktime<CR>L<CR>:CommandTFlush<CR>
-nmap <F6> :CommandTFlush<CR>
-nmap <F7> :checktime<CR>L<CR>
 
 " Line Numbers
 set nu
@@ -148,12 +204,6 @@ set wildignore+=*.ttf,*.otf,*.woff,*.woff2,*.eot
 
 " Ignore compiled files
 set wildignore+=*.class
-let g:basewildignore=&wildignore
-let g:NERDTreeIgnore=['dist*[[dir]]', 'node_modules[[dir]]', 'build*[[dir]]', 'target[[dir]]', 'node[[dir]]', 'etc[[dir]]']
-
-
-autocmd VimEnter * call GitignoreWildignore()
-autocmd VimEnter * call CheckEclipse()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -379,16 +429,16 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 " => vimgrep searching and cope displaying
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv')<CR>
+"vnoremap <silent> gv :call VisualSelection('gv')<CR>
 
 " Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+"map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 " Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+"map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
 " When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+"vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
@@ -401,10 +451,10 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+"map <leader>cc :botright cope<cr>
+"map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+"map <leader>n :cn<cr>
+"map <leader>p :cp<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -500,45 +550,10 @@ function! FormatXml()
   execute("silent %!xmllint --format --recover - 2>/dev/null")
 endfunction
 
-
-function! CheckEclipse()
-  let l:gitdir=system("git rev-parse --show-toplevel")
-  if matchstr(gitdir, '^fatal:.*')
-    return
-  endif
-
-  " Remove the newline character from the folder name
-  let l:gitdir=substitute(gitdir, '\n', '\1', '')
-  if filereadable(gitdir . "/.project")
-    set wildignore+=*/bin/**
-  endif
+function! FixJS()
+  execute('silent !eslint --fix % 2>/dev/null')
+  redraw!
+  Neomake
 endfunction
 
-function! ResetWildignore()
-  let &wildignore=g:basewildignore
-endfunction
-
-function! GitignoreWildignore()
-  let l:gitdir=system("git rev-parse --show-toplevel")
-  if matchstr(gitdir, '^fatal:.*')
-    return
-  endif
-
-  " Remove the newline character from the folder name
-  let l:gitdir=substitute(gitdir, '\n', '\1', '')
-
-  let filename = '.gitignore'
-  if filereadable(gitdir . filename)
-    let igstring = ''
-    for oline in readfile(filename)
-      let line = substitute(oline, '\s|\n|\r', '', "g")
-      if line =~ '^#' | con | endif
-      if line == '' | con  | endif
-      if line =~ '^!' | con  | endif
-      if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
-      let igstring .= "," . line
-    endfor
-    let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
-    execute execstring
-  endif
-endfunction
+command! FixJS call FixJS()

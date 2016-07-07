@@ -5,6 +5,8 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
@@ -15,7 +17,8 @@ fi
 # User specific aliases and functions
 alias ls='ls -AFG'
 alias rm='rm -rf'
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 alias mkdir='mkdir -pv'
 alias cp='cp -r'
 
