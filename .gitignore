@@ -5,6 +5,6 @@
 !.tern-config
 !README.md
 !.gitmessage.txt
-!.eslintrc
+!.eslintrc.yml
 !.lein/profiles.clj
 !.gitignore_global
