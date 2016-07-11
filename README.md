@@ -23,12 +23,13 @@ $ /usr/local/opt/fzf/install --all
 $ mkdir ~/.config/nvim
 $ ln -s ~/.vimrc ~/.config/nvim/init.vim
 
-# Install dein.vim for package management
-$ curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh && sh ./installer.sh ~/.dein
+# Install vim-plug for package management
+$ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install plugins
-$ touch package.json project.clj && nvim +qall && rm package.json project.clj
-$ cd ~/.dein/repos/github.com/Valloric/YouCompleteMe && ./install.py --tern-completer
+$ vim +PlugInstall
+$ cd ~/.vim/plugged/YouCompleteMe && ./install.py --tern-completer
 ```
 
 ### Initilizing VIM (Instead of Neovim)

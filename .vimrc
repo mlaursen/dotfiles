@@ -19,66 +19,45 @@ if &compatible
   set nocompatible
 endif
 
-set rtp^=~/.dein/repos/github.com/Shougo/dein.vim
-
-call dein#begin(expand('~/.dein'))
-call dein#add('Shougo/dein.vim')
-
-"Colors
-call dein#add('altercation/vim-colors-solarized')
+call plug#begin('~/.vim/plugged')
+"Formatting and Colors
+Plug 'altercation/vim-colors-solarized'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
 "Buffers
-call dein#add('vim-scripts/BufOnly.vim')
+Plug 'vim-scripts/BufOnly.vim'
 
 "Linters
-call dein#add('neomake/neomake')
+Plug 'neomake/neomake'
 
 "File managers
-call dein#add('mileszs/ack.vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('Xuyuanp/nerdtree-git-plugin')
-call dein#add('tpope/vim-fugitive')
+Plug 'mileszs/ack.vim'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+Plug 'tpope/vim-fugitive'
 
 "Code completers and autofillers
-call dein#add('tpope/vim-surround')
-call dein#add('tpope/vim-repeat')
-call dein#add('Raimondi/delimitMate')
-call dein#add('docunext/closetag.vim')
-call dein#add('SirVer/ultisnips')
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'Raimondi/delimitMate'
+Plug 'docunext/closetag.vim'
+Plug 'SirVer/ultisnips'
+Plug 'mlaursen/mlaursen-vim-snippets', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mlaursen/vim-react-snippets', { 'for': ['javascript', 'javascript.jsx'] }
 
-"Clojure specific plugins
-if ProjectIncludes('project.clj')
-  call dein#add('guns/vim-clojure-static')
-  call dein#add('clojure-emacs/cider-nrepl')
-  call dein#add('tpope/vim-fireplace')
-  call dein#add('tpope/vim-salve')
-  call dein#add('venatius/vim-cljfmt')
-endif
-
-"Frontend specific plugins
-if ProjectIncludes('package.json')
-  "Code completions
-  call dein#add('mlaursen/vim-react-snippets')
-  call dein#add('mlaursen/mlaursen-vim-snippets')
-
-  "Context assist
-  call dein#add('marijnh/tern_for_vim')
-
-  "Formatting/colors
-  call dein#add('pangloss/vim-javascript')
-  call dein#add('mxw/vim-jsx')
-  call dein#add('cakebaker/scss-syntax.vim')
-endif
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'clojure-emacs/cider-nrepl', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'tpope/vim-salve', { 'for': 'clojure' }
+Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
 
 "Context assist
-call dein#add('Valloric/YouCompleteMe')
-call dein#end()
+Plug 'marijnh/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'Valloric/YouCompleteMe'
 
-"Auto install missing plugins on start
-if dein#check_install()
-  call dein#install()
-endif
-
+call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
