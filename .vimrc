@@ -19,6 +19,13 @@ if &compatible
   set nocompatible
 endif
 
+"Auto install vim-plug if it doesn't exist
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 "Formatting and Colors
 Plug 'altercation/vim-colors-solarized'
@@ -46,7 +53,10 @@ Plug 'docunext/closetag.vim'
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/mlaursen-vim-snippets', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mlaursen/vim-react-snippets', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'tpope/vim-commentary'
+Plug 'matze/vim-move'
 
+"Clojure specific stuff
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'clojure-emacs/cider-nrepl', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
