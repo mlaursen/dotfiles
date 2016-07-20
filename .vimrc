@@ -1,20 +1,3 @@
-"Check if the git base directory has a file
-function! ProjectIncludes(file)
-  let l:gitdir=system('git rev-parse --show-toplevel')
-  if matchstr(gitdir ,'^fatal:.*')
-    return 0
-  endif
-
-  " Remove the newline character from the folder name
-  let l:gitdir=substitute(gitdir, '\n', '\1', '')
-
-  if filereadable(gitdir . '/' . a:file)
-    return 1
-  else
-    return 0
-  endif
-endfunction
-
 if &compatible
   set nocompatible
 endif
@@ -32,6 +15,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'fatih/vim-nginx'
 
 "Buffers
 Plug 'vim-scripts/BufOnly.vim'
@@ -40,10 +24,13 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'neomake/neomake'
 
 "File managers
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-rooter' "Auto lcd to git dir on BufEnter
 
 "Code completers and autofillers
 Plug 'tpope/vim-surround'
@@ -74,7 +61,7 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Allow fzf in runtime path
-set rtp+=/usr/local/Cellar/fzf/latest
+set rtp+=~/.fzf
 
 " Opens up the autocomplete help in the YouCompleteMe menu instead of a preview buffer
 set completeopt=menuone
@@ -113,8 +100,15 @@ let g:closetag_html_style=1
 let g:closetag_filenes='*.html,*.xhtml,*.jsx,*.js,*.jsp,*.jsf,*.jspf'
 let g:javascript_enable_domhtmlcss=1
 
+" Update fzf.vim actions for bindings like command-t
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-t': 'tabedit',
+      \ 'ctrl-v': 'vsplit',
+      \ }
+
 "Update fzf to ignore files that can't be opened by vim
-let $FZF_DEFAULT_COMMAND='ag -l --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf)" -g ""'
+let $FZF_DEFAULT_COMMAND='ag -l --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz)" -g ""'
 
 "When linting, go to next and previous errors
 nmap <leader>n :lnext<cr>
@@ -126,7 +120,7 @@ if executable('ag')
 endif
 
 "Use ag for grepping
-nmap <leader>g :Ack<space>
+nmap <leader>g :Ack!<space>
 
 "Use tern stuff for javascript files
 au Filetype javascript nmap <F1> :TernType<CR>
@@ -151,6 +145,7 @@ nmap <leader>f :FixJS<cr>
 
 " Lint after every save
 au! BufWritePost * Neomake
+au BufRead,BufNewFile *nginx.conf.* set ft=nginx
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
