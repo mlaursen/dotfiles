@@ -120,7 +120,7 @@ if executable('ag')
 endif
 
 "Use ag for grepping
-nmap <leader>g :Ack!<space>
+nmap <leader>g :Ack!<space>''<left>
 
 "Use tern stuff for javascript files
 au Filetype javascript nmap <F1> :TernType<CR>
@@ -332,6 +332,8 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+map <leader>b :Buffers<cr>
+
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 
@@ -340,12 +342,6 @@ map <leader>ba :1,1000 bd!<cr>
 
 " Close all buffers except current
 map <leader>bo :BufOnly<cr>
-
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -540,4 +536,10 @@ function! FixJS()
   Neomake
 endfunction
 
+function! FormatJson()
+  execute('silent %!python -m json.tool')
+  :w
+endfunction
+
 command! FixJS call FixJS()
+command! FormatJson call FormatJson()
