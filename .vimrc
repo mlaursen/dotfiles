@@ -21,7 +21,7 @@ Plug 'fatih/vim-nginx'
 Plug 'vim-scripts/BufOnly.vim'
 
 "Linters
-Plug 'neomake/neomake'
+Plug 'scrooloose/syntastic'
 
 "File managers
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -89,12 +89,23 @@ let g:jsx_ext_required=0
 let g:EclimCompletionMethod='omnifunc'
 
 "Neomake configs
-let g:neomake_javascript_enabled_makers=['eslint']
-let g:neomake_jsx_enabled_makers=['eslint']
-let g:neomake_scss_enabled_makers=['scsslint']
+" let g:neomake_javascript_enabled_makers=['eslint']
+" let g:neomake_jsx_enabled_makers=['eslint']
+" let g:neomake_scss_enabled_makers=['scsslint']
 
 "Always open location list
-let g:neomake_open_list=2
+" let g:neomake_open_list=2
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=0
+let g:syntastic_check_on_wq=0
+let g:syntastic_javascript_checkers=['eslint']
+let g_syntastic_scss_checkers=['scss_lint']
 
 let g:closetag_html_style=1
 let g:closetag_filenes='*.html,*.xhtml,*.jsx,*.js,*.jsp,*.jsf,*.jspf'
@@ -139,12 +150,12 @@ nmap <leader>] :NERDTreeToggle<cr>
 
 " Allow fzf search as \t
 nmap <leader>t :FZF<cr>
-nmap <leader>l :Neomake<cr>
+" nmap <leader>l :Neomake<cr>
 nmap <leader>f :FixJS<cr>
 
 
 " Lint after every save
-au! BufWritePost * Neomake
+" au! BufWritePost * Neomake
 au BufRead,BufNewFile *nginx.conf.* set ft=nginx
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -533,7 +544,7 @@ endfunction
 function! FixJS()
   execute('silent !eslint --fix % 2>/dev/null')
   redraw!
-  Neomake
+  SyntasticCheck
 endfunction
 
 function! FormatJson()
