@@ -108,7 +108,7 @@ let g:syntastic_javascript_checkers=['eslint']
 let g_syntastic_scss_checkers=['scss_lint']
 
 let g:closetag_html_style=1
-let g:closetag_filenes='*.html,*.xhtml,*.jsx,*.js,*.jsp,*.jsf,*.jspf'
+let g:closetag_filenames='*.html,*.xhtml,*.jsx,*.js,*.jsp,*.jsf,*.jspf'
 let g:javascript_enable_domhtmlcss=1
 
 " Update fzf.vim actions for bindings like command-t
@@ -119,7 +119,7 @@ let g:fzf_action = {
       \ }
 
 "Update fzf to ignore files that can't be opened by vim
-let $FZF_DEFAULT_COMMAND='ag -l --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz)" -g ""'
+let $FZF_DEFAULT_COMMAND='ag --hidden --ignore "(.git)|(*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz))" -g ""'
 
 "When linting, go to next and previous errors
 nmap <leader>n :lnext<cr>
@@ -150,7 +150,7 @@ nmap <leader>] :NERDTreeToggle<cr>
 
 " Allow fzf search as \t
 nmap <leader>t :FZF<cr>
-" nmap <leader>l :Neomake<cr>
+nmap <leader>l :SyntasticCheck<cr>
 nmap <leader>f :FixJS<cr>
 
 

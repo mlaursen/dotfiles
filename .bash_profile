@@ -26,3 +26,4 @@ alias cp='cp -r'
 stty -ixon
 PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u @ \[\e[33m\]\w\[\e[0m\]/\n$ '
 
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
