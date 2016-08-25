@@ -119,7 +119,7 @@ let g:fzf_action = {
       \ }
 
 "Update fzf to ignore files that can't be opened by vim
-let $FZF_DEFAULT_COMMAND='ag --hidden --ignore "(.git)|(*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz))" -g ""'
+let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz)" -g ""'
 
 "When linting, go to next and previous errors
 nmap <leader>n :lnext<cr>
