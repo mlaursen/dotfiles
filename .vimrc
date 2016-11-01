@@ -14,8 +14,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
 Plug 'fatih/vim-nginx'
+Plug 'avakhov/vim-yaml'
 
 "Buffers
 Plug 'vim-scripts/BufOnly.vim'
@@ -150,7 +151,10 @@ nmap <leader>] :NERDTreeToggle<cr>
 
 " Allow fzf search as \t
 nmap <leader>t :FZF<cr>
+
+" Linting and fixing
 nmap <leader>l :SyntasticCheck<cr>
+nmap <leader>lt :SyntasticToggleMode<cr>
 nmap <leader>f :FixJS<cr>
 
 

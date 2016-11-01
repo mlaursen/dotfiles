@@ -35,3 +35,10 @@ Code
 .oracle*
 .v8*
 .zsh*
+.bashrc
+.node-gyp
+.nvm
+.yarn-cache
+.yarn-config
+.yarn
+VirtualBox\ VMs

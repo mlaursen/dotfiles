@@ -5,6 +5,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+if [ -f $HOME/.bashrc ]; then
+	source $HOME/.bashrc
+fi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
@@ -27,3 +31,4 @@ stty -ixon
 PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u @ \[\e[33m\]\w\[\e[0m\]/\n$ '
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export PATH="$PATH:$HOME/.yarn/bin:$HOME/.yarn-config/global/node_modules/.bin"
