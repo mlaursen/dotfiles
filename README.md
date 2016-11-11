@@ -48,20 +48,22 @@ $ cd ~/.vim/bundle/command-t/ruby/command-t && ruby extconf.rb && make
 ### Initializing Linters and SASS
 
 ```bash
+$ brew install yarn
+$ yarn global add eslint \
+                  babel-eslint \
+                  eslint-config-airbnb \
+                  eslint-plugin-import@1.16.0 \
+                  eslint-plugin-react \
+                  eslint-plugin-import
 $ gem install sass scss_lint
-$ npm i -g eslint@2.x
-           eslint-config-airbnb
-           eslint-plugin-import
-           eslint-plugin-jsx-a11y
-           eslint-plugin-react
-
 ```
 
 ### Random Optimizations
 
 ```bash
 # Faster arrow keys in terminals
-$ defaults write NSGlobalDomain KeyRepeat -int 0
+$ defaults write NSGlobalDomain KeyRepeat -int 1
+$ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 ```
 
 - Update Profile to `Reuse previous session's directory` under general tab
