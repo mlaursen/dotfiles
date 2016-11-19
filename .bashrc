@@ -8,7 +8,7 @@ fi
 alias ls='ls -AFG'
 alias rm='rm -rf'
 alias vi='nvim'
-alias vim='nvim'
+# alias vim='nvim'
 alias mkdir='mkdir -pv'
 alias cp='cp -r'
 alias mysql=/usr/local/mysql/bin/mysql
