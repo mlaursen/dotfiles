@@ -1,9 +1,5 @@
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-fi
-
 # User specific aliases and functions
 alias ls='ls -AFG'
 alias rm='rm -rf'
@@ -18,5 +14,8 @@ alias mysql.server=/usr/local/mysql/support-files/mysql.server
 stty -ixon
 PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u @ \[\e[33m\]\w\[\e[0m\]/\n$ '
 
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export PATH="$PATH:$HOME/.yarn/bin:$HOME/.yarn-config/global/node_modules/.bin"
+export PATH="$PATH:`yarn global bin`"
