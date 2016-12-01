@@ -27,7 +27,6 @@ Plug 'scrooloose/syntastic'
 "File managers
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
@@ -52,7 +51,6 @@ Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
 
 "Context assist
-Plug 'marijnh/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
@@ -66,12 +64,6 @@ set rtp+=~/.fzf
 
 " Opens up the autocomplete help in the YouCompleteMe menu instead of a preview buffer
 set completeopt=menuone
-
-" Show function definition in the menu
-let g:tern_show_signature_in_pum=1
-
-" Need to specify global node instead of any that are used from nvm
-let g:tern#command=['/usr/local/bin/node', '/usr/local/bin/tern', '--no-port-file']
 
 " update key bindings for UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -88,14 +80,6 @@ let g:jsx_ext_required=0
 
 " The Eclim completion will now work with YCM
 let g:EclimCompletionMethod='omnifunc'
-
-"Neomake configs
-" let g:neomake_javascript_enabled_makers=['eslint']
-" let g:neomake_jsx_enabled_makers=['eslint']
-" let g:neomake_scss_enabled_makers=['scsslint']
-
-"Always open location list
-" let g:neomake_open_list=2
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -119,6 +103,9 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit',
       \ }
 
+
+let g:fzf_layout = { 'down': '~40%' }
+
 "Update fzf to ignore files that can't be opened by vim
 let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz)" -g ""'
 
@@ -132,12 +119,13 @@ if executable('ag')
 endif
 
 "Use ag for grepping
-nmap <leader>g :Ack!<space>''<left>
+nmap <leader>g :Ag<space>
 
 "Use tern stuff for javascript files
-au Filetype javascript nmap <F1> :TernType<CR>
-au Filetype javascript nmap <F2> :TernDoc<CR>
-au Filetype javascript nmap <F3> :TernDef<CR>
+au Filetype javascript nmap <F1> :YcmCompleter GetType<CR>
+au Filetype javascript nmap <F2> :YcmCompleter GetDoc<CR>
+au Filetype javascript nmap <F3> :YcmCompleter GoTo<CR>
+au Filetype javascript nmap <F4> :YcmCompleter RefactorRename<space>
 
 "Java eclim stuff
 au Filetype java nmap <F3> :JavaSearchContext<CR>
