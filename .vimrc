@@ -17,6 +17,9 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
 Plug 'fatih/vim-nginx'
 Plug 'avakhov/vim-yaml'
+Plug 'leafgarland/typescript-vim'
+
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 "Buffers
 Plug 'vim-scripts/BufOnly.vim'
@@ -40,6 +43,8 @@ Plug 'docunext/closetag.vim'
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/mlaursen-vim-snippets', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mlaursen/vim-react-snippets', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
 Plug 'tpope/vim-commentary'
 Plug 'matze/vim-move'
 
@@ -91,6 +96,9 @@ let g:syntastic_check_on_open=0
 let g:syntastic_check_on_wq=0
 let g:syntastic_javascript_checkers=['eslint']
 let g_syntastic_scss_checkers=['scss_lint']
+
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 let g:closetag_html_style=1
 let g:closetag_filenames='*.html,*.xhtml,*.jsx,*.js,*.jsp,*.jsf,*.jspf'
