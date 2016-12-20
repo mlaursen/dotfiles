@@ -20,6 +20,7 @@ Plug 'avakhov/vim-yaml'
 Plug 'leafgarland/typescript-vim'
 
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'editorconfig/editorconfig-vim'
 
 "Buffers
 Plug 'vim-scripts/BufOnly.vim'
@@ -36,6 +37,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-rooter' "Auto lcd to git dir on BufEnter
 
 "Code completers and autofillers
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'Raimondi/delimitMate'
@@ -86,6 +88,7 @@ let g:jsx_ext_required=0
 " The Eclim completion will now work with YCM
 let g:EclimCompletionMethod='omnifunc'
 
+set statusline+=%{fugitive#statusline()}
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
