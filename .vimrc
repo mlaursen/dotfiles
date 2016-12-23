@@ -25,6 +25,9 @@ Plug 'editorconfig/editorconfig-vim'
 "Buffers
 Plug 'vim-scripts/BufOnly.vim'
 
+"Processes
+Plug 'tpope/vim-dispatch'
+
 "Linters
 Plug 'scrooloose/syntastic'
 
@@ -32,7 +35,7 @@ Plug 'scrooloose/syntastic'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+Plug 'albfan/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-rooter' "Auto lcd to git dir on BufEnter
 
@@ -80,7 +83,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-s-left>"
 let g:UltiSnipsEditSplit="vertical"
 
 "Ignore more stuff in nerdtree
-let g:NERDTreeIgnore=['dist*[[dir]]', 'node_modules[[dir]]', 'build*[[dir]]', 'target[[dir]]', 'node[[dir]]', 'etc[[dir]]']
+let g:NERDTreeRespectWildIgnore=1
+let g:NERDTreeShowHidden=1
+" let g:NERDTreeIgnore=['dist*[[dir]]', 'node_modules[[dir]]', 'build*[[dir]]', 'target[[dir]]', 'node[[dir]]', 'etc[[dir]]']
 
 " allow jsx syntax in .js files
 let g:jsx_ext_required=0
@@ -155,6 +160,10 @@ nmap <leader>t :FZF<cr>
 nmap <leader>l :SyntasticCheck<cr>
 nmap <leader>lt :SyntasticToggleMode<cr>
 nmap <leader>f :FixJS<cr>
+
+"Installations
+nmap <leader>y :Dispatch! yarn<space>
+nmap <leader>a :Dispatch yarn add<space>
 
 
 " Lint after every save
