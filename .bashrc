@@ -9,6 +9,7 @@ alias mkdir='mkdir -pv'
 alias cp='cp -r'
 alias mysql=/usr/local/mysql/bin/mysql
 alias mysql.server=/usr/local/mysql/support-files/mysql.server
+alias brewup='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
 
 # Allows <ctrl-s> for Command-T
 stty -ixon

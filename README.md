@@ -7,18 +7,21 @@ A repo for my dotfiles on a MacBook.
 1. Install Xcode from the app store
 2. Install [homebrew](http://brew.sh/)
   - `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-3. Install better terminal
-  - `brew install Caskroom/cask/iterm2`
+3. Install all programs and stuffs
+  - `brew bundle install`
 4. Set colors
   - Download [solarized](http://ethanschoonover.com/solarized/files/solarized.zip)
   - Extract zip and double click `iterm-2-colors-solarized/Solarized Dark.itermcolors`
 5. Open iterm
 
-### Installing Neovim
+### Initializing Neovim/vim
 
 ```bash
-$ brew install CMake neovim fzf
+# Might already have been installed from `brew bundle`
 $ /usr/local/opt/fzf/install --all
+
+# Optional if using neovim instad
+$ brew link macvim
 
 $ mkdir ~/.config/nvim
 $ ln -s ~/.vimrc ~/.config/nvim/init.vim
@@ -28,21 +31,8 @@ $ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install plugins
-$ vim +PlugInstall
+$ vim +PlugInstall +qall
 $ cd ~/.vim/plugged/YouCompleteMe && ./install.py --tern-completer
-```
-
-### Initilizing VIM (Instead of Neovim)
-
-```bash
-$ brew install CMake vim macvim
-$ brew link macvim
-$ mkdir ~/.vim/bundle && git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/vundle
-
-# Install plugins
-$ touch package.json && vim +PluginInstall +qall && rm package.json
-$ cd ~/.vim/bundle/YouCompleteMe && ./install.py --tern-completer
-$ cd ~/.vim/bundle/command-t/ruby/command-t && ruby extconf.rb && make
 ```
 
 ### Initializing Linters and SASS
@@ -64,6 +54,12 @@ $ gem install sass scss_lint
 # Faster arrow keys in terminals
 $ defaults write NSGlobalDomain KeyRepeat -int 1
 $ defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+# Show Path bar
+$ defaults write com.apple.finder ShowPathbar -bool true
+
+# Show status bar
+$ defaults write com.apple.finder ShowStatusBar -bool true
 ```
 
-- Update Profile to `Reuse previous session's directory` under general tab
+- Update Profile to `Reuse previous session's directory` under general tab for iterm2
