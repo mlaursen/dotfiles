@@ -169,6 +169,8 @@ nmap <leader>a :Dispatch yarn add<space>
 " Lint after every save
 " au! BufWritePost * Neomake
 au BufRead,BufNewFile *nginx.conf.* set ft=nginx
+" For some reason it stopped setting tw correctly
+au FileType gitcommit setlocal tw=72
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
