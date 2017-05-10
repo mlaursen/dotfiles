@@ -63,6 +63,10 @@ Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
 "Context assist
 Plug 'Valloric/YouCompleteMe'
 
+"Note Taking
+Plug 'xolox/vim-notes'
+  Plug 'xolox/vim-misc'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -112,6 +116,8 @@ let g:closetag_html_style=1
 let g:closetag_filenames='*.html,*.xhtml,*.jsx,*.js,*.jsp,*.jsf,*.jspf'
 let g:javascript_enable_domhtmlcss=1
 
+let g:notes_directories = ['~/Documents/Notes']
+
 " Update fzf.vim actions for bindings like command-t
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
@@ -128,6 +134,8 @@ let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore "*.(png|svg|jpe?g|p
 "When linting, go to next and previous errors
 nmap <leader>n :lnext<cr>
 nmap <leader>p :lprev<cr>
+nmap <F10> :cn<cr>
+nmap <F9> :cp<cr>
 
 "Use ag instead of ack
 if executable('ag')
@@ -295,6 +303,11 @@ set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
+
+" Update cursor after the changes to nvim
+set guicursor=n-v-c:block-Cursor/lCursor-blinkon0
+set guicursor+=i-ci:block-Cursor/lCursor
+set guicursor+=r-cr:hor20-Cursor/lCursor
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
