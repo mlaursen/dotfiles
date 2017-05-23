@@ -107,7 +107,7 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=0
 let g:syntastic_check_on_wq=0
 let g:syntastic_javascript_checkers=['eslint']
-let g_syntastic_scss_checkers=['scss_lint']
+let g:syntastic_scss_checkers=['scss_lint']
 
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
