@@ -108,7 +108,7 @@ let g:mapleader = "\\"
 " Fast saving
 nmap <leader>w :w!<cr>
 nmap <leader>q :lclose<cr>:q<cr>
-nmap <leader>wq :wq<cr>
+nmap <leader>wq :x<cr>
 nmap <leader>Q :qall!<cr>
 
 " Line Numbers
