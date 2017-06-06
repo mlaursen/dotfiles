@@ -1,0 +1,99 @@
+[submodule ".vim/pack/plugins/vim-colors-solarized"]
+	path = .vim/pack/plugins/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized
+[submodule ".vim/pack/plugins/start/vim-colors-solarized"]
+	path = .vim/pack/plugins/start/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-javascript"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-javascript
+	url = https://github.com/pangloss/vim-javascript
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-jsx"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-jsx
+	url = https://github.com/mxw/vim-jsx
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/scss-syntax.vim"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/scss-syntax.vim
+	url = https://github.com/cakebaker/scss-syntax.vim
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-yaml"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-yaml
+	url = https://github.com/avakhov/vim-yaml
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-nginx"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-nginx
+	url = https://github.com/fatih/vim-nginx
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/nerdtree"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/nerdtree-git-plugin"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/nerdtree-git-plugin
+	url = https://github.com/albfan/nerdtree-git-plugin
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-rooter"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-rooter
+	url = https://github.com/airblade/vim-rooter
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-fugitive"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-unimpaired"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-surround"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-repeat"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-commentary"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/YouCompleteMe"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-move"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-move
+	url = https://github.com/matze/vim-move
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/ultisnips"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/ultisnips
+	url = https://github.com/SirVer/ultisnips
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-react-snippets"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-react-snippets
+	url = https://github.com/mlaursen/vim-react-snippets
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/mlaursen-vim-snippets"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/mlaursen-vim-snippets
+	url = https://github.com/mlaursen/mlaursen-vim-snippets
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/fzf.vim"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/tsuquyomi"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/tsuquyomi
+	url = https://github.com/Quramy/tsuquyomi
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/typescript-vim"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/editorconfig-vim"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim
+[submodule "/Users/mlaursen/.vim/pack/plugins/opt/cider-nrepl"]
+	path = /Users/mlaursen/.vim/pack/plugins/opt/cider-nrepl
+	url = https://github.com/clojure-emacs/cider-nrepl
+[submodule "/Users/mlaursen/.vim/pack/plugins/opt/vim-fireplace"]
+	path = /Users/mlaursen/.vim/pack/plugins/opt/vim-fireplace
+	url = https://github.com/tpope/vim-fireplace
+[submodule "/Users/mlaursen/.vim/pack/plugins/opt/vim-clojure-static"]
+	path = /Users/mlaursen/.vim/pack/plugins/opt/vim-clojure-static
+	url = https://github.com/guns/vim-clojure-static
+[submodule "/Users/mlaursen/.vim/pack/plugins/opt/vim-salve"]
+	path = /Users/mlaursen/.vim/pack/plugins/opt/vim-salve
+	url = https://github.com/tpope/vim-salve
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-notes"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-notes
+	url = https://github.com/xolox/vim-notes
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-misc"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-misc
+	url = https://github.com/xolox/vim-misc
+[submodule "/Users/mlaursen/.vim/pack/plugins/opt/vim-cljfmt"]
+	path = /Users/mlaursen/.vim/pack/plugins/opt/vim-cljfmt
+	url = https://github.com/venantius/vim-cljfmt
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/closetag.vim"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/closetag.vim
+	url = https://github.com/docunext/closetag.vim
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/delimitMate"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/delimitMate
+	url = https://github.com/Raimondi/delimitMate

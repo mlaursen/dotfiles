@@ -16,6 +16,10 @@
   trustExitCode = false
   keepBackup = false
   keepTemporaries = false
+[diff]
+	tool = p4mergetool
+[difftool "p4mergetool"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
 [alias]
   ckb = checkout -b
   lg = log --name-status --no-merges

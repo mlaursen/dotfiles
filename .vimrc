@@ -1,73 +1,73 @@
-if &compatible
-  set nocompatible
-endif
+" if &compatible
+"   set nocompatible
+" endif
 
 "Auto install vim-plug if it doesn't exist
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
-
-call plug#begin('~/.vim/plugged')
-"Formatting and Colors
-Plug 'altercation/vim-colors-solarized'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
-Plug 'fatih/vim-nginx'
-Plug 'avakhov/vim-yaml'
-Plug 'leafgarland/typescript-vim'
-
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'editorconfig/editorconfig-vim'
-
-"Buffers
-Plug 'vim-scripts/BufOnly.vim'
-
-"Processes
-Plug 'tpope/vim-dispatch'
-
-"Linters
-Plug 'scrooloose/syntastic'
-
-"File managers
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'albfan/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-rooter' "Auto lcd to git dir on BufEnter
-
-"Code completers and autofillers
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'Raimondi/delimitMate'
-Plug 'docunext/closetag.vim'
-Plug 'SirVer/ultisnips'
-Plug 'mlaursen/mlaursen-vim-snippets', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'mlaursen/vim-react-snippets', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
-Plug 'tpope/vim-commentary'
-Plug 'matze/vim-move'
-
-"Clojure specific stuff
-Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-Plug 'clojure-emacs/cider-nrepl', { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'tpope/vim-salve', { 'for': 'clojure' }
-Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
-
-"Context assist
-Plug 'Valloric/YouCompleteMe'
-
-"Note Taking
-Plug 'xolox/vim-notes'
-  Plug 'xolox/vim-misc'
-
-call plug#end()
+" if empty(glob('~/.vim/autoload/plug.vim'))
+"   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   autocmd VimEnter * PlugInstall | source $MYVIMRC
+" endif
+" 
+" call plug#begin('~/.vim/plugged')
+" "Formatting and Colors
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
+" Plug 'fatih/vim-nginx'
+" Plug 'avakhov/vim-yaml'
+" Plug 'leafgarland/typescript-vim'
+" 
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" Plug 'editorconfig/editorconfig-vim'
+" 
+" "Buffers
+" Plug 'vim-scripts/BufOnly.vim'
+" 
+" "Processes
+" " Plug 'tpope/vim-dispatch'
+" 
+" "Linters
+" Plug 'scrooloose/syntastic'
+" 
+" "File managers
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'albfan/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+" Plug 'tpope/vim-fugitive'
+" Plug 'airblade/vim-rooter' "Auto lcd to git dir on BufEnter
+" 
+" "Code completers and autofillers
+" Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-repeat'
+" Plug 'Raimondi/delimitMate'
+" Plug 'docunext/closetag.vim'
+" Plug 'SirVer/ultisnips'
+" Plug 'mlaursen/mlaursen-vim-snippets', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'mlaursen/vim-react-snippets', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'leafgarland/typescript-vim'
+" Plug 'Quramy/tsuquyomi'
+" Plug 'tpope/vim-commentary'
+" Plug 'matze/vim-move'
+" 
+" "Clojure specific stuff
+" Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+" Plug 'clojure-emacs/cider-nrepl', { 'for': 'clojure' }
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Plug 'tpope/vim-salve', { 'for': 'clojure' }
+" Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
+" 
+" "Context assist
+" Plug 'Valloric/YouCompleteMe'
+" 
+" "Note Taking
+" " Plug 'xolox/vim-notes'
+" "   Plug 'xolox/vim-misc'
+" 
+" call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
@@ -97,10 +97,10 @@ let g:jsx_ext_required=0
 " The Eclim completion will now work with YCM
 let g:EclimCompletionMethod='omnifunc'
 
-set statusline+=%{fugitive#statusline()}
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%{fugitive#statusline()}
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
