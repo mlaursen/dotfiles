@@ -3,7 +3,7 @@
 # User specific aliases and functions
 alias ls='ls -AFG'
 alias rm='rm -rf'
-alias vi='nvim'
+alias vi='vim'
 # alias vim='nvim'
 alias mkdir='mkdir -pv'
 alias cp='cp -r'

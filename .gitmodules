@@ -97,3 +97,15 @@
 [submodule "/Users/mlaursen/.vim/pack/plugins/start/delimitMate"]
 	path = /Users/mlaursen/.vim/pack/plugins/start/delimitMate
 	url = https://github.com/Raimondi/delimitMate
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/ale"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/ale
+	url = https://github.com/w0rp/ale
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-airline"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/vim-airline-themes"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "/Users/mlaursen/.vim/pack/plugins/start/BufOnly.vim"]
+	path = /Users/mlaursen/.vim/pack/plugins/start/BufOnly.vim
+	url = https://github.com/vim-scripts/BufOnly.vim
