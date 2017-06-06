@@ -36,6 +36,6 @@
 [color]
   ui = auto
 [credential]
-  helper = store
+	helper = osxkeychain
 [commit]
 	template = ~/.gitmessage.txt
