@@ -1,8 +1,8 @@
 #!/bin/bash
-set -e
 folder=start
 module_required=0
 
+modules=()
 for i in "$@"; do
   case $i in
     -o|--optional)
@@ -28,7 +28,7 @@ for i in "$@"; do
       shift
       ;;
     *)
-      module=$i
+      modules+=("$i")
       shift
       ;;
   esac
@@ -37,7 +37,7 @@ done
 if [[ -z "$command" ]]; then
   echo "Either init, add, update, or rm|remove needs to be specified"
   exit 1
-elif [[ -z "$module" && $module_required -ne 0 ]]; then
+elif [[ "${#modules[@]}" -eq 0 && $module_required -ne 0 ]]; then
   echo "A module must be defined when adding or removing."
   exit 1
 fi
@@ -52,11 +52,25 @@ if [[ "$command" == "init" ]]; then
   cd -
 elif [[ "$command" == "update" ]]; then
   echo "Updating packages..."
-  git submodule update --recursive --remote
-else
-  IFS='/' read -ra MODULE_SPLIT <<< "$module"
-  module_name="${MODULE_SPLIT[1]}"
+  git submodule update --recursive --merge
+elif [[ "$command" == "deinit" ]]; then
+  for module in "${modules[@]}"; do
+    echo "Removing package $module..."
 
-  echo "Adding package $module to $folder/$module_name"
-  git submodule $command https://github.com/$module ~/.vim/pack/plugins/$folder/$module_name
+    path=".vim/pack/plugins/$folder/$module"
+    git submodule $command $path
+    git rm $path
+    rm -Rf .git/modules/$path
+  done
+else
+  echo "${modules[@]}"
+  for module in "${modules[@]}"; do
+    IFS='/' read -ra MODULE_SPLIT <<< "$module"
+    module_name="${MODULE_SPLIT[1]}"
+
+    echo "Adding package $module to '$folder/$module_name'"
+    git submodule $command https://github.com/$module .vim/pack/plugins/$folder/$module_name
+  done
 fi
+
+echo "Done!"

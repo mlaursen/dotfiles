@@ -12,6 +12,6 @@
 !.tern-config
 !.vim
 !.vimrc
-!vim-packages.sh
+!/bin
 !Brewfile
 !README.md

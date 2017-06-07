@@ -46,9 +46,6 @@
 [submodule ".vim/pack/plugins/start/YouCompleteMe"]
 	path = .vim/pack/plugins/start/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
-[submodule ".vim/pack/plugins/start/vim-move"]
-	path = .vim/pack/plugins/start/vim-move
-	url = https://github.com/matze/vim-move
 [submodule ".vim/pack/plugins/start/ultisnips"]
 	path = .vim/pack/plugins/start/ultisnips
 	url = https://github.com/SirVer/ultisnips
@@ -109,3 +106,6 @@
 [submodule ".vim/pack/plugins/start/BufOnly.vim"]
 	path = .vim/pack/plugins/start/BufOnly.vim
 	url = https://github.com/vim-scripts/BufOnly.vim
+[submodule ".vim/pack/plugins/start/vim-move"]
+	path = .vim/pack/plugins/start/vim-move
+	url = https://github.com/matze/vim-move
