@@ -8,6 +8,9 @@ set rtp+=~/.fzf
 " Opens up the autocomplete help in the YouCompleteMe menu instead of a preview buffer
 set completeopt=menuone
 
+" update vim-move to use control instead of alt since mac is stupid
+let g:move_key_modifier='C'
+
 " update key bindings for UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsListSnippets="<c-h>"
@@ -15,7 +18,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-s-right>"
 let g:UltiSnipsJumpBackwardTrigger="<c-s-left>"
 let g:UltiSnipsEditSplit="vertical"
 
-"Ignore more stuff in nerdtree
+" hide more stuff in NERDTree
 let g:NERDTreeShowHidden=1
 
 " allow jsx syntax in .js files
@@ -24,13 +27,15 @@ let g:jsx_ext_required=0
 " The Eclim completion will now work with YCM
 let g:EclimCompletionMethod='omnifunc'
 
-let g:tsuquyomi_disable_quickfix = 1
+let g:tsuquyomi_disable_quickfix=1
 
 let g:closetag_html_style=1
 let g:closetag_filenames='*.html,*.xhtml,*.jsx,*.js,*.jsp,*.jsf,*.jspf'
+
 let g:javascript_enable_domhtmlcss=1
 
 let g:notes_directories = ['~/Documents/Notes']
+
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 
@@ -50,8 +55,8 @@ let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore "*.(png|svg|jpe?g|p
 "When linting, go to next and previous errors
 nmap <leader>n :lnext<cr>
 nmap <leader>p :lprev<cr>
-nmap <F10> :cn<cr>
 nmap <F9> :cp<cr>
+nmap <F10> :cn<cr>
 
 "Use ag instead of ack
 if executable('ag')
@@ -83,6 +88,7 @@ nmap <leader>t :FZF<cr>
 " Linting and fixing
 nmap <leader>f :FixJS<cr>
 
+au BufRead,BufNewFile .babelrc,.eslintrc set ft=json
 au BufRead,BufNewFile *nginx.conf.* set ft=nginx
 " For some reason it stopped setting tw correctly
 au FileType gitcommit setlocal tw=72
@@ -113,6 +119,7 @@ nmap <leader>Q :qall!<cr>
 
 " Line Numbers
 set nu
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
