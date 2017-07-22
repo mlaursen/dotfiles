@@ -52,7 +52,7 @@ if [[ "$command" == "init" ]]; then
   cd -
 elif [[ "$command" == "update" ]]; then
   echo "Updating packages..."
-  git submodule update --recursive --merge
+  git submodule foreach git pull origin master
 elif [[ "$command" == "deinit" ]]; then
   for module in "${modules[@]}"; do
     echo "Removing package $module..."
