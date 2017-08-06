@@ -91,9 +91,6 @@
 [submodule ".vim/pack/plugins/start/closetag.vim"]
 	path = .vim/pack/plugins/start/closetag.vim
 	url = https://github.com/docunext/closetag.vim
-[submodule ".vim/pack/plugins/start/delimitMate"]
-	path = .vim/pack/plugins/start/delimitMate
-	url = https://github.com/Raimondi/delimitMate
 [submodule ".vim/pack/plugins/start/ale"]
 	path = .vim/pack/plugins/start/ale
 	url = https://github.com/w0rp/ale
@@ -109,3 +106,6 @@
 [submodule ".vim/pack/plugins/start/vim-move"]
 	path = .vim/pack/plugins/start/vim-move
 	url = https://github.com/matze/vim-move
+[submodule ".vim/pack/plugins/start/auto-pairs"]
+	path = .vim/pack/plugins/start/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs

@@ -245,6 +245,7 @@ map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
 
 map <leader>b :Buffers<cr>
+map <leader>bd :Bclose<cr>
 
 " Close all buffers except current
 map <leader>bo :BufOnly<cr>
