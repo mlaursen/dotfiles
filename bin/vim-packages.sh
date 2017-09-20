@@ -59,7 +59,7 @@ elif [[ "$command" == "deinit" ]]; then
 
     path=".vim/pack/plugins/$folder/$module"
     git submodule $command $path
-    git rm $path
+    git rm -rf $path
     rm -Rf .git/modules/$path
   done
 else

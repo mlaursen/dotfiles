@@ -43,9 +43,6 @@
 [submodule ".vim/pack/plugins/start/vim-commentary"]
 	path = .vim/pack/plugins/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
-[submodule ".vim/pack/plugins/start/YouCompleteMe"]
-	path = .vim/pack/plugins/start/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe
 [submodule ".vim/pack/plugins/start/ultisnips"]
 	path = .vim/pack/plugins/start/ultisnips
 	url = https://github.com/SirVer/ultisnips
@@ -109,3 +106,6 @@
 [submodule ".vim/pack/plugins/start/vim-react-snippets"]
 	path = .vim/pack/plugins/start/vim-react-snippets
 	url = https://github.com/mlaursen/vim-react-snippets
+[submodule ".vim/pack/plugins/start/YouCompleteMe"]
+	path = .vim/pack/plugins/start/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
