@@ -3,7 +3,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Allow fzf in runtime path
-set rtp+=~/.fzf
+set rtp+=/usr/local/opt/fzf
 
 " Opens up the autocomplete help in the YouCompleteMe menu instead of a preview buffer
 set completeopt=menuone
