@@ -49,9 +49,6 @@
 [submodule ".vim/pack/plugins/start/ultisnips"]
 	path = .vim/pack/plugins/start/ultisnips
 	url = https://github.com/SirVer/ultisnips
-[submodule ".vim/pack/plugins/start/vim-react-snippets"]
-	path = .vim/pack/plugins/start/vim-react-snippets
-	url = https://github.com/mlaursen/vim-react-snippets
 [submodule ".vim/pack/plugins/start/mlaursen-vim-snippets"]
 	path = .vim/pack/plugins/start/mlaursen-vim-snippets
 	url = https://github.com/mlaursen/mlaursen-vim-snippets
@@ -109,3 +106,6 @@
 [submodule ".vim/pack/plugins/start/auto-pairs"]
 	path = .vim/pack/plugins/start/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs
+[submodule ".vim/pack/plugins/start/vim-react-snippets"]
+	path = .vim/pack/plugins/start/vim-react-snippets
+	url = https://github.com/mlaursen/vim-react-snippets
