@@ -27,6 +27,10 @@ for i in "$@"; do
       command=update
       shift
       ;;
+    reset)
+      command=reset
+      shift
+      ;;
     *)
       modules+=("$i")
       shift
@@ -35,7 +39,7 @@ for i in "$@"; do
 done
 
 if [[ -z "$command" ]]; then
-  echo "Either init, add, update, or rm|remove needs to be specified"
+  echo "Either init, add, update, reset, or rm|remove needs to be specified"
   exit 1
 elif [[ "${#modules[@]}" -eq 0 && $module_required -ne 0 ]]; then
   echo "A module must be defined when adding or removing."
@@ -50,9 +54,12 @@ if [[ "$command" == "init" ]]; then
   cd ~/.vim/pack/plugins/start/YouCompleteMe
   ./install.py --tern-completer
   cd -
+elif [[ "$command" == "reset" ]]; then
+  echo "Reseting all submodules to commited version..."
+  git submodule update --init --recursive
 elif [[ "$command" == "update" ]]; then
   echo "Updating packages..."
-  git submodule foreach git pull origin master
+  git submodule update --recursive --remote
 elif [[ "$command" == "deinit" ]]; then
   for module in "${modules[@]}"; do
     echo "Removing package $module..."
