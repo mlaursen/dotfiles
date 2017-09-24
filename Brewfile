@@ -1,19 +1,27 @@
 tap 'caskroom/cask'
 
+brew 'bash-completion'
+
 brew 'git'
 brew 'node'
 brew 'yarn'
+brew 'nvm'
+
+brew 'fortune'
+brew 'cowsay'
 brew 'Cmake'
-brew 'neovim/neovim/neovim'
 brew 'fzf'
+brew 'the_silver_searcher'
+
+brew 'coreutils'
 brew 'macvim'
+brew 'tree'
 
 cask 'iterm2'
-cask 'flux'
 cask 'google-chrome'
 cask 'firefox'
 cask 'slack'
-cask 'vlc'
-
-mas 'Slack', id: 803453959
-mas 'Todoist', id: 585829637
+cask 'flux'
+cask 'atom'
+cask 'virtualbox'
+cask 'the-unarchiver'
