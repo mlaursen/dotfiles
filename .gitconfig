@@ -31,8 +31,9 @@
   files = "!sh -c \"git diff --name-status --no-merges $1\""
   find = "!sh -c \"git messages --name-status --all --grep='$1'\""
   finda = "!sh -c \"git find $1 --author='$2'\""
+  prunemerged = "!sh -c \"git branch --merged | egrep -v '(^\\*|master|develop)' | xargs git branch -d\""
   pruneremote = "!sh -c \"git remote prune origin\""
-  pruneall = "!sh -c \"git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d\""
+  pruneall = "!sh -c \"git prunemerged && git pruneremote\""
 [color]
   ui = auto
 [credential]
