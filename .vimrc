@@ -234,6 +234,14 @@ set ai "Auto indent
 set si "Smart indent
 set nowrap "Wrap lines
 
+" if has("clipboard")
+"   set clipboard=unnamed " copy to system clibpard
+" 
+"   if has("clipboardplus") " X11 support
+"     set clipboard+=unnamedplus
+"   endif
+" endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

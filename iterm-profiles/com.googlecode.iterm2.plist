@@ -605,15 +605,15 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>-931 1039 606 456 -1200 900 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>1057 1167 796 473 720 900 1920 1058 </string>
+	<string>1057 1193 1018 447 720 900 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-1117 1152 1194 696 -1200 900 1920 1058 </string>
-	<key>NSWindow Frame iTerm Window 1</key>
 	<string>720 1082 1194 696 720 900 1920 1080 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>-878 1089 1194 696 -1200 900 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>1059 1037 1194 696 720 900 1920 1058 </string>
+	<string>-993 1163 1194 696 -1200 900 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>-1079 1210 1194 696 -1200 900 1920 1057 </string>
+	<string>-667 1131 1194 696 -1200 900 1920 1058 </string>
 	<key>NeverWarnAboutShortLivedSessions_FC1E4A9E-29B9-4545-9C86-2C3EA3DB3E01</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_FC1E4A9E-29B9-4545-9C86-2C3EA3DB3E01_selection</key>
@@ -1311,7 +1311,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-01-05T15:11:49Z</date>
+	<date>2018-02-21T18:43:19Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1341,6 +1341,8 @@
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>

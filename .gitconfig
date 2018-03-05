@@ -33,7 +33,7 @@
   finda = "!sh -c \"git find $1 --author='$2'\""
   prunemerged = "!sh -c \"git branch --merged | egrep -v '(^\\*|master|develop)' | xargs git branch -d\""
   pruneremote = "!sh -c \"git remote prune origin\""
-  pruneall = "!sh -c \"git prunemerged && git pruneremote\""
+  pruneall = "!sh -c \"git pull && git prunemerged && git pruneremote\""
 [color]
   ui = auto
 [credential]

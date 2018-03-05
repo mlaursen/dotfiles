@@ -52,7 +52,7 @@ if [[ "$command" == "init" ]]; then
   echo "Initializing the packages and installing YouCompleteMe"
   git submodule update --init --recursive
   cd ~/.vim/pack/plugins/start/YouCompleteMe
-  ./install.py --tern-completer
+  ./install.py --js-completer
   cd -
 elif [[ "$command" == "reset" ]]; then
   echo "Reseting all submodules to commited version..."
