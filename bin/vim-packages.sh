@@ -59,7 +59,7 @@ elif [[ "$command" == "reset" ]]; then
   git submodule update --init --recursive
 elif [[ "$command" == "update" ]]; then
   echo "Updating packages..."
-  git submodule update --recursive --remote
+  git submodule update --remote
 elif [[ "$command" == "deinit" ]]; then
   for module in "${modules[@]}"; do
     echo "Removing package $module..."
