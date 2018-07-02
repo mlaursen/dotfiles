@@ -3,8 +3,8 @@
 # User specific aliases and functions
 alias ls='ls -AFG'
 alias rm='rm -rf'
-alias vi='vim'
-# alias vim='nvim'
+alias vi='nvim'
+alias vim='nvim'
 alias mkdir='mkdir -pv'
 alias cp='cp -r'
 alias cow-fortune="fortune | cowsay -f $(ls /usr/local/Cellar/cowsay/3.04/share/cows/*.cow | gshuf -n1)"

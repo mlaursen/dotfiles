@@ -10,8 +10,8 @@
 !.gitignore_global
 !.gitmessage.txt
 !.tern-config
-!.vim
 !.vimrc
+!.config/nvim/init.vim
 !/bin
 !Brewfile
 !README.md
