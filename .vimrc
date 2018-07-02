@@ -39,6 +39,11 @@ let g:notes_directories = ['~/Documents/Notes']
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 
+let g:ale_linters = {
+      \ 'javascript': ['eslint'],
+      \ 'typescript': ['tslint', 'tsserver', 'typecheck'],
+      \ }
+
 " Update fzf.vim actions for bindings like command-t
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
@@ -80,6 +85,7 @@ au Filetype java nmap <c-1> :JavaCorrect<cr>
 
 
 nmap <leader>] :NERDTreeToggle<cr>
+nmap <F5> :YcmRestartServer<CR>
 
 
 " Allow fzf search as \t
