@@ -1,15 +1,82 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" used for the markdown previewer
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
 
-"Allow fzf in runtime path
-set rtp+=/usr/local/opt/fzf
+call plug#begin('~/.vim/plugged')
+" ==========================
+" Formatting/Colors
+" ==========================
+Plug 'altercation/vim-colors-solarized'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'sbdchd/neoformat'
 
-" Opens up the autocomplete help in the YouCompleteMe menu instead of a preview buffer
-set completeopt=menuone
+" Linters
+Plug 'w0rp/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-" update vim-move to use control instead of alt since mac is stupid
-let g:move_key_modifier='C'
+" Auto close html tags (also for js and ts)
+Plug 'alvan/vim-closetag'
+
+" Javascript
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+
+" Typescript
+Plug 'Quramy/tsuquyomi', { 'for': ['typescript'] }
+Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+
+" Scss/CSS
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['css', 'scss'] }
+
+" Other
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+Plug 'fatih/vim-nginx'
+Plug 'avakhov/vim-yaml'
+
+" ==========================
+" General plugin "helpers"
+" ==========================
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat' " mostly used so that vim-surround can be repeated
+Plug 'tpope/vim-commentary' " easy comments with `gc` or `gcc`
+Plug 'airblade/vim-rooter' " Auto lcd to git dir on BufEnter
+Plug 'matze/vim-move'
+Plug 'jiangmiao/auto-pairs' " auto close brackets and quotes
+
+
+" ==========================
+" File browser, buffers, general
+" ==========================
+Plug 'scrooloose/nerdtree'
+Plug 'albfan/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive'
+
+" used for fast fuzy filename opening
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
+Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --js-completer' }
+
+" allows \bo to close all buffers except current focus
+Plug 'vim-scripts/BufOnly.vim'
+" Plug 'rbgrouleff/bclose.vim'
+
+Plug 'SirVer/ultisnips'
+Plug 'mlaursen/vim-react-snippets'
+
+call plug#end()
+
+" ================================================================
+" Plugin settings
+" ================================================================
 
 " update key bindings for UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -21,28 +88,12 @@ let g:UltiSnipsEditSplit="vertical"
 " hide more stuff in NERDTree
 let g:NERDTreeShowHidden=1
 
-" allow jsx syntax in .js files
-let g:jsx_ext_required=0
-
-" The Eclim completion will now work with YCM
-let g:EclimCompletionMethod='omnifunc'
-
-let g:tsuquyomi_disable_quickfix=1
-
-let g:closetag_html_style=1
-let g:closetag_filenames='*.html,*.xhtml,*.jsx,*.js,*.jsp,*.jsf,*.jspf'
-
-let g:javascript_enable_domhtmlcss=1
-
-let g:notes_directories = ['~/Documents/Notes']
-
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-
+" Update linters so typescript isn't running both eslint and tslint which is super slow
 let g:ale_linters = {
       \ 'javascript': ['eslint'],
       \ 'typescript': ['tslint', 'tsserver', 'typecheck'],
       \ }
+
 
 " Update fzf.vim actions for bindings like command-t
 let g:fzf_action = {
@@ -50,43 +101,52 @@ let g:fzf_action = {
       \ 'ctrl-t': 'tabedit',
       \ 'ctrl-v': 'vsplit',
       \ }
-
-
 let g:fzf_layout = { 'down': '~40%' }
 
-"Update fzf to ignore files that can't be opened by vim
-let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz)" -g ""'
+" I don't like this enabled by default, but might be helpful for projects that use prettier
+" autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Neoformat
 
-"When linting, go to next and previous errors
-nmap <leader>n :lnext<cr>
-nmap <leader>p :lprev<cr>
+" update vim-move to use control instead of alt since mac is stupid
+let g:move_key_modifier='C'
+
+" allow jsx syntax in .js files
+let g:jsx_ext_required=0
+
+" Update closetag to also work on js/ts files
+let g:closetag_html_style=1
+let g:closetag_filenames='*.html,*.js,*.jsx,*.ts*.tsx'
+
+" only start markdown previewer after :ComposerStart
+let g:markdown_composer_autostart=0
+
+
+nmap <F1> :YcmCompleter GetType<CR>
+nmap <F2> :YcmCompleter GetDoc<CR>
+nmap <F3> :YcmCompleter GoTo<CR>
+nmap <F4> :YcmCompleter RefactorRename<space>
+nmap <F5> :YcmRestartServer<CR>
+
+" go to previous and next matches when using <leader>g
 nmap <F9> :cp<cr>
 nmap <F10> :cn<cr>
 
-"Use ag instead of ack
+" When linting, go to next and previous errors
+nmap <leader>n :lnext<cr>
+nmap <leader>p :lprev<cr>
+
+" Use ag instead of ack
 if executable('ag')
   let g:ackprg='ag --vimgrep'
+
+  " Update fzf to ignore files that can't be opened by vim and to use the silver searcher
+  let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz)" -g ""'
 endif
 
-"Use ag for grepping
+" Use ag for grepping
 nmap <leader>g :Ag<space>
 
-"Use tern stuff for javascript files
-au Filetype javascript nmap <F1> :YcmCompleter GetType<CR>
-au Filetype javascript nmap <F2> :YcmCompleter GetDoc<CR>
-au Filetype javascript nmap <F3> :YcmCompleter GoTo<CR>
-au Filetype javascript nmap <F4> :YcmCompleter RefactorRename<space>
-
-"Java eclim stuff
-au Filetype java nmap <F3> :JavaSearchContext<CR>
-au Filetype java nmap <c-s-i> :JavaImport<cr>
-au Filetype java nmap <c-s-o> :JavaImportOrganize<cr>
-au Filetype java nmap <c-1> :JavaCorrect<cr>
-
-
+" lazyily toggle nerdtree
 nmap <leader>] :NERDTreeToggle<cr>
-nmap <F5> :YcmRestartServer<CR>
-
 
 " Allow fzf search as \t
 nmap <leader>t :FZF<cr>
@@ -94,14 +154,16 @@ nmap <leader>t :FZF<cr>
 " Linting and fixing
 nmap <leader>f :FixJS<cr>
 
-au BufRead,BufNewFile .babelrc,.eslintrc set ft=json
-au BufRead,BufNewFile *nginx.conf.* set ft=nginx
 " For some reason it stopped setting tw correctly
 au FileType gitcommit setlocal tw=72
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufRead,BufNewFile .babelrc,.eslintrc set ft=json
+au BufRead,BufNewFile *nginx.conf.* set ft=nginx
+
+" ================================================================
 " => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
+
 " Sets how many lines of history VIM has to remember
 set history=700
 
@@ -127,13 +189,18 @@ nmap <leader>Q :qall!<cr>
 set nu
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
 " => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
+
 " Turn on the WiLd menu
 set wildmenu
 
+" Opens up the autocomplete help in the YouCompleteMe menu instead of a preview buffer
+set completeopt=menuone
+
 set cmdheight=2
+
 " Always show the status bar and airline
 set laststatus=2
 
@@ -174,13 +241,13 @@ set t_vb=
 set tm=500
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ================================================================
 " => Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
+
 " Enable syntax highlighting
 syntax enable
-
-
 set background=dark
 
 if $TERM == "xterm-256color"
@@ -190,38 +257,29 @@ else
   colorscheme desert
 endif
 
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
+" also update airline to use solarized
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
 
 " Update cursor after the changes to nvim
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0
 set guicursor+=i-ci:block-Cursor/lCursor
 set guicursor+=r-cr:hor20-Cursor/lCursor
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
 " => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
+
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowb
 set noswapfile
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
 " => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
+
 " Use spaces instead of tabs
 set expandtab
 
@@ -240,20 +298,11 @@ set ai "Auto indent
 set si "Smart indent
 set nowrap "Wrap lines
 
-" if has("clipboard")
-"   set clipboard=unnamed " copy to system clibpard
-" 
-"   if has("clipboardplus") " X11 support
-"     set clipboard+=unnamedplus
-"   endif
-" endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ================================================================
 " => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
+" ================================================================
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -279,9 +328,10 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
 " => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
+
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
@@ -292,17 +342,11 @@ map <leader>sa zg
 map <leader>s? z=
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
 
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
 " => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ================================================================
+
 function! FormatXml()
   execute("silent %!xmllint --format --recover - 2>/dev/null")
 endfunction

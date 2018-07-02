@@ -1,26 +1,58 @@
 # dotfiles
 A repo for my dotfiles on a MacBook.
 
-## Getting Started
-1. Install Xcode from the app store.
-  - accept the terms and conditions for usin git
-2. Install [homebrew](http://brew.sh/)
-  - `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-3. Install all programs and stuffs
-  - `brew bundle`
-4. Set colors
-  - Download [solarized](http://ethanschoonover.com/solarized/files/solarized.zip)
-  - Extract zip and double click `iterm-2-colors-solarized/Solarized Dark.itermcolors`
-5. Update iterm to load profiles from `~/iterm-profiles`
-6. Open item and run:
-  ```bash
-  mlaursen @ ~/
-  $ vim-packages init
-  ```
+## Installation
+### Xcode
+Install Xcode from the app store. Accept the terms and conditions for using it.
+
+### [Homebrew](http://brew.sh/)
+
+```sh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+```
+
+### Clone this repo into the root directory
+
+```sh
+mlaursen @ ~/
+$ git init
+$ git remote set-url origin git@github.com:mlaursen/dotfiles.git
+$ git pull origin master
+```
+
+### Install programs and dependencies
+
+```sh
+mlaursen @ ~/
+$ brew bundle
+```
+
+### Setting colorscheme to [solarized](http://ethanschoonover.com/solarized/files/solarized.zip)
+Download the solarized colorscheme and update iterm2 to use it.
+
+```sh
+$mlaursen @ ~/
+$ curl -O http://ethanschoonover.com/solarized/files/solarized.zip \
+  && unzip solarized.zip \
+  && open solarized/iterm2-colors-solarized/Solarized\ Dark.itermcolors \
+  && rm -rf solarized solarized.zip
+```
+
+### Installing (neo)vim plugins
+
+```bash
+mlaursen @ ~/
+# not sure if this is required anymore
+$ pip3 install neovim
+
+# install vim plugins, this will take awhile...
+$ vim +PlugInstall +qall
+```
 
 ### Initializing Linters and SASS
 
 ```bash
+# optional
 $ yarn global add eslint \
                   babel-eslint \
                   eslint-config-airbnb \
