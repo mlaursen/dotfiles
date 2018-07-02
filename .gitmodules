@@ -40,9 +40,6 @@
 [submodule ".vim/pack/plugins/start/vim-commentary"]
 	path = .vim/pack/plugins/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
-[submodule ".vim/pack/plugins/start/ultisnips"]
-	path = .vim/pack/plugins/start/ultisnips
-	url = https://github.com/SirVer/ultisnips
 [submodule ".vim/pack/plugins/start/mlaursen-vim-snippets"]
 	path = .vim/pack/plugins/start/mlaursen-vim-snippets
 	url = https://github.com/mlaursen/mlaursen-vim-snippets
@@ -106,3 +103,9 @@
 [submodule ".vim/pack/plugins/start/bclose.vim"]
 	path = .vim/pack/plugins/start/bclose.vim
 	url = https://github.com/rbgrouleff/bclose.vim
+[submodule ".vim/pack/plugins/start/YouCompleteMe"]
+	path = .vim/pack/plugins/start/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
+[submodule ".vim/pack/plugins/start/ultisnips"]
+	path = .vim/pack/plugins/start/ultisnips
+	url = https://github.com/SirVer/ultisnips

@@ -69,7 +69,7 @@ elif [[ "$command" == "deinit" ]]; then
     echo "Removing package $module..."
 
     path=".vim/pack/plugins/$folder/$module"
-    git submodule $command $path
+    git submodule $command $path -f
     git rm -rf $path
     rm -Rf .git/modules/$path
   done
