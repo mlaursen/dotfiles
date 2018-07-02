@@ -31,6 +31,10 @@ for i in "$@"; do
       command=reset
       shift
       ;;
+    ycm)
+      command=ycm
+      shift
+      ;;
     *)
       modules+=("$i")
       shift
@@ -39,7 +43,7 @@ for i in "$@"; do
 done
 
 if [[ -z "$command" ]]; then
-  echo "Either init, add, update, reset, or rm|remove needs to be specified"
+  echo "Either init, add, update, reset, ycm, or rm|remove needs to be specified"
   exit 1
 elif [[ "${#modules[@]}" -eq 0 && $module_required -ne 0 ]]; then
   echo "A module must be defined when adding or removing."
@@ -69,6 +73,10 @@ elif [[ "$command" == "deinit" ]]; then
     git rm -rf $path
     rm -Rf .git/modules/$path
   done
+elif [[ "$command" == "ycm" ]]; then
+  cd ~/.vim/pack/plugins/start/YouCompleteMe
+  ./install.py --js-completer
+  cd -
 else
   echo "${modules[@]}"
   for module in "${modules[@]}"; do

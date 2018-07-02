@@ -106,6 +106,3 @@
 [submodule ".vim/pack/plugins/start/bclose.vim"]
 	path = .vim/pack/plugins/start/bclose.vim
 	url = https://github.com/rbgrouleff/bclose.vim
-[submodule ".vim/pack/plugins/start/YouCompleteMe"]
-	path = .vim/pack/plugins/start/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe
