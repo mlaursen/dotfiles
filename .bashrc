@@ -4,7 +4,8 @@
 alias ls='ls -AFG'
 alias rm='rm -rf'
 alias vi='nvim'
-alias vim='nvim'
+# still want to be able to use vim easily if needed
+# alias vim='nvim'
 alias mkdir='mkdir -pv'
 alias cp='cp -r'
 alias cow-fortune="fortune | cowsay -f $(ls /usr/local/Cellar/cowsay/3.04/share/cows/*.cow | gshuf -n1)"
