@@ -82,14 +82,14 @@ call plug#end()
 " ================================================================
 
 " update key bindings for UltiSnips
-let g:UltiSnipsExpandTrigger = "<c-space>"
-let g:UltiSnipsListSnippets = "<c-h>"
-let g:UltiSnipsJumpForwardTrigger = "<c-s-right>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-s-left>"
-let g:UltiSnipsEditSplit = "vertical"
+let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsListSnippets="<c-h>"
+let g:UltiSnipsJumpForwardTrigger="<c-s-right>"
+let g:UltiSnipsJumpBackwardTrigger="<c-s-left>"
+let g:UltiSnipsEditSplit="vertical"
 
 " hide more stuff in NERDTree
-let g:NERDTreeShowHidden = 1
+let g:NERDTreeShowHidden=1
 
 " Update linters so typescript isn't running both eslint and tslint which is super slow
 let g:ale_linters = {
@@ -115,17 +115,17 @@ let g:fzf_layout = { 'down': '~40%' }
 nmap <C-f> :Neoformat<cr>:w<cr>
 
 " update vim-move to use control instead of alt since mac is stupid
-let g:move_key_modifier = 'C'
+let g:move_key_modifier='C'
 
 " allow jsx syntax in .js files
-let g:jsx_ext_required = 0
+let g:jsx_ext_required=0
 
 " Update closetag to also work on js/ts files
-let g:closetag_html_style = 1
-let g:closetag_filenames = '*.html,*.js,*.jsx,*.ts*.tsx'
+let g:closetag_html_style=1
+let g:closetag_filenames='*.html,*.js,*.jsx,*.ts*.tsx'
 
 " only start markdown previewer after :ComposerStart
-let g:markdown_composer_autostart = 0
+let g:markdown_composer_autostart=0
 
 
 nmap <F1> :YcmCompleter GetType<CR>
@@ -147,7 +147,7 @@ if executable('ag')
   let g:ackprg='ag --vimgrep'
 
   " Update fzf to ignore files that can't be opened by vim and to use the silver searcher
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz)" -g ""'
+  let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz)" -g ""'
 endif
 
 " Use ag for grepping
@@ -173,7 +173,7 @@ au BufRead,BufNewFile *nginx.conf.* set ft=nginx
 " ================================================================
 
 " Sets how many lines of history VIM has to remember
-set history = 700
+set history=700
 
 " Enable filetype plugins
 filetype plugin on
@@ -205,19 +205,19 @@ set nu
 set wildmenu
 
 " Opens up the autocomplete help in the YouCompleteMe menu instead of a preview buffer
-set completeopt = menuone
+set completeopt=menuone
 
-set cmdheight = 2
+set cmdheight=2
 
 " Always show the status bar and airline
-set laststatus = 2
+set laststatus=2
 
 " A buffer becomes hidden when it is abandoned
 set hid
 
 " Configure backspace so it acts as it should act
-set backspace = eol,start,indent
-set whichwrap+ = <,>,h,l
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
 
 " Ignore case when searching
 set ignorecase
@@ -240,13 +240,13 @@ set magic
 " Show matching brackets when text indicator is over them
 set showmatch
 " How many tenths of a second to blink when matching brackets
-set mat = 2
+set mat=2
 
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm = 500
+set tm=500
 
 
 
@@ -256,23 +256,23 @@ set tm = 500
 
 " Enable syntax highlighting
 syntax enable
-set background = dark
+set background=dark
 
 if $TERM == "xterm-256color"
-  set t_Co = 256
+  set t_Co=256
   colorscheme solarized
 else
   colorscheme desert
 endif
 
 " also update airline to use solarized
-let g:airline_theme = 'solarized'
-let g:airline_solarized_bg = 'dark'
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
 
 " Update cursor after the changes to nvim
-set guicursor = n-v-c:block-Cursor/lCursor-blinkon0
-set guicursor += i-ci:block-Cursor/lCursor
-set guicursor += r-cr:hor20-Cursor/lCursor
+set guicursor=n-v-c:block-Cursor/lCursor-blinkon0
+set guicursor+=i-ci:block-Cursor/lCursor
+set guicursor+=r-cr:hor20-Cursor/lCursor
 
 " ================================================================
 " => Files, backups and undo
@@ -295,12 +295,12 @@ set expandtab
 set smarttab
 
 " 1 tab == 2 spaces
-set shiftwidth = 2
-set tabstop = 2
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
-set tw = 500
+set tw=500
 
 set ai "Auto indent
 set si "Smart indent
@@ -323,8 +323,8 @@ map <leader>bo :BufOnly<cr>
 
 " Specify the behavior when switching between buffers 
 try
-  set switchbuf = useopen,usetab,newtab
-  set stal = 2
+  set switchbuf=useopen,usetab,newtab
+  set stal=2
 catch
 endtry
 
@@ -334,7 +334,7 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 " Remember info about open buffers on close
-set viminfo ^= %
+set viminfo^=%
 
 " ================================================================
 " => Spell checking
