@@ -18,7 +18,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
 Plug 'prettier/vim-prettier', {
     \ 'do': 'yarn install',
-    \ 'for': ['javascript', 'typescript', 'css', 'scss'] }
+    \ 'for': ['javascript', 'typescript', 'css', 'scss']
+    \ }
 
 " Linters
 Plug 'w0rp/ale'
@@ -70,7 +71,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --js-completer' }
 
 " allows \bo to close all buffers except current focus
 Plug 'vim-scripts/BufOnly.vim'
-" Plug 'rbgrouleff/bclose.vim'
+" really just so i can do \bd to close the current buffer
+Plug 'rbgrouleff/bclose.vim'
 
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
