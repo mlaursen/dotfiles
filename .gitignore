@@ -14,9 +14,13 @@
 !README.md
 
 # And allow tracking in some child folders...
-!.vim/
 !iterm-profiles/
 !bin/
+
+# But hide compiled/dynamic files
+!.vim/
+.vim/plugged
+.vim/autoload
 
 !.config/
 .config/*
@@ -31,11 +35,3 @@
 !.local/share/nvim
 .local/share/nvim/*
 !.local/share/nvim/site
-
-!.config/nvim/autoload/plug.vim
-
-!.local/share/nvim/site/autoload/plug.vim
-
-# But hide compiled/dynamic files
-.vim/plugged
-.vim/autoload
