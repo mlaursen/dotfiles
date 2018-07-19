@@ -62,6 +62,7 @@ Plug 'jiangmiao/auto-pairs' " auto close brackets and quotes
 Plug 'scrooloose/nerdtree'
 Plug 'albfan/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb' " nice GitHub git wrapper for fugitive
 
 " used for fast fuzy filename opening
 Plug '/usr/local/opt/fzf'
@@ -95,6 +96,7 @@ let g:NERDTreeShowHidden=1
 
 " Update linters so typescript isn't running both eslint and tslint which is super slow
 let g:ale_linters = {
+      \ 'scss': ['scsslint'],
       \ 'javascript': ['eslint'],
       \ 'typescript': ['tslint', 'tsserver', 'typecheck'],
       \ }
@@ -128,7 +130,7 @@ let g:closetag_filenames='*.html,*.js,*.jsx,*.ts*.tsx'
 
 " only start markdown previewer after :ComposerStart
 let g:markdown_composer_autostart=0
-
+let g:markdown_composer_external_renderer='pandoc -f gfm -t html'
 
 nmap <F1> :YcmCompleter GetType<CR>
 nmap <F2> :YcmCompleter GetDoc<CR>
@@ -139,6 +141,8 @@ nmap <F5> :YcmRestartServer<CR>
 " go to previous and next matches when using <leader>g
 nmap <F9> :cp<cr>
 nmap <F10> :cn<cr>
+
+autocmd FileType markdown nnoremap <buffer> <F12> :ComposerStart<cr>
 
 " When linting, go to next and previous errors
 nmap <leader>n :lnext<cr>

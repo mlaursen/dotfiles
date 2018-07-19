@@ -51,7 +51,7 @@ $ vim +PlugInstall +qall
 
 ### Initializing Linters and SASS
 
-```bash
+```sh
 # optional
 $ yarn global add eslint \
                   babel-eslint \
@@ -60,6 +60,14 @@ $ yarn global add eslint \
                   eslint-plugin-react \
                   eslint-plugin-import
 $ gem install sass scss_lint
+```
+
+#### Create a PAC for vim-rhubarb
+TO get some better GitHub vim support with [vim-fugitive](https://github.com/tpope/vim-fugitive) + [vim-rhubarb](https://github.com/tpope/vim-rhubarb),
+you'll need to generate a personal access token (PAC) on [GitHub](https://github.com/settings/tokens/new) and then update the `~/.netrc` file:
+
+```sh
+echo 'machine api.github.com user mlaursen password <TOKEN>' >> ~/.netrc
 ```
 
 ### Random Optimizations

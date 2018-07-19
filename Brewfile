@@ -9,6 +9,7 @@ brew 'nvm'
 brew 'python3'
 brew 'neovim'
 brew 'ruby'
+brew 'hub' # nice git wrapper for GitHub
 
 # for the markdown previewer in vim
 brew 'rust'
