@@ -96,11 +96,14 @@ endif
 " ================================================================
 
 let g:deoplete#enable_at_startup = 1
-set completeopt+=noinsert
 " update deoplete to allow tab menu navigation
 inoremap <silent><expr> <TAB>
 		  \ pumvisible() ? "\<C-n>" :
 		  \ <SID>check_back_space() ? "\<TAB>" :
+		  \ deoplete#mappings#manual_complete()
+inoremap <silent><expr> <S-TAB>
+		  \ pumvisible() ? "\<C-p>" :
+		  \ <SID>check_back_space() ? "\<S-TAB>" :
 		  \ deoplete#mappings#manual_complete()
 function! s:check_back_space() abort "{{{
 let col = col('.') - 1
