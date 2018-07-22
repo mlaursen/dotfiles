@@ -38,29 +38,32 @@ $ curl -O http://ethanschoonover.com/solarized/files/solarized.zip \
   && rm -rf solarized solarized.zip
 ```
 
-### Installing (neo)vim plugins
-
-```bash
-mlaursen @ ~/
-# not sure if this is required anymore
-$ pip3 install neovim
-
-# install vim plugins, this will take awhile...
-$ vim +PlugInstall +qall
-```
-
 ### Initializing Linters and SASS
 
 ```sh
-# optional
-$ yarn global add eslint \
-                  babel-eslint \
-                  eslint-config-airbnb \
-                  eslint-plugin-import@1.16.0 \
-                  eslint-plugin-react \
-                  eslint-plugin-import
+$ yarn global add javascript-typescript-langserver \
+        vscode-css-languageserver-bin \
+        bash-language-server \
+        neovim \
+        create-react-app \
+        lerna \
+        tslint \
+        typescript
 $ gem install sass scss_lint
 ```
+
+### Installing (neo)vim plugins
+
+```sh
+mlaursen @ ~/
+$ pip3 install neovim
+
+# install minpac
+$ git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
+# install vim plugins, this will take awhile...
+$ vim +PackUpdate
+```
+
 
 #### Create a PAC for vim-rhubarb
 TO get some better GitHub vim support with [vim-fugitive](https://github.com/tpope/vim-fugitive) + [vim-rhubarb](https://github.com/tpope/vim-rhubarb),

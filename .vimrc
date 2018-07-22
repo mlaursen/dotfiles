@@ -1,88 +1,152 @@
-" used for the markdown previewer
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release
-    else
-      !cargo build --release --no-default-features --features json-rpc
-    endif
+if &compatible
+  set nocompatible
+endif
+
+set rtp+=/usr/local/opt/fzf
+
+if exists('*minpac#init')
+  call minpac#init()
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+  " ==================================
+  " Formatting/colors
+  " ==================================
+  call minpac#add('altercation/vim-colors-solarized')
+  call minpac#add('editorconfig/editorconfig-vim')
+
+  call minpac#add('HerringtonDarkholme/yats.vim') " typescript
+  call minpac#add('cakebaker/scss-syntax.vim')
+  call minpac#add('pangloss/vim-javascript')
+  call minpac#add('mxw/vim-jsx')
+
+  " ==================================
+  " Linters, validators, and autocomplete
+  " ==================================
+  " call minpac#add('w0rp/ale')
+  call minpac#add('prettier/vim-prettier', {'do': 'silent! !npm i'})
+
+  call minpac#add('alvan/vim-closetag')
+  call minpac#add('jiangmiao/auto-pairs') " auto close brackets and quotes
+
+  call minpac#add('autozimu/LanguageClient-neovim', {
+        \ 'do': 'silent! !bash install.sh',
+        \ 'branch': 'next',
+        \ })
+  " call minpac#add('ncm2/ncm2')
+  "   call minpac#add('roxma/nvim-yarp')
+
+  " call minpac#add('ncm2/ncm2-bufword') " finds matches from current buffer
+  " call minpac#add('ncm2/ncm2-path')
+  " call minpac#add('ncm2/ncm2-tmux')
+  " call minpac#add('filipekiss/ncm2-look.vim', {'type': 'opt'}) " autocompletes the english language
+
+  " call minpac#add('ncm2/ncm2-ultisnips')
+  call minpac#add('SirVer/ultisnips')
+  call minpac#add('mlaursen/vim-react-snippets')
+
+  if has('nvim')
+    " this takes some weirdness of making sure neovim is installed, running UpdateRemotePlugins a few times, and
+    " the install script
+    call minpac#add('mhartington/nvim-typescript', {'do': '!./install.sh'})
+    call minpac#add('Shougo/deoplete.nvim')
   endif
-endfunction
 
-call plug#begin('~/.vim/plugged')
-" ==========================
-" Formatting/Colors
-" ==========================
-Plug 'altercation/vim-colors-solarized'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'sbdchd/neoformat'
-Plug 'prettier/vim-prettier', {
-    \ 'do': 'yarn install',
-    \ 'for': ['javascript', 'typescript', 'css', 'scss']
-    \ }
+  " ==================================
+  " File navigation
+  " ==================================
+  call minpac#add('junegunn/fzf.vim')
+  call minpac#add('scrooloose/nerdtree')
 
-" Linters
-Plug 'w0rp/ale'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+  call minpac#add('tpope/vim-fugitive')
+  call minpac#add('albfan/nerdtree-git-plugin')
 
-" Auto close html tags (also for js and ts)
-Plug 'alvan/vim-closetag'
+  " allows \bo to close all buffers except current focus
+  call minpac#add('vim-scripts/BufOnly.vim')
+  " really just so i can do \bd to close the current buffer
+  " call minpac#add('rbgrouleff/bclose.vim')
 
-" Javascript
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+  " ==================================
+  " General helpers and status bars
+  " ==================================
+  call minpac#add('tpope/vim-surround')
+  call minpac#add('tpope/vim-repeat') " mostly used so that vim-surround can be repeated
+  call minpac#add('tpope/vim-commentary') " easy comments with `gc` or `gcc`
+  call minpac#add('airblade/vim-rooter') " Auto lcd to git dir on BufEnter
+  call minpac#add('matze/vim-move')
 
-" Typescript
-Plug 'Quramy/tsuquyomi', { 'for': ['typescript'] }
-Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+  call minpac#add('vim-airline/vim-airline')
+  call minpac#add('vim-airline/vim-airline-themes')
+  if has("nvim")
+    call minpac#add('euclio/vim-markdown-composer', {'do': '!cargo build --release', 'type': 'opt'})
+  else
+    call minpac#add('euclio/vim-markdown-composer', {'do': '!cargo build --release --no-default-features --features json-rpc', 'type': 'opt'})
+  endif
+endif
 
-" Scss/CSS
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['css', 'scss'] }
-
-" Other
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
-Plug 'fatih/vim-nginx'
-Plug 'avakhov/vim-yaml'
-
-" ==========================
-" General plugin "helpers"
-" ==========================
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat' " mostly used so that vim-surround can be repeated
-Plug 'tpope/vim-commentary' " easy comments with `gc` or `gcc`
-Plug 'airblade/vim-rooter' " Auto lcd to git dir on BufEnter
-Plug 'matze/vim-move'
-Plug 'jiangmiao/auto-pairs' " auto close brackets and quotes
-
-
-" ==========================
-" File browser, buffers, general
-" ==========================
-Plug 'scrooloose/nerdtree'
-Plug 'albfan/nerdtree-git-plugin'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb' " nice GitHub git wrapper for fugitive
-
-" used for fast fuzy filename opening
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-
-Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --js-completer' }
-
-" allows \bo to close all buffers except current focus
-Plug 'vim-scripts/BufOnly.vim'
-" really just so i can do \bd to close the current buffer
-Plug 'rbgrouleff/bclose.vim'
-
-Plug 'SirVer/ultisnips'
-Plug 'mlaursen/vim-react-snippets'
-
-call plug#end()
+" Add simple helper commands to update and clean packages that'll load minpac on demand
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+if has("nvim") 
+  command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'UpdateRemotePlugins'})
+else
+  command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
+endif
 
 " ================================================================
 " Plugin settings
 " ================================================================
+
+let g:deoplete#enable_at_startup = 1
+set completeopt+=noinsert
+" update deoplete to allow tab menu navigation
+inoremap <silent><expr> <TAB>
+		  \ pumvisible() ? "\<C-n>" :
+		  \ <SID>check_back_space() ? "\<TAB>" :
+		  \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+" let g:ncm2#complete_length = 2 " start completion at 2 characters instead of 3 since a lot of snippets are just 2 characters
+" autocmd BufEnter * call ncm2#enable_for_buffer()
+" set completeopt=noinsert,menuone,noselect
+" inoremap <c-c> <ESC>
+" " Use <TAB> to select the popup menu:
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Update linters so typescript isn't running both eslint and tslint which is super slow
+let g:ale_linters = {
+      \ 'scss': ['scsslint'],
+      \ 'javascript': ['eslint'],
+      \ 'typescript': ['tslint', 'tsserver', 'typecheck'],
+      \ }
+
+let g:LanguageClient_serverCommands = {
+      \ 'bash': ['bash-language-server', 'start'],
+      \ 'css': ['css-languageserver', '--stdio'],
+      \ 'scss': ['css-languageserver', '--stdio'],
+      \ }
+" let g:LanguageClient_serverCommands = {
+"       \ 'bash': ['bash-language-server', 'start'],
+"       \ 'css': ['css-languageserver', '--stdio'],
+"       \ 'scss': ['css-languageserver', '--stdio'],
+"       \ 'javascript': ['javascript-typescript-stdio'],
+"       \ 'javascript.jsx': ['javascript-typescript-stdio'],
+"       \ 'typescript': ['javascript-typescript-stdio'],
+"       \ 'typescriptreact': ['javascript-typescript-stdio'],
+"       \ }
+" let g:LanguageClient_loggingLevel = 'ERROR' " or INFO, DEBUG, WARNING
+let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
+let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
+let g:LanguageClient_autoStart = 1
+
+let g:LanguageClient_diagnosticsEnable = 0 " want to use ale instead
+
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " update key bindings for UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -94,16 +158,8 @@ let g:UltiSnipsEditSplit="vertical"
 " hide more stuff in NERDTree
 let g:NERDTreeShowHidden=1
 
-" Update linters so typescript isn't running both eslint and tslint which is super slow
-let g:ale_linters = {
-      \ 'scss': ['scsslint'],
-      \ 'javascript': ['eslint'],
-      \ 'typescript': ['tslint', 'tsserver', 'typecheck'],
-      \ }
-let g:ale_fixers = {
-      \ 'typescript': ['prettier']
-      \ }
-let g:ale_javascript_prettier_use_local_config = 1
+" Allow fzf search as \t
+nmap <leader>t :FZF<cr>
 
 
 " Update fzf.vim actions for bindings like command-t
@@ -113,10 +169,6 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit',
       \ }
 let g:fzf_layout = { 'down': '~40%' }
-
-" I don't like this enabled by default, but might be helpful for projects that use prettier
-" autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Neoformat
-nmap <C-f> :Neoformat<cr>:w<cr>
 
 " update vim-move to use control instead of alt since mac is stupid
 let g:move_key_modifier='C'
@@ -131,18 +183,15 @@ let g:closetag_filenames='*.html,*.js,*.jsx,*.ts*.tsx'
 " only start markdown previewer after :ComposerStart
 let g:markdown_composer_autostart=0
 let g:markdown_composer_external_renderer='pandoc -f gfm -t html'
+autocmd FileType markdown nnoremap <buffer> <F12> :ComposerStart<cr>
 
-nmap <F1> :YcmCompleter GetType<CR>
-nmap <F2> :YcmCompleter GetDoc<CR>
-nmap <F3> :YcmCompleter GoTo<CR>
-nmap <F4> :YcmCompleter RefactorRename<space>
-nmap <F5> :YcmRestartServer<CR>
+" update airline to use solarized
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
 
 " go to previous and next matches when using <leader>g
 nmap <F9> :cp<cr>
 nmap <F10> :cn<cr>
-
-autocmd FileType markdown nnoremap <buffer> <F12> :ComposerStart<cr>
 
 " When linting, go to next and previous errors
 nmap <leader>n :lnext<cr>
@@ -161,12 +210,6 @@ nmap <leader>g :Ag<space>
 
 " lazyily toggle nerdtree
 nmap <leader>] :NERDTreeToggle<cr>
-
-" Allow fzf search as \t
-nmap <leader>t :FZF<cr>
-
-" Linting and fixing
-nmap <leader>f :FixJS<cr>
 
 " For some reason it stopped setting tw correctly
 au FileType gitcommit setlocal tw=72
@@ -196,22 +239,19 @@ let g:mapleader = "\\"
 " Fast saving
 nmap <leader>w :w!<cr>
 nmap <leader>q :lclose<cr>:q<cr>
-nmap <leader>wq :x<cr>
-nmap <leader>Q :qall!<cr>
-
-" Line Numbers
-set nu
-
 
 " ================================================================
 " => VIM user interface
 " ================================================================
 
+" Line Numbers
+set nu
+
 " Turn on the WiLd menu
 set wildmenu
 
 " Opens up the autocomplete help in the YouCompleteMe menu instead of a preview buffer
-set completeopt=menuone
+" set completeopt=menuone
 
 set cmdheight=2
 
@@ -266,14 +306,13 @@ set background=dark
 
 if $TERM == "xterm-256color"
   set t_Co=256
-  colorscheme solarized
-else
-  colorscheme desert
-endif
 
-" also update airline to use solarized
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+  silent! colorscheme desert
+  " let it fail quietly if it hasn't been installed yet
+  silent! colorscheme solarized
+else
+  silent colorscheme desert
+endif
 
 " Update cursor after the changes to nvim
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0
