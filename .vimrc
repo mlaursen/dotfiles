@@ -14,7 +14,7 @@ if exists('*minpac#init')
   call minpac#add('altercation/vim-colors-solarized')
   call minpac#add('editorconfig/editorconfig-vim')
 
-  call minpac#add('HerringtonDarkholme/yats.vim') " typescript
+  call minpac#add('leafgarland/typescript-vim')
   call minpac#add('cakebaker/scss-syntax.vim')
   call minpac#add('pangloss/vim-javascript')
   call minpac#add('mxw/vim-jsx')
@@ -22,7 +22,7 @@ if exists('*minpac#init')
   " ==================================
   " Linters, validators, and autocomplete
   " ==================================
-  " call minpac#add('w0rp/ale')
+  call minpac#add('w0rp/ale')
   call minpac#add('prettier/vim-prettier', {'do': 'silent! !npm i'})
 
   call minpac#add('alvan/vim-closetag')
@@ -32,24 +32,10 @@ if exists('*minpac#init')
         \ 'do': 'silent! !bash install.sh',
         \ 'branch': 'next',
         \ })
-  " call minpac#add('ncm2/ncm2')
-  "   call minpac#add('roxma/nvim-yarp')
 
-  " call minpac#add('ncm2/ncm2-bufword') " finds matches from current buffer
-  " call minpac#add('ncm2/ncm2-path')
-  " call minpac#add('ncm2/ncm2-tmux')
-  " call minpac#add('filipekiss/ncm2-look.vim', {'type': 'opt'}) " autocompletes the english language
-
-  " call minpac#add('ncm2/ncm2-ultisnips')
+  call minpac#add('Valloric/YouCompleteMe', {'do': '!python3 ./install.py --js-completer'})
   call minpac#add('SirVer/ultisnips')
   call minpac#add('mlaursen/vim-react-snippets')
-
-  if has('nvim')
-    " this takes some weirdness of making sure neovim is installed, running UpdateRemotePlugins a few times, and
-    " the install script
-    call minpac#add('mhartington/nvim-typescript', {'do': '!./install.sh'})
-    call minpac#add('Shougo/deoplete.nvim')
-  endif
 
   " ==================================
   " File navigation
@@ -85,42 +71,15 @@ endif
 
 " Add simple helper commands to update and clean packages that'll load minpac on demand
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-if has("nvim") 
-  command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'UpdateRemotePlugins'})
-else
-  command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
-endif
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
 
 " ================================================================
 " Plugin settings
 " ================================================================
 
-let g:deoplete#enable_at_startup = 1
-" update deoplete to allow tab menu navigation
-inoremap <silent><expr> <TAB>
-		  \ pumvisible() ? "\<C-n>" :
-		  \ <SID>check_back_space() ? "\<TAB>" :
-		  \ deoplete#mappings#manual_complete()
-inoremap <silent><expr> <S-TAB>
-		  \ pumvisible() ? "\<C-p>" :
-		  \ <SID>check_back_space() ? "\<S-TAB>" :
-		  \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-let col = col('.') - 1
-return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-
-" let g:ncm2#complete_length = 2 " start completion at 2 characters instead of 3 since a lot of snippets are just 2 characters
-" autocmd BufEnter * call ncm2#enable_for_buffer()
-" set completeopt=noinsert,menuone,noselect
-" inoremap <c-c> <ESC>
-" " Use <TAB> to select the popup menu:
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Update linters so typescript isn't running both eslint and tslint which is super slow
 let g:ale_linters = {
-      \ 'scss': ['scsslint'],
+      \ 'scss': ['scsslint', 'sasslint'],
       \ 'javascript': ['eslint'],
       \ 'typescript': ['tslint', 'tsserver', 'typecheck'],
       \ }
@@ -143,13 +102,7 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
 let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
 let g:LanguageClient_autoStart = 1
-
 let g:LanguageClient_diagnosticsEnable = 0 " want to use ale instead
-
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " update key bindings for UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -158,12 +111,27 @@ let g:UltiSnipsJumpForwardTrigger="<c-s-right>"
 let g:UltiSnipsJumpBackwardTrigger="<c-s-left>"
 let g:UltiSnipsEditSplit="vertical"
 
+" allow autocompletion for comments
+let g:ycm_complete_in_comments = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" only want completions with YCM to show in the menu even if there is only 1
+set completeopt=menuone
+
+" attempt to go to declaration or definition of item under cursor
+nnoremap gd :YcmCompleter GoTo<cr>
+" find all references and put into quicklist
+nnoremap gr :YcmCompleter GoToReferences<cr>
+nnoremap <F2> :YcmCompleter RefactorRename 
+
+" print the type only for typescript
+autocmd FileType typescript nnoremap <buffer> <F1> :YcmCompleter GetType<cr>
+
+
 " hide more stuff in NERDTree
 let g:NERDTreeShowHidden=1
 
 " Allow fzf search as \t
 nmap <leader>t :FZF<cr>
-
 
 " Update fzf.vim actions for bindings like command-t
 let g:fzf_action = {
@@ -220,6 +188,13 @@ au FileType gitcommit setlocal tw=72
 au BufRead,BufNewFile .babelrc,.eslintrc set ft=json
 au BufRead,BufNewFile *nginx.conf.* set ft=nginx
 
+" open terminal with 10 lines always at bottom
+command! -nargs=* T belowright split | resize 10 | terminal <args>
+" open terminal always right
+command! -nargs=* VT botright vsplit | terminal <args>
+" allow esc to exit terminal mode
+tnoremap <ESC> <C-\><C-n>
+
 " ================================================================
 " => General
 " ================================================================
@@ -252,9 +227,6 @@ set nu
 
 " Turn on the WiLd menu
 set wildmenu
-
-" Opens up the autocomplete help in the YouCompleteMe menu instead of a preview buffer
-" set completeopt=menuone
 
 set cmdheight=2
 

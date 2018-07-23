@@ -41,10 +41,7 @@ $ curl -O http://ethanschoonover.com/solarized/files/solarized.zip \
 ### Initializing Linters and SASS
 
 ```sh
-$ yarn global add javascript-typescript-langserver \
-        vscode-css-languageserver-bin \
-        bash-language-server \
-        neovim \
+$ npm i -g vscode-css-languageserver-bin \
         create-react-app \
         lerna \
         tslint \
