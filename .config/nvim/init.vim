@@ -1,1 +1,1 @@
-/Users/mlaursen/.vimrc
+source ~/.vimrc
