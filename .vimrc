@@ -3,14 +3,14 @@ if &compatible
 endif
 
 function! s:YouCompleteMe(hooktype, name)
-  !git submodule update --init --recursive && python3 ./install.py --js-completer
+  silent! !git submodule update --init --recursive && python3 ./install.py --js-completer
 endfunction
 
 function! s:MarkdownComposer(hooktype, name)
   if has("nvim")
-    !cargo build --release
+    silent! !cargo build --release
   else
-    !cargo build --release --no-default-features --features json-rpc
+    silent! !cargo build --release --no-default-features --features json-rpc
   endif
 endfunction
 
@@ -35,13 +35,13 @@ if exists('*minpac#init')
   " Linters, validators, and autocomplete
   " ==================================
   call minpac#add('w0rp/ale')
-  call minpac#add('prettier/vim-prettier', {'do': '!npm i'})
+  call minpac#add('prettier/vim-prettier', {'do': 'silent! !npm i'})
 
   call minpac#add('alvan/vim-closetag')
   call minpac#add('jiangmiao/auto-pairs') " auto close brackets and quotes
 
   call minpac#add('autozimu/LanguageClient-neovim', {
-        \ 'do': '!bash install.sh',
+        \ 'do': 'silent! !bash install.sh',
         \ 'branch': 'next',
         \ })
 
@@ -74,7 +74,7 @@ if exists('*minpac#init')
 
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
-  call minpac#add('euclio/vim-markdown-composer', {'do': function('s:MarkdownComposer'), 'type': 'opt'})
+  call minpac#add('euclio/vim-markdown-composer', {'do': function('s:MarkdownComposer')})
 endif
 
 " Add simple helper commands to update and clean packages that'll load minpac on demand
