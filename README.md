@@ -17,7 +17,7 @@ Install Xcode from the app store. Accept the terms and conditions for using it.
 mlaursen @ ~/
 $ git init
 $ git remote set-url origin git@github.com:mlaursen/dotfiles.git
-$ git pull origin master
+$ git pull origin macbook
 ```
 
 ### Install programs and dependencies
