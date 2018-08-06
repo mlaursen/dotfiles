@@ -8,10 +8,8 @@ alias vi='nvim'
 # alias vim='nvim'
 alias mkdir='mkdir -pv'
 alias cp='cp -r'
-alias cow-fortune="fortune | cowsay -f $(ls /usr/local/Cellar/cowsay/3.04/share/cows/*.cow | gshuf -n1)"
-alias mysql=/usr/local/mysql/bin/mysql
-alias mysql.server=/usr/local/mysql/support-files/mysql.server
 alias brewup='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
+alias diefortidie="sudo pkill -f FortiClient"
 
 # Allows <ctrl-s> for Command-T
 stty -ixon

@@ -63,9 +63,17 @@ if exists('*minpac#init')
   " really just so i can do \bd to close the current buffer
   " call minpac#add('rbgrouleff/bclose.vim')
 
+
+  " ==================================
+  " Notes
+  " ==================================
+  call minpac#add('vimwiki/vimwiki')
+
+
   " ==================================
   " General helpers and status bars
   " ==================================
+  call minpac#add('tmux-plugins/vim-tmux-focus-events') " makes autoread option work correctly for terminal vim
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-repeat') " mostly used so that vim-surround can be repeated
   call minpac#add('tpope/vim-commentary') " easy comments with `gc` or `gcc`
@@ -225,6 +233,10 @@ let g:mapleader = "\\"
 " Fast saving
 nmap <leader>w :w!<cr>
 nmap <leader>q :lclose<cr>:q<cr>
+
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 " ================================================================
 " => VIM user interface
