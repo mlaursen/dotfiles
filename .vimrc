@@ -63,7 +63,6 @@ if exists('*minpac#init')
   " really just so i can do \bd to close the current buffer
   " call minpac#add('rbgrouleff/bclose.vim')
 
-
   " ==================================
   " Notes
   " ==================================
@@ -82,7 +81,7 @@ if exists('*minpac#init')
 
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
-  call minpac#add('euclio/vim-markdown-composer', {'do': function('s:MarkdownComposer')})
+  call minpac#add('euclio/vim-markdown-composer', {'do': function('s:MarkdownComposer'), 'type': 'opt'})
 endif
 
 " Add simple helper commands to update and clean packages that'll load minpac on demand
@@ -137,7 +136,7 @@ set completeopt=menuone
 nnoremap gd :YcmCompleter GoTo<cr>
 " find all references and put into quicklist
 nnoremap gr :YcmCompleter GoToReferences<cr>
-nnoremap <F2> :YcmCompleter RefactorRename 
+nnoremap <F2> :YcmCompleter RefactorRename <C-R><C-W>
 
 " print the type only for typescript
 autocmd FileType typescript nnoremap <buffer> <F1> :YcmCompleter GetType<cr>
@@ -230,8 +229,7 @@ set autoread
 let mapleader = "\\"
 let g:mapleader = "\\"
 
-" Fast saving
-nmap <leader>w :w!<cr>
+" Fast quitting
 nmap <leader>q :lclose<cr>:q<cr>
 
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
