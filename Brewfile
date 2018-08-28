@@ -24,6 +24,7 @@ brew 'coreutils'
 brew 'tree'
 brew 'watchman'
 brew 'rename'
+brew 'bat'
 
 cask 'iterm2'
 cask 'the-unarchiver'

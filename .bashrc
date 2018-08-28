@@ -1,15 +1,17 @@
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # User specific aliases and functions
-alias ls='ls -AFG'
-alias rm='rm -rf'
 alias vi='nvim'
-# still want to be able to use vim easily if needed
-# alias vim='nvim'
-alias mkdir='mkdir -pv'
+alias vim='nvim'
+alias vif='nvim `fzf`'
+
+alias ls='ls -AFG'
 alias cp='cp -r'
+alias rm='rm -rf'
+alias mkdir='mkdir -pv'
+alias cat='bat'
+
 alias brewup='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
-alias diefortidie="sudo pkill -f FortiClient"
 
 # Allows <ctrl-s> for Command-T
 stty -ixon

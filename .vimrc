@@ -61,7 +61,7 @@ if exists('*minpac#init')
   " allows \bo to close all buffers except current focus
   call minpac#add('vim-scripts/BufOnly.vim')
   " really just so i can do \bd to close the current buffer
-  " call minpac#add('rbgrouleff/bclose.vim')
+  call minpac#add('rbgrouleff/bclose.vim')
 
   " ==================================
   " Notes
@@ -119,6 +119,9 @@ let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsEnable = 0 " want to use ale instead
 
+" updates typescsript-vim to not attempt to indent since vim-jsx works much better
+let g:typescript_indent_disable = 1
+
 " update key bindings for UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsListSnippets="<c-h>"
@@ -136,6 +139,7 @@ set completeopt=menuone
 nnoremap gd :YcmCompleter GoTo<cr>
 " find all references and put into quicklist
 nnoremap gr :YcmCompleter GoToReferences<cr>
+" rename word under cursor
 nnoremap <F2> :YcmCompleter RefactorRename <C-R><C-W>
 
 " print the type only for typescript
@@ -163,8 +167,7 @@ let g:move_key_modifier='C'
 let g:jsx_ext_required=0
 
 " Update closetag to also work on js/ts files
-let g:closetag_html_style=1
-let g:closetag_filenames='*.html,*.js,*.jsx,*.ts*.tsx'
+let g:closetag_filenames='*.html,*.js,*.jsx,*.ts,*.tsx'
 
 " only start markdown previewer after :ComposerStart
 let g:markdown_composer_autostart=0
@@ -204,7 +207,7 @@ au BufRead,BufNewFile .babelrc,.eslintrc set ft=json
 au BufRead,BufNewFile *nginx.conf.* set ft=nginx
 
 " open terminal with 10 lines always at bottom
-command! -nargs=* T belowright split | resize 10 | terminal <args>
+command! -nargs=* T belowright split | resize 20 | terminal <args>
 " open terminal always right
 command! -nargs=* VT botright vsplit | terminal <args>
 " allow esc to exit terminal mode
@@ -213,7 +216,6 @@ tnoremap <ESC> <C-\><C-n>
 " ================================================================
 " => General
 " ================================================================
-
 " Sets how many lines of history VIM has to remember
 set history=700
 
