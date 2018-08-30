@@ -3,7 +3,7 @@ if &compatible
 endif
 
 function! s:YouCompleteMe(hooktype, name)
-  silent! !git submodule update --init --recursive && python3 ./install.py --js-completer
+  silent! !git submodule update --init --recursive && python3 ./install.py
 endfunction
 
 function! s:MarkdownComposer(hooktype, name)
@@ -120,7 +120,7 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsEnable = 0 " want to use ale instead
 
 " updates typescsript-vim to not attempt to indent since vim-jsx works much better
-let g:typescript_indent_disable = 1
+" let g:typescript_indent_disable = 1
 
 " update key bindings for UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"
