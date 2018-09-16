@@ -81,7 +81,7 @@ if exists('*minpac#init')
 
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
-  call minpac#add('euclio/vim-markdown-composer', {'do': function('s:MarkdownComposer'), 'type': 'opt'})
+  call minpac#add('euclio/vim-markdown-composer', {'do': function('s:MarkdownComposer')})
 endif
 
 " Add simple helper commands to update and clean packages that'll load minpac on demand
