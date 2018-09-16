@@ -167,7 +167,7 @@ let g:move_key_modifier='C'
 let g:jsx_ext_required=0
 
 " Update closetag to also work on js/ts files
-let g:closetag_filenames='*.html,*.js,*.jsx,*.ts,*.tsx'
+let g:closetag_filenames='*.html,*.js,*.jsx'
 
 " only start markdown previewer after :ComposerStart
 let g:markdown_composer_autostart=0
