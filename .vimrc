@@ -132,6 +132,10 @@ let g:UltiSnipsEditSplit="vertical"
 " allow autocompletion for comments
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_semantic_triggers = {
+    \   'css': [ 're!^', 're!^\s+', ': ' ],
+    \   'scss': [ 're!^', 're!^\s+', ': ' ],
+    \ }
 " only want completions with YCM to show in the menu even if there is only 1
 set completeopt=menuone
 
@@ -144,6 +148,12 @@ nnoremap <F2> :YcmCompleter RefactorRename <C-R><C-W>
 
 " print the type only for typescript
 autocmd FileType typescript nnoremap <buffer> <F1> :YcmCompleter GetType<cr>
+autocmd BufWritePre *.ts,*.tsx PrettierAsync
+
+" force Prettier to be run async
+let g:prettier#exec_cmd_async = 1
+" disable focusing quickfix window when there are errors
+let g:prettier#quickfix_auto_focus = 0
 
 
 " hide more stuff in NERDTree
