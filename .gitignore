@@ -19,8 +19,7 @@
 
 # But hide compiled/dynamic files
 !.vim/
-.vim/plugged
-.vim/autoload
+.vim/pack
 
 !.config/
 .config/*

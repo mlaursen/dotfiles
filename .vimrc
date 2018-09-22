@@ -16,7 +16,9 @@ endfunction
 
 set rtp+=/usr/local/opt/fzf
 
-if exists('*minpac#init')
+function! PackInit() abort
+  packadd minpac
+
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
@@ -82,11 +84,12 @@ if exists('*minpac#init')
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
   call minpac#add('euclio/vim-markdown-composer', {'do': function('s:MarkdownComposer')})
-endif
+endfunction
 
 " Add simple helper commands to update and clean packages that'll load minpac on demand
-command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
+command! PackClean  call PackInit() | call minpac#clean()
+command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
+command! PackStatus call PackInit() | call minpac#status()
 
 " ================================================================
 " Plugin settings
@@ -104,16 +107,6 @@ let g:LanguageClient_serverCommands = {
       \ 'css': ['css-languageserver', '--stdio'],
       \ 'scss': ['css-languageserver', '--stdio'],
       \ }
-" let g:LanguageClient_serverCommands = {
-"       \ 'bash': ['bash-language-server', 'start'],
-"       \ 'css': ['css-languageserver', '--stdio'],
-"       \ 'scss': ['css-languageserver', '--stdio'],
-"       \ 'javascript': ['javascript-typescript-stdio'],
-"       \ 'javascript.jsx': ['javascript-typescript-stdio'],
-"       \ 'typescript': ['javascript-typescript-stdio'],
-"       \ 'typescriptreact': ['javascript-typescript-stdio'],
-"       \ }
-" let g:LanguageClient_loggingLevel = 'ERROR' " or INFO, DEBUG, WARNING
 let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
 let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
 let g:LanguageClient_autoStart = 1
@@ -132,23 +125,29 @@ let g:UltiSnipsEditSplit="vertical"
 " allow autocompletion for comments
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
+
+" allow LanguageClient results in YouCompleteMe from css and scss files
 let g:ycm_semantic_triggers = {
     \   'css': [ 're!^', 're!^\s+', ': ' ],
     \   'scss': [ 're!^', 're!^\s+', ': ' ],
     \ }
+
 " only want completions with YCM to show in the menu even if there is only 1
 set completeopt=menuone
 
 " attempt to go to declaration or definition of item under cursor
-nnoremap gd :YcmCompleter GoTo<cr>
+autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gd :YcmCompleter GoTo<cr>
 " find all references and put into quicklist
-nnoremap gr :YcmCompleter GoToReferences<cr>
+autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gr :YcmCompleter GoToReferences<cr>
 " rename word under cursor
-nnoremap <F2> :YcmCompleter RefactorRename <C-R><C-W>
+autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> <F2> :YcmCompleter RefactorRename <C-R><C-W>
+" print the type
+autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> <F1> :YcmCompleter GetType<cr>
 
-" print the type only for typescript
-autocmd FileType typescript nnoremap <buffer> <F1> :YcmCompleter GetType<cr>
-autocmd BufWritePre *.ts,*.tsx PrettierAsync
+autocmd FileType css,scss nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+autocmd FileType css,scss nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+autocmd FileType css,scss nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
+autocmd FileType css,scss nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " force Prettier to be run async
 let g:prettier#exec_cmd_async = 1
@@ -187,6 +186,7 @@ autocmd FileType markdown nnoremap <buffer> <F12> :ComposerStart<cr>
 " update airline to use solarized
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
+let g:airline#extensions#ale#enabled = 1
 
 " go to previous and next matches when using <leader>g
 nmap <F9> :cp<cr>
@@ -216,13 +216,6 @@ au FileType gitcommit setlocal tw=72
 au BufRead,BufNewFile .babelrc,.eslintrc set ft=json
 au BufRead,BufNewFile *nginx.conf.* set ft=nginx
 
-" open terminal with 10 lines always at bottom
-command! -nargs=* T belowright split | resize 20 | terminal <args>
-" open terminal always right
-command! -nargs=* VT botright vsplit | terminal <args>
-" allow esc to exit terminal mode
-tnoremap <ESC> <C-\><C-n>
-
 " ================================================================
 " => General
 " ================================================================
@@ -248,6 +241,15 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
+if has("nvim")
+  " open terminal with 10 lines always at bottom
+  command! -nargs=* T belowright split | resize 20 | terminal <args>
+  " open terminal always right
+  command! -nargs=* VT botright vsplit | terminal <args>
+  " allow esc to exit terminal mode
+  tnoremap <ESC> <C-\><C-n>
+endif
+
 " ================================================================
 " => VIM user interface
 " ================================================================
@@ -263,8 +265,8 @@ set cmdheight=2
 " Always show the status bar and airline
 set laststatus=2
 
-" A buffer becomes hidden when it is abandoned
-set hid
+" A buffer becomes hidden when it is abandoned (used for refactors)
+set hidden
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent

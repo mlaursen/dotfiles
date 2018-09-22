@@ -1,9 +1,11 @@
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # User specific aliases and functions
-alias vi='nvim'
-alias vim='nvim'
-alias vif='nvim `fzf`'
+# alias vi='nvim'
+# alias vim='nvim'
+# alias vif='nvim `fzf`'
+alias vi='vim'
+alias vif='vim `fzf`'
 
 alias ls='ls -AFG'
 alias cp='cp -r'
