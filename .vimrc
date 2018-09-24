@@ -322,9 +322,11 @@ else
 endif
 
 " Update cursor after the changes to nvim
-set guicursor=n-v-c:block-Cursor/lCursor-blinkon0
-set guicursor+=i-ci:block-Cursor/lCursor
-set guicursor+=r-cr:hor20-Cursor/lCursor
+if has("nvim")
+  set guicursor=n-v-c:block-Cursor/lCursor-blinkon0
+  set guicursor+=i-ci:block-Cursor/lCursor
+  set guicursor+=r-cr:hor20-Cursor/lCursor
+endif
 
 " ================================================================
 " => Files, backups and undo
