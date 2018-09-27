@@ -29,6 +29,7 @@ function! PackInit() abort
   call minpac#add('editorconfig/editorconfig-vim')
 
   call minpac#add('leafgarland/typescript-vim')
+  call minpac#add('hail2u/vim-css3-syntax') " updates vim's built-in css to support CSS3
   call minpac#add('cakebaker/scss-syntax.vim')
   call minpac#add('pangloss/vim-javascript')
   call minpac#add('mxw/vim-jsx')
@@ -68,13 +69,18 @@ function! PackInit() abort
   " ==================================
   " Notes
   " ==================================
-  call minpac#add('vimwiki/vimwiki')
-
+  call minpac#add('vimwiki/vimwiki', {'type': 'opt'})
 
   " ==================================
   " General helpers and status bars
   " ==================================
-  call minpac#add('tmux-plugins/vim-tmux-focus-events') " makes autoread option work correctly for terminal vim
+  if has("nvim")
+    " this one appears to work with nvim while vitality works with vim. vitality is not preferred since it
+    " attempts to do cursor changes (yuck)
+    call minpac#add('tmux-plugins/vim-tmux-focus-events')
+  else
+    call minpac#add('sjl/vitality.vim')
+  endif
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-repeat') " mostly used so that vim-surround can be repeated
   call minpac#add('tpope/vim-commentary') " easy comments with `gc` or `gcc`
@@ -87,14 +93,21 @@ function! PackInit() abort
 endfunction
 
 " Add simple helper commands to update and clean packages that'll load minpac on demand
-command! PackClean  call PackInit() | call minpac#clean()
-command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
-command! PackStatus call PackInit() | call minpac#status()
+command! PackClean  source $MYVIMRC | call PackInit() | call minpac#clean()
+command! PackUpdate source $MYVIMRC | call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
+command! PackStatus source $MYVIMRC | call PackInit() | call minpac#status()
 
 " ================================================================
-" Plugin settings
+" vim-airline
 " ================================================================
+" update airline to use solarized
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+let g:airline#extensions#ale#enabled = 1
 
+" ================================================================
+" ale
+" ================================================================
 " Update linters so typescript isn't running both eslint and tslint which is super slow
 let g:ale_linters = {
       \ 'scss': ['scsslint', 'sasslint'],
@@ -102,6 +115,25 @@ let g:ale_linters = {
       \ 'typescript': ['tslint', 'tsserver', 'typecheck'],
       \ }
 
+" When linting, go to next and previous errors
+nmap <leader>n :lnext<cr>
+nmap <leader>p :lprev<cr>
+
+" ================================================================
+" prettier
+" ================================================================
+let g:prettier#autoformat = 0
+
+" disable focusing quickfix window when there are errors
+let g:prettier#quickfix_auto_focus = 0
+
+" since I switch between projects that use prettier and some that don't, call PrettierEnable to start auto-prettying
+command! PrettierEnable autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx PrettierAsync
+
+" ================================================================
+" LanguageClient
+" ================================================================
+" set the correct language servers
 let g:LanguageClient_serverCommands = {
       \ 'bash': ['bash-language-server', 'start'],
       \ 'css': ['css-languageserver', '--stdio'],
@@ -112,19 +144,19 @@ let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsEnable = 0 " want to use ale instead
 
-" updates typescsript-vim to not attempt to indent since vim-jsx works much better
-" let g:typescript_indent_disable = 1
+" css and scss will use the languageclient for autocompletions, so update the buffers to have some nice wrappers
 
-" update key bindings for UltiSnips
-let g:UltiSnipsExpandTrigger="<c-space>"
-let g:UltiSnipsListSnippets="<c-h>"
-let g:UltiSnipsJumpForwardTrigger="<c-s-right>"
-let g:UltiSnipsJumpBackwardTrigger="<c-s-left>"
-let g:UltiSnipsEditSplit="vertical"
+" opens a picker for valid commands with the languageclient
+autocmd FileType css,scss nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+autocmd FileType css,scss nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+autocmd FileType css,scss nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
+autocmd FileType css,scss nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
-" allow autocompletion for comments
-let g:ycm_complete_in_comments = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" ================================================================
+" YouCompleteMe
+" ================================================================
+" only want completions with YCM to show in the menu even if there is only 1
+set completeopt=menuone,longest
 
 " allow LanguageClient results in YouCompleteMe from css and scss files
 let g:ycm_semantic_triggers = {
@@ -132,32 +164,37 @@ let g:ycm_semantic_triggers = {
     \   'scss': [ 're!^', 're!^\s+', ': ' ],
     \ }
 
-" only want completions with YCM to show in the menu even if there is only 1
-set completeopt=menuone
-
 " attempt to go to declaration or definition of item under cursor
 autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gd :YcmCompleter GoTo<cr>
+
 " find all references and put into quicklist
 autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gr :YcmCompleter GoToReferences<cr>
-" rename word under cursor
+autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> K :YcmCompleter GetType<cr>
+
+" rename word under cursor and copy current word into renamer
 autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> <F2> :YcmCompleter RefactorRename <C-R><C-W>
-" print the type
-autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> <F1> :YcmCompleter GetType<cr>
 
-autocmd FileType css,scss nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-autocmd FileType css,scss nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-autocmd FileType css,scss nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
-autocmd FileType css,scss nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" ================================================================
+" UltiSnips
+" ================================================================
+let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsListSnippets="<c-h>"
+let g:UltiSnipsJumpForwardTrigger="<c-s-right>"
+let g:UltiSnipsJumpBackwardTrigger="<c-s-left>"
+let g:UltiSnipsEditSplit="vertical"
 
-" force Prettier to be run async
-let g:prettier#exec_cmd_async = 1
-" disable focusing quickfix window when there are errors
-let g:prettier#quickfix_auto_focus = 0
-
-
+" ================================================================
+" NERDTree
+" ================================================================
 " hide more stuff in NERDTree
 let g:NERDTreeShowHidden=1
 
+" lazyily toggle nerdtree
+nmap <leader>] :NERDTreeToggle<cr>
+
+" ================================================================
+" FZF
+" ================================================================
 " Allow fzf search as \t
 nmap <leader>t :FZF<cr>
 
@@ -169,52 +206,37 @@ let g:fzf_action = {
       \ }
 let g:fzf_layout = { 'down': '~40%' }
 
+" ================================================================
+" vim-move
+" ================================================================
 " update vim-move to use control instead of alt since mac is stupid
 let g:move_key_modifier='C'
 
+" ================================================================
+" vitality (for focus events)
+" ================================================================
+let g:vitality_fix_cursor=0
+
+" ================================================================
+" vim-jsx
+" ================================================================
 " allow jsx syntax in .js files
 let g:jsx_ext_required=0
 
+" ================================================================
+" vim-closetag
+" ================================================================
 " Update closetag to also work on js/ts files
 let g:closetag_filenames='*.html,*.js,*.jsx'
 
+" ================================================================
+" vim-markdown-composer
+" ================================================================
 " only start markdown previewer after :ComposerStart
 let g:markdown_composer_autostart=0
 let g:markdown_composer_external_renderer='pandoc -f gfm -t html'
+
 autocmd FileType markdown nnoremap <buffer> <F12> :ComposerStart<cr>
-
-" update airline to use solarized
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-let g:airline#extensions#ale#enabled = 1
-
-" go to previous and next matches when using <leader>g
-nmap <F9> :cp<cr>
-nmap <F10> :cn<cr>
-
-" When linting, go to next and previous errors
-nmap <leader>n :lnext<cr>
-nmap <leader>p :lprev<cr>
-
-" Use ag instead of ack
-if executable('ag')
-  let g:ackprg='ag --vimgrep'
-
-  " Update fzf to ignore files that can't be opened by vim and to use the silver searcher
-  let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz)" -g ""'
-endif
-
-" Use ag for grepping
-nmap <leader>g :Ag<space>
-
-" lazyily toggle nerdtree
-nmap <leader>] :NERDTreeToggle<cr>
-
-" For some reason it stopped setting tw correctly
-au FileType gitcommit setlocal tw=72
-
-au BufRead,BufNewFile .babelrc,.eslintrc set ft=json
-au BufRead,BufNewFile *nginx.conf.* set ft=nginx
 
 " ================================================================
 " => General
@@ -248,6 +270,27 @@ if has("nvim")
   command! -nargs=* VT botright vsplit | terminal <args>
   " allow esc to exit terminal mode
   tnoremap <ESC> <C-\><C-n>
+endif
+
+" For some reason it stopped setting tw correctly
+au FileType gitcommit setlocal tw=72
+
+au BufRead,BufNewFile .babelrc,.eslintrc set ft=json
+au BufRead,BufNewFile *nginx.conf.* set ft=nginx
+
+" Use ag instead of ack
+if executable('ag')
+  let g:ackprg='ag --vimgrep'
+
+  " Update fzf to ignore files that can't be opened by vim and to use the silver searcher
+  let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz)" -g ""'
+
+  " Use ag for grepping
+  nmap <leader>g :Ag<space>
+
+  " go to previous and next matches when using <leader>g
+  nmap <F9> :cp<cr>
+  nmap <F10> :cn<cr>
 endif
 
 " ================================================================
@@ -321,11 +364,13 @@ else
   silent colorscheme desert
 endif
 
-" Update cursor after the changes to nvim
 if has("nvim")
+  " Update cursor after the changes to nvim
   set guicursor=n-v-c:block-Cursor/lCursor-blinkon0
   set guicursor+=i-ci:block-Cursor/lCursor
   set guicursor+=r-cr:hor20-Cursor/lCursor
+else
+  set guicursor=
 endif
 
 " ================================================================
@@ -402,27 +447,3 @@ map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
-
-
-
-" ================================================================
-" => Helper functions
-" ================================================================
-
-function! FormatXml()
-  execute("silent %!xmllint --format --recover - 2>/dev/null")
-endfunction
-
-function! FixJS()
-  execute('silent !eslint --fix % 2>/dev/null')
-  redraw!
-endfunction
-
-function! FormatJson()
-  execute('silent %!python -m json.tool')
-endfunction
-
-command! XMLint exec ":silent %!xmllint --format --recover - 2>/dev/null"
-
-command! FixJS call FixJS()
-command! FormatJson call FormatJson()
