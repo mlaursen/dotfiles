@@ -74,6 +74,8 @@ function! PackInit() abort
   " ==================================
   " General helpers and status bars
   " ==================================
+  call minpac#add('tpope/vim-sensible')
+
   if has("nvim")
     " this one appears to work with nvim while vitality works with vim. vitality is not preferred since it
     " attempts to do cursor changes (yuck)
@@ -104,6 +106,10 @@ command! PackStatus source $MYVIMRC | call PackInit() | call minpac#status()
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 let g:airline#extensions#ale#enabled = 1
+
+" Always show the status bar and airline
+set laststatus=2
+set cmdheight=2
 
 " ================================================================
 " ale
@@ -157,6 +163,9 @@ autocmd FileType css,scss nnoremap <buffer> <silent> <F2> :call LanguageClient#t
 " ================================================================
 " only want completions with YCM to show in the menu even if there is only 1
 set completeopt=menuone,longest
+" A buffer becomes hidden when it is abandoned (used for refactors)
+set hidden
+
 
 " allow LanguageClient results in YouCompleteMe from css and scss files
 let g:ycm_semantic_triggers = {
@@ -226,7 +235,7 @@ let g:jsx_ext_required=0
 " ================================================================
 " vim-closetag
 " ================================================================
-" Update closetag to also work on js/ts files
+" Update closetag to also work on js and html files, don't want ts since <> is used for type args
 let g:closetag_filenames='*.html,*.js,*.jsx'
 
 " ================================================================
@@ -241,23 +250,8 @@ autocmd FileType markdown nnoremap <buffer> <F12> :ComposerStart<cr>
 " ================================================================
 " => General
 " ================================================================
-" Sets how many lines of history VIM has to remember
-set history=700
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 let mapleader = "\\"
 let g:mapleader = "\\"
-
-" Fast quitting
-nmap <leader>q :lclose<cr>:q<cr>
 
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
 autocmd FileChangedShellPost *
@@ -296,25 +290,8 @@ endif
 " ================================================================
 " => VIM user interface
 " ================================================================
-
 " Line Numbers
 set nu
-
-" Turn on the WiLd menu
-set wildmenu
-
-set cmdheight=2
-
-" Always show the status bar and airline
-set laststatus=2
-
-" A buffer becomes hidden when it is abandoned (used for refactors)
-set hidden
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
 " Ignore case when searching
 set ignorecase
 
@@ -324,26 +301,11 @@ set smartcase
 " Highlight search results
 set hlsearch
 
-" Makes search act like search in modern browsers
-set incsearch
-
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
 " For regular expressions turn magic on
 set magic
-
-" Show matching brackets when text indicator is over them
-set showmatch
-" How many tenths of a second to blink when matching brackets
-set mat=2
-
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
-
 
 
 " ================================================================
@@ -374,40 +336,6 @@ else
 endif
 
 " ================================================================
-" => Files, backups and undo
-" ================================================================
-
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
-
-
-" ================================================================
-" => Text, tab and indent related
-" ================================================================
-
-" Use spaces instead of tabs
-set expandtab
-
-" Be smart when using tabs ;)
-set smarttab
-
-" 1 tab == 2 spaces
-set shiftwidth=2
-set tabstop=2
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-set ai "Auto indent
-set si "Smart indent
-set nowrap "Wrap lines
-
-
-
-" ================================================================
 " => Moving around, tabs, windows and buffers
 " ================================================================
 
@@ -420,20 +348,11 @@ map <leader>bd :Bclose<cr>
 " Close all buffers except current
 map <leader>bo :BufOnly<cr>
 
-" Specify the behavior when switching between buffers 
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
-
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
-" Remember info about open buffers on close
-set viminfo^=%
 
 " ================================================================
 " => Spell checking
