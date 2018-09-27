@@ -307,6 +307,19 @@ set lazyredraw
 " For regular expressions turn magic on
 set magic
 
+" I don't like line-wrapping
+set nowrap
+set lbr
+set tw=500
+
+" update tab behavior
+set smartindent
+set autoindent
+set expandtab
+set smarttab
+set shiftwidth=2
+set tabstop=2
+
 
 " ================================================================
 " => Colors and Fonts
