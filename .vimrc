@@ -253,6 +253,15 @@ autocmd FileType markdown nnoremap <buffer> <F12> :ComposerStart<cr>
 let mapleader = "\\"
 let g:mapleader = "\\"
 
+nnoremap <leader>q :lclose<cr>:q<cr>
+nnoremap <leader>w :x<cr>
+nnoremap <leader>x :lclose<cr>:x<cr>:q<cr>
+
+" turn backup off since it's handled by git
+set nobackup
+set nowb
+set noswapfile
+
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None

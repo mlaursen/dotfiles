@@ -8,7 +8,7 @@ Install Xcode from the app store. Accept the terms and conditions for using it.
 ### [Homebrew](http://brew.sh/)
 
 ```sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
 ### Clone this repo into the root directory
@@ -41,7 +41,7 @@ $ curl -O http://ethanschoonover.com/solarized/files/solarized.zip \
 ### Initializing Linters and SASS
 
 ```sh
-$ npm i -g vscode-css-languageserver-bin \
+$ npm install -g vscode-css-languageserver-bin \
         create-react-app \
         lerna \
         tslint \
