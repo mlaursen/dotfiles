@@ -254,7 +254,7 @@ let mapleader = "\\"
 let g:mapleader = "\\"
 
 nnoremap <leader>q :lclose<cr>:cclose<cr>:q<cr>
-nnoremap <leader>w :x<cr>
+nnoremap <leader>w :w<cr>
 nnoremap <leader>x :lclose<cr>:cclose<cr>:x<cr>:q<cr>
 
 " turn backup off since it's handled by git
