@@ -7,19 +7,14 @@
 [push]
   default = upstream
 [merge]
-  keepBackup = false
-  tool = p4merge
-[mergetool]
-  prompt = false
-[mergetool "p4merge"]
-  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-  trustExitCode = false
+  tool = extMerge
+  stat = true
+[mergetool "extMerge"]
+  cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
   keepBackup = false
   keepTemporaries = false
-[diff]
-	tool = p4mergetool
-[difftool "p4mergetool"]
-  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
+  trustExitCode = false
+  prompt = false
 [alias]
   ckb = checkout -b
   lg = log --name-status --no-merges
