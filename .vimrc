@@ -200,6 +200,7 @@ let g:NERDTreeShowHidden=1
 
 " lazyily toggle nerdtree
 nmap <leader>] :NERDTreeToggle<cr>
+nmap <leader>F :NERDTreeFind<cr>
 
 " ================================================================
 " FZF

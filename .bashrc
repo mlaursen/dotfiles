@@ -20,7 +20,7 @@ stty -ixon
 PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u @ \[\e[33m\]\w\[\e[0m\]/\n$ '
 
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+. "$(brew --prefix nvm)/nvm.sh"
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export PATH="/usr/local/sbin:$PATH:~/bin:`yarn global bin`"
+export PATH="/usr/local/sbin:$PATH:~/bin"

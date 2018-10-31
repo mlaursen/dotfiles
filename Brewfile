@@ -1,11 +1,10 @@
-tap 'caskroom/cask'
+tap 'homebrew/cask'
 
 brew 'bash-completion'
 
 brew 'git'
-brew 'node'
-brew 'yarn'
-brew 'nvm'
+brew 'vim'
+brew 'yarn', args: ['without-node']
 brew 'python3'
 brew 'neovim'
 brew 'ruby'

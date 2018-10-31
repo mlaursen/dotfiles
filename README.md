@@ -2,8 +2,15 @@
 A repo for my dotfiles on a MacBook.
 
 ## Installation
+### Xcode cli
+
+```sh
+$ xcode-select --install
+```
+
 ### Xcode
-Install Xcode from the app store. Accept the terms and conditions for using it.
+Install Xcode from the app store. Accept the terms and conditions for using it. This part is optional,
+but mostly recommended for the iOS emulators.
 
 ### [Homebrew](http://brew.sh/)
 
@@ -21,7 +28,6 @@ $ git pull origin macbook
 ```
 
 ### Install programs and dependencies
-
 ```sh
 mlaursen @ ~/
 $ brew bundle
@@ -49,16 +55,23 @@ $ npm install -g vscode-css-languageserver-bin \
 $ gem install sass scss_lint
 ```
 
-### Installing (neo)vim plugins
+### Installing vim plugins
+
+```
+mlaursen @ ~/
+$ git clone https://github.com/k-takata/minpac.git \
+    ~/.vim/pack/minpac/opt/minpac
+$ vim +PackUpdate
+```
+
+### Installing neovim plugins
 
 ```sh
 mlaursen @ ~/
 $ pip3 install neovim
-
-# install minpac
-$ git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
-# install vim plugins, this will take awhile...
-$ vim +PackUpdate
+$ git clone https://github.com/k-takata/minpac.git \
+    ~/.config/nvim/pack/minpac/opt/minpac
+$ nvim +PackUpdate
 ```
 
 

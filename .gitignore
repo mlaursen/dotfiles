@@ -1,22 +1,24 @@
 # Hide all files
 /*
+/*/
 
 # But allow tracking of specific files
-!.bash_profile
-!.bashrc
-!.eslintrc.yml
-!.gitconfig
-!.gitignore
-!.gitignore_global
-!.gitmessage.txt
-!.vimrc
-!Brewfile
-!README.md
+!/.bash_profile
+!/.bashrc
+!/.eslintrc.yml
+!/.gitconfig
+!/.gitignore
+!/.gitignore_global
+!/.gitmessage.txt
+!/.vimrc
+!/Brewfile
+!/README.md
+!/.vim
+
+/.vim/*
+!/.vim/ftplugin
+!/.vim/ftplugin/*.vim
 
 # And allow tracking in some child folders...
-!bin/
-
-# But hide compiled/dynamic files
-!.vim/spell
-
-!.config/nvim/init.vim
+!/bin/
+!/.config/nvim/init.vim
