@@ -134,7 +134,8 @@ let g:prettier#autoformat = 0
 let g:prettier#quickfix_auto_focus = 0
 
 " since I switch between projects that use prettier and some that don't, call PrettierEnable to start auto-prettying
-command! PrettierEnable autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx PrettierAsync
+command! PrettierEnable autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Prettier
+" command! PrettierEnable autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx PrettierAsync
 
 " ================================================================
 " LanguageClient
@@ -176,9 +177,20 @@ let g:ycm_semantic_triggers = {
 " attempt to go to declaration or definition of item under cursor
 autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gd :YcmCompleter GoTo<cr>
 
+" attempt to go to declaration or definition of item under cursor in a new tab
+autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gD :tab YcmCompleter GoTo<cr>
+
 " find all references and put into quicklist
 autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gr :YcmCompleter GoToReferences<cr>
+
+" show current type
 autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> K :YcmCompleter GetType<cr>
+
+" get the full error message for type errors. useful for complex types
+autocmd FileType typescript nnoremap <buffer> fK :YcmShowDetailedDiagnostic<cr>
+
+" attempt to fix an import or error in typescript
+autocmd FileType typescript nnoremap <buffer> fi :YcmCompleter FixIt<cr>
 
 " rename word under cursor and copy current word into renamer
 autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> <F2> :YcmCompleter RefactorRename <C-R><C-W>
