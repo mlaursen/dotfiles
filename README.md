@@ -1,5 +1,9 @@
 # dotfiles
-A repo for my dotfiles on a MacBook.
+A repo for my dotfiles on a MacBook. This first time setup can be automated with:
+
+```sh
+bash <(curl -s https://gist.githubusercontent.com/mlaursen/093c4cbe038a0e81d063f849831507e9/raw/d2897510947241211d566643249191e9fc47164a/init.sh)
+```
 
 ## Installation
 ### Xcode cli
