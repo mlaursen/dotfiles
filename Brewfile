@@ -12,14 +12,16 @@ brew 'hub' # nice git wrapper for GitHub
 
 # for the markdown previewer in vim
 brew 'rust'
+brew 'pandoc'
 
+# fun stuff
 brew 'fortune'
 brew 'cowsay'
+
+brew 'coreutils'
 brew 'Cmake'
 brew 'fzf'
 brew 'the_silver_searcher'
-
-brew 'coreutils'
 brew 'tree'
 brew 'watchman'
 brew 'rename'
