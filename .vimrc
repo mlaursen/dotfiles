@@ -284,7 +284,7 @@ autocmd FileChangedShellPost *
 autocmd BufNewFile,BufRead * if expand('%t') =~ '.env' | set filetype=sh | endif
 
 if has("nvim")
-  " open terminal with 10 lines always at bottom
+  " open terminal with 20 lines always at bottom
   command! -nargs=* T belowright split | resize 20 | terminal <args>
   " open terminal always right
   command! -nargs=* VT botright vsplit | terminal <args>
@@ -321,7 +321,7 @@ set nu
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
@@ -362,7 +362,9 @@ if $TERM == "xterm-256color"
   " let it fail quietly if it hasn't been installed yet
   silent! colorscheme solarized
 else
-  silent colorscheme desert
+  silent! colorscheme desert
+  " let it fail quietly if it hasn't been installed yet
+  silent! colorscheme solarized
 endif
 
 if has("nvim")
