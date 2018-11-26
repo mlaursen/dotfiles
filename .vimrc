@@ -3,7 +3,7 @@ if &compatible
 endif
 
 function! s:YouCompleteMe(hooktype, name)
-  silent! !git submodule update --init --recursive && python3 ./install.py
+  silent! !git submodule update --init --recursive && python3 ./install.py --ts-completer
 endfunction
 
 function! s:MarkdownComposer(hooktype, name)
@@ -76,6 +76,7 @@ function! PackInit() abort
   " ==================================
   call minpac#add('tpope/vim-sensible')
 
+  " allow focus events for auto-reloading buffers as needed
   if has("nvim")
     " this one appears to work with nvim while vitality works with vim. vitality is not preferred since it
     " attempts to do cursor changes (yuck)
@@ -128,14 +129,12 @@ nmap <leader>p :lprev<cr>
 " ================================================================
 " prettier
 " ================================================================
-let g:prettier#autoformat = 0
-
 " disable focusing quickfix window when there are errors
 let g:prettier#quickfix_auto_focus = 0
 
 " since I switch between projects that use prettier and some that don't, call PrettierEnable to start auto-prettying
+let g:prettier#autoformat = 0
 command! PrettierEnable autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Prettier
-" command! PrettierEnable autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx PrettierAsync
 
 " ================================================================
 " LanguageClient
@@ -146,9 +145,6 @@ let g:LanguageClient_serverCommands = {
       \ 'css': ['css-languageserver', '--stdio'],
       \ 'scss': ['css-languageserver', '--stdio'],
       \ }
-let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
-let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
-let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsEnable = 0 " want to use ale instead
 
 " css and scss will use the languageclient for autocompletions, so update the buffers to have some nice wrappers

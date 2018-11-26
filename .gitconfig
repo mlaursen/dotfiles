@@ -2,7 +2,7 @@
   name = Mikkel Laursen
   email = mlaursen03@gmail.com
 [core]
-  editor = nvim
+  editor = vim
   autocrlf = input
 [push]
   default = upstream
