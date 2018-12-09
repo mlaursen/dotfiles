@@ -46,6 +46,7 @@ function! PackInit() abort
   call minpac#add('autozimu/LanguageClient-neovim', {
         \ 'do': 'silent! !bash install.sh',
         \ 'branch': 'next',
+        \ 'type': 'opt',
         \ })
 
   call minpac#add('Valloric/YouCompleteMe', {'do': function('s:YouCompleteMe')})
@@ -92,7 +93,10 @@ function! PackInit() abort
 
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
-  call minpac#add('euclio/vim-markdown-composer', {'do': function('s:MarkdownComposer')})
+  call minpac#add('euclio/vim-markdown-composer', {
+        \ 'do': function('s:MarkdownComposer'),
+        \ 'type': 'opt',
+        \ })
 endfunction
 
 " Add simple helper commands to update and clean packages that'll load minpac on demand
@@ -254,7 +258,20 @@ let g:closetag_filenames='*.html,*.js,*.jsx'
 let g:markdown_composer_autostart=0
 let g:markdown_composer_external_renderer='pandoc -f gfm -t html'
 
-autocmd FileType markdown nnoremap <buffer> <F12> :ComposerStart<cr>
+function! MarkdownPreview()
+  if !exists('*ComposerStart')
+    " if vim-markdown-composer hasn't been added yet, add it and reload
+    " the file before calling ComposerStart. Not sure why reloading the
+    " file is required, but breaks if it isn't
+    packadd vim-markdown-composer
+    edit %
+  endif
+
+  ComposerStart
+endfunction
+
+command! MarkdownPreview call MarkdownPreview()
+autocmd FileType markdown nnoremap <buffer> <F12> :MarkdownPreview<cr>
 
 " ================================================================
 " => General
