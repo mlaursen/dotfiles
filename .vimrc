@@ -2,18 +2,6 @@ if &compatible
   set nocompatible
 endif
 
-function! s:YouCompleteMe(hooktype, name)
-  silent! !git submodule update --init --recursive && python3 ./install.py --ts-completer
-endfunction
-
-function! s:MarkdownComposer(hooktype, name)
-  if has("nvim")
-    silent! !cargo build --release
-  else
-    silent! !cargo build --release --no-default-features --features json-rpc
-  endif
-endfunction
-
 set rtp+=/usr/local/opt/fzf
 
 function! PackInit() abort
@@ -44,7 +32,7 @@ function! PackInit() abort
   call minpac#add('jiangmiao/auto-pairs') " auto close brackets and quotes
 
   call minpac#add('autozimu/LanguageClient-neovim', {
-        \ 'do': 'silent! !bash install.sh',
+        \ 'do': function('s:LanguageClient'),
         \ 'branch': 'next',
         \ 'type': 'opt',
         \ })
@@ -145,7 +133,7 @@ command! PrettierEnable autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Prettier
 " ================================================================
 " set the correct language servers
 let g:LanguageClient_serverCommands = {
-      \ 'bash': ['bash-language-server', 'start'],
+      \ 'sh': ['bash-language-server', 'start'],
       \ 'css': ['css-languageserver', '--stdio'],
       \ 'scss': ['css-languageserver', '--stdio'],
       \ }
@@ -420,3 +408,46 @@ map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
+
+
+" ================================================================
+" => Utility functions
+" ================================================================
+
+function! s:YouCompleteMe(hooktype, name)
+  silent! !git submodule update --init --recursive && python3 ./install.py --ts-completer
+endfunction
+
+function! s:MarkdownComposer(hooktype, name)
+  if has("nvim")
+    silent! !cargo build --release
+  else
+    silent! !cargo build --release --no-default-features --features json-rpc
+  endif
+endfunction
+
+function! s:LanguageClient(hooktype, name)
+  silent! !bash install.sh
+  call s:CheckLanguageClientServers()
+endfunction
+
+function! s:CheckLanguageClientServers()
+  " https://langserver.org/
+  let l:missing_packages = []
+  let l:expected_executables = {
+        \ 'bash-language-server': 'bash-language-server',
+        \ 'javascript-typescript-stdio': 'javascript-typescript-langserver',
+        \ 'css-languageserver': 'vscode-css-languageserver-bin',
+        \ }
+
+  for [name, install] in items(l:expected_executables)
+    if !executable(name)
+      call add(l:missing_packages, install)
+    endif
+  endfor
+
+  if len(l:missing_packages)
+    let l:command = "!npm install --global " . join(l:missing_packages, ' ')
+    silent! execute l:command
+  endif
+endfunction
