@@ -7,14 +7,19 @@
 [push]
   default = upstream
 [merge]
-  tool = extMerge
-  stat = true
-[mergetool "extMerge"]
-  cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  keepBackup = false
+  tool = p4merge
+[mergetool]
+  prompt = false
+[mergetool "p4merge"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  trustExitCode = false
   keepBackup = false
   keepTemporaries = false
-  trustExitCode = false
-  prompt = false
+[diff]
+  tool = p4mergetool
+[difftool "p4mergetool"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
 [alias]
   ckb = checkout -b
   lg = log --name-status --no-merges
@@ -26,6 +31,6 @@
 [color]
   ui = auto
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [commit]
-	template = ~/.gitmessage.txt
+  template = ~/.gitmessage.txt
