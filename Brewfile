@@ -18,6 +18,10 @@ brew 'pandoc'
 brew 'fortune'
 brew 'cowsay'
 
+# image fun stuff
+tap 'eddieantonio/eddieantonio'
+brew 'imgcat'
+
 brew 'coreutils'
 brew 'cmake'
 brew 'fzf'
@@ -38,3 +42,4 @@ cask 'vlc'
 cask 'visual-studio-code'
 cask 'alfred'
 cask 'vmware-fusion'
+cask 'docker'

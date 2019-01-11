@@ -14,7 +14,7 @@ alias rm='rm -rf'
 alias mkdir='mkdir -pv'
 alias cat='bat'
 
-alias brewup='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
+alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
 
 # Allows <ctrl-s> for Command-T
 stty -ixon

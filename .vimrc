@@ -262,6 +262,13 @@ command! MarkdownPreview call MarkdownPreview()
 autocmd FileType markdown nnoremap <buffer> <F12> :MarkdownPreview<cr>
 
 " ================================================================
+" VimWIKI
+" ================================================================
+" I can never remember the way to open it, and I don't like using the <Leader>ww since
+" I have <Leader>w set to quick write
+command! Wiki packadd vimwiki | VimwikiIndex
+
+" ================================================================
 " => General
 " ================================================================
 let mapleader = "\\"
