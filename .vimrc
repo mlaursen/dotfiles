@@ -165,9 +165,6 @@ let g:ycm_semantic_triggers = {
 " attempt to go to declaration or definition of item under cursor
 autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gd :YcmCompleter GoTo<cr>
 
-" attempt to go to declaration or definition of item under cursor in a new tab
-autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gD :tab YcmCompleter GoTo<cr>
-
 " find all references and put into quicklist
 autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gr :YcmCompleter GoToReferences<cr>
 
