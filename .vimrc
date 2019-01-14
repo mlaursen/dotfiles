@@ -48,7 +48,7 @@ function! PackInit() abort
   call minpac#add('scrooloose/nerdtree')
 
   call minpac#add('tpope/vim-fugitive')
-  call minpac#add('albfan/nerdtree-git-plugin')
+  call minpac#add('Xuyuanp/nerdtree-git-plugin')
 
   " allows \bo to close all buffers except current focus
   call minpac#add('vim-scripts/BufOnly.vim')
@@ -123,10 +123,14 @@ nmap <leader>p :lprev<cr>
 " ================================================================
 " disable focusing quickfix window when there are errors
 let g:prettier#quickfix_auto_focus = 0
-
-" since I switch between projects that use prettier and some that don't, call PrettierEnable to start auto-prettying
 let g:prettier#autoformat = 0
-command! PrettierEnable autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Prettier
+
+if expand("$USER") == "mlaursen"
+  " I want to also enable it for markdown and scss on home laptop
+  autocmd BufWritePre *.js,*.tsx,*.ts,*.tsx,*.md,*.scss Prettier
+else
+  autocmd BufWritePre *.js,*.tsx,*.ts,*.tsx Prettier
+endif
 
 " ================================================================
 " LanguageClient
@@ -306,9 +310,6 @@ au BufRead,BufNewFile *nginx.conf.* set ft=nginx
 " Use ag instead of ack
 if executable('ag')
   let g:ackprg='ag --vimgrep'
-
-  " Update fzf to ignore files that can't be opened by vim and to use the silver searcher
-  let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore "*.(png|svg|jpe?g|pdf|ttf|woff2?|eot|otf|zip|tar|bz)" -g ""'
 
   " Use ag for grepping
   nmap <leader>g :Ag<space>
