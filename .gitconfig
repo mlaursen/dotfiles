@@ -33,4 +33,4 @@
 [credential]
   helper = osxkeychain
 [commit]
-  template = ~/.gitmessage.txt
+  template = ~/dotfiles/.gitmessage.txt

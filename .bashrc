@@ -1,5 +1,3 @@
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # User specific aliases and functions
 # alias vi='nvim'
 # alias vim='nvim'
@@ -21,8 +19,13 @@ stty -ixon
 PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u @ \[\e[33m\]\w\[\e[0m\]/\n$ '
 
 export NVM_DIR="$HOME/.nvm"
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
+
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export PATH="/usr/local/sbin:$PATH:~/bin"
+export PATH="/usr/local/sbin:$PATH:~/dotfiles/bin"
