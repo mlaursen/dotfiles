@@ -416,7 +416,7 @@ map <leader>s? z=
 
 
 " ================================================================
-" => Utility functions
+" => Utility functions/commands
 " ================================================================
 
 function! s:YouCompleteMe(hooktype, name)
@@ -456,3 +456,5 @@ function! s:CheckLanguageClientServers()
     silent! execute l:command
   endif
 endfunction
+
+command! FormatJson exec ":silent %!python -m json.tool"
