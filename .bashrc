@@ -10,7 +10,6 @@ alias ls='ls -AFG'
 alias cp='cp -r'
 alias rm='rm -rf'
 alias mkdir='mkdir -pv'
-alias cat='bat'
 
 alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
 
