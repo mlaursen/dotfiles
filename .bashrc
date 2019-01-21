@@ -5,6 +5,7 @@
 alias vi='vim'
 alias vim='mvim -v'
 alias vif='vim `fzf`'
+alias nif='nvim `fzf`'
 
 alias ls='ls -AFG'
 alias cp='cp -r'
