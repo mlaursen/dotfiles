@@ -2,7 +2,11 @@ if &compatible
   set nocompatible
 endif
 
-set rtp+=/usr/local/opt/fzf
+if has('macvim')
+  set rtp+=/usr/local/opt/fzf
+else
+  set rtp+=~/.fzf
+endif
 
 function! PackInit() abort
   packadd minpac
