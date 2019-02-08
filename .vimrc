@@ -44,6 +44,7 @@ function! PackInit() abort
   call minpac#add('Valloric/YouCompleteMe', {'do': function('s:YouCompleteMe')})
   call minpac#add('SirVer/ultisnips')
   call minpac#add('mlaursen/vim-react-snippets')
+  call minpac#add('mlaursen/rmd-vim-snippets')
 
   " ==================================
   " File navigation
@@ -129,9 +130,9 @@ let g:prettier#autoformat = 0
 
 if expand("$USER") == "mlaursen"
   " I want to also enable it for markdown and scss on home laptop
-  autocmd BufWritePre *.js,*.tsx,*.ts,*.tsx,*.md,*.scss Prettier
+  autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
 else
-  autocmd BufWritePre *.js,*.tsx,*.ts,*.tsx Prettier
+  autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Prettier
 endif
 
 " ================================================================
