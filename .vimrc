@@ -292,6 +292,9 @@ nnoremap <leader>q :lclose<cr>:cclose<cr>:q<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>x :lclose<cr>:cclose<cr>:x<cr>:q<cr>
 
+" change directory to folder of current file
+nnoremap <leader>cd :cd %:p:h<cr>
+
 " turn backup off since it's handled by git
 set nobackup
 set nowb
