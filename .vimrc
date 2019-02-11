@@ -35,11 +35,11 @@ function! PackInit() abort
   call minpac#add('alvan/vim-closetag')
   call minpac#add('jiangmiao/auto-pairs') " auto close brackets and quotes
 
-  call minpac#add('autozimu/LanguageClient-neovim', {
-        \ 'do': function('s:LanguageClient'),
-        \ 'branch': 'next',
-        \ 'type': 'opt',
-        \ })
+  " call minpac#add('autozimu/LanguageClient-neovim', {
+  "       \ 'do': function('s:LanguageClient'),
+  "       \ 'branch': 'next',
+  "       \ 'type': 'opt',
+  "       \ })
 
   call minpac#add('Valloric/YouCompleteMe', {'do': function('s:YouCompleteMe')})
   call minpac#add('SirVer/ultisnips')
@@ -186,6 +186,8 @@ autocmd FileType typescript nnoremap <buffer> fi :YcmCompleter FixIt<cr>
 
 " rename word under cursor and copy current word into renamer
 autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> <F2> :YcmCompleter RefactorRename <C-R><C-W>
+
+autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> <leader>I :YcmCompleter OrganizeImports<cr>
 
 " ================================================================
 " UltiSnips
