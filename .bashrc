@@ -23,9 +23,7 @@ if [ -x "$(command -v brew)" ]; then
   stty -ixon
 fi
 
-if [ -f /etc/profile.d/bash_completion.sh ]; then
-  source /etc/profile.d/bash_completion.sh
-fi
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

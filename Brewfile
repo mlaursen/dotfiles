@@ -1,6 +1,7 @@
 tap 'homebrew/cask'
 
-brew 'bash-completion'
+brew 'bash'
+brew 'bash-completion@2'
 
 brew 'git'
 brew 'macvim'
