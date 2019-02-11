@@ -42,8 +42,17 @@ curl -O http://ethanschoonover.com/solarized/files/solarized.zip \
   && rm -rf solarized solarized.zip
 
 echo ""
+echo "Adding quicker key repeat (reqires re-login)..."
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+echo ""
 echo "Installing dependencies..."
 brew bundle
+
+echo ""
+echo "Updatig yarn to work without a specific node versio"
+yarn config set scripts-node-prepend-path true --global
 
 echo ""
 echo "Installing nvm..."

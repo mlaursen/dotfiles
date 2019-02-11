@@ -30,7 +30,7 @@ function! PackInit() abort
   " Linters, validators, and autocomplete
   " ==================================
   call minpac#add('w0rp/ale')
-  call minpac#add('prettier/vim-prettier', {'do': 'silent! !npm i'})
+  call minpac#add('prettier/vim-prettier', {'do': 'silent! !yarn install'})
 
   call minpac#add('alvan/vim-closetag')
   call minpac#add('jiangmiao/auto-pairs') " auto close brackets and quotes
@@ -550,4 +550,9 @@ function! s:CheckLanguageClientServers()
   endif
 endfunction
 
+function! PrettierEnableFileType()
+  execute "autocmd BufWritePre *." . expand('%:e') . " Prettier"
+endfunction
+
 command! FormatJson exec ":silent %!python -m json.tool"
+command! PrettierEnableFileType call PrettierEnableFileType()
