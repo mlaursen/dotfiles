@@ -1,7 +1,4 @@
 # User specific aliases and functions
-# alias vi='nvim'
-# alias vim='nvim'
-# alias vif='nvim `fzf`'
 alias vi='vim'
 alias vif='vim `fzf`'
 alias nif='nvim `fzf`'
@@ -15,15 +12,19 @@ if [ -x "$(command -v brew)" ]; then
   alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
   alias vim='mvim -v'
 
-  if [ -f `brew --prefix`/etc/bash_completion ]; then
-      . `brew --prefix`/etc/bash_completion
-  fi
-
   # Allows <ctrl-s> in mac
   stty -ixon
 fi
 
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+if [[ -e "/usr/local/share/bash-completion/bash_completion" ]]; then
+  # allow bash2 completions
+  export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+  source "/usr/local/share/bash-completion/bash_completion"
+elif [[ -e "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
+  source "/usr/local/etc/profile.d/bash_completion.sh"
+elif [[ -e "/etc/bash_completion" ]]; then
+  source "/etc/bash_completion"
+fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -34,6 +35,5 @@ export NVM_DIR="$HOME/.nvm"
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export PATH="/usr/local/sbin:$PATH:~/dotfiles/bin"
-
 
 PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u @ \[\e[33m\]\w\[\e[0m\]/\n$ '

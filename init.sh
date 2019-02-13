@@ -50,6 +50,11 @@ echo ""
 echo "Installing dependencies..."
 brew bundle
 
+echo "Updating to use latest version of bash..."
+echo '/usr/local/bin/bash' | sudo tee -a /etc/shells
+chsh -s /usr/local/bin/bash
+source ~/.bash_profile
+
 echo ""
 echo "Updatig yarn to work without a specific node versio"
 yarn config set scripts-node-prepend-path true --global
