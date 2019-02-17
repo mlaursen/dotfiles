@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo "Initializing dotfiles..."
 cd ~
@@ -62,7 +63,8 @@ yarn config set scripts-node-prepend-path true --global
 echo ""
 echo "Installing nvm..."
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-nvm install 8 10
+nvm install 8
+nvm install 10
 nvm alias default 10
 
 echo ""
