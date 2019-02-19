@@ -62,7 +62,7 @@ source ~/.bash_profile
 
 echo ""
 echo "Updatig yarn to work without a specific node versio"
-yarn config set scripts-node-prepend-path true --global
+yarn config set scripts-prepend-node-path true --global
 
 echo ""
 echo "Installing nvm..."
