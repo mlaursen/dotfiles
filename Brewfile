@@ -5,7 +5,7 @@ brew 'bash-completion@2'
 
 brew 'git'
 brew 'macvim'
-brew 'yarn', args: ['without-node']
+brew 'yarn', args: ['ignore-dependencies']
 brew 'python3'
 brew 'neovim'
 brew 'ruby'

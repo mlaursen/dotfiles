@@ -2,7 +2,7 @@ if &compatible
   set nocompatible
 endif
 
-if has('macvim')
+if !empty(glob('/usr/local/opt/fzf'))
   set rtp+=/usr/local/opt/fzf
 else
   set rtp+=~/.fzf

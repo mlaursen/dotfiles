@@ -51,6 +51,10 @@ echo ""
 echo "Installing dependencies..."
 brew bundle
 
+echo ""
+echo "Adding useful fzf bindings and fuzzy completion"
+$(brew --prefix)/opt/fzf/install
+
 echo "Updating to use latest version of bash..."
 echo '/usr/local/bin/bash' | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/bash
