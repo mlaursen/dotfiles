@@ -514,6 +514,27 @@ map <leader>s? z=
 
 function! s:YouCompleteMe(hooktype, name)
   silent! !git submodule update --init --recursive && python3 ./install.py --ts-completer
+  call UpdateYCMTSServer("latest")
+endfunction
+
+" YCM is stuck at 3.1.3 right now, so I get wrong errors. I can get around it temporarily
+" by manually installing tsserver with a specified version. Might cause errors tho
+function! UpdateYCMTSServer(tsserver_version, ...)
+  let l:update = get(a:, 1, 0)
+  if has("nvim")
+    let l:prefix="~/.config/nvim"
+  else
+    let l:prefix="~/.vim"
+  endif
+
+  let l:tsserver_path="/pack/minpac/start/YouCompleteMe/third_party/ycmd/third_party/tsserver"
+  silent! execute "!npm install typescript@" . a:tsserver_version . " --global --prefix " . l:prefix . l:tsserver_path
+  redraw!
+
+  if l:update == 1
+    call YcmRestartServer
+  endif
+  echo "Updated tsserver to version " . a:tsserver_version
 endfunction
 
 function! s:MarkdownComposer(hooktype, name)
