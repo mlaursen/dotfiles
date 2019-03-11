@@ -7,6 +7,7 @@ alias ls='ls -AFG'
 alias cp='cp -r'
 alias rm='rm -rf'
 alias mkdir='mkdir -pv'
+alias reso='source ~/.bashrc'
 
 if [ -x "$(command -v brew)" ]; then
   alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
