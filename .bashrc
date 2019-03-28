@@ -8,6 +8,7 @@ alias cp='cp -r'
 alias rm='rm -rf'
 alias mkdir='mkdir -pv'
 alias reso='source ~/.bashrc'
+alias rmd='cd ~/code/react-md'
 
 if [ -x "$(command -v brew)" ]; then
   alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'

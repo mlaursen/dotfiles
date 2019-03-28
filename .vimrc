@@ -128,12 +128,7 @@ nmap <leader>p :lprev<cr>
 let g:prettier#quickfix_auto_focus = 0
 let g:prettier#autoformat = 0
 
-if expand("$USER") == "mlaursen"
-  " I want to also enable it for markdown and scss on home laptop
-  autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
-else
-  autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Prettier
-endif
+autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
 
 " ================================================================
 " LanguageClient
@@ -513,8 +508,8 @@ map <leader>s? z=
 " ================================================================
 
 function! s:YouCompleteMe(hooktype, name)
-  silent! !git submodule update --init --recursive && python3 ./install.py --ts-completer
-  call UpdateYCMTSServer("latest")
+  silent !python3 ./install.py --ts-completer
+  " call UpdateYCMTSServer("latest")
 endfunction
 
 " YCM is stuck at 3.1.3 right now, so I get wrong errors. I can get around it temporarily
