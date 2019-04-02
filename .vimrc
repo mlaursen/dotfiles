@@ -20,11 +20,12 @@ function! PackInit() abort
   call minpac#add('altercation/vim-colors-solarized')
   call minpac#add('editorconfig/editorconfig-vim')
 
-  call minpac#add('leafgarland/typescript-vim')
   call minpac#add('hail2u/vim-css3-syntax') " updates vim's built-in css to support CSS3
   call minpac#add('cakebaker/scss-syntax.vim')
   call minpac#add('pangloss/vim-javascript')
   call minpac#add('mxw/vim-jsx')
+  call minpac#add('leafgarland/typescript-vim')
+  call minpac#add('ianks/vim-tsx')
 
   " ==================================
   " Linters, validators, and autocomplete
@@ -34,13 +35,6 @@ function! PackInit() abort
 
   call minpac#add('alvan/vim-closetag')
   call minpac#add('jiangmiao/auto-pairs') " auto close brackets and quotes
-
-  " call minpac#add('autozimu/LanguageClient-neovim', {
-  "       \ 'do': function('s:LanguageClient'),
-  "       \ 'branch': 'next',
-  "       \ 'type': 'opt',
-  "       \ })
-
   call minpac#add('Valloric/YouCompleteMe', {'do': function('s:YouCompleteMe')})
   call minpac#add('SirVer/ultisnips')
   call minpac#add('mlaursen/vim-react-snippets')
@@ -50,15 +44,13 @@ function! PackInit() abort
   " File navigation
   " ==================================
   call minpac#add('junegunn/fzf.vim')
-  call minpac#add('scrooloose/nerdtree')
+  call minpac#add('scrooloose/nerdtree', {'type': 'opt'})
 
   call minpac#add('tpope/vim-fugitive')
-  call minpac#add('Xuyuanp/nerdtree-git-plugin')
+  call minpac#add('Xuyuanp/nerdtree-git-plugin', {'type': 'opt'})
 
   " allows \bo to close all buffers except current focus
   call minpac#add('vim-scripts/BufOnly.vim')
-  " really just so i can do \bd to close the current buffer
-  call minpac#add('rbgrouleff/bclose.vim')
 
   " ==================================
   " Notes
@@ -76,10 +68,11 @@ function! PackInit() abort
   else
     call minpac#add('sjl/vitality.vim')
   endif
+
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-repeat') " mostly used so that vim-surround can be repeated
   call minpac#add('tpope/vim-commentary') " easy comments with `gc` or `gcc`
-  call minpac#add('airblade/vim-rooter') " Auto lcd to git dir on BufEnter
+  call minpac#add('airblade/vim-rooter', {'type': 'opt'}) " Auto lcd to git dir on BufEnter
   call minpac#add('matze/vim-move')
 
   call minpac#add('vim-airline/vim-airline')
@@ -129,19 +122,6 @@ let g:prettier#quickfix_auto_focus = 0
 let g:prettier#autoformat = 0
 
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
-
-" ================================================================
-" LanguageClient
-" ================================================================
-" set the correct language servers
-let g:LanguageClient_serverCommands = {
-      \ 'sh': ['bash-language-server', 'start'],
-      \ 'css': ['css-languageserver', '--stdio'],
-      \ 'scss': ['css-languageserver', '--stdio'],
-      \ }
-let g:LanguageClient_diagnosticsEnable = 0 " want to use ale instead
-
-" css and scss will use the languageclient for autocompletions, so update the buffers to have some nice wrappers
 
 " opens a picker for valid commands with the languageclient
 autocmd FileType css,scss nnoremap <F5> :call LanguageClient_contextMenu()<CR>
@@ -200,8 +180,17 @@ let g:UltiSnipsEditSplit="vertical"
 let g:NERDTreeShowHidden=1
 
 " lazyily toggle nerdtree
-nmap <leader>] :NERDTreeToggle<cr>
-nmap <leader>F :NERDTreeFind<cr>
+nmap <leader>] :call CustomNERDTreeCommand('NERDTreeToggle')<cr>
+nmap <leader>F :call CustomNERDTreeCommand('NERDTreeFind')<cr>
+
+function! CustomNERDTreeCommand(command)
+  if !exists('NERDTreeToggle')
+    packadd nerdtree
+    packadd nerdtree-git-plugin
+  endif
+
+  execute a:command
+endfunction
 
 " ================================================================
 " FZF
@@ -238,7 +227,11 @@ let g:jsx_ext_required=0
 " vim-closetag
 " ================================================================
 " Update closetag to also work on js and html files, don't want ts since <> is used for type args
-let g:closetag_filenames='*.html,*.js,*.jsx'
+let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
 
 " ================================================================
 " vim-markdown-composer
