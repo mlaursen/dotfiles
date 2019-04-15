@@ -107,8 +107,24 @@ set cmdheight=2
 let g:ale_linters = {
       \ 'scss': ['scsslint', 'sasslint'],
       \ 'javascript': ['eslint'],
-      \ 'typescript': ['tslint', 'tsserver', 'typecheck'],
+      \ 'typescript': ['tsserver', 'typecheck'],
       \ }
+
+let g:ale_fixers = {
+      \ 'scss': ['prettier'],
+      \ 'javascript': ['prettier', 'eslint'],
+      \ 'typescript': ['prettier', 'tslint'],
+      \ }
+
+" let g:ale_completion_enabled = 1
+
+" set completeopt=menu,menuone,preview,noselect,noinsert
+
+" nmap gd :ALEGoToDefinition<cr>
+" nmap gD :ALEGoToDefinitionInTab<cr>
+" nmap gr :ALEFindReferences<cr>
+" nmap K :ALEHover<cr>
+" nmap fK :ALEDetail<cr>
 
 " When linting, go to next and previous errors
 nmap <leader>n :lnext<cr>
@@ -123,12 +139,6 @@ let g:prettier#autoformat = 0
 
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
 
-" opens a picker for valid commands with the languageclient
-autocmd FileType css,scss nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-autocmd FileType css,scss nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-autocmd FileType css,scss nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
-autocmd FileType css,scss nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
 " ================================================================
 " YouCompleteMe
 " ================================================================
@@ -137,12 +147,6 @@ set completeopt=menuone,longest
 " A buffer becomes hidden when it is abandoned (used for refactors)
 set hidden
 
-
-" allow LanguageClient results in YouCompleteMe from css and scss files
-let g:ycm_semantic_triggers = {
-    \   'css': [ 're!^', 're!^\s+', ': ' ],
-    \   'scss': [ 're!^', 're!^\s+', ': ' ],
-    \ }
 
 " attempt to go to declaration or definition of item under cursor
 autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gd :YcmCompleter GoTo<cr>
