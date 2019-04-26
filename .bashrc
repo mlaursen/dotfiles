@@ -14,7 +14,7 @@ alias fwi='cd ~/code/fwi'
 if [ -x "$(command -v brew)" ]; then
   alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
   alias vim='mvim -v'
-  alias vim='nvim'
+  # alias vim='nvim'
 
   # Allows <ctrl-s> in mac
   stty -ixon

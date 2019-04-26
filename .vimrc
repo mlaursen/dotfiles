@@ -505,7 +505,8 @@ map <leader>s? z=
 " ================================================================
 
 function! s:YouCompleteMe(hooktype, name)
-  silent !python3 ./install.py --ts-completer
+  silent! !git submodule update --init --recursive && python3 ./install.py --ts-completer
+  " silent !python3 ./install.py --ts-completer
   " call UpdateYCMTSServer("latest")
 endfunction
 
