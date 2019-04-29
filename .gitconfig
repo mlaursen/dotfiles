@@ -21,6 +21,7 @@
 [difftool "p4mergetool"]
   cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
 [alias]
+  commita = commit --amend --no-edit
   ckb = checkout -b
   lg = log --name-status --no-merges
   currbranch = rev-parse --abbrev-ref HEAD
