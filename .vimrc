@@ -105,7 +105,7 @@ set cmdheight=2
 " ================================================================
 " Update linters so typescript isn't running both eslint and tslint which is super slow
 let g:ale_linters = {
-      \ 'scss': ['scsslint', 'sasslint'],
+      \ 'scss': ['sasslint'],
       \ 'javascript': ['eslint'],
       \ 'typescript': ['tsserver', 'typecheck'],
       \ }
