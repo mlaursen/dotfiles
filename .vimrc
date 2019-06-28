@@ -265,6 +265,11 @@ autocmd FileType markdown nnoremap <buffer> <F12> :MarkdownPreview<cr>
 " I can never remember the way to open it, and I don't like using the <Leader>ww since
 " I have <Leader>w set to quick write
 command! Wiki packadd vimwiki | VimwikiIndex
+let g:vimwiki_list = [{
+      \ 'path': '~/vimwiki/',
+      \ 'syntax': 'markdown',
+      \ 'ext': '.md'
+      \ }]
 
 " ================================================================
 " => General
