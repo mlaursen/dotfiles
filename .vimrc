@@ -107,13 +107,13 @@ set cmdheight=2
 let g:ale_linters = {
       \ 'scss': ['sasslint'],
       \ 'javascript': ['eslint'],
-      \ 'typescript': ['tsserver', 'typecheck'],
+      \ 'typescript': ['eslint', 'tsserver', 'typecheck'],
       \ }
 
 let g:ale_fixers = {
       \ 'scss': ['prettier'],
       \ 'javascript': ['prettier', 'eslint'],
-      \ 'typescript': ['prettier', 'tslint'],
+      \ 'typescript': ['prettier', 'eslint'],
       \ }
 
 " let g:ale_completion_enabled = 1
