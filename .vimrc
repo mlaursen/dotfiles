@@ -30,7 +30,7 @@ function! PackInit() abort
   " ==================================
   " Linters, validators, and autocomplete
   " ==================================
-  call minpac#add('w0rp/ale')
+  call minpac#add('dense-analysis/ale')
   call minpac#add('prettier/vim-prettier', {'do': 'silent! !yarn install'})
 
   call minpac#add('alvan/vim-closetag')
@@ -126,6 +126,8 @@ let g:ale_fixers = {
 " nmap K :ALEHover<cr>
 " nmap fK :ALEDetail<cr>
 
+nmap fe :ALEFix eslint<cr>
+
 " When linting, go to next and previous errors
 nmap <leader>n :lnext<cr>
 nmap <leader>p :lprev<cr>
@@ -149,24 +151,24 @@ set hidden
 
 
 " attempt to go to declaration or definition of item under cursor
-autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gd :YcmCompleter GoTo<cr>
+autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> gd :YcmCompleter GoTo<cr>
 
 " find all references and put into quicklist
-autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> gr :YcmCompleter GoToReferences<cr>
+autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> gr :YcmCompleter GoToReferences<cr>
 
 " show current type
-autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> K :YcmCompleter GetType<cr>
+autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> K :YcmCompleter GetType<cr>
 
 " get the full error message for type errors. useful for complex types
-autocmd FileType typescript nnoremap <buffer> fK :YcmShowDetailedDiagnostic<cr>
+autocmd FileType typescript,typescript.tsx nnoremap <buffer> fK :YcmShowDetailedDiagnostic<cr>
 
 " attempt to fix an import or error in typescript
-autocmd FileType typescript nnoremap <buffer> fi :YcmCompleter FixIt<cr>
+autocmd FileType typescript,typescript.tsx nnoremap <buffer> fi :YcmCompleter FixIt<cr>
 
 " rename word under cursor and copy current word into renamer
-autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> <F2> :YcmCompleter RefactorRename <C-R><C-W>
+autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> <F2> :YcmCompleter RefactorRename <C-R><C-W>
 
-autocmd FileType typescript,javascript,javascript.jsx nnoremap <buffer> <leader>I :YcmCompleter OrganizeImports<cr>
+autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> <leader>I :YcmCompleter OrganizeImports<cr>
 
 " ================================================================
 " UltiSnips
@@ -233,7 +235,7 @@ let g:jsx_ext_required=0
 " Update closetag to also work on js and html files, don't want ts since <> is used for type args
 let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
 let g:closetag_regions = {
-    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'typescript.tsx': 'tsxRegion',
     \ 'javascript.jsx': 'jsxRegion',
     \ }
 
