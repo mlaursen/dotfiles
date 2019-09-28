@@ -117,6 +117,8 @@ let g:ale_fixers = {
       \ }
 
 " let g:ale_completion_enabled = 1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " set completeopt=menu,menuone,preview,noselect,noinsert
 
@@ -127,6 +129,8 @@ let g:ale_fixers = {
 " nmap fK :ALEDetail<cr>
 
 nmap fe :ALEFix eslint<cr>
+nmap ff :ALEFix prettier<cr>
+
 
 " When linting, go to next and previous errors
 nmap <leader>n :lnext<cr>
@@ -146,9 +150,6 @@ autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
 " ================================================================
 " only want completions with YCM to show in the menu even if there is only 1
 set completeopt=menuone,longest
-" A buffer becomes hidden when it is abandoned (used for refactors)
-set hidden
-
 
 " attempt to go to declaration or definition of item under cursor
 autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> gd :YcmCompleter GoTo<cr>
@@ -216,7 +217,12 @@ let g:fzf_layout = { 'down': '~40%' }
 " vim-move
 " ================================================================
 " update vim-move to use control instead of alt since mac is stupid
-let g:move_key_modifier='C'
+let g:move_key_modifier = 'C'
+let g:move_map_keys = 0
+let g:move_auto_indent = 0
+
+vmap <C-j> <Plug>MoveBlockDown
+vmap <C-k> <Plug>MoveBlockUp
 
 " ================================================================
 " vitality (for focus events)
@@ -513,28 +519,6 @@ map <leader>s? z=
 
 function! s:YouCompleteMe(hooktype, name)
   silent! !git submodule update --init --recursive && python3 ./install.py --ts-completer
-  " silent !python3 ./install.py --ts-completer
-  " call UpdateYCMTSServer("latest")
-endfunction
-
-" YCM is stuck at 3.1.3 right now, so I get wrong errors. I can get around it temporarily
-" by manually installing tsserver with a specified version. Might cause errors tho
-function! UpdateYCMTSServer(tsserver_version, ...)
-  let l:update = get(a:, 1, 0)
-  if has("nvim")
-    let l:prefix="~/.config/nvim"
-  else
-    let l:prefix="~/.vim"
-  endif
-
-  let l:tsserver_path="/pack/minpac/start/YouCompleteMe/third_party/ycmd/third_party/tsserver"
-  silent! execute "!npm install typescript@" . a:tsserver_version . " --global --prefix " . l:prefix . l:tsserver_path
-  redraw!
-
-  if l:update == 1
-    call YcmRestartServer
-  endif
-  echo "Updated tsserver to version " . a:tsserver_version
 endfunction
 
 function! s:MarkdownComposer(hooktype, name)
@@ -545,35 +529,28 @@ function! s:MarkdownComposer(hooktype, name)
   endif
 endfunction
 
-function! s:LanguageClient(hooktype, name)
-  silent! !bash install.sh
-  call s:CheckLanguageClientServers()
-endfunction
+" function! s:LanguageClient(hooktype, name)
+"   silent! !bash install.sh
+"   call s:CheckLanguageClientServers()
+" endfunction
 
-function! s:CheckLanguageClientServers()
-  " https://langserver.org/
-  let l:missing_packages = []
-  let l:expected_executables = {
-        \ 'bash-language-server': 'bash-language-server',
-        \ 'javascript-typescript-stdio': 'javascript-typescript-langserver',
-        \ 'css-languageserver': 'vscode-css-languageserver-bin',
-        \ }
+" function! s:CheckLanguageClientServers()
+"   " https://langserver.org/
+"   let l:missing_packages = []
+"   let l:expected_executables = {
+"         \ 'bash-language-server': 'bash-language-server',
+"         \ 'javascript-typescript-stdio': 'javascript-typescript-langserver',
+"         \ 'css-languageserver': 'vscode-css-languageserver-bin',
+"         \ }
 
-  for [name, install] in items(l:expected_executables)
-    if !executable(name)
-      call add(l:missing_packages, install)
-    endif
-  endfor
+"   for [name, install] in items(l:expected_executables)
+"     if !executable(name)
+"       call add(l:missing_packages, install)
+"     endif
+"   endfor
 
-  if len(l:missing_packages)
-    let l:command = "!npm install --global " . join(l:missing_packages, ' ')
-    silent! execute l:command
-  endif
-endfunction
-
-function! PrettierEnableFileType()
-  execute "autocmd BufWritePre *." . expand('%:e') . " Prettier"
-endfunction
-
-command! FormatJson exec ":silent %!python -m json.tool"
-command! PrettierEnableFileType call PrettierEnableFileType()
+"   if len(l:missing_packages)
+"     let l:command = "!npm install --global " . join(l:missing_packages, ' ')
+"     silent! execute l:command
+"   endif
+" endfunction
