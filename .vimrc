@@ -35,6 +35,14 @@ function! PackInit() abort
 
   call minpac#add('alvan/vim-closetag')
   call minpac#add('jiangmiao/auto-pairs') " auto close brackets and quotes
+
+  " if has('nvim')
+  "   call minpac#add('Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'})
+  " else
+  "   call minpac#add('Shougo/deoplete.nvim')
+  "   call minpac#add('roxma/nvim-yarp')
+  "   call minpac#add('roxma/vim-hug-neovim-rpc')
+  " endif
   call minpac#add('Valloric/YouCompleteMe', {'do': function('s:YouCompleteMe')})
   call minpac#add('SirVer/ultisnips')
   call minpac#add('mlaursen/vim-react-snippets')
@@ -116,11 +124,16 @@ let g:ale_fixers = {
       \ 'typescript': ['prettier', 'eslint'],
       \ }
 
-" let g:ale_completion_enabled = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-" set completeopt=menu,menuone,preview,noselect,noinsert
+" let g:ale_fix_on_save = 1
+" let g:ale_completion_enabled = 1
+" let g:ale_completion_tsserver_autoimport = 1
+" let g:deoplete#enable_at_startup = 1
+" set omnifunc=ale#completion#OmniFunc
+" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" autocmd VimEnter * call deoplete#custom#option('sources', { '_': ['ale', 'foobar'] })
 
 " nmap gd :ALEGoToDefinition<cr>
 " nmap gD :ALEGoToDefinitionInTab<cr>
@@ -128,9 +141,15 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " nmap K :ALEHover<cr>
 " nmap fK :ALEDetail<cr>
 
+" nmap fr :ALERename<cr>
 nmap fe :ALEFix eslint<cr>
 nmap ff :ALEFix prettier<cr>
 
+" updates the auto-completion menu to work with tab and shift tab only if visible
+" inoremap <silent><expr> <Tab>
+"       \ pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <silent><expr> <S-Tab> 
+"       \ pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " When linting, go to next and previous errors
 nmap <leader>n :lnext<cr>
