@@ -4,6 +4,8 @@ endif
 
 if !empty(glob('/usr/local/opt/fzf'))
   set rtp+=/usr/local/opt/fzf
+elseif !empty(glob('/home/linuxbrew/.linuxbrew/opt/fzf'))
+  set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 else
   set rtp+=~/.fzf
 endif
@@ -23,9 +25,8 @@ function! PackInit() abort
   call minpac#add('hail2u/vim-css3-syntax') " updates vim's built-in css to support CSS3
   call minpac#add('cakebaker/scss-syntax.vim')
   call minpac#add('pangloss/vim-javascript')
-  call minpac#add('mxw/vim-jsx')
-  call minpac#add('leafgarland/typescript-vim')
-  call minpac#add('ianks/vim-tsx')
+  call minpac#add('HerringtonDarkholme/yats.vim', {'do': 'silent! !rm -rf UltiSnips'}) " don't want these snippets...
+  call minpac#add('maxmellon/vim-jsx-pretty')
 
   " ==================================
   " Linters, validators, and autocomplete
@@ -186,7 +187,7 @@ autocmd FileType typescript,typescript.tsx nnoremap <buffer> fK :YcmShowDetailed
 autocmd FileType typescript,typescript.tsx nnoremap <buffer> fi :YcmCompleter FixIt<cr>
 
 " rename word under cursor and copy current word into renamer
-autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> <F2> :YcmCompleter RefactorRename <C-R><C-W>
+autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> fr :YcmCompleter RefactorRename <C-R><C-W>
 
 autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> <leader>I :YcmCompleter OrganizeImports<cr>
 
