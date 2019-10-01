@@ -172,24 +172,24 @@ autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
 set completeopt=menuone,longest
 
 " attempt to go to declaration or definition of item under cursor
-autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> gd :YcmCompleter GoTo<cr>
+nmap gd :YcmCompleter GoTo<cr>
 
 " find all references and put into quicklist
-autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> gr :YcmCompleter GoToReferences<cr>
+nmap gr :YcmCompleter GoToReferences<cr>
 
 " show current type
-autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> K :YcmCompleter GetType<cr>
+nmap K :YcmCompleter GetType<cr>
 
 " get the full error message for type errors. useful for complex types
-autocmd FileType typescript,typescript.tsx nnoremap <buffer> fK :YcmShowDetailedDiagnostic<cr>
+nmap fK :YcmShowDetailedDiagnostic<cr>
 
 " attempt to fix an import or error in typescript
-autocmd FileType typescript,typescript.tsx nnoremap <buffer> fi :YcmCompleter FixIt<cr>
+nmap fi :YcmCompleter FixIt<cr>
 
 " rename word under cursor and copy current word into renamer
-autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> fr :YcmCompleter RefactorRename <C-R><C-W>
+nmap fr :YcmCompleter RefactorRename <C-R><C-W>
 
-autocmd FileType typescript,typescript.tsx,javascript,javascript.jsx nnoremap <buffer> <leader>I :YcmCompleter OrganizeImports<cr>
+nmap fI :YcmCompleter OrganizeImports<cr>
 
 " ================================================================
 " UltiSnips
