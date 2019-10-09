@@ -2,6 +2,7 @@
 alias vi='vim'
 alias vif='vim `fzf`'
 alias nif='nvim `fzf`'
+# alias vim='nvim'
 
 alias ls='ls -AFG'
 alias cp='cp -r'

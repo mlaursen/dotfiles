@@ -7,23 +7,18 @@ git clone git@github.com:mlaursen/dotfiles.git
 cd dotfiles
 git pull origin macbook
 
+dotfiles=( ".bashrc" ".bash_profile" ".gitconfig" ".vimrc" )
+
 echo ""
-echo "Initializing base .bash_profile, .bashrc, and .gitconfig"
-if [ -f "$HOME/.bashrc" ]; then
-  mv -v "$HOME/.bashrc" "$HOME/.bashrc.bak"
-fi
+echo "Initializing base dotfiles and symlinking..."
+for file in "${dotfiles[@]}"; do
+  if [ -f "$HOME/$file" ]; then
+    mv -v "$HOME/$file" "$HOME/$file.bak"
+  fi
 
-if [ -f "$HOME/.bashrc" ]; then
-  mv -v "$HOME/.bash_profile" "$HOME/.bash_profile.bak"
-fi
+  ln -s "$HOME/dotfiles/$file" "$HOME/$file"
+done
 
-if [ -f "$HOME/.gitconfig" ]; then
-  mv -v "$HOME/.gitconfig" "$HOME/.gitconfig.bak"
-fi
-
-ln -s ~/dotfiles/.bashrc ~/.bashrc
-ln -s ~/dotfiles/.bash_profile ~/.bash_profile
-ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 source ~/.bash_profile
 
 
@@ -61,19 +56,17 @@ chsh -s /usr/local/bin/bash
 source ~/.bash_profile
 
 echo ""
-echo "Updatig yarn to work without a specific node versio"
+echo "Updatig yarn to work without a specific node version"
 yarn config set scripts-prepend-node-path true --global
 
 echo ""
 echo "Installing nvm..."
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-nvm install 8
-nvm install 10
-nvm alias default 10
+nvm install stable
+nvm alias default stable
 
 echo ""
 echo "Initializing vim and neovim..."
-ln -s ~/dotfiles/.vimrc ~/.vimrc
 
 mkdir -p "$HOME/.config/nvim"
 echo "source ~/.vimrc" > "$HOME/.config/nvim/init.vim"
