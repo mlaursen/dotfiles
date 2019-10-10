@@ -1,40 +1,92 @@
 # dotfiles
 
-A repo for my dotfiles on a MacBook. This first time setup can be automated
-with:
+This repo is for setting up my general dotfiles and vim config for Mac and
+CentOS. The first time setup can be automated with:
 
 ```sh
-bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/macbook/init.sh)
+$ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init.sh)
 ```
 
-or if it has already been cloned:
+## CentOS Setup
+
+I can never remember how this goes, so I decided to document this process. Mac
+is a bit easier since I can just use [homebrew] for everything, but CentOS/\*nix
+is a bit more difficult since it's something I have to do manually.
+
+### Download an ISO
+
+Download an ISO from the [CentOS download] page and start up a VM using this
+ISO. Go through the installation process making sure to:
+
+- update the Network configuration to auto-connect to eth0 so that I don't need
+  to manually reconnect each time the VM is resumed.
+- update the Network Prefrences to be the current timezone and use network to
+  determine
+- choose the GNOME Desktop installation and don't check any other feature
+
+### Creating an Admin User
+
+Since this is normally a private VM, I can just keep the root password and my
+`mlaursen` user's password empty and ensure that `mlaursen` is an administrator.
+
+If I want to be more secure, I can add a password to both bu tI'll just need to
+make sure to login and update `mlaursen` to be able to use sudo without the
+password each time with:
 
 ```sh
-./init.sh
+$ sudo visudo
 ```
 
-## Random Optimizations
-
-```bash
-# Faster arrow keys in terminals
-$ defaults write NSGlobalDomain KeyRepeat -int 1
-$ defaults write NSGlobalDomain InitialKeyRepeat -int 10
-
-# Show Path bar
-$ defaults write com.apple.finder ShowPathbar -bool true
-
-# Show status bar
-$ defaults write com.apple.finder ShowStatusBar -bool true
+```diff
+ ## Same thing without a password
+ # %wheel        ALL=(ALL)       NOPASSWD: ALL
++mlaursen        ALL=(ALL)       NOPASSWD: ALL
 ```
 
-## Create a PAC for vim-rhubarb
+### Setting up the dev environment
 
-To get some better GitHub vim support with
-[vim-fugitive](https://github.com/tpope/vim-fugitive) +
-[vim-rhubarb](https://github.com/tpope/vim-rhubarb), you'll need to generate a
-personal access token (PAC) on [GitHub](https://github.com/settings/tokens/new)
-and then update the `~/.netrc` file:
+First thing is update packages and install git:
 
 ```sh
-echo 'machine api.github.com user mlaursen password <TOKEN>' >> ~/.netrc
+# the git in centos 7 is 1.8.x and crashes for minpac...
+$ sudo yum remove git*
+$ sudo yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+$ sudo yum -y install git2u-all
+
+$ sudo yum update -y
+$ sudo yum install \
+    the_silver_searcher \
+    gcc \
+    gcc-c++ \
+    cmake \
+    ncurses \
+    ncurses-devel \
+    ruby \
+    ruby-devel \
+    lua \
+    lua-devel \
+    ctags \
+    python \
+    python-devel \
+    python3 \
+    python3-devel \
+    tcl-devel \
+    perl \
+    perl-devel \
+    perl-ExtUtils-ParseXS \
+    perl-ExtUtils-CBuilder \
+    perl-ExtUtils-Embed \
+    -y
 ```
+
+Next install chrome:
+
+```sh
+$ wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+$ sudo yum install google-chrome-stable_current_x86_64.rpm
+```
+
+Finally, the `init.sh` should be able to take care of the rest.
+
+[homebrew]: https://brew.sh/
+[centos download]: https://www.centos.org/download/
