@@ -13,7 +13,7 @@ while [[ $# -gt 0 ]]; do
       size="$1"
       shift
       ;;
-    --image)
+    -i|--image)
       shift
       image="$1"
       shift
@@ -33,14 +33,17 @@ if [[ -z "$size" ]]; then
   size=400
 fi
 
-if [[ -z "$image" ]]; then
-  image=$(curl -s https://picsum.photos/list | python3 -c "import sys, json, random; print(random.choice(json.load(sys.stdin))['id'])")
-fi
-
 if [[ -z "$quote" ]]; then
   quote=$(fortune)
 fi
 
+url="https://picsum.photos"
 
-curl -s "https://picsum.photos/$size?image=$image" | imgcat
+if [[ ! -z "$image" ]]; then
+  url="$url/id/$image"
+fi
+
+url="$url/$size"
+
+curl -sL $url | imgcat
 cowsay -f $(ls /usr/local/Cellar/cowsay/3.04/share/cows/*.cow | gshuf -n1) "$quote"
