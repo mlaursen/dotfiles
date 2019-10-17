@@ -4,8 +4,6 @@ endif
 
 if !empty(glob('/usr/local/opt/fzf'))
   set rtp+=/usr/local/opt/fzf
-elseif !empty(glob('/home/linuxbrew/.linuxbrew/opt/fzf'))
-  set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 else
   set rtp+=~/.fzf
 endif
@@ -525,6 +523,9 @@ set viminfo^=%
 
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
+
+" linux doesn't do this by default, so enable it just to be safe
+hi SpellBad cterm=underline
 
 " Shortcuts using <leader>
 map <leader>sn ]s
