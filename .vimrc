@@ -290,7 +290,7 @@ autocmd FileType markdown nnoremap <buffer> <F12> :MarkdownPreview<cr>
 " ================================================================
 " I can never remember the way to open it, and I don't like using the <Leader>ww since
 " I have <Leader>w set to quick write
-command! Wiki packadd vimwiki | VimwikiIndex
+command! Wiki packadd vimwiki | VimwikiDiaryIndex
 let g:vimwiki_list = [{
       \ 'path': '~/vimwiki/',
       \ 'syntax': 'markdown',
@@ -350,9 +350,11 @@ au BufRead,BufNewFile *nginx.conf.* set ft=nginx
 
 " Use ag instead of ack
 if executable('ag')
+  " Use ag for grepping
   let g:ackprg='ag --vimgrep'
 
-  " Use ag for grepping
+  " grep visually selected text
+  vmap <leader>g y:Ag<space><C-R>"<cr>
   nmap <leader>g :Ag<space>
 
   " go to previous and next matches when using <leader>g
