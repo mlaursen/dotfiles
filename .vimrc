@@ -529,6 +529,8 @@ set viminfo^=%
 " ================================================================
 " => Spell checking
 " ================================================================
+" always enforce spell checking in text files
+autocmd BufRead,BufNewFile *.txt,*.md setlocal spell
 
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>

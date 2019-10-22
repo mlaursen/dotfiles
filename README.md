@@ -20,7 +20,7 @@ ISO. Go through the installation process making sure to:
 
 - update the Network configuration to auto-connect to eth0 so that I don't need
   to manually reconnect each time the VM is resumed.
-- update the Network Prefrences to be the current timezone and use network to
+- update the Network Preferences to be the current timezone and use network to
   determine
 - choose the GNOME Desktop installation and don't check any other feature
 
@@ -29,7 +29,7 @@ ISO. Go through the installation process making sure to:
 Since this is normally a private VM, I can just keep the root password and my
 `mlaursen` user's password empty and ensure that `mlaursen` is an administrator.
 
-If I want to be more secure, I can add a password to both bu tI'll just need to
+If I want to be more secure, I can add a password to both but I'll just need to
 make sure to login and update `mlaursen` to be able to use sudo without the
 password each time with:
 
