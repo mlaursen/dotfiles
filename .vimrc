@@ -271,7 +271,7 @@ let g:jsx_ext_required=0
 " Update closetag to also work on js and html files, don't want ts since <> is used for type args
 let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
 let g:closetag_regions = {
-    \ 'typescript.tsx': 'tsxRegion',
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
     \ 'javascript.jsx': 'jsxRegion',
     \ }
 
