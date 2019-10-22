@@ -163,6 +163,18 @@ let g:prettier#autoformat = 0
 
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
 
+" hopefully a temp workaround until libraries update for javascriptreact and typescriptreact
+" now that it is the 'vim standard'
+augroup fix_jsx
+  au!
+  autocmd BufNewFile,BufRead *.jsx setlocal filetype=javascript
+augroup END
+
+augroup fix_tsx
+  au!
+  autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript
+augroup END
+
 " ================================================================
 " YouCompleteMe
 " ================================================================
