@@ -23,7 +23,14 @@ function! PackInit() abort
   call minpac#add('hail2u/vim-css3-syntax') " updates vim's built-in css to support CSS3
   call minpac#add('cakebaker/scss-syntax.vim')
   call minpac#add('pangloss/vim-javascript')
-  call minpac#add('HerringtonDarkholme/yats.vim', {'do': 'silent! !rm -rf UltiSnips'}) " don't want these snippets...
+  " I don't want the snippets provided by this package as my own vim-react-snippets is 'better'
+  " Also this library switched to the 'official' javascriptreact and typescriptreact filetypes
+  " for jsx and tsx, but none of these plugins really support them yet and everything breaks.
+  " so use the last 'working' commit until other packages work with those filetypes.
+  call minpac#add('HerringtonDarkholme/yats.vim', {
+        \ 'do': 'silent! !git checkout 88edbffd4f1149d308340321f1d0bbe620b1b252 && rm -rf UltiSnips',
+        \ 'rev': '88edbffd4f1149d308340321f1d0bbe620b1b252',
+        \ })
   call minpac#add('maxmellon/vim-jsx-pretty')
 
   " ==================================
@@ -162,18 +169,6 @@ let g:prettier#quickfix_auto_focus = 0
 let g:prettier#autoformat = 0
 
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
-
-" hopefully a temp workaround until libraries update for javascriptreact and typescriptreact
-" now that it is the 'vim standard'
-augroup fix_jsx
-  au!
-  autocmd BufNewFile,BufRead *.jsx setlocal filetype=javascript
-augroup END
-
-augroup fix_tsx
-  au!
-  autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript
-augroup END
 
 " ================================================================
 " YouCompleteMe
