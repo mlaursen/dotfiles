@@ -23,14 +23,9 @@ function! PackInit() abort
   call minpac#add('hail2u/vim-css3-syntax') " updates vim's built-in css to support CSS3
   call minpac#add('cakebaker/scss-syntax.vim')
   call minpac#add('pangloss/vim-javascript')
-  " I don't want the snippets provided by this package as my own vim-react-snippets is 'better'
-  " Also this library switched to the 'official' javascriptreact and typescriptreact filetypes
-  " for jsx and tsx, but none of these plugins really support them yet and everything breaks.
-  " so use the last 'working' commit until other packages work with those filetypes.
-  call minpac#add('HerringtonDarkholme/yats.vim', {
-        \ 'do': 'silent! !git checkout 88edbffd4f1149d308340321f1d0bbe620b1b252 && rm -rf UltiSnips',
-        \ 'rev': '88edbffd4f1149d308340321f1d0bbe620b1b252',
-        \ })
+
+  " I don't want the snippets provided by this package as I like my own vim-react-snippets
+  call minpac#add('HerringtonDarkholme/yats.vim', {'do': 'silent! rm -rf UltiSnips' })
   call minpac#add('maxmellon/vim-jsx-pretty')
 
   " ==================================
@@ -266,8 +261,11 @@ let g:jsx_ext_required=0
 " Update closetag to also work on js and html files, don't want ts since <> is used for type args
 let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
 let g:closetag_regions = {
+    \ 'typescript': 'jsxRegion,tsxRegion',
+    \ 'typescriptreact': 'jsxRegion,tsxRegion',
     \ 'typescript.tsx': 'jsxRegion,tsxRegion',
     \ 'javascript.jsx': 'jsxRegion',
+    \ 'javascriptreact': 'jsxRegion',
     \ }
 
 " ================================================================
