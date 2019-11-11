@@ -1,0 +1,6 @@
+#!/bin/bash
+original=$1
+destination=$2
+
+git mv src/$original src/$destination
+grep -rl "$original/" src | xargs sed -i '' "s/$original\//$destination\//"
