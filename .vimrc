@@ -165,6 +165,14 @@ let g:prettier#autoformat = 0
 
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
 
+" YouCompleteMe does not add completions for javascriptreact right now, so have to set
+" .jsx files back to javascript
+augroup fix_jsx
+  au!
+  autocmd BufRead,BufNewFile *.jsx setlocal filetype=javascript
+augroup END
+
+
 " ================================================================
 " YouCompleteMe
 " ================================================================
