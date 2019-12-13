@@ -172,6 +172,11 @@ augroup fix_jsx
   autocmd BufRead,BufNewFile *.jsx setlocal filetype=javascript
 augroup END
 
+augroup fix_tsx
+  au!
+  autocmd BufRead,BufNewFile *.tsx setlocal filetype=typescript
+augroup END
+
 
 " ================================================================
 " YouCompleteMe
@@ -536,7 +541,7 @@ set viminfo^=%
 " => Spell checking
 " ================================================================
 " always enforce spell checking in text files
-autocmd BufRead,BufNewFile *.txt,*.md setlocal spell
+autocmd BufRead,BufNewFile *.txt,*.md,COMMIT_EDITMSG setlocal spell
 
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
