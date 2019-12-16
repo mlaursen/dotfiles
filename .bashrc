@@ -10,20 +10,26 @@ alias rm='rm -rf'
 alias mkdir='mkdir -pv'
 alias reso='source ~/.bashrc'
 alias rmd='cd ~/code/react-md'
-alias fwi='cd ~/code/fwi'
 
 if [ -x "$(command -v brew)" ]; then
+  # cheating and considering this mac specific stuff only
   alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
   # alias vim='mvim -v'
 
   # Allows <ctrl-s> in mac
   stty -ixon
-fi
 
-if [[ -e "/usr/local/share/bash-completion/bash_completion" ]]; then
-  # allow bash2 completions
-  export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-  source "/usr/local/share/bash-completion/bash_completion"
+  if [[ -e "/usr/local/share/bash-completion/bash_completion" ]]; then
+    # allow bash2 completions
+    export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+    source "/usr/local/share/bash-completion/bash_completion"
+  fi
+else
+  # cheating and considering this centos specific stuff only
+  if [ -e /etc/profile.d/vte.sh ]; then
+    # re-enables remembering last pwd when creating new terminals
+    . /etc/profile.d/vte.sh
+  fi
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
