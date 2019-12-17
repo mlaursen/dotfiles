@@ -2,7 +2,7 @@
 alias vi='vim'
 alias vif='vim `fzf`'
 alias nif='nvim `fzf`'
-alias vim='nvim'
+# alias vim='nvim'
 
 alias ls='ls -AFG'
 alias cp='cp -r'
@@ -14,7 +14,7 @@ alias rmd='cd ~/code/react-md'
 if [ -x "$(command -v brew)" ]; then
   # cheating and considering this mac specific stuff only
   alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
-  # alias vim='mvim -v'
+  alias vim='mvim -v'
 
   # Allows <ctrl-s> in mac
   stty -ixon
