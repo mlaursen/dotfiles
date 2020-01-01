@@ -24,7 +24,6 @@ export LESS="-F -X $LESS"
 alias fgrep='fgrep --color=auto'
 alias gerep='egrep --color=auto'
 alias grep='grep --color=auto'
-alias ls='ls -AFG --color=auto'
 alias vi='vim'
 alias vif='vim `fzf`'
 alias nif='nvim `fzf`'
@@ -49,9 +48,17 @@ if [ -x "$(command -v brew)" ]; then
   # cheating and considering this mac specific stuff only
   alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
   alias vim='mvim -v'
+  alias ls='ls -AFG'
 
   # Allows <ctrl-s> in mac
   stty -ixon
+
+  PATH="/usr/local/sbin:$PATH"
+
+  # the .dir_colors don't work with mac even with the gls version from coreutils
+  export LSCOLORS=exfxfeaeBxxehehbadacea
+else
+  alias ls='ls -AF --color=auto'
 fi
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
