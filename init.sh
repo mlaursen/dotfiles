@@ -147,14 +147,29 @@ else
   sudo yum install nodejs -y
 
   echo ""
+  echo "Installing haskell-stack"
+  sudo yum install stack -y
+
+  echo ""
   echo "Installing yarn..."
   curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
   sudo yum install yarn -y
 fi
 
 echo ""
-echo "Updatig yarn to work without a specific node version"
+echo "Updating yarn to work without a specific node version"
 yarn config set scripts-prepend-node-path true --global
+
+echo ""
+echo "Cloning zsh-git-prompt and initializing"
+
+code_dir="$HOME/code"
+mkdir -p $code_dir
+
+git clone https://github.com/olivierverdier/zsh-git-prompt "$code_dir/zsh-git-prompt"
+cd "$code_dir/zsh-git-prompt"
+stack setup
+stack build && stack install
 
 nvim_dir="$HOME/.config/nvim"
 minpac="pack/minpac/opt/minpac"

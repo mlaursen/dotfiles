@@ -7,6 +7,8 @@ brew 'python3'
 brew 'neovim'
 brew 'ruby'
 
+brew 'haskel-stack'
+
 # for the markdown previewer in vim
 brew 'rust'
 brew 'pandoc'

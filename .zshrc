@@ -5,12 +5,18 @@ CASE_SENSITIVE="true"
 ZSH_THEME="mlaursen"
 
 plugins=(
-  git-prompt
   fzf
   npm
   nvm
   yarn
 )
+
+if [[ -e "$HOME/code/zsh-git-prompt" ]]; then
+  export GIT_PROMPT_EXECUTABLE="haskell"
+  source "$HOME/code/zsh-git-prompt/zshrc.sh"
+else
+  plugins+=(git-prompt)
+fi
 
 source $ZSH/oh-my-zsh.sh
 
