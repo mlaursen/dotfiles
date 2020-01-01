@@ -15,7 +15,7 @@ fi
 
 cd "$HOME/dotfiles"
 
-dotfiles=( ".bashrc" ".bash_profile" ".gitconfig" ".vimrc" )
+dotfiles=( ".zshrc" ".gitconfig" ".vimrc" ".dir_colors" )
 
 echo ""
 echo "Symlinking default dotfiles with backups..."
@@ -31,14 +31,20 @@ for file in "${dotfiles[@]}"; do
   fi
 done
 
-source ~/.bash_profile
+echo ""
+if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+  echo "Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+  ln -s "$HOME/dotfiles/mlaursen.zsh-theme" "$HOME/.oh-my-zsh/themes/mlaursen.zsh-theme"
+fi
 
 echo ""
 if [[ ! -d "$HOME/.nvm" ]]; then 
   echo "Installing nvm..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
 
-  source "$HOME/.bashrc"
+  source "$HOME/.zshrc"
 else
   echo "nvm installation found. Skipping..."
 fi
@@ -49,7 +55,7 @@ if [ ! -x "$(command -v node)" ]; then
   nvm alias default stable
   nvm use default
 
-  source "$HOME/.bashrc"
+  source "$HOME/.zshrc"
 else
   echo "node found... skipping installation"
 fi
@@ -85,11 +91,6 @@ if [[ "$current_os" = "Mac" ]]; then
   echo ""
   echo "Adding useful fzf bindings and fuzzy completion"
   $(brew --prefix)/opt/fzf/install
-
-  echo "Updating to use latest version of bash..."
-  echo '/usr/local/bin/bash' | sudo tee -a /etc/shells
-  chsh -s /usr/local/bin/bash
-  source ~/.bash_profile
 else
   echo ""
   echo "Installing fzf and adding useful keybindings..."
@@ -186,3 +187,6 @@ fi
 
 echo ""
 echo "Initial setup complete! run vim +PackUpdate and nvim +PackUpdate to install vim packages"
+echo ""
+echo "Update the default shell to be zsh: \`chsh -s /usr/zsh\` (requires logout)"
+echo "If the command above fails, run \`chsh -l\` to find the zsh path"
