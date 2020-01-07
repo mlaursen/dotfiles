@@ -49,6 +49,7 @@ alias mkdir='mkdir -pv'
 
 alias reso='source ~/.zshrc'
 alias rmd='cd ~/code/react-md'
+alias dotfiles='cd ~/dotfiles'
 
 if [ -x "$(command -v brew)" ]; then
   # cheating and considering this mac specific stuff only
@@ -59,7 +60,7 @@ if [ -x "$(command -v brew)" ]; then
   # Allows <ctrl-s> in mac
   stty -ixon
 
-  PATH="/usr/local/sbin:$PATH"
+  path=("/usr/local/sbin" $path)
 
   # the .dir_colors don't work with mac even with the gls version from coreutils
   export LSCOLORS=exfxfeaeBxxehehbadacea
@@ -67,5 +68,7 @@ else
   alias ls='ls -AF --color=auto'
 fi
 
+path+=("$HOME/dotfiles/bin")
+
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export PATH="$PATH:~/dotfiles/bin"
+export PATH

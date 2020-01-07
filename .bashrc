@@ -8,8 +8,10 @@ alias ls='ls -AFG'
 alias cp='cp -r'
 alias rm='rm -rf'
 alias mkdir='mkdir -pv'
-alias reso='source ~/.bashrc'
+
+alias reso='source ~/.zshrc'
 alias rmd='cd ~/code/react-md'
+alias dotfiles='cd ~/dotfiles'
 
 if [ -x "$(command -v brew)" ]; then
   # cheating and considering this mac specific stuff only
