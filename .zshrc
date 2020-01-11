@@ -33,6 +33,8 @@ alias grep='grep --color=auto'
 alias vi='vim'
 alias vif='vim `fzf`'
 alias nif='nvim `fzf`'
+alias vimrc='vim ~/dotfiles/.vimrc'
+alias zshrc='vim ~/dotfiles/.zshrc'
 
 # I switch between these two a lot. just swap to `1 -eq 1` if I want nvim
 if [[ 0 -eq 1 ]]; then

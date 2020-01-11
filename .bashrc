@@ -3,6 +3,7 @@ alias vi='vim'
 alias vif='vim `fzf`'
 alias nif='nvim `fzf`'
 # alias vim='nvim'
+alias vimrc='vim ~/dotfiles/.vimrc'
 
 alias ls='ls -AFG'
 alias cp='cp -r'
