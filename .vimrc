@@ -423,11 +423,6 @@ set lazyredraw
 " For regular expressions turn magic on
 set magic
 
-" I don't like line-wrapping
-set nowrap
-set lbr
-set tw=500
-
 " update tab behavior
 set smartindent
 set autoindent
@@ -435,6 +430,13 @@ set expandtab
 set smarttab
 set shiftwidth=2
 set tabstop=2
+
+" line breaking
+set lbr
+
+set ai "Auto indent
+set si "Smart indent
+set nowrap
 
 " Show matching brackets when text indicator is over them
 set showmatch
@@ -446,8 +448,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-
 
 " ================================================================
 " => Colors and Fonts
@@ -486,30 +486,6 @@ endif
 set nobackup
 set nowb
 set noswapfile
-
-
-" ================================================================
-" => Text, tab and indent related
-" ================================================================
-
-" Use spaces instead of tabs
-set expandtab
-
-" Be smart when using tabs ;)
-set smarttab
-
-" 1 tab == 2 spaces
-set shiftwidth=2
-set tabstop=2
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-set ai "Auto indent
-set si "Smart indent
-set nowrap "Wrap lines
-
 
 
 " ================================================================
@@ -552,12 +528,6 @@ map <leader>ss :setlocal spell!<cr>
 " linux doesn't do this by default, so enable it just to be safe
 hi SpellBad cterm=underline
 
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
 
 " ================================================================
 " => Utility functions/commands
@@ -574,29 +544,3 @@ function! s:MarkdownComposer(hooktype, name)
     silent! !cargo build --release --no-default-features --features json-rpc
   endif
 endfunction
-
-" function! s:LanguageClient(hooktype, name)
-"   silent! !bash install.sh
-"   call s:CheckLanguageClientServers()
-" endfunction
-
-" function! s:CheckLanguageClientServers()
-"   " https://langserver.org/
-"   let l:missing_packages = []
-"   let l:expected_executables = {
-"         \ 'bash-language-server': 'bash-language-server',
-"         \ 'javascript-typescript-stdio': 'javascript-typescript-langserver',
-"         \ 'css-languageserver': 'vscode-css-languageserver-bin',
-"         \ }
-
-"   for [name, install] in items(l:expected_executables)
-"     if !executable(name)
-"       call add(l:missing_packages, install)
-"     endif
-"   endfor
-
-"   if len(l:missing_packages)
-"     let l:command = "!npm install --global " . join(l:missing_packages, ' ')
-"     silent! execute l:command
-"   endif
-" endfunction
