@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700|Source+Sans+Pro&display=swap');
+
+$rmd-theme-dark-background: #121212;
+
+@import '@react-md/link/dist/scss/mixins';
+@import '@react-md/theme/dist/scss/mixins';
+@import '@react-md/typography/dist/scss/mixins';
+@import '@react-md/utils/dist/scss/mixins';
+
+$code-light-theme-bg: $rmd-grey-200;
+$code-dark-theme-bg: #2f2f2f;
+
+$solarized-base-03: #002b36;
+$solarized-base-02: #073642;
+$solarized-base-01: #586e75;
+$solarized-base-00: #657b83;
+$solarized-base-0: #839496;
+$solarized-base-1: #93a1a1;
+$solarized-base-2: #eee8d5;
+$solarized-base-3: #fdf6e3;
+
+$solarized-yellow: #b58900;
+$solarized-orange: #cb4b16;
+$solarized-red: #d30102;
+$solarized-magenta: #d33682;
+$solarized-violet: #6c71c4;
+$solarized-blue: #268bd2;
+$solarized-cyan: #2aa198;
+$solarized-green: #859900;
+
+@include react-md-theme;
+@include rmd-utils-base;
+
+.markdown-body {
+  @include rmd-text-container-auto;
+
+  max-width: rmd-typography-theme-var(line-width) !important;
+  min-width: auto !important;
+  padding: 0 !important;
+}
+
+@for $i from 1 to 6 {
+  h#{$i} {
+    @if $i == 5 {
+      @include rmd-typography(subtitle-1);
+    } @else if $i == 6 {
+      @include rmd-typography(subtitle-2);
+    } @else {
+      @include rmd-typography(headline-#{$i + 2});
+    }
+
+    margin: 0.5em 0;
+  }
+}
+
+ul {
+  @include rmd-typography(subtitle-1);
+}
+
+p {
+  @include rmd-typography(body-1);
+}
+
+code {
+  @include rmd-typography(body-1);
+
+  background-color: var(--code-bg);
+  border-radius: 0.25rem;
+  font-family: 'Source Code Pro', Consolas, Monaco, monospace;
+  font-size: 0.9em;
+  padding: 0.1em 0.4em;
+  white-space: pre-wrap;
+
+  &::selection,
+  *::selection {
+    background-color: $solarized-base-02;
+  }
+}
+
+pre {
+  background: var(--code-bg) !important;
+
+  > code,
+  .hljs {
+    background-color: $solarized-base-03;
+    color: $solarized-base-1;
+
+    // always enforce ltr for blocked code
+    direction: ltr;
+    font-size: inherit;
+    margin: 0.5em 0;
+    overflow: auto;
+    padding: 1em;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-subst {
+    color: $solarized-green;
+    font-weight: normal;
+  }
+
+  .hljs-built_in,
+  .hljs-bultin-name {
+    color: $solarized-yellow;
+  }
+
+  .hljs-number,
+  .hljs-literal,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag .hljs-attr {
+    color: $solarized-blue;
+  }
+
+  .hljs-tag,
+  .hljs-name,
+  .hjs-attribute {
+    color: $solarized-blue;
+  }
+
+  .xml .hljs-tag .hljs-attr {
+    color: $solarized-base-1;
+  }
+}
+
+a {
+  @include rmd-link;
+}
+
+:root {
+  #{--code-bg}: #{$code-light-theme-bg};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include rmd-theme-dark;
+    #{--code-bg}: #{$code-dark-theme-bg};
+  }
+}
