@@ -44,7 +44,7 @@ function! PackInit() abort
   "   call minpac#add('roxma/nvim-yarp')
   "   call minpac#add('roxma/vim-hug-neovim-rpc')
   " endif
-  call minpac#add('Valloric/YouCompleteMe', {'do': function('s:YouCompleteMe')})
+  call minpac#add('ycm-core/YouCompleteMe', {'do': function('s:YouCompleteMe')})
   call minpac#add('SirVer/ultisnips')
   call minpac#add('mlaursen/vim-react-snippets')
   call minpac#add('mlaursen/rmd-vim-snippets')
