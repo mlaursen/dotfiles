@@ -8,94 +8,113 @@ else
   set rtp+=~/.fzf
 endif
 
-function! PackInit() abort
-  packadd minpac
+let s:plugged_autoload_prefix='~/.vim'
+let s:plugged_install_dir='~/.vim/plugged'
+if has('nvim')
+  let s:plugged_autoload_prefix='~/.local/share/nvim/site'
+  let s:plugged_install_dir='~/.local/share/nvim/plugged'
+endif
 
-  call minpac#init()
-  call minpac#add('k-takata/minpac', {'type': 'opt'})
+let s:plugged_autoload_path=s:plugged_autoload_prefix . '/autoload/plug.vim'
 
-  " ==================================
-  " Formatting/colors
-  " ==================================
-  call minpac#add('altercation/vim-colors-solarized')
-  call minpac#add('editorconfig/editorconfig-vim')
+if empty(glob(s:plugged_autoload_path))
+  let s:command='!curl -fLo ' . s:plugged_autoload_path . ' --create-dirs '
+  let s:command.='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-  call minpac#add('hail2u/vim-css3-syntax') " updates vim's built-in css to support CSS3
-  call minpac#add('cakebaker/scss-syntax.vim')
-  call minpac#add('pangloss/vim-javascript')
+  silent exec s:command
 
-  " I don't want the snippets provided by this package as I like my own vim-react-snippets
-  call minpac#add('HerringtonDarkholme/yats.vim', {'do': 'silent! rm -rf UltiSnips' })
-  call minpac#add('maxmellon/vim-jsx-pretty')
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-  " ==================================
-  " Linters, validators, and autocomplete
-  " ==================================
-  call minpac#add('dense-analysis/ale')
-  call minpac#add('prettier/vim-prettier', {'do': 'silent! !yarn install'})
-
-  call minpac#add('alvan/vim-closetag')
-  call minpac#add('jiangmiao/auto-pairs') " auto close brackets and quotes
-
-  " if has('nvim')
-  "   call minpac#add('Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'})
-  " else
-  "   call minpac#add('Shougo/deoplete.nvim')
-  "   call minpac#add('roxma/nvim-yarp')
-  "   call minpac#add('roxma/vim-hug-neovim-rpc')
-  " endif
-  call minpac#add('ycm-core/YouCompleteMe', {'do': function('s:YouCompleteMe')})
-  call minpac#add('SirVer/ultisnips')
-  call minpac#add('mlaursen/vim-react-snippets')
-  call minpac#add('mlaursen/rmd-vim-snippets')
-
-  " ==================================
-  " File navigation
-  " ==================================
-  call minpac#add('junegunn/fzf.vim')
-  call minpac#add('scrooloose/nerdtree', {'type': 'opt'})
-
-  call minpac#add('tpope/vim-fugitive')
-  call minpac#add('Xuyuanp/nerdtree-git-plugin', {'type': 'opt'})
-
-  " allows \bo to close all buffers except current focus
-  call minpac#add('vim-scripts/BufOnly.vim')
-
-  " ==================================
-  " Notes
-  " ==================================
-  call minpac#add('vimwiki/vimwiki', {'type': 'opt'})
-
-  " ==================================
-  " General helpers and status bars
-  " ==================================
-  " allow focus events for auto-reloading buffers as needed
-  if has("nvim")
-    " this one appears to work with nvim while vitality works with vim. vitality is not preferred since it
-    " attempts to do cursor changes (yuck)
-    call minpac#add('tmux-plugins/vim-tmux-focus-events')
-  else
-    call minpac#add('sjl/vitality.vim')
+function! MarkdownComposer(info)
+  if a:info.status == 'installed' || a:info.forced
+    if has('nvim')
+      silent! !cargo build --release
+    else
+      silent! !cargo build --release --no-default-features --features json-rpc
+    endif
   endif
-
-  call minpac#add('tpope/vim-surround')
-  call minpac#add('tpope/vim-repeat') " mostly used so that vim-surround can be repeated
-  call minpac#add('tpope/vim-commentary') " easy comments with `gc` or `gcc`
-  call minpac#add('airblade/vim-rooter', {'type': 'opt'}) " Auto lcd to git dir on BufEnter
-  call minpac#add('matze/vim-move')
-
-  call minpac#add('vim-airline/vim-airline')
-  call minpac#add('vim-airline/vim-airline-themes')
-  call minpac#add('euclio/vim-markdown-composer', {
-        \ 'do': function('s:MarkdownComposer'),
-        \ 'type': 'opt',
-        \ })
 endfunction
 
-" Add simple helper commands to update and clean packages that'll load minpac on demand
-command! PackClean  source $MYVIMRC | call PackInit() | call minpac#clean()
-command! PackUpdate source $MYVIMRC | call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
-command! PackStatus source $MYVIMRC | call PackInit() | call minpac#status()
+
+" ================================================================
+" => Initializing Plugins
+" ================================================================
+call plug#begin(s:plugged_install_dir)
+
+" ==================================
+" Formatting/colors
+" ==================================
+Plug 'altercation/vim-colors-solarized'
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'hail2u/vim-css3-syntax' " updates vim's built-in css to support CSS3
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'pangloss/vim-javascript'
+
+" I don't want the snippets provided by this package as I like my own vim-react-snippets
+Plug 'HerringtonDarkholme/yats.vim', {'do': 'rm -rf UltiSnips' }
+Plug 'maxmellon/vim-jsx-pretty'
+
+" ==================================
+" Linters, validators, and autocomplete
+" ==================================
+Plug 'dense-analysis/ale'
+Plug 'prettier/vim-prettier', {'do': 'yarn install'}
+
+Plug 'alvan/vim-closetag'
+Plug 'jiangmiao/auto-pairs' " auto close brackets and quotes
+
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+Plug 'ycm-core/YouCompleteMe', {'do': 'python3 ./install.py --ts-completer'}
+Plug 'SirVer/ultisnips'
+Plug 'mlaursen/vim-react-snippets'
+Plug 'mlaursen/rmd-vim-snippets'
+
+" ==================================
+" File navigation
+" ==================================
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
+Plug 'Xuyuanp/nerdtree-git-plugin', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
+
+Plug 'tpope/vim-fugitive'
+
+" allows \bo to close all buffers except current focus
+Plug 'vim-scripts/BufOnly.vim'
+
+" ==================================
+" Notes
+" ==================================
+Plug 'vimwiki/vimwiki', {'on': 'Wiki'}
+
+" ==================================
+" General helpers and status bars
+" ==================================
+" allow focus events for auto-reloading buffers as needed
+if has("nvim")
+  " this one appears to work with nvim while vitality works with vim. vitality is not preferred since it
+  " attempts to do cursor changes (yuck)
+  Plug 'tmux-plugins/vim-tmux-focus-events'
+else
+  Plug 'sjl/vitality.vim'
+endif
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat' " mostly used so that vim-surround can be repeated
+Plug 'tpope/vim-commentary' " easy comments with `gc` or `gcc`
+Plug 'matze/vim-move'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'euclio/vim-markdown-composer', {'do': function('MarkdownComposer'), 'on': 'MarkdownPreview'}
+call plug#end()
 
 " ================================================================
 " vim-airline
@@ -127,7 +146,7 @@ let g:ale_fixers = {
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-set completeopt=menu,menuone,popup,noselect,noinsert
+set completeopt=menuone,longest
 
 " let g:ale_fix_on_save = 1
 " let g:ale_completion_enabled = 1
@@ -207,17 +226,8 @@ let g:UltiSnipsEditSplit="vertical"
 let g:NERDTreeShowHidden=1
 
 " lazyily toggle nerdtree
-nmap <leader>] :call CustomNERDTreeCommand('NERDTreeToggle')<cr>
-nmap <leader>F :call CustomNERDTreeCommand('NERDTreeFind')<cr>
-
-function! CustomNERDTreeCommand(command)
-  if !exists('NERDTreeToggle')
-    packadd nerdtree
-    packadd nerdtree-git-plugin
-  endif
-
-  execute a:command
-endfunction
+nmap <leader>] :NERDTreeToggle<cr>
+nmap <leader>F :NERDTreeFind<cr>
 
 " ================================================================
 " FZF
@@ -517,19 +527,3 @@ map <leader>ss :setlocal spell!<cr>
 " linux doesn't do this by default, so enable it just to be safe
 hi SpellBad cterm=underline
 
-
-" ================================================================
-" => Utility functions/commands
-" ================================================================
-
-function! s:YouCompleteMe(hooktype, name)
-  silent! !git submodule update --init --recursive && python3 ./install.py --ts-completer
-endfunction
-
-function! s:MarkdownComposer(hooktype, name)
-  if has("nvim")
-    silent! !cargo build --release
-  else
-    silent! !cargo build --release --no-default-features --features json-rpc
-  endif
-endfunction
