@@ -127,6 +127,7 @@ let g:ale_fixers = {
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+set completeopt=menu,menuone,popup,noselect,noinsert
 
 " let g:ale_fix_on_save = 1
 " let g:ale_completion_enabled = 1
@@ -136,13 +137,14 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " autocmd VimEnter * call deoplete#custom#option('sources', { '_': ['ale', 'foobar'] })
 
-" nmap gd :ALEGoToDefinition<cr>
-" nmap gD :ALEGoToDefinitionInTab<cr>
-" nmap gr :ALEFindReferences<cr>
-" nmap K :ALEHover<cr>
-" nmap fK :ALEDetail<cr>
+nmap gd :ALEGoToDefinition<cr>
+nmap gD :ALEGoToDefinitionInTab<cr>
+nmap gr :ALEFindReferences<cr>
+nmap K :ALEHover<cr>
+nmap fK :ALEDetail<cr>
+nmap fI :ALEOrganizeImports<cr>
 
-" nmap fr :ALERename<cr>
+nmap fr :ALERename<cr>
 nmap fe :ALEFix eslint<cr>
 nmap ff :ALEFix prettier<cr>
 
@@ -165,44 +167,29 @@ let g:prettier#autoformat = 0
 
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
 
-" YouCompleteMe does not add completions for javascriptreact right now, so have to set
-" .jsx files back to javascript
-augroup fix_jsx
-  au!
-  autocmd BufRead,BufNewFile *.jsx setlocal filetype=javascript
-augroup END
-
-augroup fix_tsx
-  au!
-  autocmd BufRead,BufNewFile *.tsx setlocal filetype=typescript
-augroup END
-
 
 " ================================================================
 " YouCompleteMe
 " ================================================================
-" only want completions with YCM to show in the menu even if there is only 1
-set completeopt=menuone,longest
-
 " attempt to go to declaration or definition of item under cursor
-nmap gd :YcmCompleter GoTo<cr>
+" nmap gd :YcmCompleter GoTo<cr>
 
 " find all references and put into quicklist
-nmap gr :YcmCompleter GoToReferences<cr>
+" nmap gr :YcmCompleter GoToReferences<cr>
 
 " show current type
-nmap K :YcmCompleter GetType<cr>
+" nmap K :YcmCompleter GetType<cr>
 
 " get the full error message for type errors. useful for complex types
-nmap fK :YcmShowDetailedDiagnostic<cr>
+" nmap fK :YcmShowDetailedDiagnostic<cr>
 
 " attempt to fix an import or error in typescript
 nmap fi :YcmCompleter FixIt<cr>
 
 " rename word under cursor and copy current word into renamer
-nmap fr :YcmCompleter RefactorRename <C-R><C-W>
+" nmap fr :YcmCompleter RefactorRename <C-R><C-W>
 
-nmap fI :YcmCompleter OrganizeImports<cr>
+" nmap fI :YcmCompleter OrganizeImports<cr>
 
 " ================================================================
 " UltiSnips
