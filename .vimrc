@@ -59,20 +59,19 @@ Plug 'maxmellon/vim-jsx-pretty'
 " ==================================
 " Linters, validators, and autocomplete
 " ==================================
-Plug 'dense-analysis/ale'
-Plug 'prettier/vim-prettier', {'do': 'yarn install'}
-
 Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs' " auto close brackets and quotes
 
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-Plug 'ycm-core/YouCompleteMe', {'do': 'python3 ./install.py --ts-completer'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-css', {'do': 'yarn install'}
+Plug 'antonk52/coc-cssmodules', {'do': 'npm install'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install'}
+Plug 'neoclide/coc-json', {'do': 'yarn install'}
+Plug 'neoclide/coc-prettier', {'do': 'yarn install'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install'}
+
+
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'mlaursen/rmd-vim-snippets'
@@ -122,93 +121,106 @@ call plug#end()
 " update airline to use solarized
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
-let g:airline#extensions#ale#enabled = 1
 
 " Always show the status bar and airline
 set laststatus=2
 set cmdheight=2
 
+"  ================================================================
+" coc.vim
 " ================================================================
-" ale
-" ================================================================
-" Update linters so typescript isn't running both eslint and tslint which is super slow
-let g:ale_linters = {
-      \ 'scss': ['sasslint'],
-      \ 'javascript': ['eslint'],
-      \ 'typescript': ['eslint', 'tsserver', 'typecheck'],
-      \ }
+ 
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
 
-let g:ale_fixers = {
-      \ 'scss': ['prettier'],
-      \ 'javascript': ['prettier', 'eslint'],
-      \ 'typescript': ['prettier', 'eslint'],
-      \ }
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-set completeopt=menuone,longest
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 
-" let g:ale_fix_on_save = 1
-" let g:ale_completion_enabled = 1
-" let g:ale_completion_tsserver_autoimport = 1
-" let g:deoplete#enable_at_startup = 1
-" set omnifunc=ale#completion#OmniFunc
-" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-" autocmd VimEnter * call deoplete#custom#option('sources', { '_': ['ale', 'foobar'] })
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-nmap gd :ALEGoToDefinition<cr>
-nmap gD :ALEGoToDefinitionInTab<cr>
-nmap gr :ALEFindReferences<cr>
-nmap K :ALEHover<cr>
-nmap fK :ALEDetail<cr>
-nmap fI :ALEOrganizeImports<cr>
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-nmap fr :ALERename<cr>
-nmap fe :ALEFix eslint<cr>
-nmap ff :ALEFix prettier<cr>
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 
-" updates the auto-completion menu to work with tab and shift tab only if visible
-" inoremap <silent><expr> <Tab>
-"       \ pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <silent><expr> <S-Tab> 
-"       \ pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
-" When linting, go to next and previous errors
-nmap <leader>n :lnext<cr>
-nmap <leader>p :lprev<cr>
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" ================================================================
-" prettier
-" ================================================================
-" disable focusing quickfix window when there are errors
-let g:prettier#quickfix_auto_focus = 0
-let g:prettier#autoformat = 0
+" quickly jump between diagnostics
+nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
 
-autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.md,*.scss Prettier
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Symbol renaming.
+nmap <silent> fr <Plug>(coc-rename)
+
+" Formatting the file
+nmap <silent> ff <Plug>(coc-format)
 
 
-" ================================================================
-" YouCompleteMe
-" ================================================================
-" attempt to go to declaration or definition of item under cursor
-" nmap gd :YcmCompleter GoTo<cr>
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" find all references and put into quicklist
-" nmap gr :YcmCompleter GoToReferences<cr>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
-" show current type
-" nmap K :YcmCompleter GetType<cr>
+" Remap keys for applying codeAction to the current line.
+nmap <silent>fi <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf <Plug>(coc-fix-current)
+" Organizing Imports
+nmap <silent>fI :<C-u>CocCommand tsserver.organizeImports<cr>
 
-" get the full error message for type errors. useful for complex types
-" nmap fK :YcmShowDetailedDiagnostic<cr>
-
-" attempt to fix an import or error in typescript
-nmap fi :YcmCompleter FixIt<cr>
-
-" rename word under cursor and copy current word into renamer
-" nmap fr :YcmCompleter RefactorRename <C-R><C-W>
-
-" nmap fI :YcmCompleter OrganizeImports<cr>
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <space>e :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <space>c :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <space>o :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <space>p :<C-u>CocListResume<CR>
 
 " ================================================================
 " UltiSnips

@@ -31,6 +31,7 @@ for file in "${dotfiles[@]}"; do
   fi
 done
 
+
 echo ""
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
   echo "Installing oh-my-zsh"
@@ -180,6 +181,8 @@ echo ""
 echo "Initializing vim and neovim..."
 mkdir -p "$nvim_dir"
 echo "source ~/.vimrc" > "$nvim_dir/init.vim" # always overwrite
+ln -s "~/dotfiles/coc-settings.json ~/.vim/coc-settings.json"
+ln -s "~/dotfiles/coc-settings.json $nvim_dir/coc-settings.json"
 
 if [ ! -d "$vim_minpac" ]; then
   echo ""
