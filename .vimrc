@@ -64,15 +64,14 @@ Plug 'jiangmiao/auto-pairs' " auto close brackets and quotes
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-css', {'do': 'yarn install'}
-Plug 'antonk52/coc-cssmodules', {'do': 'npm install'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install'}
 Plug 'neoclide/coc-json', {'do': 'yarn install'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install'}
 
-
-Plug 'SirVer/ultisnips'
+Plug 'mlaursen/coc-cssmodules', {'do': 'yarn install'}
 Plug 'mlaursen/vim-react-snippets'
 Plug 'mlaursen/rmd-vim-snippets'
 
@@ -222,14 +221,15 @@ nnoremap <silent> <space>k :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p :<C-u>CocListResume<CR>
 
-" ================================================================
-" UltiSnips
-" ================================================================
-let g:UltiSnipsExpandTrigger="<c-space>"
-let g:UltiSnipsListSnippets="<c-h>"
-let g:UltiSnipsJumpForwardTrigger="<c-s-right>"
-let g:UltiSnipsJumpBackwardTrigger="<c-s-left>"
-let g:UltiSnipsEditSplit="vertical"
+" for snippets
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " ================================================================
 " NERDTree

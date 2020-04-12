@@ -6,5 +6,6 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+  "cssmodules.camelCase": true
 }
