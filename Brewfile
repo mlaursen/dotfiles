@@ -23,7 +23,6 @@ brew 'imgcat'
 
 brew 'coreutils'
 brew 'cmake'
-brew 'fzf'
 brew 'the_silver_searcher'
 brew 'tree'
 brew 'watchman'

@@ -1,13 +1,3 @@
-if &compatible
-  set nocompatible
-endif
-
-if !empty(glob('/usr/local/opt/fzf'))
-  set rtp+=/usr/local/opt/fzf
-else
-  set rtp+=~/.fzf
-endif
-
 let s:plugged_autoload_prefix='~/.vim'
 let s:plugged_install_dir='~/.vim/plugged'
 if has('nvim')
@@ -78,6 +68,7 @@ Plug 'mlaursen/rmd-vim-snippets'
 " ==================================
 " File navigation
 " ==================================
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install'}
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
