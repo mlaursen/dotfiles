@@ -68,7 +68,7 @@ Plug 'mlaursen/rmd-vim-snippets'
 " ==================================
 " File navigation
 " ==================================
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install'}
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
