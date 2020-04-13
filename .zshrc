@@ -36,14 +36,6 @@ alias nif='nvim `fzf`'
 alias vimrc='vim ~/dotfiles/.vimrc'
 alias zshrc='vim ~/dotfiles/.zshrc'
 
-# I switch between these two a lot. just swap to `1 -eq 1` if I want nvim
-if [[ 1 -eq 1 ]]; then
-  alias vim='nvim'
-  export EDITOR='nvim'
-else
-  export EDITOR='vim'
-fi
-
 # I'm lazy
 alias cp='cp -r'
 alias rm='rm -rf'
@@ -68,6 +60,14 @@ if [ -x "$(command -v brew)" ]; then
   export LSCOLORS=exfxfeaeBxxehehbadacea
 else
   alias ls='ls -AF --color=auto'
+fi
+
+# I switch between these two a lot. just swap to `1 -eq 1` if I want nvim
+if [[ 1 -eq 1 ]]; then
+  alias vim='nvim'
+  export EDITOR='nvim'
+else
+  export EDITOR='vim'
 fi
 
 path+=("$HOME/dotfiles/bin")
