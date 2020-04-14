@@ -81,7 +81,7 @@ Plug 'vim-scripts/BufOnly.vim'
 " ==================================
 " Notes
 " ==================================
-Plug 'vimwiki/vimwiki', {'on': 'Wiki'}
+Plug 'vimwiki/vimwiki', {'on': 'VimwikiDiaryIndex'}
 
 " ==================================
 " General helpers and status bars
@@ -304,9 +304,6 @@ autocmd FileType markdown nnoremap <buffer> <F12> :MarkdownPreview<cr>
 " ================================================================
 " VimWIKI
 " ================================================================
-" I can never remember the way to open it, and I don't like using the <Leader>ww since
-" I have <Leader>w set to quick write
-command! Wiki packadd vimwiki | VimwikiDiaryIndex
 let g:vimwiki_list = [{
       \ 'path': '~/vimwiki/',
       \ 'syntax': 'markdown',
