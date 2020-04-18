@@ -53,13 +53,6 @@ Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs' " auto close brackets and quotes
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-css', {'do': 'yarn install'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install'}
-Plug 'neoclide/coc-json', {'do': 'yarn install'}
-Plug 'neoclide/coc-prettier', {'do': 'yarn install'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install'}
-Plug 'neoclide/coc-yaml', {'do': 'yarn install'}
 
 Plug 'mlaursen/coc-cssmodules', {'do': 'yarn install'}
 Plug 'mlaursen/vim-react-snippets'
@@ -126,6 +119,16 @@ set updatetime=300
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+
+let g:coc_global_extensions=[
+      \ 'coc-css',
+      \ 'coc-eslint',
+      \ 'coc-json',
+      \ 'coc-prettier',
+      \ 'coc-snippets',
+      \ 'coc-tsserver',
+      \ 'coc-yaml'
+      \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
