@@ -54,7 +54,6 @@ Plug 'jiangmiao/auto-pairs' " auto close brackets and quotes
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'mlaursen/coc-cssmodules', {'do': 'yarn install'}
 Plug 'mlaursen/vim-react-snippets'
 Plug 'mlaursen/rmd-vim-snippets'
 
@@ -122,6 +121,7 @@ set shortmess+=c
 
 let g:coc_global_extensions=[
       \ 'coc-css',
+      \ 'coc-scssmodules',
       \ 'coc-eslint',
       \ 'coc-json',
       \ 'coc-prettier',
