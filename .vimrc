@@ -62,6 +62,9 @@ Plug 'mlaursen/rmd-vim-snippets'
 " ==================================
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
+
+" makes fzf work related to git root of buffer which is nice
+Plug 'airblade/vim-rooter'
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 
@@ -73,7 +76,7 @@ Plug 'vim-scripts/BufOnly.vim'
 " ==================================
 " Notes
 " ==================================
-Plug 'vimwiki/vimwiki', {'on': 'VimwikiDiaryIndex'}
+Plug 'vimwiki/vimwiki', {'on': ['VimwikiDiaryIndex', 'VimwikiMakeDiaryNote']}
 
 " ==================================
 " General helpers and status bars
