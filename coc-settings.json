@@ -1,11 +1,14 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
+    "scss",
     "markdown",
     "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact"
   ],
+  "javascript.format.enabled": false,
+  "typescript.format.enabled": false,
   "cssmodules.camelCase": true
 }
