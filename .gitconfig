@@ -24,7 +24,7 @@
   ckb = checkout -b
   lg = log --name-status --no-merges
   currbranch = rev-parse --abbrev-ref HEAD
-  push1 = "!sh -c \"git push --set-upstream origin `git currbranch`\""
+  push1 = "!sh -c \"git push --set-upstream origin `git currbranch` $@\""
   prunemerged = "!sh -c \"git branch --merged | egrep -v '(^\\*|master|develop)' | xargs git branch -d\""
   pruneremote = "!sh -c \"git remote prune origin\""
   pruneall = "!sh -c \"git pull && git prunemerged && git pruneremote\""
