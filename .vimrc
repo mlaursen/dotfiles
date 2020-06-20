@@ -124,13 +124,16 @@ set shortmess+=c
 
 let g:coc_global_extensions=[
       \ 'coc-css',
+      \ 'coc-stylelint',
       \ 'coc-scssmodules',
       \ 'coc-eslint',
       \ 'coc-json',
+      \ 'coc-html',
       \ 'coc-prettier',
       \ 'coc-snippets',
       \ 'coc-tsserver',
-      \ 'coc-yaml'
+      \ 'coc-yaml',
+      \ 'coc-vimlsp',
       \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
