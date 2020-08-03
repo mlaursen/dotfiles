@@ -53,6 +53,7 @@ Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs' " auto close brackets and quotes
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'SirVer/ultisnips'
 
 Plug 'mlaursen/vim-react-snippets'
 Plug 'mlaursen/rmd-vim-snippets'
@@ -130,7 +131,6 @@ let g:coc_global_extensions=[
       \ 'coc-json',
       \ 'coc-html',
       \ 'coc-prettier',
-      \ 'coc-snippets',
       \ 'coc-tsserver',
       \ 'coc-yaml',
       \ 'coc-vimlsp',
@@ -151,7 +151,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -227,6 +227,11 @@ let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-space> <Plug>(coc-snippets-expand)
+
+"  ================================================================
+" UltiSnips
+" ================================================================
+let g:UltiSnipsExpandTrigger='<c-space>'
 
 " ================================================================
 " NERDTree
