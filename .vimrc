@@ -50,7 +50,6 @@ Plug 'maxmellon/vim-jsx-pretty'
 " Linters, validators, and autocomplete
 " ==================================
 Plug 'alvan/vim-closetag'
-Plug 'jiangmiao/auto-pairs' " auto close brackets and quotes
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
@@ -125,6 +124,7 @@ set shortmess+=c
 
 let g:coc_global_extensions=[
       \ 'coc-css',
+      \ 'coc-pairs',
       \ 'coc-stylelint',
       \ 'coc-scssmodules',
       \ 'coc-eslint',
