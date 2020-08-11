@@ -92,6 +92,13 @@ if [[ "$current_os" = "Mac" ]]; then
   echo ""
   echo "Adding useful fzf bindings and fuzzy completion"
   $(brew --prefix)/opt/fzf/install
+
+  echo ""
+  echo "Initializing gpg settings..."
+  mkdir "~/.gnupg"
+  chmod 700 "~/.gnupg"
+  ln -s "~/dotfiles/gpg.conf" "~/.gnupg/gpg.conf"
+  ln -s "~/dotfiles/gpg-agent.conf" "~/.gnupg/gpg-agent.conf"
 else
   echo ""
   echo "Installing fzf and adding useful keybindings..."

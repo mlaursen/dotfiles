@@ -7,6 +7,9 @@ CentOS. The first time setup can be automated with:
 $ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init.sh)
 ```
 
+> Note: Check out
+> [Methods of Signing with GPG](https://gist.github.com/troyfontaine/18c9146295168ee9ca2b30c00bd1b41e)
+
 ## CentOS Setup
 
 I can never remember how this goes, so I decided to document this process. Mac
