@@ -1,14 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700|Source+Sans+Pro&display=swap');
 
-$rmd-theme-dark-background: #121212;
+$rmd-theme-dark-elevation: 'prefers-color-scheme';
 
 @import '@react-md/link/dist/scss/mixins';
 @import '@react-md/theme/dist/scss/mixins';
 @import '@react-md/typography/dist/scss/mixins';
 @import '@react-md/utils/dist/scss/mixins';
-
-$code-light-theme-bg: $rmd-grey-200;
-$code-dark-theme-bg: #2f2f2f;
 
 $solarized-base-03: #002b36;
 $solarized-base-02: #073642;
@@ -64,21 +61,30 @@ p {
 code {
   @include rmd-typography(body-1);
 
-  background-color: var(--code-bg);
-  border-radius: 0.25rem;
+  color: var(--code-color);
   font-family: 'Source Code Pro', Consolas, Monaco, monospace;
-  font-size: 0.9em;
-  padding: 0.1em 0.4em;
   white-space: pre-wrap;
 
-  &::selection,
-  *::selection {
-    background-color: $solarized-base-02;
+  &::before,
+  &::after {
+    content: '`';
   }
 }
 
 pre {
   background: var(--code-bg) !important;
+
+  > code {
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    &::selection,
+    *::selection {
+      background-color: $solarized-base-02;
+    }
+  }
 
   > code,
   .hljs {
@@ -91,6 +97,7 @@ pre {
     margin: 0.5em 0;
     overflow: auto;
     padding: 1em;
+    white-space: pre;
   }
 
   .hljs-keyword,
@@ -105,6 +112,9 @@ pre {
     color: $solarized-yellow;
   }
 
+  .hljs-tag,
+  .hljs-name,
+  .hljs-attribute,
   .hljs-number,
   .hljs-literal,
   .hljs-variable,
@@ -113,14 +123,13 @@ pre {
     color: $solarized-blue;
   }
 
-  .hljs-tag,
-  .hljs-name,
-  .hljs-attribute {
-    color: $solarized-blue;
-  }
-
   .xml .hljs-tag .hljs-attr {
     color: $solarized-base-1;
+  }
+
+  .fu,
+  .ex {
+    color: $solarized-red;
   }
 }
 
@@ -129,12 +138,13 @@ a {
 }
 
 :root {
-  #{--code-bg}: #{$code-light-theme-bg};
+  #{--code-color}: #{$rmd-pink-600};
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     @include rmd-theme-dark;
-    #{--code-bg}: #{$code-dark-theme-bg};
+
+    #{--code-color}: #{$rmd-pink-400};
   }
 }
