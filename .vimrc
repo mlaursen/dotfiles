@@ -125,7 +125,7 @@ set shortmess+=c
 let g:coc_global_extensions=[
       \ 'coc-css',
       \ 'coc-pairs',
-      \ 'coc-stylelintplus',
+      \ 'coc-stylelint',
       \ 'coc-scssmodules',
       \ 'coc-docker',
       \ 'coc-eslint',
