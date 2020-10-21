@@ -363,15 +363,6 @@ autocmd FileChangedShellPost *
 " Make it so any .env files are correctly styled. Normally only worked with .env
 autocmd BufNewFile,BufRead * if expand('%t') =~ '.env' | set filetype=sh | endif
 
-if has("nvim")
-  " open terminal with 20 lines always at bottom
-  command! -nargs=* T belowright split | resize 20 | terminal <args>
-  " open terminal always right
-  command! -nargs=* VT botright vsplit | terminal <args>
-  " allow esc to exit terminal mode
-  tnoremap <ESC> <C-\><C-n>
-endif
-
 " For some reason it stopped setting tw correctly
 au FileType gitcommit setlocal tw=72
 
