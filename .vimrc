@@ -197,7 +197,7 @@ endfunction
 " Remap keys for applying codeAction to the current line.
 nmap <silent>fi <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf <Plug>(coc-fix-current)
+nmap <silent>fq <Plug>(coc-fix-current)
 nmap <silent>fe :<C-u>CocCommand eslint.executeAutofix<cr>
 " Organizing Imports
 nmap <silent>fI :<C-u>CocCommand tsserver.organizeImports<cr>
@@ -213,12 +213,8 @@ nnoremap <silent> <space>c :<C-u>CocList commands<cr>
 nnoremap <silent> <space>o :<C-u>CocList outline<cr>
 " Search workspace symbols.
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+nnoremap <silent> <space>r :<C-u>CocListResume<CR>
 
 " for snippets
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
