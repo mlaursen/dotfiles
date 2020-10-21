@@ -35,7 +35,8 @@ call plug#begin(s:plugged_install_dir)
 " ==================================
 " Formatting/colors
 " ==================================
-Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
+" Plug 'altercation/vim-colors-solarized'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'hail2u/vim-css3-syntax' " updates vim's built-in css to support CSS3
@@ -466,19 +467,17 @@ set tm=500
 
 " Enable syntax highlighting
 syntax enable
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let g:solarized_old_cursor_style=1
+
 set background=dark
 
-if $TERM == "xterm-256color"
-  set t_Co=256
+silent! colorscheme desert
 
-  silent! colorscheme desert
-  " let it fail quietly if it hasn't been installed yet
-  silent! colorscheme solarized
-else
-  silent! colorscheme desert
-  " let it fail quietly if it hasn't been installed yet
-  silent! colorscheme solarized
-endif
+" let it fail quietly if it hasn't been installed yet
+silent! colorscheme solarized8
 
 if has("nvim")
   " Update cursor after the changes to nvim
