@@ -46,4 +46,4 @@ fi
 url="$url/$size"
 
 curl -sL $url | imgcat
-cowsay -f $(ls /usr/local/Cellar/cowsay/3.04/share/cows/*.cow | gshuf -n1) "$quote"
+cowsay -f $(ls /usr/local/Cellar/cowsay/3.04_1/share/cows/*.cow | gshuf -n1) "$quote"
