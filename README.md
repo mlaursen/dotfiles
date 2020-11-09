@@ -10,6 +10,20 @@ $ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init
 > Note: Check out
 > [Methods of Signing with GPG](https://gist.github.com/troyfontaine/18c9146295168ee9ca2b30c00bd1b41e)
 
+## Useful things
+
+### Find all unique occurences with grep
+
+```sh
+grep -r --only-matching -h -E '{{REGEX}}' {{DIRECTORY}} | sort --unique
+```
+
+Example:
+
+```sh
+grep -r --only-matching -h -E '<([A-z]+Icon).* />' "react-md/packages/*/src" | sort unique
+```
+
 ## CentOS Setup
 
 I can never remember how this goes, so I decided to document this process. Mac
