@@ -255,6 +255,11 @@ let g:fzf_action = {
       \ }
 let g:fzf_layout = { 'down': '~40%' }
 
+if has("nvim")
+  au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+  au FileType fzf tunmap <buffer> <Esc>
+endif
+
 " ================================================================
 " vim-move
 " ================================================================
