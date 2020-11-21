@@ -307,7 +307,7 @@ let g:closetag_regions = {
 " ================================================================
 " only start markdown previewer after :ComposerStart
 let g:markdown_composer_autostart=0
-let g:markdown_composer_refresh_rate=10000
+let g:markdown_composer_refresh_rate=-1
 let g:markdown_composer_external_renderer='pandoc -f gfm -t html'
 let g:markdown_composer_custom_css=['file:///Users/mlaursen/dotfiles/theme.min.css']
 
