@@ -112,7 +112,13 @@ let g:airline_solarized_bg='dark'
 set laststatus=2
 set cmdheight=2
 
-"  ================================================================
+" ================================================================
+" vim-javascript
+" ================================================================
+
+let g:javascript_plugin_jsdoc=1
+
+" ================================================================
 " coc.vim
 " ================================================================
  
@@ -255,6 +261,7 @@ let g:fzf_action = {
       \ }
 let g:fzf_layout = { 'down': '~40%' }
 
+" this allows the escape key to close the fzf window matching coc.nvim
 if has("nvim")
   au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
   au FileType fzf tunmap <buffer> <Esc>
