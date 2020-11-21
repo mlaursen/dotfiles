@@ -10,5 +10,6 @@
   ],
   "javascript.format.enabled": false,
   "typescript.format.enabled": false,
+  "typescript.showUnused": false,
   "cssmodules.camelCase": true
 }
