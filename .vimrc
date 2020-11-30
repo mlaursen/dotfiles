@@ -44,11 +44,7 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'pangloss/vim-javascript'
 
 " I don't want the snippets provided by this package as I like my own vim-react-snippets
-Plug 'HerringtonDarkholme/yats.vim', { 
-      \ 'do': 'rm -rf UltiSnips',
-      \ 'commit': '0635a855ff1c56073d5e372001a3843e15c8aedb',
-      \ 'frozen': 1
-      \ }
+Plug 'HerringtonDarkholme/yats.vim', { 'do': 'rm -rf UltiSnips' }
 Plug 'maxmellon/vim-jsx-pretty'
 
 " ==================================
