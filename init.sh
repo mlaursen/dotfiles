@@ -15,7 +15,7 @@ fi
 
 cd "$HOME/dotfiles"
 
-dotfiles=( ".zshrc" ".gitconfig" ".vimrc" ".dir_colors" )
+dotfiles=( ".zshrc" ".gitconfig" ".vimrc" ".dir_colors" ".tmux.conf" )
 
 echo ""
 echo "Symlinking default dotfiles with backups..."
