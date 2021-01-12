@@ -203,8 +203,8 @@ endfunction
 " Remap keys for applying codeAction to the current line.
 nmap <silent>fi <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <silent>fq <Plug>(coc-fix-current)
-nmap <silent>fe :<C-u>CocCommand eslint.executeAutofix<cr>
+nmap <silent>fe <Plug>(coc-fix-current)
+nmap <silent>fE :<C-u>CocCommand eslint.executeAutofix<cr>
 " Organizing Imports
 nmap <silent>fI :<C-u>CocCommand tsserver.organizeImports<cr>
 
