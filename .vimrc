@@ -35,7 +35,7 @@ call plug#begin(s:plugged_install_dir)
 " ==================================
 " Formatting/colors
 " ==================================
-Plug 'lifepillar/vim-solarized8'
+Plug 'lifepillar/vim-solarized8' " this one supports truecolors
 " Plug 'altercation/vim-colors-solarized'
 Plug 'editorconfig/editorconfig-vim'
 
@@ -44,7 +44,7 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'pangloss/vim-javascript'
 
 " I don't want the snippets provided by this package as I like my own vim-react-snippets
-Plug 'HerringtonDarkholme/yats.vim', { 'do': 'rm -rf UltiSnips' }
+Plug 'HerringtonDarkholme/yats.vim', {'do': 'rm -rf UltiSnips'}
 Plug 'maxmellon/vim-jsx-pretty'
 
 " ==================================
@@ -98,7 +98,7 @@ Plug 'matze/vim-move'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'euclio/vim-markdown-composer', {'do': function('MarkdownComposer'), 'on': 'MarkdownPreview'}
+Plug 'euclio/vim-markdown-composer', {'do': function('MarkdownComposer'), 'on': 'ComposerStart'}
 call plug#end()
 
 " ================================================================
@@ -158,9 +158,6 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
-
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 if exists('*complete_info')
@@ -176,21 +173,23 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
 nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
 
-" GoTo code navigation.
+" show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" goto definition
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+" goto type
+nmap <silent> gK <Plug>(coc-type-definition)
+" get references
 nmap <silent> gr <Plug>(coc-references)
 
-" Symbol renaming.
+" format rename
 nmap <silent> fr <Plug>(coc-rename)
 
-" Formatting the file
+" format file
 nmap <silent> ff <Plug>(coc-format)
 
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -200,15 +199,18 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Remap keys for applying codeAction to the current line.
+" fix-it -- show preview window of fixable things and choose fix
 nmap <silent>fi <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
+
+" fix eslint (also any other fixable things. Mostly used for React hook dependencies)
 nmap <silent>fe <Plug>(coc-fix-current)
+
+" fix eslint (all)
 nmap <silent>fE :<C-u>CocCommand eslint.executeAutofix<cr>
-" Organizing Imports
+
+" fix imports
 nmap <silent>fI :<C-u>CocCommand tsserver.organizeImports<cr>
 
-" Mappings using CoCList:
 " Show all diagnostics.
 nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 " Manage extensions.
@@ -221,16 +223,6 @@ nnoremap <silent> <space>o :<C-u>CocList outline<cr>
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 " Resume latest coc list.
 nnoremap <silent> <space>r :<C-u>CocListResume<CR>
-
-" for snippets
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-space> <Plug>(coc-snippets-expand)
 
 "  ================================================================
 " UltiSnips
@@ -295,7 +287,7 @@ let g:jsx_ext_required=0
 " Update closetag to also work on js and html files, don't want ts since <> is used for type args
 let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
 let g:closetag_regions = {
-    \ 'typescript': 'jsxRegion,tsxRegion',
+    \ 'typescript': 'jsxRegion',
     \ 'typescriptreact': 'jsxRegion,tsxRegion',
     \ 'typescript.tsx': 'jsxRegion,tsxRegion',
     \ 'javascript.jsx': 'jsxRegion',
@@ -311,20 +303,7 @@ let g:markdown_composer_refresh_rate=-1
 let g:markdown_composer_external_renderer='pandoc -f gfm -t html'
 let g:markdown_composer_custom_css=['file:///Users/mlaursen/dotfiles/theme.min.css']
 
-function! MarkdownPreview()
-  if !exists('*ComposerStart')
-    " if vim-markdown-composer hasn't been added yet, add it and reload
-    " the file before calling ComposerStart. Not sure why reloading the
-    " file is required, but breaks if it isn't
-    packadd vim-markdown-composer
-    edit %
-  endif
-
-  ComposerStart
-endfunction
-
-command! MarkdownPreview call MarkdownPreview()
-autocmd FileType markdown nnoremap <buffer> <F12> :MarkdownPreview<cr>
+autocmd FileType markdown nnoremap <buffer> <F12> :ComposerStart<cr>
 
 " ================================================================
 " VimWIKI
@@ -350,10 +329,6 @@ set autoread
 
 let mapleader = "\\"
 let g:mapleader = "\\"
-
-nnoremap <leader>q :lclose<cr>:cclose<cr>:q<cr>
-nnoremap <leader>w :w<cr>
-nnoremap <leader>x :lclose<cr>:cclose<cr>:x<cr>:q<cr>
 
 " change directory to folder of current file
 nnoremap <leader>cd :cd %:p:h<cr>
@@ -533,9 +508,8 @@ set viminfo^=%
 " always enforce spell checking in text files
 autocmd BufRead,BufNewFile *.txt,*.md,COMMIT_EDITMSG setlocal spell
 
-" Pressing ,ss will toggle and untoggle spell checking
+" toggle spell checking for current file only
 map <leader>ss :setlocal spell!<cr>
 
 " linux doesn't do this by default, so enable it just to be safe
 hi SpellBad cterm=underline
-
