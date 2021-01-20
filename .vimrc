@@ -301,7 +301,7 @@ let g:closetag_regions = {
 let g:markdown_composer_autostart=0
 let g:markdown_composer_refresh_rate=-1
 let g:markdown_composer_external_renderer='pandoc -f gfm -t html'
-let g:markdown_composer_custom_css=['file:///Users/mlaursen/dotfiles/theme.min.css']
+let g:markdown_composer_custom_css=['file://' . $HOME . '/dotfiles/theme.min.css']
 
 autocmd FileType markdown nnoremap <buffer> <F12> :ComposerStart<cr>
 
