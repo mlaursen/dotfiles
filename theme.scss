@@ -2,6 +2,7 @@
 
 $rmd-theme-dark-elevation: 'prefers-color-scheme';
 
+@import '@react-md/divider/dist/scss/mixins';
 @import '@react-md/link/dist/scss/mixins';
 @import '@react-md/theme/dist/scss/mixins';
 @import '@react-md/typography/dist/scss/mixins';
@@ -135,6 +136,27 @@ pre {
 
 a {
   @include rmd-link;
+}
+
+blockquote {
+  $border-style: 0.25em solid rmd-divider-theme-var(background-color);
+
+  @include rmd-theme(color, text-secondary-on-background);
+  @include rmd-typography(subtitle-1);
+  @include rmd-utils-rtl-auto(border-left, $border-style);
+
+  font-style: italic;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  position: relative;
+
+  p:only-child {
+    margin: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 :root {
