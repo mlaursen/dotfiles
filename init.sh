@@ -180,9 +180,6 @@ stack setup
 stack build && stack install
 
 nvim_dir="$HOME/.config/nvim"
-minpac="pack/minpac/opt/minpac"
-nvim_minpac="$nvim_dir/$minpac"
-vim_minpac="$HOME/.vim/$minpac"
 
 echo ""
 echo "Initializing vim and neovim..."
@@ -190,19 +187,6 @@ mkdir -p "$nvim_dir"
 echo "source ~/.vimrc" > "$nvim_dir/init.vim" # always overwrite
 ln -s "~/dotfiles/coc-settings.json ~/.vim/coc-settings.json"
 ln -s "~/dotfiles/coc-settings.json $nvim_dir/coc-settings.json"
-
-if [ ! -d "$vim_minpac" ]; then
-  echo ""
-  echo "Adding minpac for vim..."
-  git clone https://github.com/k-takata/minpac.git "$vim_minpac"
-fi
-
-if [ ! -d "$nvim_minpac" ]; then
-  echo ""
-  echo "Adding minpac for nvim..."
-
-  git clone https://github.com/k-takata/minpac.git "$nvim_minpac"
-fi
 
 if [[ "$current_os" = "Mac" ]]; then
   pip3 install neovim
