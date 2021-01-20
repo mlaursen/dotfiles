@@ -147,7 +147,7 @@ else
 fi
 
 echo ""
-echo "Initial setup complete! run vim +PackUpdate and nvim +PackUpdate to install vim packages"
+echo "Initial setup complete! run vim +PlugInstall and nvim +PlugInstall to install vim packages"
 echo ""
 echo "Update the default shell to be zsh: \`chsh -s /usr/zsh\` (requires logout)"
 echo "If the command above fails, run \`chsh -l\` to find the zsh path"
