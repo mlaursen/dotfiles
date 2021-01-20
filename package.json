@@ -2,14 +2,14 @@
   "name": "dotfiles",
   "version": "1.0.0",
   "scripts": {
-    "theme": "node-sass --include-path node_modules --output-style=compressed theme.scss > theme.min.css"
+    "theme": "sass --load-path node_modules --style=compressed theme.scss > theme.min.css"
   },
   "repository": "git@github.com:mlaursen/dotfiles.git",
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "node-sass": "^4.14.1",
-    "react-md": "latest"
+    "react-md": "latest",
+    "sass": "^1.32.5"
   }
 }
