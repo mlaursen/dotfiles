@@ -105,45 +105,6 @@ else
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
 
-  vim_full_version="unknown"
-  if [ -x "$(command -v vim)" ]; then
-    vim_full_version="$(vim --version | head -n1)"
-  fi
-
-  case "$vim_full_version" in
-    *7.*)
-      echo ""
-      echo "Uninstalling the current version of vim since it is on version 7..."
-      echo "$vim_full_version"
-
-      sudo yum remove vim vim-runtime gvim -y
-      ;;
-  esac
-
-  vim_dir="$HOME/vim"
-  if [ ! -d "$vim_dir" ]; then
-    git clone https://github.com/vim/vim.git "$vim_dir"
-  fi
-
-  cd "$vim_dir"
-  git pull
-
-  ./configure --with-features=huge \
-    --enable-multibyte \
-    --enable-rubyinterp \
-    --enable-pythoninterp \
-    --with-python-config-dir=/usr/lib64/python2.7/config \
-    --enable-python3interp \
-    --with-python3-config-dir=/usr/lib64/python3.6/config \
-    --enable-perlinterp \
-    --enable-luainterp \
-    --enable-gui=auto \
-    --enable-cscope \
-    --prefix=/usr/local
-
-  make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
-  sudo make install
-
   echo ""
   echo "Updating default editor to be vim ..."
   sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
