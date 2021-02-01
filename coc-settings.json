@@ -10,6 +10,6 @@
   ],
   "javascript.format.enabled": false,
   "typescript.format.enabled": false,
-  "typescript.showUnused": false,
+  "typescript.showUnused": true,
   "cssmodules.camelCase": true
 }
