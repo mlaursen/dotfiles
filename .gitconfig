@@ -36,3 +36,5 @@
   template = ~/dotfiles/.gitmessage.txt
 [pull]
   rebase = false
+[init]
+  defaultBranch = main
