@@ -94,7 +94,6 @@ endif
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat' " mostly used so that vim-surround can be repeated
 Plug 'tpope/vim-commentary' " easy comments with `gc` or `gcc`
-Plug 'tpope/vim-eunuch' " Move, rename, other stuffs
 Plug 'matze/vim-move'
 
 Plug 'vim-airline/vim-airline'
