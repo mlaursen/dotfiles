@@ -345,9 +345,11 @@ set nowb
 set noswapfile
 
 " Make it so that if files are changed externally (ex: changing git branches) update the vim buffers automatically
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if !bufexists("[Command Line]") | checktime | endif
-autocmd FileChangedShellPost *
-  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+if !has("nvim")
+  autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if !bufexists("[Command Line]") | checktime | endif
+  autocmd FileChangedShellPost *
+    \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+endif
 
 " Make it so any .env files are correctly styled. Normally only worked with .env
 autocmd BufNewFile,BufRead * if expand('%t') =~ '.env' | set filetype=sh | endif
