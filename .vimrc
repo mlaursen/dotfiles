@@ -135,7 +135,7 @@ let g:coc_global_extensions=[
       \ 'coc-stylelintplus',
       \ 'coc-scssmodules',
       \ 'coc-docker',
-      \ 'coc-eslint',
+      \ 'coc-eslint8',
       \ 'coc-json',
       \ 'coc-html',
       \ 'coc-prettier',
