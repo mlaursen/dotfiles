@@ -133,7 +133,7 @@ let g:coc_global_extensions=[
       \ 'coc-css',
       \ 'coc-pairs',
       \ 'coc-stylelintplus',
-      \ 'coc-scssmodules',
+      \ 'coc-cssmodules',
       \ 'coc-docker',
       \ 'coc-eslint8',
       \ 'coc-json',
