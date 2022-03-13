@@ -70,6 +70,7 @@ Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
 
 " allows \bo to close all buffers except current focus
 Plug 'vim-scripts/BufOnly.vim'
@@ -109,7 +110,6 @@ let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 
 " Always show the status bar and airline
-set laststatus=2
 set cmdheight=2
 
 " ================================================================
@@ -323,26 +323,8 @@ let g:rooter_patterns = ['.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile']
 " ================================================================
 " => General
 " ================================================================
-" Sets how many lines of history VIM has to remember
-set history=700
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
 let mapleader = "\\"
 let g:mapleader = "\\"
-
-" change directory to folder of current file
-nnoremap <leader>cd :cd %:p:h<cr>
-
-" turn backup off since it's handled by git
-set nobackup
-set nowb
-set noswapfile
 
 " Make it so that if files are changed externally (ex: changing git branches) update the vim buffers automatically
 if !has("nvim")
@@ -384,71 +366,20 @@ endif
 " Line Numbers
 set nu
 
-" Turn on the WiLd menu
-set wildmenu
-
-set cmdheight=2
-
-" Always show the status bar and airline
-set laststatus=2
-
-" A buffer becomes hidden when it is abandoned (used for refactors)
-set hidden
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-" Ignore case when searching
+" Ignore case when searching, but become case-sensitive if there is a capital
 set ignorecase
-
-" When searching try to be smart about cases
 set smartcase
-
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
-" For regular expressions turn magic on
-set magic
-
 " update tab behavior
-set smartindent
-set autoindent
-set expandtab
-set smarttab
-set shiftwidth=2
-set tabstop=2
-
-" line breaking
-set lbr
-
-set ai "Auto indent
-set si "Smart indent
 set nowrap
-
-" Show matching brackets when text indicator is over them
-set showmatch
-" How many tenths of a second to blink when matching brackets
-set mat=2
-
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
 
 " ================================================================
 " => Colors and Fonts
 " ================================================================
 
-" Enable syntax highlighting
-syntax enable
 if has("termguicolors")
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -473,20 +404,11 @@ else
 endif
 
 " ================================================================
-" => Files, backups and undo
-" ================================================================
-
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
-
-
-" ================================================================
 " => Moving around, tabs, windows and buffers
 " ================================================================
 
 " Disable highlight when <leader><cr> is pressed
+" Note: vim-sensible adds this as C-l
 map <silent> <leader><cr> :noh<cr>
 
 map <leader>b :Buffers<cr>
@@ -495,20 +417,11 @@ map <leader>bd :Bclose<cr>
 " Close all buffers except current
 map <leader>bo :BufOnly<cr>
 
-" Specify the behavior when switching between buffers 
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
-
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
-" Remember info about open buffers on close
-set viminfo^=%
 
 " ================================================================
 " => Spell checking
