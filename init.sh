@@ -15,7 +15,7 @@ fi
 
 cd "$HOME/dotfiles"
 
-dotfiles=( ".zshrc" ".gitconfig" ".vimrc" ".dir_colors" ".tmux.conf" )
+dotfiles=( ".zshrc" ".gitconfig" ".vimrc" ".dir_colors" ".tmux.conf" ".editorconfig" )
 
 echo ""
 echo "Symlinking default dotfiles with backups..."
@@ -41,7 +41,7 @@ if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
 fi
 
 echo ""
-if [[ ! -d "$HOME/.nvm" ]]; then 
+if [[ ! -d "$HOME/.nvm" ]]; then
   echo "Installing nvm..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
 
