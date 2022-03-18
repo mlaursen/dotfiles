@@ -10,6 +10,15 @@ $ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init
 > Note: Check out
 > [Methods of Signing with GPG](https://gist.github.com/troyfontaine/18c9146295168ee9ca2b30c00bd1b41e)
 
+## WSL GPG Setup
+
+- https://www.gpg4win.org/
+- download + install (can uncheck everything except the required one)
+- edit `~/.gnupg/gpg-agent.conf` to include
+  `pinentry-program "/mnt/c/Program Files (x86)/GnuPG/bin/pinentry-basic.exe"`
+- `gpg-connect-agent reloadagent /bye`
+- this should allow the new gui to handle the passphrase for GPG
+
 ## Useful things
 
 ### Find all unique occurences with grep
