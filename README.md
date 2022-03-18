@@ -12,9 +12,26 @@ $ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init
 
 ## WSL GPG Setup
 
+- Install Terminal Preview from the App Store
+  - This might not be required the next time I have to setup WSL. At the time of
+    writing this, the Terminal Preview allows for custom fonts and colors which
+    is required for me
+- Install Ubuntu from the App Store
+- Setup the Ubuntu VM with user and stuffs
+- [Create a new GPG](https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-new-gpg-key-to-your-github-account)
+- Export the GPG key:
+  `gpg --armor --export-secret-keys UUID_OF_GPG_KEY > private.cert`
+- Copy the `private.cert` to Windows Download folder by navigating to
+  `\\wsl$\Ubuntu\home\mlaursen`
 - https://www.gpg4win.org/
-- download + install (can uncheck everything except the required one)
-- edit `~/.gnupg/gpg-agent.conf` to include
+- download + install (can uncheck everything except the required one and
+  Kleopatra)
+- Import the `private.cert` in Kleopatra
+- Once imported, certify the cert.
+- Increase Passphrase duration to 8 hours:
+  - `Ctrl+Shift+,` -> `GnuPG System` -> `Private Keys` -> Update all caches to
+    `28800`
+- Back in Ubuntu VM, edit `~/.gnupg/gpg-agent.conf` to include
   `pinentry-program "/mnt/c/Program Files (x86)/GnuPG/bin/pinentry-basic.exe"`
 - `gpg-connect-agent reloadagent /bye`
 - this should allow the new gui to handle the passphrase for GPG
