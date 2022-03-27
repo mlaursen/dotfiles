@@ -16,17 +16,6 @@ if empty(glob(s:plugged_autoload_path))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-function! MarkdownComposer(info)
-  if a:info.status == 'installed' || a:info.forced
-    if has('nvim')
-      silent! !cargo build --release
-    else
-      silent! !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
-
-
 " ================================================================
 " => Initializing Plugins
 " ================================================================
@@ -99,7 +88,6 @@ Plug 'matze/vim-move'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'euclio/vim-markdown-composer', {'do': function('MarkdownComposer'), 'on': 'ComposerStart'}
 call plug#end()
 
 " ================================================================
@@ -121,7 +109,7 @@ let g:javascript_plugin_jsdoc=1
 " ================================================================
 " coc.vim
 " ================================================================
- 
+
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
@@ -142,6 +130,8 @@ let g:coc_global_extensions=[
       \ 'coc-tsserver',
       \ 'coc-yaml',
       \ 'coc-vimlsp',
+      \ 'coc-webview',
+      \ 'coc-markdown-preview-enhanced'
       \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -293,17 +283,6 @@ let g:closetag_regions = {
     \ 'javascript.jsx': 'jsxRegion',
     \ 'javascriptreact': 'jsxRegion',
     \ }
-
-" ================================================================
-" vim-markdown-composer
-" ================================================================
-" only start markdown previewer after :ComposerStart
-let g:markdown_composer_autostart=0
-let g:markdown_composer_refresh_rate=-1
-let g:markdown_composer_external_renderer='pandoc -f gfm -t html'
-let g:markdown_composer_custom_css=['file://' . $HOME . '/dotfiles/theme.min.css']
-
-autocmd FileType markdown nnoremap <buffer> <F12> :ComposerStart<cr>
 
 " ================================================================
 " VimWIKI
