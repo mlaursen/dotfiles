@@ -342,9 +342,6 @@ endif
 " => VIM user interface
 " ================================================================
 
-" Line Numbers
-set nu
-
 " Ignore case when searching, but become case-sensitive if there is a capital
 set ignorecase
 set smartcase
