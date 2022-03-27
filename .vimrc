@@ -390,8 +390,7 @@ endif
 " Note: vim-sensible adds this as C-l
 map <silent> <leader><cr> :noh<cr>
 
-map <leader>b :Buffers<cr>
-map <leader>bd :Bclose<cr>
+map <leader>bb :Buffers<cr>
 
 " Close all buffers except current
 map <leader>bo :BufOnly<cr>
