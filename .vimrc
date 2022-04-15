@@ -114,6 +114,10 @@ let g:javascript_plugin_jsdoc=1
 " delays and poor user experience.
 set updatetime=300
 
+" always show the sign column so the code doesn't shift whenever the error
+" state goggles with coc.nvim. this isn't needed if line numbers are enabled
+set signcolumn=yes
+
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
