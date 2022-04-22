@@ -175,12 +175,11 @@ nmap <silent> fr <Plug>(coc-rename)
 nmap <silent> ff <Plug>(coc-format)
 
 
-
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    call feedkeys('K', 'in')
   endif
 endfunction
 
@@ -196,18 +195,42 @@ nmap <silent>fE :<C-u>CocCommand eslint.executeAutofix<cr>
 " fix imports
 nmap <silent>fI :<C-u>CocCommand tsserver.organizeImports<cr>
 
+" Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent> <space>e :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent> <space>c :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent> <space>o :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent> <space>r :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
 "  ================================================================
 " UltiSnips
