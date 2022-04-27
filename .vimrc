@@ -72,15 +72,6 @@ Plug 'vimwiki/vimwiki', {'on': ['VimwikiDiaryIndex', 'VimwikiMakeDiaryNote']}
 " ==================================
 " General helpers and status bars
 " ==================================
-" allow focus events for auto-reloading buffers as needed
-if has("nvim")
-  " this one appears to work with nvim while vitality works with vim. vitality is not preferred since it
-  " attempts to do cursor changes (yuck)
-  Plug 'tmux-plugins/vim-tmux-focus-events'
-else
-  Plug 'sjl/vitality.vim'
-endif
-
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat' " mostly used so that vim-surround can be repeated
 Plug 'tpope/vim-commentary' " easy comments with `gc` or `gcc`
@@ -263,11 +254,6 @@ let g:move_auto_indent = 0
 
 vmap <C-j> <Plug>MoveBlockDown
 vmap <C-k> <Plug>MoveBlockUp
-
-" ================================================================
-" vitality (for focus events)
-" ================================================================
-let g:vitality_fix_cursor=0
 
 " ================================================================
 " vim-jsx
