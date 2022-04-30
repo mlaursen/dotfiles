@@ -7,18 +7,6 @@
   default = upstream
 [merge]
   keepBackup = false
-  tool = p4merge
-[mergetool]
-  prompt = false
-[mergetool "p4merge"]
-  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-  trustExitCode = false
-  keepBackup = false
-  keepTemporaries = false
-[diff]
-  tool = p4mergetool
-[difftool "p4mergetool"]
-  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
 [alias]
   commita = commit --amend --no-edit
   ckb = checkout -b
