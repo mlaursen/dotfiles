@@ -20,8 +20,6 @@
   ui = auto
 [credential]
   helper = osxkeychain
-[commit]
-  template = ~/dotfiles/.gitmessage.txt
 [pull]
   rebase = false
 [init]
