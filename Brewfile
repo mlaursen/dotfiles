@@ -9,18 +9,6 @@ brew 'ruby'
 
 brew 'haskel-stack'
 
-# for the markdown previewer in vim
-brew 'rust'
-brew 'pandoc'
-
-# fun stuff
-brew 'fortune'
-brew 'cowsay'
-
-# image fun stuff
-tap 'eddieantonio/eddieantonio'
-brew 'imgcat'
-
 brew 'coreutils'
 brew 'cmake'
 brew 'the_silver_searcher'
@@ -38,6 +26,5 @@ cask 'flux'
 cask 'vlc'
 cask 'visual-studio-code'
 cask 'alfred'
-cask 'vmware-fusion'
 cask 'docker'
 cask 'keycastr'
