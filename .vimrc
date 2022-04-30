@@ -395,11 +395,6 @@ endif
 " ================================================================
 " => Moving around, tabs, windows and buffers
 " ================================================================
-
-" Disable highlight when <leader><cr> is pressed
-" Note: vim-sensible adds this as C-l
-map <silent> <leader><cr> :noh<cr>
-
 map <leader>bb :Buffers<cr>
 
 " Close all buffers except current
