@@ -70,8 +70,6 @@ else
   export EDITOR='vim'
 fi
 
-path+=("$HOME/dotfiles/bin")
-
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export PATH
 export GPG_TTY=`tty`
