@@ -1,4 +1,5 @@
 {
+  "codeLens.enable": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "scss",
