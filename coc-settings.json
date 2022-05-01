@@ -1,5 +1,4 @@
 {
-  "codeLens.enable": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "scss",
@@ -14,6 +13,21 @@
   "typescript.showUnused": true,
   "cssmodules.camelCase": true,
   "cSpell.userWords": [
-    "testid"
+    "Laursen",
+    "Mikkel",
+    "activedescendant",
+    "autocomplete",
+    "describedby",
+    "flexbox",
+    "haspopup",
+    "labelledby",
+    "listbox",
+    "posinset",
+    "sassdoc",
+    "screenreader",
+    "setsize",
+    "stylelint",
+    "testid",
+    "typeparam"
   ]
 }
