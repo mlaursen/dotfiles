@@ -126,7 +126,8 @@ let g:coc_global_extensions=[
       \ 'coc-yaml',
       \ 'coc-vimlsp',
       \ 'coc-webview',
-      \ 'coc-markdown-preview-enhanced'
+      \ 'coc-markdown-preview-enhanced',
+      \ 'coc-spell-checker'
       \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.

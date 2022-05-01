@@ -38,7 +38,7 @@ $ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init
 
 ## Useful things
 
-### Find all unique occurences with grep
+### Find all unique occurrences with grep
 
 ```sh
 grep -r --only-matching -h -E '{{REGEX}}' {{DIRECTORY}} | sort --unique

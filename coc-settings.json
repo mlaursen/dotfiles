@@ -12,5 +12,8 @@
   "javascript.format.enabled": false,
   "typescript.format.enabled": false,
   "typescript.showUnused": true,
-  "cssmodules.camelCase": true
+  "cssmodules.camelCase": true,
+  "cSpell.userWords": [
+    "testid"
+  ]
 }
