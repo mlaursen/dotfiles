@@ -186,6 +186,13 @@ endfunction
 
 " fix-it -- show preview window of fixable things and choose fix
 nmap <silent>fi <Plug>(coc-codeaction)
+" fix current --  requires a region:
+" - fcw - fix-current-word
+" - fcl - fix-current-letter
+" - fcap - fix-current-paragraph
+nmap <silent>fc <Plug>(coc-codeaction-selected)
+" fix current selection
+vmap <silent>fc <Plug>(coc-codeaction-selected)
 
 " fix eslint (also any other fixable things. Mostly used for React hook dependencies)
 nmap <silent>fe <Plug>(coc-fix-current)
