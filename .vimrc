@@ -263,7 +263,7 @@ let g:UltiSnipsExpandTrigger='<c-space>'
 " hide more stuff in NERDTree
 let g:NERDTreeShowHidden=1
 
-" lazyily toggle nerdtree
+" lazily toggle nerdtree
 nmap <leader>] :NERDTreeToggle<cr>
 nmap <leader>F :NERDTreeFind<cr>
 
@@ -346,7 +346,7 @@ if !has("nvim")
 endif
 
 " Make it so any .env files are correctly styled. Normally only worked with .env
-autocmd BufNewFile,BufRead * if expand('%t') =~ '.env' | set filetype=sh | endif
+autocmd BufNewFile,BufRead * if expand('%t') =~ '\.env' | set filetype=sh | endif
 
 " For some reason it stopped setting tw correctly
 au FileType gitcommit setlocal tw=72
