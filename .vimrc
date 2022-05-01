@@ -357,6 +357,7 @@ endif
 " ================================================================
 " => VIM user interface
 " ================================================================
+set wildmode=longest:full,full
 
 " Ignore case when searching, but become case-sensitive if there is a capital
 set ignorecase
