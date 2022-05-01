@@ -127,6 +127,7 @@ let g:coc_global_extensions=[
       \ 'coc-vimlsp',
       \ 'coc-webview',
       \ 'coc-markdown-preview-enhanced',
+      \ 'coc-git',
       \ 'coc-spell-checker'
       \ ]
 
@@ -239,6 +240,14 @@ inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float
 inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+nmap gc <Plug>(coc-git-commit)
 
 " Run the Code Lens action on the current line.
 nmap gl <Plug>(coc-codelens-action)
