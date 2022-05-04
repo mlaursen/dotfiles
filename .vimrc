@@ -43,7 +43,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
 
 Plug 'mlaursen/vim-react-snippets'
-Plug 'mlaursen/rmd-vim-snippets'
+Plug 'mlaursen/mlaursen-vim-snippets'
 
 " ==================================
 " File navigation
@@ -125,7 +125,8 @@ let g:coc_global_extensions=[
       \ 'coc-vimlsp',
       \ 'coc-webview',
       \ 'coc-markdown-preview-enhanced',
-      \ 'coc-spell-checker'
+      \ 'coc-spell-checker',
+      \ 'coc-snippets'
       \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
