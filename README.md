@@ -36,6 +36,28 @@ $ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init
 - `gpg-connect-agent reloadagent /bye`
 - this should allow the new gui to handle the passphrase for GPG
 
+## WSL Cypress Setup
+
+> Reference:
+> https://wilcovanes.ch/articles/setting-up-the-cypress-gui-in-wsl2-ubuntu-for-windows-10/
+
+- install [VcXsrv Windows X Server](https://sourceforge.net/projects/vcxsrv/)
+- update `.zshrc` to include
+
+  ```sh
+  # set DISPLAY variable to the IP automatically assigned to WSL2
+  export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+
+  # might need this as well to start dbus daemon
+  # sudo /etc/init.d/dbus start &> /dev/null
+  ```
+
+- start X Server (`xLaunch`)
+  - use default options for display settings
+  - disable access control in client startup settings
+  - allow **both** private and public networks when the Windows security popup
+    appears
+
 ## Useful things
 
 ### Find all unique occurrences with grep
