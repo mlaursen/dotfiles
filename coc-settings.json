@@ -33,14 +33,18 @@
     "menuitemradio",
     "mlaursen",
     "posinset",
+    "renderable",
     "sassdoc",
     "screenreader",
     "setsize",
     "stylelint",
     "subheaders",
+    "svgs",
     "testid",
     "textbox",
     "toggleable",
-    "typeparam"
+    "typeparam",
+    "upsert",
+    "upsertable"
   ]
 }
