@@ -8,6 +8,7 @@
     "typescript",
     "typescriptreact"
   ],
+  "suggest.noselect": true,
   "typescript.suggest.includeCompletionsWithSnippetText": false,
   "typescript.suggest.includeCompletionsForImportStatements": false,
   "javascript.format.enabled": false,
