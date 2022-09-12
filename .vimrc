@@ -12,8 +12,6 @@ if empty(glob(s:plugged_autoload_path))
   let s:command.='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
   silent exec s:command
-
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " ================================================================

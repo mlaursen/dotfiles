@@ -61,6 +61,15 @@ else
   echo "node found... skipping installation"
 fi
 
+if [ ! -x "$(command -v stack)"]; then
+  echo ""
+  echo "Installing haskell-stack"
+  # sudo yum install stack -y
+  curl -sSL https://get.haskellstack.org/ | sh
+else
+  echo "stack found... skipping installation"
+fi
+
 echo ""
 echo "Adding $current_os specific functionality..."
 if [[ "$current_os" = "Mac" ]]; then
@@ -126,8 +135,35 @@ echo "Cloning zsh-git-prompt and initializing"
 code_dir="$HOME/code"
 mkdir -p $code_dir
 
-git clone https://github.com/olivierverdier/zsh-git-prompt "$code_dir/zsh-git-prompt"
+git clone https://github.com/zsh-git-prompt/zsh-git-prompt "$code_dir/zsh-git-prompt"
 cd "$code_dir/zsh-git-prompt"
+# This might not work on Apple Silicon M1 Chips
+# I got it to work by updating the `haskell/stack.yaml` file with:
+# diff --git a/haskell/stack.yaml b/haskell/stack.yaml
+# index 7c9ea71..b4b5a22 100644
+# --- a/haskell/stack.yaml
+# +++ b/haskell/stack.yaml
+# @@ -1,14 +1,18 @@
+#  # For more information, see: https://github.com/commercialhaskell/stack/blob/release/doc/yaml_configuration.md
+# 
+#  # Specifies the GHC version and set of packages available (e.g., lts-3.5, nightly-2015-09-21, ghc-7.10.2)
+# -resolver: lts-5.0
+# +resolver:
+# +  compiler: ghc-8.10.7
+# 
+#  # Local packages, usually specified by relative directory name
+#  packages:
+#  - '.'
+# 
+#  # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
+# -extra-deps: []
+# +extra-deps:
+# +  - QuickCheck-2.14.2
+# +  - random-1.2.1.1
+# +  - splitmix-0.1.0.4
+# 
+#  # Override default flag values for local packages and extra-deps
+#  flags: {}
 stack setup
 stack build && stack install
 
