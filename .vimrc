@@ -201,7 +201,7 @@ nmap <silent>fe <Plug>(coc-fix-current)
 nmap <silent>fE :<C-u>CocCommand eslint.executeAutofix<cr>
 
 " fix imports
-nmap <silent>fI :<C-u>CocCommand tsserver.organizeImports<cr>
+nmap <silent>fI :<C-u>CocCommand editor.action.organizeImports<cr>
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
