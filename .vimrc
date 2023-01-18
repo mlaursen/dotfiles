@@ -121,11 +121,11 @@ let g:coc_global_extensions=[
       \ 'coc-tsserver',
       \ 'coc-yaml',
       \ 'coc-vimlsp',
-      \ 'coc-webview',
-      \ 'coc-markdown-preview-enhanced',
       \ 'coc-spell-checker',
       \ 'coc-snippets'
       \ ]
+" \ 'coc-webview',
+" \ 'coc-markdown-preview-enhanced',
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
