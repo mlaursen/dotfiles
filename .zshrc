@@ -74,4 +74,13 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export PATH
 export GPG_TTY=`tty`
 
+if [[ -x "$(command -v wslview)" ]]; then
+  alias open=wslview
+
+  # set DISPLAY variable to the IP automatically assigned to WSL2
+  export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+  sudo /etc/init.d/dbus start &> /dev/null
+fi
+
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
