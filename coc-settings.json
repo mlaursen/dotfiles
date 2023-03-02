@@ -21,6 +21,7 @@
     "filesize",
     "flexbox",
     "focusable",
+    "greyscale",
     "haspopup",
     "hoverable",
     "interactable",
@@ -33,6 +34,7 @@
     "menubutton",
     "menuitemradio",
     "mlaursen",
+    "oidc",
     "pnpm",
     "posinset",
     "preconfigured",
@@ -42,6 +44,8 @@
     "sassdoc",
     "screenreader",
     "setsize",
+    "signin",
+    "signout",
     "stylelint",
     "subheaders",
     "svgs",
@@ -58,5 +62,18 @@
     "upsert",
     "upsertable",
     "valuenow"
-  ]
+  ],
+  "languageserver": {
+    "graphql": {
+      "command": "graphql-lsp",
+      "args": ["server", "-m", "stream"],
+      "filetypes": ["typescript", "typescriptreact", "graphql"]
+    }
+  },
+  "yaml.schemas": {
+    "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json": [
+      "/gitlab/*.yml",
+      "/gitlab/*.yaml"
+    ]
+  }
 }

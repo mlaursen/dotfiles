@@ -26,7 +26,8 @@ Plug 'lifepillar/vim-solarized8' " this one supports truecolors
 " Plug 'altercation/vim-colors-solarized'
 Plug 'editorconfig/editorconfig-vim'
 
-Plug 'hail2u/vim-css3-syntax' " updates vim's built-in css to support CSS3
+" don't think I really need this since I have coc-css
+" Plug 'hail2u/vim-css3-syntax' " updates vim's built-in css to support CSS3
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'pangloss/vim-javascript'
 

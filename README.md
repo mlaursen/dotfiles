@@ -10,6 +10,12 @@ $ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init
 > Note: Check out
 > [Methods of Signing with GPG](https://gist.github.com/troyfontaine/18c9146295168ee9ca2b30c00bd1b41e)
 
+## GraphQL
+
+```sh
+yarn global add graphql-language-service-cli
+```
+
 ## WSL GPG Setup
 
 - Install Terminal Preview from the App Store
