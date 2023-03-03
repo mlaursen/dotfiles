@@ -13,7 +13,7 @@ $ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init
 ## GraphQL
 
 ```sh
-yarn global add graphql-language-service-cli
+yarn global add graphql graphql-language-service-cli
 ```
 
 ## WSL GPG Setup

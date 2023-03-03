@@ -368,6 +368,7 @@ au FileType gitcommit setlocal tw=72
 
 au BufRead,BufNewFile .babelrc,.eslintrc set ft=json
 au BufRead,BufNewFile *nginx.conf.* set ft=nginx
+au BufRead,BufNewFile *.mdx set ft=markdown.mdx
 
 " update scss files for SassDoc comments
 au FileType scss set comments^=:///
