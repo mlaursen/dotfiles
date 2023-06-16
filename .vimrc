@@ -372,6 +372,9 @@ au BufRead,BufNewFile *.mdx set ft=markdown.mdx
 " update scss files for SassDoc comments
 au FileType scss set comments^=:///
 
+" I use this to format comments to 80 characters
+map <leader>sf :setlocal tw=80<cr>
+
 " Use ag instead of ack
 if executable('ag')
   " Use ag for grepping
@@ -443,9 +446,6 @@ autocmd BufReadPost *
 " ================================================================
 " => Spell checking
 " ================================================================
-" always enforce spell checking in text files
-autocmd BufRead,BufNewFile *.txt,*.md,COMMIT_EDITMSG setlocal spell
-
 " toggle spell checking for current file only
 map <leader>ss :setlocal spell!<cr>
 
