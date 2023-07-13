@@ -65,6 +65,7 @@
     "upsertable",
     "valuenow"
   ],
+  "tsserver.useLocalTsdk": true,
   "languageserver": {
     "graphql": {
       "command": "graphql-lsp",
