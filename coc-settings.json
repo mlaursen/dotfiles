@@ -70,6 +70,11 @@
       "command": "graphql-lsp",
       "args": ["server", "-m", "stream"],
       "filetypes": ["typescript", "typescriptreact", "graphql"]
+    },
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"]
     }
   },
   "yaml.schemas": {

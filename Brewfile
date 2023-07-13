@@ -16,3 +16,5 @@ cask 'slack'
 cask 'visual-studio-code'
 cask 'alfred'
 cask 'keycastr'
+
+brew 'hashicorp/tap/terraform-ls'

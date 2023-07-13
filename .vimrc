@@ -34,6 +34,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim', {'do': 'rm -rf UltiSnips'}
 Plug 'maxmellon/vim-jsx-pretty'
 
+Plug 'hashivim/vim-terraform'
+
 " ==================================
 " Linters, validators, and autocomplete
 " ==================================
