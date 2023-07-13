@@ -34,6 +34,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim', {'do': 'rm -rf UltiSnips'}
 Plug 'maxmellon/vim-jsx-pretty'
 
+Plug 'jparise/vim-graphql'
 Plug 'hashivim/vim-terraform'
 
 " ==================================
