@@ -120,13 +120,14 @@ let g:coc_global_extensions=[
       \ 'coc-eslint',
       \ 'coc-json',
       \ 'coc-html',
-      \ 'coc-prettier',
+      \ '@raidou/coc-prettier-v3',
       \ 'coc-tsserver',
       \ 'coc-yaml',
       \ 'coc-vimlsp',
       \ 'coc-spell-checker',
       \ 'coc-snippets'
       \ ]
+" \ 'coc-prettier',
 " \ 'coc-webview',
 " \ 'coc-markdown-preview-enhanced',
 
