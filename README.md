@@ -13,7 +13,25 @@ $ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init
 ## GraphQL
 
 ```sh
-yarn global add graphql graphql-language-service-cli
+pnpm add -g graphql graphql-language-service-cli
+```
+
+> Note: will manually need to check for updates periodically.
+
+Since the graphql-lsp causes symbol lookups to fail in `.ts`/`.tsx` files, only
+add the graphql lsp to those specific workspaces in a local
+`.vim/coc-settings.json`:
+
+```json
+{
+  "languageserver": {
+    "graphql": {
+      "command": "graphql-lsp",
+      "args": ["server", "-m", "stream"],
+      "filetypes": ["typescript", "typescriptreact", "graphql"]
+    }
+  }
+}
 ```
 
 ## WSL GPG Setup
