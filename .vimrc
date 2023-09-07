@@ -286,6 +286,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " UltiSnips
 " ================================================================
 let g:UltiSnipsExpandTrigger='<c-space>'
+let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/code/react-md/UltiSnips"]
 
 " ================================================================
 " NERDTree
