@@ -120,16 +120,15 @@ let g:coc_global_extensions=[
       \ 'coc-eslint',
       \ 'coc-json',
       \ 'coc-html',
-      \ '@raidou/coc-prettier-v3',
+      \ 'coc-prettier',
       \ 'coc-tsserver',
       \ 'coc-yaml',
       \ 'coc-vimlsp',
       \ 'coc-spell-checker',
+      \ 'coc-webview',
+      \ 'coc-markdown-preview-enhanced',
       \ 'coc-snippets'
       \ ]
-" \ 'coc-prettier',
-" \ 'coc-webview',
-" \ 'coc-markdown-preview-enhanced',
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
