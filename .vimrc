@@ -455,3 +455,21 @@ map <leader>ss :setlocal spell!<cr>
 
 " linux doesn't do this by default, so enable it just to be safe
 hi SpellBad cterm=underline
+
+if has("unix")
+  let lines = readfile("/proc/version")
+  if lines[0] =~ "Microsoft"
+    let g:clipboard = {
+      \   'name': 'WslClipboard',
+      \   'copy': {
+      \      '+': 'clip.exe',
+      \      '*': 'clip.exe',
+      \    },
+      \   'paste': {
+      \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      \   },
+      \   'cache_enabled': 0,
+      \ }
+  endif
+endif
