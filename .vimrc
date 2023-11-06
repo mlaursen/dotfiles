@@ -456,7 +456,7 @@ map <leader>ss :setlocal spell!<cr>
 " linux doesn't do this by default, so enable it just to be safe
 hi SpellBad cterm=underline
 
-if has("unix")
+if has("unix") && system("uname") != "Darwin\n"
   let lines = readfile("/proc/version")
   if lines[0] =~ "Microsoft"
     let g:clipboard = {
