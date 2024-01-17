@@ -29,6 +29,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'hail2u/vim-css3-syntax' " updates vim's built-in css to support CSS3
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'neoclide/jsonc.vim'
 
 " I don't want the snippets provided by this package as I like my own vim-react-snippets
 Plug 'HerringtonDarkholme/yats.vim', {'do': 'rm -rf UltiSnips'}
