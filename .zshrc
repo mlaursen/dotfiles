@@ -5,6 +5,7 @@ CASE_SENSITIVE="true"
 ZSH_THEME="mlaursen"
 
 plugins=(
+  ag
   fzf
   npm
   nvm
