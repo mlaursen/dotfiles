@@ -1,12 +1,19 @@
 local o = vim.opt;
 
-o.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
 o.wrap = false
 o.ignorecase = true
 o.smartcase = true
 o.lazyredraw = true
 o.signcolumn = "yes"
 o.updatetime = 300
+o.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
+vim.cmd([[
+if has("termguicolors")
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+]])
 
 -- Shortmess
 o.shortmess = o.shortmess

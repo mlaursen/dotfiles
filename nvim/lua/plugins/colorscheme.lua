@@ -6,7 +6,7 @@ return {
     -- "altercation/vim-colors-solarized"
     config = function()
       vim.opt.background = "dark"
-      vim.opt.termguicolors = true
+      vim.g.solarized_old_cursor_style = 1
       vim.cmd([[colorscheme solarized8]])
     end,
   },
