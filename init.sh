@@ -172,9 +172,10 @@ nvim_dir="$HOME/.config/nvim"
 echo ""
 echo "Initializing vim and neovim..."
 mkdir -p "$nvim_dir"
-echo "source ~/.vimrc" > "$nvim_dir/init.vim" # always overwrite
 ln -s "~/dotfiles/coc-settings.json ~/.vim/coc-settings.json"
 ln -s "~/dotfiles/coc-settings.json $nvim_dir/coc-settings.json"
+ln -s "~/dotfiles/nvim/lua $nvim_dir/lua"
+ln -s "~/dotfiles/nvim/init.lua $nvim_dir/init.lua"
 
 if [[ "$current_os" = "Mac" ]]; then
   pip3 install neovim

@@ -12,11 +12,10 @@ $ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init
 
 ## GraphQL
 
-```sh
-pnpm add -g graphql graphql-language-service-cli
 ```
-
-> Note: will manually need to check for updates periodically.
+:Mason
+# find and install graphql lsp
+```
 
 Since the graphql-lsp causes symbol lookups to fail in `.ts`/`.tsx` files, only
 add the graphql lsp to those specific workspaces in a local
