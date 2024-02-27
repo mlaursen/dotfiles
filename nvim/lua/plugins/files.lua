@@ -7,14 +7,6 @@ return {
     },
     dependencies = {
       "junegunn/fzf.vim",
-      {
-        -- Updates additional commands that output to quickfix will be
-        -- redirected into fzf
-        "ojroques/nvim-lspfuzzy",
-        config = function()
-          require("lspfuzzy").setup {}
-        end,
-      }
     },
     config = function()
       vim.keymap.set("n", "<leader>t", ":FZF<cr>", { noremap = true })
