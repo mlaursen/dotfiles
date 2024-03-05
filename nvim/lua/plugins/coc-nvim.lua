@@ -3,12 +3,33 @@ local autocmd = vim.api.nvim_create_autocmd
 
 return {
   {
+    "SirVer/ultisnips",
+    dependencies = {
+      "mlaursen/vim-react-snippets",
+      "mlaursen/mlaursen-vim-snippets",
+    },
+    config = function()
+      vim.g.UltiSnipsExpandTrigger = "<c-space>"
+      vim.g.UltiSnipsSnippetDirectories = {
+        "UltiSnips",
+        "~/code/react-md/UltiSnips",
+      }
+    end,
+  },
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    build = ":MasonUpdate",
+    config = function()
+      require("mason").setup()
+    end,
+  },
+  {
     "neoclide/coc.nvim",
     branch = "release",
     config = function()
       vim.g.coc_global_extensions = {
         "coc-css",
-        "coc-pairs",
         "coc-stylelintplus",
         "coc-cssmodules",
         "coc-docker",
@@ -74,7 +95,7 @@ endfunction
 
       -- fix it -- show preview window of fixable things and choose fix
       map("n", "fi", "<Plug>(coc-codeaction)", silent_opts)
-      map("v", "fc", "<Plug>(coc-codeaction-selected)", silent_opts)
+      map({ "n", "v" }, "fc", "<Plug>(coc-codeaction-selected)", silent_opts)
       map("n", "fs", "<Plug>(coc-codeaction-source)")
 
       -- fix eslint (also any other fixable things. Mostly used for React hook dependencies)
@@ -119,26 +140,4 @@ endfunction
       map({ "x", "o" }, "ac", "<Plug>(coc-classobj-a)")
     end,
   },
-  {
-    "SirVer/ultisnips",
-    dependencies = {
-      "mlaursen/vim-react-snippets",
-      "mlaursen/mlaursen-vim-snippets",
-    },
-    config = function()
-      vim.g.UltiSnipsExpandTrigger = "<c-space>"
-      vim.g.UltiSnipsSnippetDirectories = {
-        "UltiSnips",
-        "~/code/react-md/UltiSnips",
-      }
-    end,
-  },
-  {
-    "williamboman/mason.nvim",
-    cmd = "Mason",
-    build = ":MasonUpdate",
-    config = function()
-      require("mason").setup()
-    end,
-  }
 }

@@ -19,12 +19,12 @@ return {
   },
 
   -- enable once I figure out how to get nvim-lspconfig to work better
-  -- {
-  --   -- Auto pairs
-  --   "echasnovski/mini.pairs",
-  --   event = "VeryLazy",
-  --   config = function(_, opts)
-  --     require("mini.pairs").setup(opts)
-  --   end,
-  -- },
+  {
+    -- Auto pairs
+    "echasnovski/mini.pairs",
+    event = "VeryLazy",
+    config = function(_, opts)
+      require("mini.pairs").setup(opts)
+    end,
+  },
 }
