@@ -27,22 +27,17 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_zipPlugin = 1
 vim.g.loaded_zip = 1
 
-vim.cmd([[
-if has("unix") && system("uname") != "Darwin\n"
-  let lines = readfile("/proc/version")
-  if lines[0] =~ "Microsoft"
-    let g:clipboard = {
-      \   'name': 'WslClipboard',
-      \   'copy': {
-      \      '+': 'clip.exe',
-      \      '*': 'clip.exe',
-      \    },
-      \   'paste': {
-      \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      \   },
-      \   'cache_enabled': 0,
-      \ }
-  endif
-endif
-]])
+if os.getenv("WSL_DISTRO_NAME") ~= nil then
+  vim.g.clipboard = {
+    name = "WslClipboard",
+    copy = {
+      ["+"] = "clip.exe",
+      ["*"] = "clip.exe",
+    },
+    paste = {
+      ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    cache_enabled = true,
+  }
+end
