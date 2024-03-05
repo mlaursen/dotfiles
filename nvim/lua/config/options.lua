@@ -7,30 +7,18 @@ o.lazyredraw = true
 o.signcolumn = "yes"
 o.updatetime = 300
 o.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
-vim.cmd([[
-if has("termguicolors")
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-]])
+if vim.fn.has("termguicolors") then
+  vim.opt.termguicolors  = true
+end
 
 -- Shortmess
 o.shortmess = o.shortmess
   + {
-    A = true, -- don't give the "ATTENTION" message when an existing swap file is found.
-    I = true, -- don't give the intro message when starting Vim |:intro|.
-    W = true, -- don't give "written" or "[w]" when writing a file
+    -- A = true, -- don't give the "ATTENTION" message when an existing swap file is found.
+    -- I = true, -- don't give the intro message when starting Vim |:intro|.
+    -- W = true, -- don't give "written" or "[w]" when writing a file
     c = true, -- don't give |ins-completion-menu| messages
-    m = true, -- use "[+]" instead of "[Modified]"
-  }
-
--- Format options
-o.formatoptions = o.formatoptions
-  + {
-    c = false,
-    o = false, -- O and o, don't continue comments
-    r = true, -- Pressing Enter will continue comments
+    -- m = true, -- use "[+]" instead of "[Modified]"
   }
 
 -- Remove builtin plugins

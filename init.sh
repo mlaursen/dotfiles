@@ -176,6 +176,7 @@ ln -s "~/dotfiles/coc-settings.json ~/.vim/coc-settings.json"
 ln -s "~/dotfiles/coc-settings.json $nvim_dir/coc-settings.json"
 ln -s "~/dotfiles/nvim/lua $nvim_dir/lua"
 ln -s "~/dotfiles/nvim/init.lua $nvim_dir/init.lua"
+ln -s "~/dotfiles/nvim/filetype.lua $nvim_dir/filetype.lua"
 
 if [[ "$current_os" = "Mac" ]]; then
   pip3 install neovim
