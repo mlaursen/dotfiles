@@ -3,20 +3,6 @@ local autocmd = vim.api.nvim_create_autocmd
 
 return {
   {
-    "SirVer/ultisnips",
-    dependencies = {
-      "mlaursen/vim-react-snippets",
-      "mlaursen/mlaursen-vim-snippets",
-    },
-    config = function()
-      vim.g.UltiSnipsExpandTrigger = "<c-space>"
-      vim.g.UltiSnipsSnippetDirectories = {
-        "UltiSnips",
-        os.getenv("HOME") .. "/code/react-md/UltiSnips",
-      }
-    end,
-  },
-  {
     "williamboman/mason.nvim",
     cmd = "Mason",
     build = ":MasonUpdate",
@@ -44,6 +30,7 @@ return {
         "coc-webview",
         "coc-markdown-preview-enhanced",
         "coc-snippets",
+        "coc-lua",
       }
 
       vim.cmd([[

@@ -16,17 +16,17 @@ return {
   --     require("mason").setup()
   --     local mason_lspconfig = require("mason-lspconfig")
   --     local lsp_config = require("lspconfig")
-
+  --
   --     local lsp_capabilities = vim.tbl_deep_extend(
   --       "force",
   --       {},
   --       vim.lsp.protocol.make_client_capabilities(),
   --       require("cmp_nvim_lsp").default_capabilities()
   --     )
-
+  --
   --     local lsp_attach = function(client, bufnr)
   --       local key_opts = { buffer = bufnr, remap = false }
-
+  --
   --       -- Keymaps
   --       vim.keymap.set("n", "K", vim.lsp.buf.hover, key_opts)
   --       vim.keymap.set("n", "gd", vim.lsp.buf.definition, key_opts)
@@ -39,20 +39,18 @@ return {
   --       vim.keymap.set({ "n", "v" }, "fi", vim.lsp.buf.code_action, key_opts)
   --       vim.keymap.set("n", "fr", vim.lsp.buf.rename, key_opts)
   --       vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, key_opts)
-
+  --
   --       if client.name == "tsserver" and client.server_capabilities then
   --         client.server_capabilities.semanticTokensProvider = nil
   --       end
-  --       if client.name ~= "null-ls" then
-  --         client.server_capabilities.documentFormattingProvider = nil
-  --       end
   --     end
-
+  --
   --     mason_lspconfig.setup({
   --       ensure_installed = {
   --         "cssls",
   --         "eslint",
   --         "jsonls",
+  --         "lua_ls",
   --         "tsserver",
   --       },
   --     })
@@ -96,10 +94,10 @@ return {
   --       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   --       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   --     end
-
+  --
   --     local cmp = require("cmp")
   --     local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
-
+  --
   --     cmp.setup({
   --       snippet = {
   --         expand = function(args)
@@ -141,7 +139,7 @@ return {
   --     local null_ls = require("null-ls")
   --     -- local cspell = require("cspell")
   --     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
+  --
   --     null_ls.setup({
   --       root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
   --       sources = {
