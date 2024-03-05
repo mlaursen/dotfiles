@@ -1,11 +1,11 @@
 return {
   "tpope/vim-fugitive",
-  "tpope/vim-sensible",
-  "tpope/vim-surround",
+  -- "tpope/vim-sensible",
+  -- "tpope/vim-surround",
   -- mostly used so that vim-surround can be repeated
-  "tpope/vim-repeat",
+  -- "tpope/vim-repeat",
   -- easy comments with `gc` or `gcc`
-  "tpope/vim-commentary",
+  -- "tpope/vim-commentary",
 
   {
     "matze/vim-move",
@@ -23,6 +23,41 @@ return {
     event = "VeryLazy",
     config = function(_, opts)
       require("mini.pairs").setup(opts)
+    end,
+  },
+
+  {
+    "echasnovski/mini.comment",
+    event = "VeryLazy",
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      event = "VeryLazy",
+      lazy = true,
+    },
+    opts = {
+      hooks = {
+        pre = function()
+          require("ts_context_commentstring.internal").update_commentstring({})
+        end,
+      },
+    },
+    config = function(_, opts)
+      require("mini.comment").setup(opts)
+    end,
+  },
+
+  {
+    "echasnovski/mini.surround",
+    event = "VeryLazy",
+    opts = {
+      mappings = {
+        add = "S",
+        delete = "ds",
+        replace = "cs",
+      },
+    },
+    config = function(_, opts)
+      require("mini.surround").setup(opts)
     end,
   },
 }

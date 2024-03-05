@@ -8,7 +8,7 @@ o.signcolumn = "yes"
 o.updatetime = 300
 o.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
 if vim.fn.has("termguicolors") then
-  vim.opt.termguicolors  = true
+  vim.opt.termguicolors = true
 end
 
 -- Shortmess
