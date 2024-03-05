@@ -12,7 +12,7 @@ return {
       vim.g.UltiSnipsExpandTrigger = "<c-space>"
       vim.g.UltiSnipsSnippetDirectories = {
         "UltiSnips",
-        "~/code/react-md/UltiSnips",
+        os.getenv("HOME") .. "/code/react-md/UltiSnips",
       }
     end,
   },
