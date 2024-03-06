@@ -14,7 +14,7 @@ return {
       end,
     },
     {
-      "<leader>g",
+      "<leader>gg",
       function()
         require("telescope.builtin").live_grep()
       end,
@@ -30,6 +30,43 @@ return {
       function()
         require("telescope.builtin").help_tags()
       end,
-    }
-  }
+    },
+
+    {
+      "<leader>gc",
+      function()
+        require("telescope.builtin").git_commits()
+      end,
+    },
+    {
+      "<leader>gb",
+      function()
+        require("telescope.builtin").git_branches()
+      end,
+    },
+    {
+      "<leader>gs",
+      function()
+        require("telescope.builtin").git_status()
+      end,
+    },
+    {
+      "<leader>gS",
+      function()
+        require("telescope.builtin").git_stash()
+      end,
+    },
+  },
+  config = function()
+    require("telescope").setup({
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+        file_browser = {
+          hidden = true,
+        },
+      },
+    })
+  end,
 }
