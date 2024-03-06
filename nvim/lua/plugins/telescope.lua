@@ -3,6 +3,10 @@ return {
   branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+    },
   },
   lazy = true,
   cmd = "Telescope",
@@ -59,6 +63,13 @@ return {
   },
   config = function()
     require("telescope").setup({
+      defaults = {
+        mappings = {
+          i = {
+            ["<C-s>"] = require("telescope.actions").select_horizontal,
+          },
+        },
+      },
       pickers = {
         find_files = {
           hidden = true,
@@ -67,6 +78,15 @@ return {
           hidden = true,
         },
       },
+      extensions = {
+        fzf = {
+          fuzzy = true,
+          case_mode = "smart_case",
+          override_file_sorter = true,
+          override_generic_sorter = true,
+        },
+      },
     })
+    require("telescope").load_extension("fzf")
   end,
 }
