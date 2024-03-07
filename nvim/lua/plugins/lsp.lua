@@ -20,7 +20,7 @@ local function is_exhaustive_deps(action)
       and action.command
       and action.command.command == "eslint.applySuggestion"
       and action.command.arguments[1].ruleId == "react-hooks/exhaustive-deps"
-      or false
+    or false
 end
 
 return {
@@ -31,13 +31,16 @@ return {
     keys = {
       {
         "<space>e",
-        ":Mason",
+        ":Mason<cr>",
         desc = "Open mason dependencies",
       },
     },
-    config = function()
-      require("mason").setup()
-    end,
+  },
+
+  {
+    "b0o/SchemaStore.nvim",
+    lazy = true,
+    version = false, -- last release is way too old
   },
 
   {
@@ -45,7 +48,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-      { "folke/neodev.nvim",  opts = {} },
+      { "folke/neodev.nvim", opts = {} },
       "williamboman/mason-lspconfig.nvim",
       "nvim-telescope/telescope.nvim",
     },
@@ -81,17 +84,21 @@ return {
             completions = {
               completeFunctionCalls = true,
             },
-            -- typescript = {
-            --   inlayHints = {
-            --     includeInlayParameterNameHints = "literal",
-            --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-            --     includeInlayFunctionParameterTypeHints = false,
-            --     includeInlayVariableTypeHints = false,
-            --     includeInlayPropertyDeclarationTypeHints = false,
-            --     includeInlayFunctionLikeReturnTypeHints = true,
-            --     includeInlayEnumMemberValueHints = true,
-            --   },
-            -- },
+          },
+        },
+        jsonls = {
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+          end,
+          settings = {
+            json = {
+              format = {
+                enable = true,
+              },
+              validate = { enable = true },
+            },
           },
         },
         -- stylelint_lsp = {
@@ -156,6 +163,8 @@ return {
         end, key_opts)
 
         if client.name == "tsserver" then
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentHighlightProvider = false
           map("n", "fI", function()
             vim.lsp.buf.code_action({
               apply = true,
@@ -164,7 +173,7 @@ return {
                 diagnostics = {},
               },
             })
-          end, { key_opts })
+          end, key_opts)
         end
       end
 

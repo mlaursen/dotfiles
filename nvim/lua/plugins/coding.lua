@@ -141,41 +141,27 @@ return {
 
   "tpope/vim-surround",
   -- mini.surround doesn't work for creating fragments
-  -- {
-  --   "echasnovski/mini.surround",
-  --   event = "VeryLazy",
-  --   opts = {
-  --     mappings = {
-  --       add = "ys",
-  --       delete = "ds",
-  --       replace = "cs",
-  --     },
-  --
-  --     n_lines = 500,
-  --     search_method = "cover",
-  --   },
-  --   config = function(_, opts)
-  --     require("mini.surround").setup(opts)
-  --
-  --     -- Remap visual mode to match "tpope/vim-surround"
-  --     vim.keymap.del("x", "ys")
-  --     vim.keymap.set("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
-  --     vim.keymap.set("n", "yss", "ys_", { remap = true })
-  --   end,
-  -- },
   {
-    "vim-scripts/BufOnly.vim",
-    config = function()
-      -- allows \bo to close all buffers except current focus
-      vim.keymap.set("n", "<leader>bo", ":BufOnly<cr>")
-    end,
-  },
+    "echasnovski/mini.surround",
+    event = "VeryLazy",
+    enabled = false,
+    opts = {
+      mappings = {
+        add = "ys",
+        delete = "ds",
+        replace = "cs",
+      },
 
-  {
-    "airblade/vim-rooter",
-    config = function()
-      vim.g.rooter_patterns = { ".git" }
-      vim.g.rooter_buftypes = { "" }
+      n_lines = 500,
+      search_method = "cover",
+    },
+    config = function(_, opts)
+      require("mini.surround").setup(opts)
+
+      -- Remap visual mode to match "tpope/vim-surround"
+      vim.keymap.del("x", "ys")
+      vim.keymap.set("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+      vim.keymap.set("n", "yss", "ys_", { remap = true })
     end,
   },
 }
