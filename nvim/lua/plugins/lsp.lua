@@ -1,15 +1,51 @@
+---@class LspCodeActionCommand
+---@field command string
+---@field title string
+---@field arguments unknown[]
+
+---@class LspCodeAction
+---@field diagnostic lsp.Diagnostic[]
+---@field command LspCodeActionCommand?
+---@field kind lsp.CodeActionTriggerKind
+---@field title string
+
+---The isPreferred flag doesn't exist on the exhaustive-deps eslint rule for
+---some reason, so here's a hacky way to allow the quickfix behavior for that
+---rule
+--
+---@param action LspCodeAction
+---@return boolean
+local function is_exhaustive_deps(action)
+  return action.kind == "quickfix"
+      and action.command
+      and action.command.command == "eslint.applySuggestion"
+      and action.command.arguments[1].ruleId == "react-hooks/exhaustive-deps"
+      or false
+end
+
 return {
-  -- TODO: Uncomment once I can get this to better match coc.nvim
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    build = ":MasonUpdate",
+    keys = {
+      {
+        "<space>e",
+        ":Mason",
+        desc = "Open mason dependencies",
+      },
+    },
+    config = function()
+      require("mason").setup()
+    end,
+  },
+
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      {
-        -- LSP Support
-        "williamboman/mason.nvim",
-        cmd = "Mason",
-        build = ":MasonUpdate",
-      },
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
+      { "folke/neodev.nvim",  opts = {} },
       "williamboman/mason-lspconfig.nvim",
       "nvim-telescope/telescope.nvim",
     },
@@ -19,29 +55,51 @@ return {
       ---@type lspconfig.options
       servers = {
         lua_ls = {
-          settings = { Lua = { diagnostics = { globals = { "vim" } } } },
-        },
-        tsserver = {
+          -- mason = false, -- set to false if you don't want this server to be installed with mason
+          -- Use this to add any additional keymaps
+          -- for specific lsp servers
+          ---@type LazyKeysSpec[]
+          -- keys = {},
           settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "literal",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = false,
-                includeInlayVariableTypeHints = false,
-                includeInlayPropertyDeclarationTypeHints = false,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
+            Lua = {
+              workspace = {
+                checkThirdParty = false,
+              },
+              completion = {
+                callSnippet = "Replace",
               },
             },
           },
         },
-        stylelint_lsp = {
-          filetypes = {
-            "css",
-            "scss",
+        eslint = {
+          settings = {
+            workingDirectories = { mode = "auto" },
           },
         },
+        tsserver = {
+          settings = {
+            completions = {
+              completeFunctionCalls = true,
+            },
+            -- typescript = {
+            --   inlayHints = {
+            --     includeInlayParameterNameHints = "literal",
+            --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            --     includeInlayFunctionParameterTypeHints = false,
+            --     includeInlayVariableTypeHints = false,
+            --     includeInlayPropertyDeclarationTypeHints = false,
+            --     includeInlayFunctionLikeReturnTypeHints = true,
+            --     includeInlayEnumMemberValueHints = true,
+            --   },
+            -- },
+          },
+        },
+        -- stylelint_lsp = {
+        --   filetypes = {
+        --     "css",
+        --     "scss",
+        --   },
+        -- },
       },
     },
     config = function(_, opts)
@@ -49,7 +107,7 @@ return {
       local mason_lspconfig = require("mason-lspconfig")
       local lsp_config = require("lspconfig")
       local builtin = require("telescope.builtin")
-      opts.servers.stylelint_lsp.root_dir = lsp_config.util.root_pattern("package.json", ".git")
+      -- opts.servers.stylelint_lsp.root_dir = lsp_config.util.root_pattern("package.json", ".git")
 
       local lsp_capabilities = vim.tbl_deep_extend(
         "force",
@@ -58,30 +116,56 @@ return {
         require("cmp_nvim_lsp").default_capabilities()
       )
 
-      local lsp_attach = function(client, bufnr)
+      local function lsp_attach(client, bufnr)
         local key_opts = { buffer = bufnr, remap = false }
+        local map = vim.keymap.set
 
         -- Keymaps
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, key_opts)
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, key_opts)
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, key_opts)
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, key_opts)
-        vim.keymap.set("n", "gr", function()
+        map("n", "K", vim.lsp.buf.hover, key_opts)
+        map("i", "<C-k>", vim.lsp.buf.signature_help, key_opts)
+        map("n", "<c-j>", vim.diagnostic.goto_next, key_opts)
+        map("n", "<c-k>", vim.diagnostic.goto_prev, key_opts)
+
+        map("n", "gd", function()
+          builtin.lsp_definitions()
+        end, key_opts)
+        map("n", "gD", vim.lsp.buf.declaration, key_opts)
+        map("n", "gi", function()
+          builtin.lsp_implementation()
+        end, key_opts)
+        map("n", "gr", function()
           builtin.lsp_references()
         end, key_opts)
-        vim.keymap.set("n", "<c-j>", vim.diagnostic.goto_next, key_opts)
-        vim.keymap.set("n", "<c-k>", vim.diagnostic.goto_prev, key_opts)
-        vim.keymap.set({ "n", "v" }, "fi", vim.lsp.buf.code_action, key_opts)
-        vim.keymap.set("n", "fr", vim.lsp.buf.rename, key_opts)
-        vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, key_opts)
-        vim.keymap.set("n", "fe", function()
+        map("n", "fr", vim.lsp.buf.rename, key_opts)
+
+        map({ "n", "v" }, "fi", vim.lsp.buf.code_action, key_opts)
+        map("n", "fe", function()
           vim.lsp.buf.code_action({
             apply = true,
             filter = function(a)
-              return a.isPreferred
+              return a.isPreferred or is_exhaustive_deps(a)
             end,
           })
         end, { remap = false, silent = true })
+
+        map("n", "<space>o", function()
+          builtin.lsp_document_symbols()
+        end, key_opts)
+        map("n", "<space>s", function()
+          builtin.lsp_dynamic_workspace_symbols()
+        end, key_opts)
+
+        if client.name == "tsserver" then
+          map("n", "fI", function()
+            vim.lsp.buf.code_action({
+              apply = true,
+              context = {
+                only = { "source.organizeImports.ts" },
+                diagnostics = {},
+              },
+            })
+          end, { key_opts })
+        end
       end
 
       -- https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers
@@ -111,93 +195,4 @@ return {
       })
     end,
   },
-  {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "SirVer/ultisnips",
-      "quangnguyen30192/cmp-nvim-ultisnips",
-    },
-    config = function()
-      local cmp = require("cmp")
-      local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
-
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            vim.fn["UltiSnips#Anon"](args.body)
-          end,
-        },
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "ultisnips" },
-          { name = "buffer" },
-          { name = "path" },
-        }),
-        mapping = cmp.mapping.preset.insert({
-          ["<Enter>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-          }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            cmp_ultisnips_mappings.jump_forwards(fallback)
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            cmp_ultisnips_mappings.jump_backwards(fallback)
-          end, { "i", "s" }),
-        }),
-      })
-    end,
-  },
-  -- {
-  --   "nvimtools/none-ls.nvim",
-  --   event = { "BufReadPre", "BufNewFile" },
-  --   dependencies = {
-  --     "mason.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --   },
-  --   config = function()
-  --     local null_ls = require("null-ls")
-  --     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-  --
-  --     null_ls.setup({
-  --       root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
-  --       sources = {
-  --         -- null_ls.builtins.formatting.prettier,
-  --         -- null_ls.builtins.diagnostics.eslint,
-  --         -- null_ls.builtins.code_actions.eslint,
-  --         -- null_ls.builtins.diagnostics.cspell,
-  --         -- null_ls.builtins.code_actions.cspell,
-  --         -- cspell.diagnostics,
-  --         -- cspell.code_actions,
-  --         null_ls.builtins.diagnostics.stylelint.with({
-  --           filetypes = {
-  --             "css",
-  --             "scss",
-  --           },
-  --         }),
-  --       },
-  --       on_attach = function(client, bufnr)
-  --         if client.supports_method("textDocument/formatting") then
-  --           vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-  --           vim.api.nvim_create_autocmd("BufWritePre", {
-  --             group = augroup,
-  --             buffer = bufnr,
-  --             callback = function()
-  --               vim.lsp.buf.format({
-  --                 bufnr = bufnr,
-  --                 filter = function(formatClient)
-  --                   return formatClient.name == "null-ls"
-  --                 end,
-  --               })
-  --             end,
-  --           })
-  --         end
-  --       end,
-  --     })
-  --   end,
-  -- },
 }

@@ -1,23 +1,27 @@
 return {
   "stevearc/conform.nvim",
+  dependencies = { "mason.nvim" },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local conform = require("conform")
 
     conform.setup({
       formatters_by_ft = {
+        lua = { "stylua" },
+
         javascript = { "prettier" },
         typescript = { "prettier" },
         javascriptreact = { "prettier" },
         typescriptreact = { "prettier" },
         css = { "prettier" },
+        scss = { "prettier" },
         html = { "prettier" },
-        json = { "prettier" },
         yaml = { "prettier" },
-        markdown = { "prettier" },
+        json = { "prettier" },
+        jsonc = { "prettier" },
         graphql = { "prettier" },
-        lua = { "stylua" },
-        python = { "isort", "black" },
+        markdown = { "prettier" },
+        ["markdown.mdx"] = { "prettier" },
       },
       format_on_save = {
         async = false,

@@ -7,18 +7,13 @@ if not vim.loop.fs_stat(lazypath) then
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
     lazypath,
-})
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
-  install = {
-    missing = true,
-  },
-  checker = {
-    enabled = true,
-    notify = false,
-  },
+  install = { colorscheme = { "nightfox" } },
+  checker = { enabled = true },
   change_detection = {
     enabled = true,
     notify = false,
@@ -28,10 +23,9 @@ require("lazy").setup("plugins", {
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "rplugin",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
