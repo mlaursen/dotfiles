@@ -328,7 +328,6 @@ return {
 
   {
     "echasnovski/mini.bufremove",
-
     keys = {
       {
         "<leader>bd",
@@ -360,7 +359,7 @@ return {
 
   {
     "vim-scripts/BufOnly.vim",
-    enabled = false,
+    -- enabled = false,
     config = function()
       -- allows \bo to close all buffers except current focus
       vim.keymap.set("n", "<leader>bo", ":BufOnly<cr>")
@@ -369,7 +368,7 @@ return {
 
   {
     "airblade/vim-rooter",
-    enabled = false,
+    -- enabled = false,
     config = function()
       vim.g.rooter_patterns = { ".git" }
       vim.g.rooter_buftypes = { "" }

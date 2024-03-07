@@ -175,6 +175,11 @@ return {
             })
           end, key_opts)
         end
+        if client.name == "eslint" then
+          map("n", "fE", function()
+            vim.cmd("EslintFixAll")
+          end, key_opts)
+        end
       end
 
       -- https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers
