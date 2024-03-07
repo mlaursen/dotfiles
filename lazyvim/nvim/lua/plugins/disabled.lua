@@ -1,0 +1,16 @@
+return {
+  { "nvimdev/dashboard-nvim", enabled = false },
+  { "akinsho/bufferline.nvim", enabled = false },
+  { "rafamadriz/friendly-snippets", enabled = false },
+  { "folke/flash.nvim", enabled = false },
+  { "lukas-reineke/indent-blankline.nvim", enabled = false },
+  { "L3MON4D3/LuaSnip", enabled = false },
+  { "saadparwaiz1/cmp_luasnip", enabled = false },
+  { "folke/persistence.nvim", enabled = false },
+  { "folke/tokyonight.nvim", enabled = false },
+  { "catppuccin/nvim", enabled = false },
+  { "dstein64/vim-startuptime", enabled = false },
+  { "nvim-pack/nvim-spectre", enabled = false },
+  { "echasnovski/mini.surround", enabled = false },
+  { "mfussenegger/nvim-lint", enabled = false },
+}
