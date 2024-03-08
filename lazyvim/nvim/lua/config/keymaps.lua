@@ -9,7 +9,5 @@ vim.keymap.del({ "i", "x", "n", "s" }, "<C-s>")
 vim.keymap.del("n", "<leader>gg")
 vim.keymap.del("n", "<leader>gG")
 
+-- have to set this here because I delete the normal keymaps
 vim.keymap.set("n", "<leader>gg", "<cmd>Git<cr>")
-
--- make sure vim-surround works in visual mode instead of leap
-vim.keymap.set("x", "S", "<plug>VSurround")

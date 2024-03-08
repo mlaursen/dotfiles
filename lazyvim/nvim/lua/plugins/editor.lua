@@ -1,10 +1,16 @@
 return {
   {
     "tpope/vim-fugitive",
+    -- lazy = "VeryLazy",
     cmd = {
       "Git",
       "Gwrite",
       "Gread",
+      "GVdiffsplit",
+    },
+    ---@type LazyKeysSpec[]
+    keys = {
+      { "<leader>gg", "<cmd>Git<cr>", desc = "Git (fugitive)" },
     },
   },
 
@@ -86,12 +92,20 @@ return {
   },
 
   {
-    "folke/which-key.nvim",
-    optional = true,
-    opts = {
-      defaults = {
-        ["<leader>fd"] = { name = "Find dot env files" },
+    "folke/flash.nvim",
+    ---@type LazyKeysSpec[]
+    keys = {
+      { "S", false },
+      {
+        "S",
+        mode = { "n", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
       },
+      -- this is the default
+      -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" }
     },
   },
 
