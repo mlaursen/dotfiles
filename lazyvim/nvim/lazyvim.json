@@ -1,10 +1,12 @@
 {
   "extras": [
+    "lazyvim.plugins.extras.editor.outline",
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.typescript",
-    "lazyvim.plugins.extras.lang.yaml"
+    "lazyvim.plugins.extras.lang.yaml",
+    "lazyvim.plugins.extras.util.project"
   ],
   "news": {
     "NEWS.md": "2123"

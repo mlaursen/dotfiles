@@ -1,10 +1,18 @@
 return {
-  "tpope/vim-fugitive",
+  {
+    "tpope/vim-fugitive",
+    cmd = {
+      "Git",
+      "Gwrite",
+      "Gread",
+    },
+  },
 
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       filesystem = {
+        -- follow_current_file = { enabled = false },
         filtered_items = {
           always_show = {
             ".env.local",
@@ -18,23 +26,7 @@ return {
   },
 
   {
-    "nvim-telescope/telescope.nvim",
-    -- keys = {
-    --   {
-    --     "<C-s>",
-    --     function()
-    --       require("telescope.actions").select_horizontal()
-    --     end,
-    --     desc = "Select file horizontal",
-    --   },
-    -- },
-    -- opts = {
-    --   defaults = {
-    --     mappings = {
-    --       ["<C-s>"] = require("telescope.actions").select_horizontal,
-    --     },
-    --   },
-    -- },
+    "telescope.nvim",
     opts = {
       extensions = {
         fzf = {
