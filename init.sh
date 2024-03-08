@@ -15,7 +15,7 @@ fi
 
 cd "$HOME/dotfiles"
 
-dotfiles=( ".zshrc" ".gitconfig" ".vimrc" ".dir_colors" ".tmux.conf" ".editorconfig" )
+dotfiles=( ".zshrc" ".gitconfig" ".dir_colors" ".tmux.conf" ".editorconfig" )
 
 echo ""
 echo "Symlinking default dotfiles with backups..."
@@ -40,27 +40,6 @@ if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
   ln -s "$HOME/dotfiles/mlaursen.zsh-theme" "$HOME/.oh-my-zsh/themes/mlaursen.zsh-theme"
 fi
 
-echo ""
-if [[ ! -d "$HOME/.nvm" ]]; then
-  echo "Installing nvm..."
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
-
-  source "$HOME/.zshrc"
-else
-  echo "nvm installation found. Skipping..."
-fi
-
-if [ ! -x "$(command -v node)" ]; then
-  echo "Installing node..."
-  nvm install stable
-  nvm alias default stable
-  nvm use default
-
-  source "$HOME/.zshrc"
-else
-  echo "node found... skipping installation"
-fi
-
 if [ ! -x "$(command -v stack)"]; then
   echo ""
   echo "Installing haskell-stack"
@@ -71,23 +50,43 @@ else
 fi
 
 echo ""
+if [[ -d "$VOLTA_HOME" ]]; then
+  echo "Installing volta..."
+  curl https://get.volta.sh | bash
+  source ~/.zshrc
+else
+  echo "Volta installation found. Skipping..."
+fi
+
+echo ""
+echo "Installing node..."
+volta install node@18
+volta install node@20
+
+echo ""
+echo "Installing pnpm"
+volta install pnpm
+
+echo ""
+echo "Installing pnpm"
+volta install pnpm
+
+echo ""
+echo "Installing yarn"
+volta install yarn@1
+volta install yarn
+
+
+echo ""
 echo "Adding $current_os specific functionality..."
 if [[ "$current_os" = "Mac" ]]; then
-
   echo ""
   echo "Installing xcode additional tools..."
   xcode-select --install
 
   echo ""
   echo "Installing homebrew..."
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-  echo ""
-  echo "Adding solarized..."
-  curl -O http://ethanschoonover.com/solarized/files/solarized.zip \
-    && unzip solarized.zip \
-    && open solarized/iterm2-colors-solarized/Solarized\ Dark.itermcolors \
-    && rm -rf solarized solarized.zip
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   echo ""
   echo "Adding quicker key repeat (reqires re-login)..."
@@ -96,38 +95,23 @@ if [[ "$current_os" = "Mac" ]]; then
 
   echo ""
   echo "Installing dependencies..."
+  cd ./install/mac
   brew bundle
+  cd -
 
   echo ""
   echo "Initializing gpg settings..."
   mkdir "~/.gnupg"
   chmod 700 "~/.gnupg"
-  ln -s "~/dotfiles/gpg.conf" "~/.gnupg/gpg.conf"
-  ln -s "~/dotfiles/gpg-agent.conf" "~/.gnupg/gpg-agent.conf"
+  ln -s "~/dotfiles/install/mac/gpg.conf" "~/.gnupg/gpg.conf"
+  ln -s "~/dotfiles/install/mac/gpg-agent.conf" "~/.gnupg/gpg-agent.conf"
 else
   echo ""
-  echo "Updating default editor to be vim ..."
-  sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
-  sudo update-alternatives --set editor /usr/local/bin/vim
-
-  echo ""
-  echo "Installing nodejs for yarn dependency"
-  sudo yum install epel-release -y
-  sudo yum install nodejs -y
-
-  echo ""
-  echo "Installing haskell-stack"
-  sudo yum install stack -y
-
-  echo ""
-  echo "Installing yarn..."
-  curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
-  sudo yum install yarn -y
+  echo "Initializing gpg settings..."
+  mkdir "~/.gnupg"
+  chmod 700 "~/.gnupg"
+  ln -s "~/dotfiles/install/mac/gpg-agent.conf" "~/.gnupg/gpg-agent.conf"
 fi
-
-echo ""
-echo "Updating yarn to work without a specific node version"
-yarn config set scripts-prepend-node-path true --global
 
 echo ""
 echo "Cloning zsh-git-prompt and initializing"
@@ -167,16 +151,10 @@ cd "$code_dir/zsh-git-prompt"
 stack setup
 stack build && stack install
 
-nvim_dir="$HOME/.config/nvim"
-
 echo ""
-echo "Initializing vim and neovim..."
-mkdir -p "$nvim_dir"
-ln -s "~/dotfiles/coc-settings.json ~/.vim/coc-settings.json"
-ln -s "~/dotfiles/coc-settings.json $nvim_dir/coc-settings.json"
-ln -s "~/dotfiles/nvim/lua $nvim_dir/lua"
-ln -s "~/dotfiles/nvim/init.lua $nvim_dir/init.lua"
-ln -s "~/dotfiles/nvim/filetype.lua $nvim_dir/filetype.lua"
+echo "Initializing neovim..."
+ln -s "$HOME/dotfiles/lazyvim/nvim" "~/.config/nvim"
+
 
 if [[ "$current_os" = "Mac" ]]; then
   pip3 install neovim
@@ -185,7 +163,9 @@ else
 fi
 
 echo ""
-echo "Initial setup complete! run vim +PlugInstall and nvim +PlugInstall to install vim packages"
+echo "Initial setup complete!"
 echo ""
 echo "Update the default shell to be zsh: \`chsh -s /usr/zsh\` (requires logout)"
 echo "If the command above fails, run \`chsh -l\` to find the zsh path"
+echo ""
+echo "Run 'nvim' to install remaining packages and get started"
