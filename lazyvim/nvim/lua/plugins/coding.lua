@@ -31,7 +31,8 @@ return {
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
-      local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
+      -- using these mappings makes it so I can't tab within a snippet
+      -- local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
       opts.snippet = {
         expand = function(args)
@@ -47,18 +48,20 @@ return {
 
       table.insert(opts.sources, 2, { name = "ultisnips" })
       opts.mapping = cmp.mapping.preset.insert({
-        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        -- ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        -- ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.abort(),
 
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          cmp_ultisnips_mappings.jump_forwards(fallback)
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          cmp_ultisnips_mappings.jump_backwards(fallback)
-        end, { "i", "s" }),
+        ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        -- ["<Tab>"] = cmp.mapping(function(fallback)
+        --   cmp_ultisnips_mappings.jump_forwards(fallback)
+        -- end, { "i", "s" }),
+        -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+        --   cmp_ultisnips_mappings.jump_backwards(fallback)
+        -- end, { "i", "s" }),
 
         -- force the completion menu to appear
         ["<C-o>"] = cmp.mapping(function(fallback)
