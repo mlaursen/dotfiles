@@ -33,8 +33,8 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
+      --  https://mason-registry.dev/registry/list
       ensure_installed = {
-        "cspell",
         "css-lsp",
         "cssmodules-language-server",
         "eslint-lsp",

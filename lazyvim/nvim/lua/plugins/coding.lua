@@ -46,7 +46,9 @@ return {
         end,
       }
       opts.completion = {
-        completeopt = vim.g.completeopt,
+        -- I like having to press tab to complete something while typing instead of
+        -- having to select the item to complete it
+        completeopt = "menu,preview",
       }
 
       table.insert(opts.sources, 2, { name = "ultisnips" })

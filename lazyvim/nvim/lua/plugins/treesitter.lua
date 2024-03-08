@@ -1,0 +1,35 @@
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
+      ensure_installed = {
+        "bash",
+        -- "c",
+        "css",
+        "diff",
+        "html",
+        "javascript",
+        "jsdoc",
+        "json",
+        "jsonc",
+        "lua",
+        "luadoc",
+        "luap",
+        "markdown",
+        "markdown_inline",
+        -- "python",
+        "query",
+        "regex",
+        "scss",
+        -- "toml",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "xml",
+        "yaml",
+      },
+    },
+  },
+}
