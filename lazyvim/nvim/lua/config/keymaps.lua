@@ -10,3 +10,6 @@ vim.keymap.del("n", "<leader>gg")
 vim.keymap.del("n", "<leader>gG")
 
 vim.keymap.set("n", "<leader>gg", "<cmd>Git<cr>")
+
+-- make sure vim-surround works in visual mode instead of leap
+vim.keymap.set("x", "S", "<plug>VSurround")

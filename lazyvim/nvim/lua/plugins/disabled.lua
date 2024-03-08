@@ -21,4 +21,6 @@ return {
   { "echasnovski/mini.indentscope", enabled = false },
 
   { "mfussenegger/nvim-lint", enabled = false },
+
+  { "lukas-reineke/headlines.nvim", enabled = false },
 }

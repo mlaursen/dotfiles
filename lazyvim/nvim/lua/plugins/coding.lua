@@ -20,13 +20,6 @@ return {
       "mlaursen/vim-react-snippets",
       "mlaursen/mlaursen-vim-snippets",
     },
-    config = function()
-      vim.g.UltiSnipsExpandTrigger = "<c-space>"
-      vim.g.UltiSnipsSnippetDirectories = {
-        "UltiSnips",
-        os.getenv("HOME") .. "/code/react-md/UltiSnips",
-      }
-    end,
   },
 
   {
@@ -48,7 +41,8 @@ return {
       opts.completion = {
         -- I like having to press tab to complete something while typing instead of
         -- having to select the item to complete it
-        completeopt = "menu,preview",
+        -- completeopt = "menu,preview",
+        completeopt = vim.g.completeopt,
       }
 
       table.insert(opts.sources, 2, { name = "ultisnips" })
