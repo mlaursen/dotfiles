@@ -71,7 +71,8 @@ else
   export EDITOR='vim'
 fi
 
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+# export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 export PATH
 export GPG_TTY=`tty`
 
