@@ -3,15 +3,33 @@
 -- Add any additional options here
 local o = vim.opt
 
-o.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
 o.autowrite = false
-o.splitbelow = false
-o.splitright = false
-o.conceallevel = 0
+-- do not sync yanks with clipboard. I prefer using a register for that instead
+-- so I have separate clipboards
+o.clipboard = ""
 -- I like having to press tab to complete something while typing instead of
 -- having to select the item to complete it
 o.completeopt = "menu,preview"
 
+o.conceallevel = 0 -- I do not like concealing markup
+
+-- line numbers mean nothing and relative line numbers are even worse
+o.number = false
+o.relativenumber = false
+
+-- do not use the weird shifting width cursor and set it back to the vim
+-- version
+o.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
+
+-- keep the default split behavior
+o.splitbelow = false
+o.splitright = false
+
+-- set the command-line completion mode back to default so I don't have to
+-- press tab twice to autocomplete
+o.wildmode = "full"
+
+-- enable the clipboard wiithin WSL
 if os.getenv("WSL_DISTRO_NAME") ~= nil then
   vim.g.clipboard = {
     name = "WslClipboard",
@@ -33,3 +51,8 @@ vim.g.UltiSnipsSnippetDirectories = {
   "UltiSnips",
   os.getenv("HOME") .. "/code/react-md/UltiSnips",
 }
+
+if vim.fn.executable("volta") then
+  -- https://github.com/volta-cli/volta/issues/866#issuecomment-1470067688
+  vim.g["node_host_prog"] = vim.call("system", 'volta which neovim-node-host | tr -d "\n"')
+end

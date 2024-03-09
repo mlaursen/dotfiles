@@ -74,6 +74,14 @@ return {
         formatting_options = nil,
         timeout_ms = nil,
       },
+
+      -- These are non-defaults
+      diagnostics = {
+        -- inline virtual diagnostics is way too noisy use Trouble or jumping
+        -- to diagnostics to see the messages instead
+        virtual_text = false,
+      },
+
       -- LSP Server Settings
       ---@type lspconfig.options
       servers = {
@@ -118,6 +126,8 @@ return {
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
 
+      -- allow quick fixes with eslint for type imports, react hook dependency
+      -- arrays, etc
       keys[#keys + 1] = {
         "<leader>cq",
         function()

@@ -11,6 +11,11 @@ return {
     ---@type LazyKeysSpec[]
     keys = {
       { "<leader>gg", "<cmd>Git<cr>", desc = "Git (fugitive)" },
+      { "<leader>gB", "<cmd>Git blame<cr>", desc = "blame" },
+      -- Using `Git!` so that the output appears in a preview panel which makes
+      -- it easier to view error details
+      { "<leader>gp", "<cmd>Git! pull<cr>", desc = "pull" },
+      { "<leader>gP", "<cmd>Git! push -u origin HEAD<cr>", desc = "push" },
     },
   },
 
@@ -26,6 +31,22 @@ return {
             ".env.production.local",
           },
           hide_dotfiles = false,
+        },
+      },
+      window = {
+        mappings = {
+          ["a"] = {
+            "add",
+            config = {
+              show_path = "relative",
+            },
+          },
+          ["m"] = {
+            "move",
+            config = {
+              show_path = "relative",
+            },
+          },
         },
       },
     },
@@ -81,6 +102,16 @@ return {
         "<cmd>Telescope find_files no_ignore=true hidden=true search_file=\\.env<cr>",
         desc = "Find dot env files",
       },
+      {
+        "<leader>gb",
+        "<cmd>Telescope git_branches<cr>",
+        desc = "Git branch",
+      },
+      {
+        "<leader>gS",
+        "<cmd>Telescope git_stash<cr>",
+        desc = "Git stash",
+      },
     },
     dependencies = {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -114,6 +145,18 @@ return {
     cmd = {
       "VimwikiDiaryIndex",
       "VimwikiMakeDiaryNote",
+    },
+    keys = {
+      {
+        "<leader>fwn",
+        "<cmd>VimwikiMakeDiaryNote<cr>",
+        desc = "Vimwiki Diary Node",
+      },
+      {
+        "<leader>fwi",
+        "<cmd>VimwikiDiaryIndex<cr>",
+        desc = "Vimwiki Diary Index",
+      },
     },
     init = function()
       vim.g.vimwiki_list = {
