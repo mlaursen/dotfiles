@@ -17,7 +17,6 @@ return {
   { "folke/tokyonight.nvim", enabled = false },
   { "catppuccin/nvim", enabled = false },
 
-  { "folke/persistence.nvim", enabled = false },
   { "dstein64/vim-startuptime", enabled = false },
 
   -- I normally don't search/replace multiple files at once so I haven't found
