@@ -99,7 +99,7 @@ return {
     keys = {
       {
         "<leader>fd",
-        "<cmd>Telescope find_files no_ignore=true hidden=true search_file=\\.env<cr>",
+        "<cmd>Telescope find_files no_ignore=true hidden=true search_file=\\.env initial_mode=normal<cr>",
         desc = "Find dot env files",
       },
       {
@@ -109,7 +109,7 @@ return {
       },
       {
         "<leader>gS",
-        "<cmd>Telescope git_stash<cr>",
+        "<cmd>Telescope git_stash initial_mode=normal<cr>",
         desc = "Git stash",
       },
     },
