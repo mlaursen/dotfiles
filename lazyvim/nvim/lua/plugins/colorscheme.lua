@@ -14,6 +14,11 @@ return {
             },
           },
         },
+        groups = {
+          nightfox = {
+            WinSeparator = { fg = "palette.cyan" },
+          },
+        },
       })
     end,
   },
