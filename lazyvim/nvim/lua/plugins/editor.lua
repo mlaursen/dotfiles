@@ -112,11 +112,6 @@ return {
         "<cmd>Telescope git_stash<cr>",
         desc = "Git stash",
       },
-      {
-        "<leader>fs",
-        "<cmd>Telescope yaml_schema<cr>",
-        desc = "Find yaml schema",
-      },
     },
     dependencies = {
       {
@@ -124,12 +119,6 @@ return {
         build = "make",
         config = function()
           require("telescope").load_extension("fzf")
-        end,
-      },
-      {
-        "someone-stole-my-name/yaml-companion.nvim",
-        config = function()
-          require("telescope").load_extension("yaml_schema")
         end,
       },
     },

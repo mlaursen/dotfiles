@@ -38,14 +38,14 @@ return {
         "css-lsp",
         "cssmodules-language-server",
         "eslint-lsp",
+        "graphql-language-service-cli",
         "html-lsp",
         "json-lsp",
         "lua-language-server",
-        "stylua",
-        "lua-language-server",
-        "graphql-language-service-cli",
         "stylelint-lsp",
+        "stylua",
         -- "sonarlint-language-server",
+        "yaml-language-server",
       },
     },
   },
@@ -106,6 +106,18 @@ return {
           filetypes = { "css", "scss" },
           settings = {
             stylelintplus = {},
+          },
+        },
+        yamlls = {
+          settings = {
+            yaml = {
+              schemas = {
+                ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = {
+                  "/gitlab/*.yml",
+                  "/gitlab/*.yaml",
+                },
+              },
+            },
           },
         },
       },

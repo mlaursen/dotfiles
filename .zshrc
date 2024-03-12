@@ -8,7 +8,6 @@ plugins=(
   ag
   fzf
   npm
-  nvm
   yarn
 )
 
