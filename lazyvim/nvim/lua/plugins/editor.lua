@@ -6,7 +6,7 @@ return {
       "Git",
       "Gwrite",
       "Gread",
-      "GVdiffsplit",
+      "Gvdiffsplit",
     },
     ---@type LazyKeysSpec[]
     keys = {
@@ -14,8 +14,10 @@ return {
       { "<leader>gB", "<cmd>Git blame<cr>", desc = "blame" },
       -- Using `Git!` so that the output appears in a preview panel which makes
       -- it easier to view error details
-      { "<leader>gp", "<cmd>Git! pull<cr>", desc = "pull" },
+      { "<leader>gp", "<cmd>Git! pruneall<cr>", desc = "pull and prune" },
       { "<leader>gP", "<cmd>Git! push -u origin HEAD<cr>", desc = "push" },
+      { "<leader>gl", "<cmd>Git log<cr>", desc = "log" },
+      { "<leader>gD", "<cmd>Gvdiffsplit!<cr>", desc = "Diff split (vertical)" },
     },
   },
 
