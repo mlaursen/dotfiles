@@ -9,6 +9,6 @@ vim.filetype.add({
     [".eslintrc"] = "jsonc",
   },
   pattern = {
-    [".?env.?.*"] = "sh",
+    [".env.?.*"] = "sh",
   },
 })
