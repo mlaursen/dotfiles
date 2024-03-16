@@ -86,7 +86,14 @@ return {
           -- - `.github/workflow/main.yml`
           --
           -- this still doesn't work for ignored .env*.local files though
-          find_command = { "rg", "--files", "--follow", "--hidden", "--iglob", "!.git" },
+          find_command = {
+            "rg",
+            "--files",
+            "--follow",
+            "--hidden",
+            "--iglob",
+            "!.git",
+          },
         },
       },
       extensions = {
