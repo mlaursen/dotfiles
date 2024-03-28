@@ -38,9 +38,6 @@ return {
     -- },
   },
 
-  -- native lsp seem to work good enough without this
-  { "mfussenegger/nvim-lint", enabled = false },
-
   -- this makes markdown too difficult to read as it switches between
   -- 'conceallevel' as you type and navigate through the file
   { "lukas-reineke/headlines.nvim", enabled = false },
