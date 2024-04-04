@@ -48,6 +48,8 @@ bash <(curl -s https://raw.githubusercontent.com/mlaursen/dotfiles/master/init.s
     - Open the `settings.json` file
       - Paste the contents of `windows_terminal.json` into the themes section
     - Update the `Ubuntu` appearance to use font and colorscheme
+  - Symlink `wslview` to `xdg-open` so that `gx` and `gX` work
+    - `sudo ln -s $(which wslview) /usr/local/bin/xdg-open`
 
 </details>
 
