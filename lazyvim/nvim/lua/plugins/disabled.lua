@@ -19,10 +19,6 @@ return {
 
   { "dstein64/vim-startuptime", enabled = false },
 
-  -- I normally don't search/replace multiple files at once so I haven't found
-  -- a use for this yet. lsp refactor+rename has been good enough for me
-  { "nvim-pack/nvim-spectre", enabled = false },
-
   -- I prefer only using "lukas-reineke/indent-blankline.nvim" since the
   -- indentation never really matters for me and this plugin makes it even
   -- noisier with animations. disabling the animation still makes it too
