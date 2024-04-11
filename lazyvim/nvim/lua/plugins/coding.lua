@@ -86,7 +86,7 @@ return {
 
   {
     "tpope/vim-surround",
-    enabled = false,
+    -- enabled = false,
     event = { "InsertEnter", "VeryLazy" },
     ---@type LazyKeysSpec[]
     keys = {

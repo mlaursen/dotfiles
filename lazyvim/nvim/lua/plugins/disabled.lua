@@ -33,6 +33,9 @@ return {
     --   },
     -- },
   },
+  { "echasnovski/mini.surround", enabled = false },
+  { "folke/flash.nvim", enabled = false },
+  { "lewis6991/gitsigns.nvim", enabled = false },
 
   -- this makes markdown too difficult to read as it switches between
   -- 'conceallevel' as you type and navigate through the file

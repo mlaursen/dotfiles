@@ -79,28 +79,30 @@ return {
       diagnostics = {
         -- inline virtual diagnostics is way too noisy use Trouble or jumping
         -- to diagnostics to see the messages instead
-        -- virtual_text = false,
+        virtual_text = false,
       },
 
       -- LSP Server Settings
       ---@type lspconfig.options
       servers = {
         tsserver = {
-          -- settings = {
-          --   completions = {
-          --     completeFunctionCalls = true,
-          --   },
-          --   javascript = {
-          --     format = {
-          --       enable = false,
-          --     },
-          --   },
-          --   typescript = {
-          --     format = {
-          --       enable = false,
-          --     },
-          --   },
-          -- },
+          settings = {
+            javascript = {
+              format = {
+                enable = false,
+              },
+            },
+            typescript = {
+              format = {
+                enable = false,
+              },
+              suggest = {
+                autoImports = false,
+                completeFunctionCalls = false,
+                includeCompletionsForImportStatements = false,
+              },
+            },
+          },
         },
         stylelint_lsp = {
           filetypes = { "css", "scss" },
