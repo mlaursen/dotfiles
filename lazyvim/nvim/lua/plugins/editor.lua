@@ -151,6 +151,16 @@ return {
     },
   },
 
+  -- {
+  --   "echasnovski/mini.misc",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     local misc = require("mini.misc")
+  --     misc.setup()
+  --     misc.setup_auto_root()
+  --   end,
+  -- },
+
   {
     "vimwiki/vimwiki",
     cmd = {
