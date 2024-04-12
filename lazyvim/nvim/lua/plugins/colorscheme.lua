@@ -22,9 +22,4 @@ return {
       })
     end,
   },
-
-  {
-    "LazyVim/LazyVim",
-    opts = { colorscheme = "nightfox" },
-  },
 }
