@@ -25,3 +25,7 @@
   defaultBranch = main
 [fetch]
   prune = true
+[includeIf "hasconfig:remote.*.url:git@github.com:mlaursen/**"]
+  path = ~/dotfiles/.gitconfig-gpg
+[includeIf "hasconfig:remote.*.url:git@gitlab.com:poppulo/**"]
+  path = ~/dotfiles/.gitconfig-poppulo
