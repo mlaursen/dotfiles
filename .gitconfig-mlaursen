@@ -1,3 +1,4 @@
 [commit]
   gpgsign = true
-  # signingkey = INSERT SIGNING_KEY HERE
+[user]
+  # signingkey = REPLACE WITH KEY HERE
