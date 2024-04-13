@@ -19,3 +19,7 @@ autocmd("FileType", {
   pattern = "lua",
   command = "set comments^=:---",
 })
+autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*snippets",
+  command = "setf snippets",
+})

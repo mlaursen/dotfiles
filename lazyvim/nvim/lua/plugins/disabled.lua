@@ -8,10 +8,8 @@ return {
   -- what's what.
   { "nvim-treesitter/nvim-treesitter-context", enabled = false },
 
-  -- currently using Ultisnips instead
-  -- { "L3MON4D3/LuaSnip", enabled = false },
+  -- I prefer my own snippets
   { "rafamadriz/friendly-snippets", enabled = false },
-  -- { "saadparwaiz1/cmp_luasnip", enabled = false },
 
   -- Using nightfox with the colorblind mode
   { "folke/tokyonight.nvim", enabled = false },
