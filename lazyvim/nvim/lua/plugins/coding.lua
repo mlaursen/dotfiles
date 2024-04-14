@@ -5,6 +5,15 @@ return {
   },
 
   {
+    "L3MON4D3/LuaSnip",
+    ---@type LazyKeysSpec[]
+    keys = {
+      { "<tab>", mode = { "i", "s" }, false },
+      { "<s-tab>", mode = { "i", "s" }, false },
+    },
+  },
+
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "mlaursen/vim-react-snippets",
