@@ -121,6 +121,11 @@ return {
         "<cmd>Telescope git_stash initial_mode=normal<cr>",
         desc = "Git stash",
       },
+      {
+        "zf",
+        "<cmd>Telescope spell_suggest<cr>",
+        desc = "z= but with telescope",
+      },
     },
     dependencies = {
       {

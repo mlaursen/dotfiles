@@ -111,7 +111,7 @@ Install [haskell stack](https://docs.haskellstack.org/en/stable/#how-to-install-
 curl -sSL https://get.haskellstack.org/ | sh
 ```
 
-Setup [zsh-git-promot](https://github.com/zsh-git-prompt/zsh-git-prompt):
+Setup [zsh-git-prompt](https://github.com/zsh-git-prompt/zsh-git-prompt):
 
 ```sh
 git clone https://github.com/zsh-git-prompt/zsh-git-prompt ~/code/

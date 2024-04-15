@@ -29,7 +29,11 @@ o.splitright = false
 -- press tab twice to autocomplete
 o.wildmode = "full"
 
--- enable the clipboard wiithin WSL
+o.spell = true
+o.spelllang = { "en_us" }
+o.spelloptions = "camel"
+
+-- enable the clipboard within WSL
 if os.getenv("WSL_DISTRO_NAME") ~= nil then
   vim.g.clipboard = {
     name = "WslClipboard",
