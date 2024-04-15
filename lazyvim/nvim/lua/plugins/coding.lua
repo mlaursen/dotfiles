@@ -1,33 +1,57 @@
 return {
   {
+    -- for the syntax highlighting only
     "SirVer/ultisnips",
     ft = "snippets",
   },
 
   {
     "L3MON4D3/LuaSnip",
+    dependencies = {
+      "mlaursen/vim-react-snippets",
+      "mlaursen/mlaursen-vim-snippets",
+    },
     ---@type LazyKeysSpec[]
     keys = {
       { "<tab>", mode = { "i", "s" }, false },
       { "<s-tab>", mode = { "i", "s" }, false },
     },
+    opts = function()
+      require("vim-react-snippets").lazy_load()
+      require("mlaursen-vim-snippets").lazy_load()
+    end,
   },
 
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "mlaursen/vim-react-snippets",
-      "mlaursen/mlaursen-vim-snippets",
+      "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-calc",
+      "petertriho/cmp-git",
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-      require("vim-react-snippets").lazy_load()
-      require("mlaursen-vim-snippets").lazy_load()
+
+      table.insert(opts.sources, { name = "emoji" })
+      table.insert(opts.sources, { name = "calc" })
+      table.insert(opts.sources, { name = "git" })
+
+      require("cmp_git").setup()
 
       opts.completion = {
         completeopt = vim.g.completeopt,
+      }
+      opts.sorting = {
+        priority_weight = 1.0,
+        comparators = {
+          cmp.config.compare.locality,
+          cmp.config.compare.recently_used,
+          cmp.config.compare.score,
+          cmp.config.compare.offset,
+          cmp.config.compare.order,
+        },
       }
       opts.mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
