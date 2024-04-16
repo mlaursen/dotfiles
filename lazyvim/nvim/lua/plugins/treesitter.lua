@@ -5,7 +5,8 @@ return {
       -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
       vim.list_extend(opts.ensure_installed, {
         "css",
-        "scss",
+        -- removed since it doesn't work for: maps, !default, @use, @forward, variables as properties
+        -- "scss",
       })
     end,
     -- opts = {

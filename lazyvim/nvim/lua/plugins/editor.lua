@@ -139,34 +139,6 @@ return {
   },
 
   {
-    "folke/flash.nvim",
-    ---@type LazyKeysSpec[]
-    keys = {
-      { "S", false },
-      {
-        "S",
-        mode = { "n", "o" },
-        function()
-          require("flash").treesitter()
-        end,
-        desc = "Flash Treesitter",
-      },
-      -- this is the default
-      -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" }
-    },
-  },
-
-  -- {
-  --   "echasnovski/mini.misc",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     local misc = require("mini.misc")
-  --     misc.setup()
-  --     misc.setup_auto_root()
-  --   end,
-  -- },
-
-  {
     "vimwiki/vimwiki",
     cmd = {
       "VimwikiDiaryIndex",

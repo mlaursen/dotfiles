@@ -125,3 +125,13 @@ noninteractable
 addon
 scrollable
 deserialize
+deps
+hacky
+quickfix
+LSP
+Neovim
+formatter
+lsp
+lspconfig
+nvim
+tsserver
