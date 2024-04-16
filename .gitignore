@@ -1,5 +1,2 @@
 *.log
 node_modules
-
-# always want latest for this project
-yarn.lock
