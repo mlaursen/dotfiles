@@ -210,3 +210,5 @@ neovim
 zsh
 Symlink
 homebrew
+selectable
+intl
