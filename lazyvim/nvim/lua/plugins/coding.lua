@@ -44,13 +44,14 @@ return {
         completeopt = vim.g.completeopt,
       }
       opts.sorting = {
-        priority_weight = 1.0,
+        priority_weight = 2.0,
         comparators = {
+          cmp.config.compare.exact,
+          cmp.config.compare.offset,
+          cmp.config.compare.score,
+          cmp.config.compare.order,
           cmp.config.compare.locality,
           cmp.config.compare.recently_used,
-          cmp.config.compare.score,
-          cmp.config.compare.offset,
-          cmp.config.compare.order,
         },
       }
       opts.mapping = cmp.mapping.preset.insert({
