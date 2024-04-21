@@ -117,6 +117,11 @@ return {
   },
 
   {
+    "tpope/vim-repeat",
+    event = { "InsertEnter", "VeryLazy" },
+  },
+
+  {
     "danymat/neogen",
     config = function()
       require("neogen").setup({
