@@ -12,8 +12,8 @@ return {
   { "rafamadriz/friendly-snippets", enabled = false },
 
   -- Using nightfox with the colorblind mode
-  { "folke/tokyonight.nvim", enabled = false },
-  { "catppuccin/nvim", enabled = false },
+  -- { "folke/tokyonight.nvim", enabled = false },
+  -- { "catppuccin/nvim", enabled = false },
 
   { "dstein64/vim-startuptime", enabled = false },
 
