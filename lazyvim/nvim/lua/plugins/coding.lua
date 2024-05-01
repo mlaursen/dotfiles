@@ -133,4 +133,18 @@ return {
       { "<space>cg", "<cmd>Neogen<cr>", desc = "Generate Docs" },
     },
   },
+
+  {
+    "zbirenbaum/copilot.lua",
+    -- enabled = false,
+    opts = {
+      suggestion = { enabled = true },
+      panel = { enabled = true },
+      filetypes = {
+        yaml = true,
+        markdown = true,
+      },
+      -- copilot_node_command = "node-20",
+    },
+  },
 }
