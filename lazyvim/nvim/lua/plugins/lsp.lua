@@ -53,15 +53,23 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
-      -- Be aware that you also will need to properly configure your LSP server to
-      -- provide the inlay hints.
+      -- inlay hints just expand current type information that is inferred by other types. i.e.
+      -- ```
+      -- // Without Inlay Hints
+      -- export const FocusCodeEditor = forwardRef<
+      --   HTMLSpanElement,
+      --   FocusCodeEditorProps
+      -- >(function FocusCodeEditor(props, ref) {
+      --
+      -- // Inlay Hints
+      -- export const FocusCodeEditor = forwardRef<
+      --   HTMLSpanElement,
+      --   FocusCodeEditorProps
+      -- >(function FocusCodeEditor(props: FocusCodeEditorProps, ref: ForwardedRef<HTMLSpanElement>): Element {
+      -- ```
       inlay_hints = {
         enabled = false,
       },
-      -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
-      -- Be aware that you also will need to properly configure your LSP server to
-      -- provide the code lenses.
       codelens = {
         enabled = false,
       },
@@ -75,7 +83,6 @@ return {
         timeout_ms = nil,
       },
 
-      -- These are non-defaults
       diagnostics = {
         -- inline virtual diagnostics is way too noisy use Trouble or jumping
         -- to diagnostics to see the messages instead
