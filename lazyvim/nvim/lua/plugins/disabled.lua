@@ -21,16 +21,6 @@ return {
   -- indentation never really matters for me and this plugin makes it even
   -- noisier with animations. disabling the animation still makes it too
   -- visible
-  {
-    "echasnovski/mini.indentscope",
-    enabled = false,
-    -- uncommenting this requires all the indentscope dependencies
-    -- opts = {
-    --   draw = {
-    --     animation = require("mini.indentscope").gen_animation.none(),
-    --   },
-    -- },
-  },
   { "folke/flash.nvim", enabled = false },
   { "lewis6991/gitsigns.nvim", enabled = false },
 
