@@ -105,6 +105,7 @@ return {
           end
         end, { "i", "s" }),
       })
+      opts.experimental.ghost_text = false
     end,
   },
 
