@@ -92,25 +92,25 @@ return {
       -- LSP Server Settings
       ---@type lspconfig.options
       servers = {
-        tsserver = {
-          settings = {
-            javascript = {
-              format = {
-                enable = false,
-              },
-            },
-            typescript = {
-              format = {
-                enable = false,
-              },
-              suggest = {
-                autoImports = false,
-                completeFunctionCalls = false,
-                includeCompletionsForImportStatements = false,
-              },
-            },
-          },
-        },
+        -- tsserver = {
+        --   settings = {
+        --     javascript = {
+        --       format = {
+        --         enable = false,
+        --       },
+        --     },
+        --     typescript = {
+        --       format = {
+        --         enable = false,
+        --       },
+        --       suggest = {
+        --         autoImports = false,
+        --         completeFunctionCalls = false,
+        --         includeCompletionsForImportStatements = false,
+        --       },
+        --     },
+        --   },
+        -- },
         stylelint_lsp = {
           filetypes = { "css", "scss" },
           settings = {
@@ -126,6 +126,14 @@ return {
                   "/gitlab/*.yaml",
                 },
               },
+            },
+          },
+        },
+        eslint = {
+          settings = {
+            useFlatConfig = false,
+            experimental = {
+              useFlatConfig = false,
             },
           },
         },
