@@ -1,7 +1,7 @@
 return {
   {
     "tpope/vim-fugitive",
-    -- lazy = "VeryLazy",
+    lazy = "VeryLazy",
     cmd = {
       "Git",
       "Gwrite",
@@ -12,8 +12,6 @@ return {
     keys = {
       { "<leader>gg", "<cmd>Git<cr>", desc = "Git (fugitive)" },
       { "<leader>gB", "<cmd>Git blame<cr>", desc = "blame" },
-      -- Using `Git!` so that the output appears in a preview panel which makes
-      -- it easier to view error details
       { "<leader>gp", "<cmd>Git pruneall<cr>", desc = "pull and prune" },
       { "<leader>gP", "<cmd>Git push -u origin HEAD<cr>", desc = "push" },
       { "<leader>gl", "<cmd>Git log<cr>", desc = "log" },
@@ -117,7 +115,7 @@ return {
         desc = "Git branch",
       },
       {
-        "<leader>gS",
+        "<leader>gs",
         "<cmd>Telescope git_stash initial_mode=normal<cr>",
         desc = "Git stash",
       },
