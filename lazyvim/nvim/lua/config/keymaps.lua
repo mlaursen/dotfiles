@@ -6,7 +6,7 @@ local del = vim.keymap.del
 -- remove the save behavior
 del({ "i", "x", "n", "s" }, "<C-s>")
 
--- remove lazygit mappings that don't have another mapping for with vim-fugitive/telescope
+-- remove lazygit mappings that don't have another mapping for with vim-fugitive/fzf-lua
 -- del("n", "<leader>gg")
 del("n", "<leader>gG")
 -- del("n", "<leader>gb")

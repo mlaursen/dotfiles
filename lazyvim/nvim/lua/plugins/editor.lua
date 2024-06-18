@@ -54,6 +54,7 @@ return {
 
   {
     "telescope.nvim",
+    enabled = false,
     opts = {
       defaults = {
         hidden = true,
@@ -159,5 +160,32 @@ return {
         { path = "~/vimwiki/", syntax = "markdown", ext = ".md" },
       }
     end,
+  },
+
+  {
+    "fzf-lua",
+    ---@type LazyKeysSpec[]
+    keys = {
+      -- {
+      --   "<leader>gl",
+      --   "<cmd>FzfLua git_commits<cr>",
+      --   desc = "commits",
+      -- },
+      {
+        "<leader>gC",
+        "<cmd>FzfLua git_bcommits<cr>",
+        desc = "Commits (current file)",
+      },
+      {
+        "<leader>gb",
+        "<cmd>FzfLua git_branches<cr>",
+        desc = "branch",
+      },
+      {
+        "<leader>gs",
+        "<cmd>FzfLua git_stash<cr>",
+        desc = "stash",
+      },
+    },
   },
 }
