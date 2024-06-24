@@ -13,6 +13,8 @@ return {
   -- I prefer my own snippets
   { "rafamadriz/friendly-snippets", enabled = false },
 
+  { "echasnovski/mini.pairs", enabled = false },
+
   -- Using nightfox with the colorblind mode
   -- { "folke/tokyonight.nvim", enabled = false },
   -- { "catppuccin/nvim", enabled = false },
