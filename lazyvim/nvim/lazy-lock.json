@@ -25,6 +25,7 @@
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "f5425eb1d0d794f0305d5eeebddabb74614683ff" },
   "mason.nvim": { "branch": "main", "commit": "0950b15060067f752fde13a779a994f59516ce3d" },
   "mini.ai": { "branch": "main", "commit": "ebf806de0292ef89b2756cfb0b55040901d1c441" },
+  "mini.pairs": { "branch": "main", "commit": "18a2d9d7106d08d3560d07c03dcbf5680c8675cc" },
   "mlaursen-vim-snippets": { "branch": "main", "commit": "45e2158de3c35e4375ede9bd7e0d7ee8b981364f" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "29f7c215332ba95e470811c380ddbce2cebe2af4" },
   "neogen": { "branch": "main", "commit": "6de0add4805165317ab7d3d36b5cef48b1b865f3" },
