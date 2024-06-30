@@ -164,6 +164,16 @@ return {
 
   {
     "fzf-lua",
+    dependencies = {
+      {
+        "airblade/vim-rooter",
+        init = function()
+          vim.g.rooter_patterns = { ".git" }
+          vim.g.rooter_buftypes = { "" }
+        end,
+      },
+    },
+
     ---@type LazyKeysSpec[]
     keys = {
       -- {
