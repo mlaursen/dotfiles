@@ -29,6 +29,11 @@ return {
       "hrsh7th/cmp-calc",
       "petertriho/cmp-git",
     },
+    ---@type LazyKeysSpec[]
+    keys = {
+      { "<tab>", mode = { "i", "s" }, false },
+      { "<s-tab>", mode = { "i", "s" }, false },
+    },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
