@@ -24,6 +24,8 @@ return {
   { "folke/flash.nvim", enabled = false },
   { "lewis6991/gitsigns.nvim", enabled = false },
 
+  { "echasnovski/mini.pairs", enabled = false },
+
   -- this makes markdown too difficult to read as it switches between
   -- 'conceallevel' as you type and navigate through the file
   { "lukas-reineke/headlines.nvim", enabled = false },
