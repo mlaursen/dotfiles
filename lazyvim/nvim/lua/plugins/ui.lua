@@ -6,7 +6,8 @@ return {
         filter = {
           event = "msg_show",
           any = {
-            { find = "remote" },
+            { find = "remote: Create a pull request" },
+            { find = "remote: Create a merge request" },
           },
         },
         view = "popup",
