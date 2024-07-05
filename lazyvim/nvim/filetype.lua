@@ -6,5 +6,6 @@ vim.filetype.add({
     [".swcrc"] = "jsonc",
     [".babelrc"] = "jsonc",
     [".eslintrc"] = "jsonc",
+    ["*.snippets"] = "snippets",
   },
 })
