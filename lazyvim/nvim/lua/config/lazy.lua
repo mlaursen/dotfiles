@@ -32,7 +32,8 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "nightfox" } },
-  checker = { enabled = true }, -- automatically check for plugin updates
+  -- I want to manually check for updates instead of seeing the popups each time I open nvim
+  checker = { enabled = false }, -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins
