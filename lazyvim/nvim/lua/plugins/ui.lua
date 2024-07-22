@@ -8,6 +8,7 @@ return {
           any = {
             { find = "remote: Create a pull request" },
             { find = "remote: Create a merge request" },
+            { find = "remote: To create a merge request" },
           },
         },
         view = "popup",
