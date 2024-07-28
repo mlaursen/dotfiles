@@ -73,7 +73,7 @@ return {
         enabled = false,
       },
       codelens = {
-        enabled = false,
+        -- enabled = false,
       },
       -- add any global capabilities here
       capabilities = {},
