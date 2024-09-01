@@ -138,11 +138,6 @@ return {
 
   {
     "danymat/neogen",
-    config = function()
-      require("neogen").setup({
-        snippet_engine = "luasnip",
-      })
-    end,
     keys = {
       { "<space>cg", "<cmd>Neogen<cr>", desc = "Generate Docs" },
     },
