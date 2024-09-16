@@ -206,6 +206,8 @@ nvim
 
 > Check out
 > [Methods of Signing with GPG](https://gist.github.com/troyfontaine/18c9146295168ee9ca2b30c00bd1b41e)
+> and
+> [Renew GPG Key](https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0)
 
 <details>
   <summary>Mac</summary>
