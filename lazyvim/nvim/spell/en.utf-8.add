@@ -249,3 +249,8 @@ eula
 interoperability
 customizable
 fallbacks
+artifactory
+typecheck
+codegen
+graphql
+cli
