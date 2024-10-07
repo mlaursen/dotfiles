@@ -197,5 +197,51 @@ return {
         desc = "stash",
       },
     },
+
+    opts = function(_, opts)
+      local path = require("fzf-lua.path")
+      local utils = require("fzf-lua.utils")
+
+      --- https://github.com/ibhagwan/fzf-lua/blob/ebb89e4e4065e31b029eee8f618e1ca660f41f35/lua/fzf-lua/actions.lua#L577-L600
+      local git_switch_create = function(selected, opts)
+        if not selected[1] then
+          return
+        end
+        local cmd = path.git_cwd({ "git", "checkout" }, opts)
+        local git_ver = utils.git_version()
+        -- git switch was added with git version 2.23
+        if git_ver and git_ver >= 2.23 then
+          cmd = path.git_cwd({ "git", "switch" }, opts)
+        end
+        -- remove anything past space
+        local branch = selected[1]:match("[^ ]+")
+        -- do nothing for active branch
+        if branch:find("%*") ~= nil then
+          return
+        end
+        if branch:find("^remotes/") then
+          -- NOTE: This is the new part
+          -- table.insert(cmd, "--detach")
+          branch = branch:gsub("remotes/origin/", "")
+        end
+        table.insert(cmd, branch)
+        local output, rc = utils.io_systemlist(cmd)
+        if rc ~= 0 then
+          utils.err(unpack(output))
+        else
+          utils.info(unpack(output))
+          vim.cmd("checktime")
+        end
+      end
+      return vim.tbl_deep_extend("force", opts, {
+        git = {
+          branches = {
+            actions = {
+              ["ctrl-s"] = { git_switch_create, pos = 3 },
+            },
+          },
+        },
+      })
+    end,
   },
 }
