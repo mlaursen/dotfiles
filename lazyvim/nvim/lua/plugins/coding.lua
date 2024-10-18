@@ -137,13 +137,6 @@ return {
   },
 
   {
-    "danymat/neogen",
-    keys = {
-      { "<space>cg", "<cmd>Neogen<cr>", desc = "Generate Docs" },
-    },
-  },
-
-  {
     "CopilotChat.nvim",
     opts = {
       -- window = {
