@@ -60,3 +60,6 @@ if vim.fn.executable("volta") then
   -- https://github.com/volta-cli/volta/issues/866#issuecomment-1470067688
   vim.g["node_host_prog"] = vim.call("system", 'volta which neovim-node-host | tr -d "\n"')
 end
+
+-- why the fuck would you add animations to vim?
+vim.g.snacks_animate = false
