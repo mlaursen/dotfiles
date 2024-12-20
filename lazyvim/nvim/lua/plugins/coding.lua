@@ -43,24 +43,35 @@ return {
         preset = "default",
         ["<Tab>"] = { "select_next" },
         ["<S-Tab>"] = { "select_prev" },
+        ["<Up>"] = { "select_prev" },
+        ["<Down>"] = { "select_next" },
         ["<C-space>"] = {
           function(cmp)
             if cmp.snippet_active() then
               return cmp.accept()
             end
+
+            -- if the snippet isn't the first one in the list, try to find one
+            -- that matches and apply it
+            local list = require("blink.cmp.completion.list")
+            local label = list.context and list.context.get_keyword() or nil
+            local index = (
+              label
+              and require("blink.cmp.lib.utils").find_idx(list.items, function(i)
+                return i.label == label and i.source_name == "luasnip"
+              end)
+            ) or nil
+            if index then
+              cmp.accept({ index = index })
+            end
+
             return cmp.select_and_accept()
           end,
         },
         ["<C-j>"] = { "snippet_forward", "fallback" },
         ["<C-k>"] = { "snippet_backward", "fallback" },
         ["<C-o>"] = { "show" },
-        ["<Enter>"] = {},
-
-        -- disable default keymaps
-        ["<C-e>"] = {},
-        ["<C-y>"] = {},
-        ["<C-p>"] = {},
-        ["<C-n>"] = {},
+        ["<CR>"] = { "accept", "fallback" },
       },
     },
   },
