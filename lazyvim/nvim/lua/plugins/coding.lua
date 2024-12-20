@@ -58,16 +58,18 @@ return {
             local index = (
               label
               and require("blink.cmp.lib.utils").find_idx(list.items, function(i)
-                return i.label == label and i.source_name == "luasnip"
+                return i.label == label and i.source_name == "Luasnip"
               end)
             ) or nil
             if index then
-              cmp.accept({ index = index })
+              return cmp.accept({ index = index })
             end
 
-            return cmp.select_and_accept()
+            -- do nothing if no snippets exist
           end,
         },
+        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
         ["<C-j>"] = { "snippet_forward", "fallback" },
         ["<C-k>"] = { "snippet_backward", "fallback" },
         ["<C-o>"] = { "show" },
