@@ -63,3 +63,4 @@ end
 
 -- why the fuck would you add animations to vim?
 vim.g.snacks_animate = false
+vim.g.lazyvim_blink_main = true
