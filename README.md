@@ -196,6 +196,9 @@ pip3 install neovim --user
 
 # if pip3 install hangs on WSL, comment out the export DISPLAY= and the next line in the .zshrc
 
+# install rust (if not using homebrew)
+curl https://sh.rustup.rs -sSf | sh
+
 # Start nvim to start installing packages
 nvim
 ```
