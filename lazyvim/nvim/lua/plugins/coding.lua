@@ -23,6 +23,9 @@ return {
     opts = function()
       require("vim-react-snippets").lazy_load()
       require("mlaursen-vim-snippets").lazy_load()
+
+      -- defaults to `NonText` which is not visible for me with the menu bg
+      vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { link = "Comment" })
     end,
   },
 
