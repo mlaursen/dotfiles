@@ -32,14 +32,38 @@ return {
   {
     "saghen/blink.cmp",
     enabled = is_blink_enabled,
-    dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
+    dependencies = {
+      "L3MON4D3/LuaSnip",
+      "moyiz/blink-emoji.nvim",
+    },
     opts = {
+      sources = {
+        default = {
+          "lsp",
+          "path",
+          "snippets",
+          "buffer",
+          "emoji",
+        },
+        providers = {
+          emoji = {
+            module = "blink-emoji",
+            name = "Emoji",
+            score_offset = 15,
+            opts = { insert = true },
+          },
+        },
+      },
       completion = {
         ghost_text = {
           enabled = false,
         },
         list = {
           selection = "auto_insert",
+          -- selection = {
+          --   auto_insert = true,
+          --   preselect = false,
+          -- },
         },
       },
       keymap = {
