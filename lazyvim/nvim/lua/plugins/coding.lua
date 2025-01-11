@@ -1,5 +1,5 @@
 -- I sometimes run into issues with it, since it is in beta ya know?
-local is_blink_enabled = false
+local is_blink_enabled = true
 
 return {
   {
@@ -24,8 +24,10 @@ return {
       require("vim-react-snippets").lazy_load()
       require("mlaursen-vim-snippets").lazy_load()
 
-      -- defaults to `NonText` which is not visible for me with the menu bg
-      vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { link = "Comment" })
+      if is_blink_enabled then
+        -- defaults to `NonText` which is not visible for me with the menu bg
+        vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { link = "Comment" })
+      end
     end,
   },
 
@@ -59,19 +61,18 @@ return {
           enabled = false,
         },
         list = {
-          selection = "auto_insert",
-          -- selection = {
-          --   auto_insert = true,
-          --   preselect = false,
-          -- },
+          selection = {
+            auto_insert = true,
+            preselect = false,
+          },
         },
       },
       keymap = {
         preset = "default",
-        ["<Tab>"] = { "select_next" },
-        ["<S-Tab>"] = { "select_prev" },
-        ["<Up>"] = { "select_prev" },
-        ["<Down>"] = { "select_next" },
+        ["<Tab>"] = { "select_next", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "fallback" },
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
         ["<C-space>"] = {
           function(cmp)
             if cmp.snippet_active() then
@@ -85,7 +86,7 @@ return {
             local index = (
               label
               and require("blink.cmp.lib.utils").find_idx(list.items, function(i)
-                return i.label == label and i.source_name == "Luasnip"
+                return i.label == label and (i.source_name == "Luasnip" or i.source_name == "Snippets")
               end)
             ) or nil
             if index then
@@ -99,7 +100,7 @@ return {
         ["<C-f>"] = { "scroll_documentation_down", "fallback" },
         ["<C-j>"] = { "snippet_forward", "fallback" },
         ["<C-k>"] = { "snippet_backward", "fallback" },
-        ["<C-o>"] = { "show" },
+        ["<C-o>"] = { "show", "fallback" },
         ["<CR>"] = { "accept", "fallback" },
       },
     },
