@@ -6,6 +6,14 @@ return {
     -- for the syntax highlighting only
     "SirVer/ultisnips",
     ft = "snippets",
+    enabled = false,
+    config = function()
+      vim.g.UltiSnipsExpandTrigger = "<c-space>"
+      vim.g.UltiSnipsSnippetDirectories = {
+        "UltiSnips",
+        os.getenv("HOME") .. "/code/react-md/UltiSnips",
+      }
+    end,
   },
 
   {

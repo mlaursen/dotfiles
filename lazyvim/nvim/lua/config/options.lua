@@ -49,13 +49,6 @@ if os.getenv("WSL_DISTRO_NAME") ~= nil then
   }
 end
 
--- define here since it messes up the timing if lazy loaded
-vim.g.UltiSnipsExpandTrigger = "<c-space>"
-vim.g.UltiSnipsSnippetDirectories = {
-  "UltiSnips",
-  os.getenv("HOME") .. "/code/react-md/UltiSnips",
-}
-
 if vim.fn.executable("volta") then
   -- https://github.com/volta-cli/volta/issues/866#issuecomment-1470067688
   vim.g["node_host_prog"] = vim.call("system", 'volta which neovim-node-host | tr -d "\n"')
