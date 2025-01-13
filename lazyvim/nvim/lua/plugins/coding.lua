@@ -1,5 +1,5 @@
 -- I sometimes run into issues with it, since it is in beta ya know?
-local is_blink_enabled = true
+local is_blink_enabled = false
 
 return {
   {
