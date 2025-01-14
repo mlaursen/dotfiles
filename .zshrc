@@ -76,11 +76,13 @@ export GPG_TTY=`tty`
 if [[ -x "$(command -v wslview)" ]]; then
   alias open=wslview
 
+  # NOTE: This causes issues for things like `npx codemod` and `pip`, so keeping it off by default.
+  # It is only required for playwright and cypress anywas.
+  #
   # set DISPLAY variable to the IP automatically assigned to WSL2
-  # NOTE: These two lines must be commented out and a new terminal created if
-  # installing anything with pip. It will hang otherwise
-  export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-  sudo /etc/init.d/dbus start &> /dev/null
+  #
+  # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+  # sudo /etc/init.d/dbus start &> /dev/null
 fi
 
 
