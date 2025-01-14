@@ -1,6 +1,3 @@
--- I sometimes run into issues with it, since it is in beta ya know?
-local is_blink_enabled = false
-
 return {
   {
     -- for the syntax highlighting only
@@ -32,7 +29,7 @@ return {
       require("vim-react-snippets").lazy_load()
       require("mlaursen-vim-snippets").lazy_load()
 
-      if is_blink_enabled then
+      if vim.g.is_blink_enabled then
         -- defaults to `NonText` which is not visible for me with the menu bg
         vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { link = "Comment" })
       end
@@ -41,7 +38,7 @@ return {
 
   {
     "saghen/blink.cmp",
-    enabled = is_blink_enabled,
+    enabled = vim.g.is_blink_enabled,
     dependencies = {
       "L3MON4D3/LuaSnip",
       "moyiz/blink-emoji.nvim",
