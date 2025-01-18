@@ -8,8 +8,9 @@ o.autowrite = false
 -- so I have separate clipboards
 o.clipboard = ""
 -- I like having to press tab to complete something while typing instead of
--- having to select the item to complete it
-o.completeopt = "menu,preview"
+-- having to select the item to complete it. also add noinsert to prevent
+-- autocomplete behavior with CopilotChat
+o.completeopt = "menu,preview,noinsert"
 
 o.conceallevel = 0 -- I do not like concealing markup
 
