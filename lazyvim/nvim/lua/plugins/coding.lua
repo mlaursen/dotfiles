@@ -22,8 +22,16 @@ return {
     },
     ---@type LazyKeysSpec[]
     keys = {
-      { "<tab>", mode = { "i", "s" }, false },
-      { "<s-tab>", mode = { "i", "s" }, false },
+      -- { "<tab>", mode = { "i", "s" }, false },
+      -- { "<s-tab>", mode = { "i", "s" }, false },
+      {
+        "<C-Space>",
+        mode = { "i", "s" },
+        function()
+          local ls = require("luasnip")
+          ls.expand()
+        end,
+      },
     },
     opts = function()
       require("vim-react-snippets").lazy_load()
@@ -78,29 +86,11 @@ return {
         ["<S-Tab>"] = { "select_prev", "fallback" },
         ["<Up>"] = { "select_prev", "fallback" },
         ["<Down>"] = { "select_next", "fallback" },
-        ["<C-space>"] = {
-          function(cmp)
-            if cmp.snippet_active() then
-              return cmp.accept()
-            end
-
-            -- if the snippet isn't the first one in the list, try to find one
-            -- that matches and apply it
-            local list = require("blink.cmp.completion.list")
-            local label = list.context and list.context.get_keyword() or nil
-            local index = (
-              label
-              and require("blink.cmp.lib.utils").find_idx(list.items, function(i)
-                return i.label == label and (i.source_name == "Luasnip" or i.source_name == "Snippets")
-              end)
-            ) or nil
-            if index then
-              return cmp.accept({ index = index })
-            end
-
-            -- do nothing if no snippets exist
-          end,
-        },
+        ["<C-y>"] = { "fallback" },
+        -- I can't get blink to work with it since it expects the snippet to be
+        -- in the menu before selecting. I don't care about that and just want
+        -- snippet to work. use the luasnip keymap instead
+        ["<C-Space>"] = { "fallback" },
         ["<C-b>"] = { "scroll_documentation_up", "fallback" },
         ["<C-f>"] = { "scroll_documentation_down", "fallback" },
         ["<C-j>"] = { "snippet_forward", "fallback" },
@@ -118,7 +108,7 @@ return {
       "hrsh7th/cmp-calc",
       "petertriho/cmp-git",
     },
-    enabled = not is_blink_enabled,
+    enabled = not vim.g.is_blink_enabled,
     ---@type LazyKeysSpec[]
     keys = {
       { "<tab>", mode = { "i", "s" }, false },

@@ -63,4 +63,4 @@ vim.g.current_neotest_framework = "jest"
 -- vim.g.current_neotest_framework = "vitest"
 
 -- I sometimes run into issues with it, since it is in beta ya know?
-vim.g.is_blink_enabled = false
+vim.g.is_blink_enabled = true
