@@ -22,8 +22,8 @@ return {
     },
     ---@type LazyKeysSpec[]
     keys = {
-      -- { "<tab>", mode = { "i", "s" }, false },
-      -- { "<s-tab>", mode = { "i", "s" }, false },
+      { "<tab>", mode = { "i", "s" }, false },
+      { "<s-tab>", mode = { "i", "s" }, false },
       {
         "<C-Space>",
         mode = { "i", "s" },
@@ -54,10 +54,6 @@ return {
     opts = {
       sources = {
         default = {
-          "lsp",
-          "path",
-          "snippets",
-          "buffer",
           "emoji",
         },
         providers = {
