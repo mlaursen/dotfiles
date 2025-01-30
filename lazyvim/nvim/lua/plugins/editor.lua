@@ -32,6 +32,8 @@ return {
           },
           hide_dotfiles = false,
         },
+        git_status = false,
+        buffers = false,
       },
       window = {
         mappings = {
