@@ -11,7 +11,7 @@ return {
     ---@type LazyKeysSpec[]
     keys = {
       { "<leader>gg", "<cmd>Git<cr>", desc = "Git (fugitive)" },
-      { "<leader>gB", "<cmd>Git blame<cr>", desc = "blame" },
+      { "<leader>gH", "<cmd>Git blame<cr>", desc = "blame" },
       { "<leader>gp", "<cmd>Git pruneall<cr>", desc = "pull and prune" },
       { "<leader>gP", "<cmd>Git push -u origin HEAD<cr>", desc = "push" },
       { "<leader>gl", "<cmd>Git log<cr>", desc = "log" },
