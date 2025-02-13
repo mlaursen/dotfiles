@@ -35,107 +35,6 @@ return {
         git_status = false,
         buffers = false,
       },
-      window = {
-        mappings = {
-          ["a"] = {
-            "add",
-            config = {
-              show_path = "relative",
-            },
-          },
-          ["m"] = {
-            "move",
-            config = {
-              show_path = "relative",
-            },
-          },
-        },
-      },
-    },
-  },
-
-  {
-    "telescope.nvim",
-    enabled = false,
-    opts = {
-      defaults = {
-        hidden = true,
-        vimgrep_arguments = {
-          -- default
-          "rg",
-          "--color=never",
-          "--no-heading",
-          "--with-filename",
-          "--line-number",
-          "--column",
-          "--smart-case",
-
-          -- same as find command, without following symlinks and single files
-          -- "--files",
-          -- "--follow",
-          "--hidden",
-          "--iglob",
-          "!.git",
-        },
-      },
-      pickers = {
-        find_files = {
-          -- I want to be able to fuzzy find dotfiles like
-          -- - `.env` (tracked)
-          -- - `.swcrc`
-          -- - `.changeset/what-ever.md`
-          -- - `.github/workflow/main.yml`
-          --
-          -- this still doesn't work for ignored .env*.local files though
-          find_command = {
-            "rg",
-            "--files",
-            "--follow",
-            "--hidden",
-            "--iglob",
-            "!.git",
-          },
-        },
-      },
-      extensions = {
-        fzf = {
-          fuzzy = true,
-          case_mode = "smart_case",
-          override_file_sorter = true,
-          override_generic_sorter = true,
-        },
-      },
-    },
-    keys = {
-      {
-        "<leader>fd",
-        "<cmd>Telescope find_files no_ignore=true hidden=true search_file=\\.env initial_mode=normal<cr>",
-        desc = "Find dot env files",
-      },
-      {
-        "<leader>gb",
-        "<cmd>Telescope git_branches<cr>",
-        desc = "Git branch",
-      },
-      {
-        "<leader>gs",
-        "<cmd>Telescope git_stash initial_mode=normal<cr>",
-        desc = "Git stash",
-      },
-      {
-        "zf",
-        "<cmd>Telescope spell_suggest<cr>",
-        desc = "z= but with telescope",
-      },
-    },
-    dependencies = {
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        config = function()
-          require("telescope").load_extension("fzf")
-        end,
-      },
     },
   },
 
@@ -166,6 +65,7 @@ return {
 
   {
     "fzf-lua",
+    enabled = vim.g.lazyvim_picker == "fzf",
     dependencies = {
       {
         "airblade/vim-rooter",
@@ -245,5 +145,18 @@ return {
         },
       })
     end,
+  },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        sources = {
+          projects = {
+            dev = { "~/code" },
+            projeccts = { "~/dotfiles" },
+          },
+        },
+      },
+    },
   },
 }

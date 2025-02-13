@@ -64,3 +64,6 @@ vim.g.current_neotest_framework = "jest"
 
 -- I sometimes run into issues with it, since it is in beta ya know?
 vim.g.is_blink_enabled = true
+--
+vim.g.lazyvim_picker = "snacks"
+-- vim.g.lazyvim_picker = "fzf"
