@@ -55,16 +55,42 @@ Update profile as needed to use font and colorscheme.
 
 ### Setup dotfiles
 
+Create a git
+[ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux)
+and add it to Github.
+
+```sh
+# Can use an empty  passphrase
+ssh-keygen -t ed25519 -C "mlaursen03@gmail.com"
+
+# Verify ssh agent exists
+eval "$(ssh-agent -s)"
+
+# add the keygen
+ssh-add ~/.ssh/id_ed25519
+
+# copy to clipboard
+# MacOS
+pbcopy < ~/.ssh/id_ed25519.pub
+
+# WSL Ubuntu
+sudo apt install xclip
+xclip -selection clipboard -i < ~/.ssh/id_ed25519.pub
+```
+
+Add [new ssh key](https://github.com/settings/ssh/new).
+
 Clone this repo and setup code directory:
 
 ```sh
-git clone git@github.com:mlaursen/dotfiles.git "~/dotfiles"
+git clone git@github.com:mlaursen/dotfiles.git ~/dotfiles
 mkdir ~/code
 ```
 
 Symlink dotfiles
 
 ```sh
+mkdir ~/.config
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.dir_colors ~/.dir_colors
@@ -89,11 +115,18 @@ Neovim will need to be installed from the
 Ubuntu/WSL.
 
 ```sh
+curl -LO https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x86_64.appimage
+chmod u+x nvim-linux-x86_64.appimage
+sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
+
 # Create a symlink to the nvim
 sudo ln -s ~/nvim-linux64/bin/nvim /usr/local/bin/nvim
 
 # install other packages/dependencies (not sure of full list atm)
-sudo apt install python3
+sudo apt install python3-pip
+
+# Other dependencies
+sudo apt install -y ripgrep fd-find
 ```
 
 ### Switch to zsh and setup [oh my zsh](https://ohmyz.sh/)
@@ -109,6 +142,8 @@ Logout for the new shell to take effect. Then install oh-my-zsh:
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+mv ~/.zshrc{,.bak}
+mv ~/.zshrc{.pre-oh-my-zsh,}
 ```
 
 Symlink my custom theme:
@@ -127,8 +162,8 @@ curl -sSL https://get.haskellstack.org/ | sh
 Setup [zsh-git-prompt](https://github.com/zsh-git-prompt/zsh-git-prompt):
 
 ```sh
-git clone https://github.com/zsh-git-prompt/zsh-git-prompt ~/code/
-cd ~/code/zsh-git-prompt
+git clone https://github.com/zsh-git-prompt/zsh-git-prompt ~/code/zsh-git-prompt
+cd ~/code/zsh-git-prompt/haskell
 stack setup
 stack build && stack install
 ```
@@ -176,12 +211,8 @@ Install [volta](volta.sh) to manage node and package managers
 curl https://get.volta.sh | bash
 source ~/.zshrc
 
-volta install node@18
 volta install node
-
 volta install pnpm
-
-volta install yarn@1
 volta install yarn
 ```
 
@@ -189,10 +220,14 @@ volta install yarn
 
 ```sh
 ln -s ~/dotfiles/lazyvim/nvim ~/.config/nvim
+# MacOS
 pip3 install neovim
 
 # If it failed
 pip3 install neovim --user
+
+# Ubuntu
+sudo apt install python3-neovim
 
 # if pip3 install hangs on WSL, comment out the export DISPLAY= and the next line in the .zshrc
 
@@ -229,7 +264,7 @@ ln -s ~/dotfiles/install/mac/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 - Export the GPG key:
   `gpg --armor --export-secret-keys UUID_OF_GPG_KEY > private.cert`
 - Copy the `private.cert` to Windows Download folder by navigating to
-  `\\wsl$\Ubuntu\eome\mlaursen`
+  `\\wsl$\Ubuntu\home\mlaursen`
 - [Install Kleopatra](https://www.gpg4win.org/)
   - Uncheck everything except for the required one and Kleopatra
 - Import the `private.cert` into Kleopatra and then certify the new
@@ -239,6 +274,15 @@ ln -s ~/dotfiles/install/mac/gpg-agent.conf ~/.gnupg/gpg-agent.conf
     `28800`
 
 ```sh
+# fo for the RSA one and 4096 bytes
+gpg --full-generate-key
+
+gpg --armor --export {UUID_OF_GPG_KEY} | xclip -sel clip
+# Navigate to https://github.com/settings/gpg/new and paste
+
+# not sure if the Kleopatra steps are required, but here's the private.cert
+gpg --armor --export {UUID_OF_GPG_KEY} > private.cert
+
 ln -s ~/dotfiles/install/windows/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 gpg-connect-agent reloadagent /bye
 ```

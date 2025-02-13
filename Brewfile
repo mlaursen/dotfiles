@@ -6,6 +6,7 @@ brew 'neovim'
 # brew 'ruby'
 
 # brew 'the_silver_searcher'
+brew 'fd'
 brew 'ripgrep'
 brew 'tree'
 brew 'watchman'

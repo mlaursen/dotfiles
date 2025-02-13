@@ -148,6 +148,15 @@ return {
   },
   {
     "folke/snacks.nvim",
+    keys = {
+      {
+        "<leader>gC",
+        function()
+          Snacks.picker.git_log_file()
+        end,
+        desc = "Commits (current file)",
+      },
+    },
     opts = {
       picker = {
         sources = {
