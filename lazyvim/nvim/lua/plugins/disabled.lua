@@ -13,7 +13,7 @@ return {
   -- noisier with animations. disabling the animation still makes it too
   -- visible
   { "folke/flash.nvim",             enabled = false },
-  { "lewis6991/gitsigns.nvim",      enabled = false },
+  -- { "lewis6991/gitsigns.nvim",      enabled = false },
 
   { "echasnovski/mini.pairs",       enabled = false },
 }
