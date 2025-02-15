@@ -10,12 +10,12 @@ return {
     },
     ---@type LazyKeysSpec[]
     keys = {
-      { "<leader>gg", "<cmd>Git<cr>", desc = "Git (fugitive)" },
-      { "<leader>gH", "<cmd>Git blame<cr>", desc = "blame" },
-      { "<leader>gp", "<cmd>Git pruneall<cr>", desc = "pull and prune" },
+      { "<leader>gg", "<cmd>Git<cr>",                     desc = "Git (fugitive)" },
+      { "<leader>gH", "<cmd>Git blame<cr>",               desc = "blame" },
+      { "<leader>gp", "<cmd>Git pruneall<cr>",            desc = "pull and prune" },
       { "<leader>gP", "<cmd>Git push -u origin HEAD<cr>", desc = "push" },
-      { "<leader>gl", "<cmd>Git log<cr>", desc = "log" },
-      { "<leader>gD", "<cmd>Gvdiffsplit!<cr>", desc = "Diff split (vertical)" },
+      { "<leader>gl", "<cmd>Git log<cr>",                 desc = "log" },
+      { "<leader>gD", "<cmd>Gvdiffsplit!<cr>",            desc = "Diff split (vertical)" },
     },
   },
 
