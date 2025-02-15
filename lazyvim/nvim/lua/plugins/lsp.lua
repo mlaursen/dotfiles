@@ -17,7 +17,7 @@ local function is_exhaustive_deps(action)
       and action.command
       and action.command.command == "eslint.applySuggestion"
       and action.command.arguments[1].ruleId == "react-hooks/exhaustive-deps"
-    or false
+      or false
 end
 
 ---The isPreferred flag doesn't exist on the exhaustive-deps eslint rule for
