@@ -119,14 +119,12 @@ curl -LO https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x
 chmod u+x nvim-linux-x86_64.appimage
 sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
 
-# Create a symlink to the nvim
-sudo ln -s ~/nvim-linux64/bin/nvim /usr/local/bin/nvim
+# might need to install fuse
+sudo add-apt-repository universe
+sudo apt install libfuse2t64
 
 # install other packages/dependencies (not sure of full list atm)
-sudo apt install python3-pip
-
-# Other dependencies
-sudo apt install -y ripgrep fd-find
+sudo apt install python3-pip ripgrep fd-find
 ```
 
 ### Switch to zsh and setup [oh my zsh](https://ohmyz.sh/)
