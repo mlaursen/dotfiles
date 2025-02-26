@@ -77,7 +77,7 @@ return {
         },
       },
       keymap = {
-        preset = "default",
+        preset = "none",
         ["<Tab>"] = { "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },
         ["<Up>"] = { "select_prev", "fallback" },

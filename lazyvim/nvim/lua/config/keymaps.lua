@@ -1,3 +1,4 @@
+local set = vim.keymap.set
 local del = vim.keymap.del
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
@@ -14,3 +15,19 @@ del({ "i", "x", "n", "s" }, "<C-s>")
 -- del("n", "<leader>gf")
 -- del("n", "<leader>gl")
 -- del("n", "<leader>gL")
+
+-- I like `<C-j>` and `<C-k>` for jumping snippets instead
+-- Tab is to move through menus
+if vim.fn.has("nvim-0.11") == 0 then
+  del("s", "<Tab>")
+  del({ "i", "s" }, "<S-Tab>")
+end
+
+set("s", "<C-j>", function()
+  return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<C-j>"
+end, { expr = true, desc = "Jump Next" }
+)
+set("s", "<C-k>", function()
+  return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<C-j>"
+end, { expr = true, desc = "Jump Previous" }
+)
