@@ -35,7 +35,7 @@ return {
     opts = {
       --  https://mason-registry.dev/registry/list
       ensure_installed = {
-        "css-lsp",
+        -- "css-lsp",
         "cssmodules-language-server",
         "eslint-lsp",
         "graphql-language-service-cli",
@@ -48,6 +48,7 @@ return {
         "stylua",
         -- "sonarlint-language-server",
         "yaml-language-server",
+        "some-sass-language-server"
       },
     },
   },
@@ -131,13 +132,50 @@ return {
             },
           },
         },
-        eslint = {
+
+        -- use somesass_ls instead
+        cssls = { enabled = false },
+        somesass_ls = {
+          root_dir = require('lspconfig.util').root_pattern('package.json', '.git'),
           settings = {
-            useFlatConfig = false,
-            experimental = {
-              useFlatConfig = false,
-            },
-          },
+            somesass = {
+              css = {
+                codeAction = { enabled = true },
+                colors = { enabled = true },
+                completion = { enabled = true },
+                definition = { enabled = true },
+                diagnostics = { enabled = true },
+                documentSymbols = { enabled = true },
+                foldingRanges = { enabled = true },
+                highlights = { enabled = true },
+                hover = { enabled = true },
+                links = { enabled = true },
+                references = { enabled = true },
+                rename = { enabled = true },
+                selectionRanges = { enabled = true },
+                signatureHelp = { enabled = true },
+                workspaceSymbol = { enabled = true },
+              },
+              scss = {
+                codeAction = { enabled = true },
+                colors = { enabled = true },
+                completion = { enabled = true },
+                definition = { enabled = true },
+                diagnostics = { enabled = true },
+                documentSymbols = { enabled = true },
+                foldingRanges = { enabled = true },
+                highlights = { enabled = true },
+                hover = { enabled = true },
+                links = { enabled = true },
+                references = { enabled = true },
+                rename = { enabled = true },
+                selectionRanges = { enabled = true },
+                signatureHelp = { enabled = true },
+                workspaceSymbol = { enabled = true },
+              }
+
+            }
+          }
         },
       },
       -- you can do any additional lsp server setup here
