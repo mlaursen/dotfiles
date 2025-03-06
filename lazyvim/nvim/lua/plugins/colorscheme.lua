@@ -11,6 +11,7 @@ return {
               protan = 0.8,
               deutan = 1,
               tritan = 0.3,
+              -- tritan = 0.8,
             },
           },
         },

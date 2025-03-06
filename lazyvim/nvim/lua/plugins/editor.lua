@@ -10,12 +10,12 @@ return {
     },
     ---@type LazyKeysSpec[]
     keys = {
-      { "<leader>gg", "<cmd>Git<cr>",                     desc = "Git (fugitive)" },
-      { "<leader>gB", "<cmd>Git blame<cr>",               desc = "blame" },
-      { "<leader>gp", "<cmd>Git pruneall<cr>",            desc = "pull and prune" },
+      { "<leader>gg", "<cmd>Git<cr>", desc = "Git (fugitive)" },
+      { "<leader>gB", "<cmd>Git blame<cr>", desc = "blame" },
+      { "<leader>gp", "<cmd>Git pruneall<cr>", desc = "pull and prune" },
       { "<leader>gP", "<cmd>Git push -u origin HEAD<cr>", desc = "push" },
-      { "<leader>gl", "<cmd>Git log<cr>",                 desc = "log" },
-      { "<leader>gD", "<cmd>Gvdiffsplit!<cr>",            desc = "Diff split (vertical)" },
+      { "<leader>gl", "<cmd>Git log<cr>", desc = "log" },
+      { "<leader>gD", "<cmd>Gvdiffsplit!<cr>", desc = "Diff split (vertical)" },
     },
   },
 
@@ -166,14 +166,14 @@ return {
         function()
           Snacks.picker.git_branches()
         end,
-        desc = "git branches"
+        desc = "git branches",
       },
       {
         "<leader>gO",
         function()
           Snacks.gitbrowse()
         end,
-        desc = "git open in browser (git browse)"
+        desc = "git open in browser (git browse)",
       },
     },
     opts = {
@@ -206,7 +206,7 @@ return {
               Snacks.notify("Stash applied: `" .. item.stash .. "`", { title = "Snacks Picker" })
             end, { cwd = item.cwd })
             Snacks.picker.git_stash()
-          end
+          end,
         },
         sources = {
           projects = {
@@ -217,14 +217,14 @@ return {
             win = {
               input = {
                 keys = {
-                  ["<c-x>"] = { "git_stash_drop", mode = { "n", "i" } }
-                }
-              }
-            }
+                  ["<c-x>"] = { "git_stash_drop", mode = { "n", "i" } },
+                },
+              },
+            },
           },
           git_branches = {
-            all = true
-          }
+            all = true,
+          },
         },
       },
     },
