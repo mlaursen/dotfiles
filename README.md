@@ -124,7 +124,7 @@ sudo add-apt-repository universe
 sudo apt install libfuse2t64
 
 # install other packages/dependencies (not sure of full list atm)
-sudo apt install python3-pip ripgrep fd-find
+sudo apt install python3-pip ripgrep fd-find unzip
 ```
 
 ### Switch to zsh and setup [oh my zsh](https://ohmyz.sh/)

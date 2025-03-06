@@ -22,7 +22,7 @@ return {
     },
     ---@type LazyKeysSpec[]
     keys = {
-      { "<tab>",   mode = { "i", "s" }, false },
+      { "<tab>", mode = { "i", "s" }, false },
       { "<s-tab>", mode = { "i", "s" }, false },
       {
         "<C-Space>",
@@ -107,7 +107,7 @@ return {
     enabled = not vim.g.is_blink_enabled,
     ---@type LazyKeysSpec[]
     keys = {
-      { "<tab>",   mode = { "i", "s" }, false },
+      { "<tab>", mode = { "i", "s" }, false },
       { "<s-tab>", mode = { "i", "s" }, false },
     },
     ---@param opts cmp.ConfigSchema

@@ -25,9 +25,7 @@ end
 
 set({ "i", "s" }, "<C-j>", function()
   return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<C-j>"
-end, { expr = true, desc = "Jump Next" }
-)
+end, { expr = true, desc = "Jump Next" })
 set({ "i", "s" }, "<C-k>", function()
   return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<C-j>"
-end, { expr = true, desc = "Jump Previous" }
-)
+end, { expr = true, desc = "Jump Previous" })

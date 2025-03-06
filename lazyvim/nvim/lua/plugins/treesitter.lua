@@ -1,43 +1,18 @@
-return {}
--- return {
---   {
---     "nvim-treesitter/nvim-treesitter",
---     opts = function(_, opts)
---       -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
---       vim.list_extend(opts.ensure_installed, {
---         "css",
---         -- removed since it doesn't work for: maps, !default, @use, @forward, variables as properties
---         -- "scss",
---       })
---     end,
---     -- opts = {
---     --   ensure_installed = {
---     --     "bash",
---     --     -- "c",
---     --     "css",
---     --     "diff",
---     --     "html",
---     --     "javascript",
---     --     "jsdoc",
---     --     "json",
---     --     "jsonc",
---     --     "lua",
---     --     "luadoc",
---     --     "luap",
---     --     "markdown",
---     --     "markdown_inline",
---     --     -- "python",
---     --     "query",
---     --     "regex",
---     --     "scss",
---     --     -- "toml",
---     --     "tsx",
---     --     "typescript",
---     --     "vim",
---     --     "vimdoc",
---     --     "xml",
---     --     "yaml",
---     --   },
---     -- },
---   },
--- }
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+      -- the default [tree-sitter-scss](https://github.com/serenadeai/tree-sitter-scss) is unmaintained
+      -- and doesn't support everything that actually matters:
+      -- - maps, !default, @use, @forward, variable properties, ...etc
+      parser_config.scss.install_info.url = "https://github.com/savetheclocktower/tree-sitter-scss"
+
+      -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
+      vim.list_extend(opts.ensure_installed, {
+        "scss",
+      })
+    end,
+  },
+}

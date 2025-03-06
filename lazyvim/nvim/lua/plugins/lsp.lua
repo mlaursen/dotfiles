@@ -17,7 +17,7 @@ local function is_exhaustive_deps(action)
       and action.command
       and action.command.command == "eslint.applySuggestion"
       and action.command.arguments[1].ruleId == "react-hooks/exhaustive-deps"
-      or false
+    or false
 end
 
 ---The isPreferred flag doesn't exist on the exhaustive-deps eslint rule for
@@ -48,7 +48,7 @@ return {
         "stylua",
         -- "sonarlint-language-server",
         "yaml-language-server",
-        "some-sass-language-server"
+        "some-sass-language-server",
       },
     },
   },
@@ -136,7 +136,7 @@ return {
         -- use somesass_ls instead
         cssls = { enabled = false },
         somesass_ls = {
-          root_dir = require('lspconfig.util').root_pattern('package.json', '.git'),
+          root_dir = require("lspconfig.util").root_pattern("package.json", ".git"),
           settings = {
             somesass = {
               css = {
@@ -172,10 +172,9 @@ return {
                 selectionRanges = { enabled = true },
                 signatureHelp = { enabled = true },
                 workspaceSymbol = { enabled = true },
-              }
-
-            }
-          }
+              },
+            },
+          },
         },
       },
       -- you can do any additional lsp server setup here
