@@ -48,7 +48,7 @@ return {
       {
         "<leader>fwn",
         "<cmd>VimwikiMakeDiaryNote<cr>",
-        desc = "Vimwiki Diary Node",
+        desc = "Vimwiki Diary Note",
       },
       {
         "<leader>fwi",
@@ -221,6 +221,9 @@ return {
                 }
               }
             }
+          },
+          git_branches = {
+            all = true
           }
         },
       },

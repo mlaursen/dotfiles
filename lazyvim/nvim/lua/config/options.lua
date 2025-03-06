@@ -67,3 +67,6 @@ vim.g.is_blink_enabled = true
 --
 vim.g.lazyvim_picker = "snacks"
 -- vim.g.lazyvim_picker = "fzf"
+
+-- i want to enforce a .prettierrc file
+vim.g.lazyvim_prettier_needs_config = true
