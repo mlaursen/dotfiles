@@ -12,13 +12,13 @@ local augroup = vim.api.nvim_create_augroup
 
 -- update scss files for SassDoc comments
 autocmd("FileType", {
-  group = augroup("comments", {}),
+  group = augroup("comments", { clear = false }),
   pattern = "scss",
   command = "set comments^=:///",
 })
 
 autocmd("FileType", {
-  group = augroup("comments", {}),
+  group = augroup("comments", { clear = false }),
   pattern = "lua",
   command = "set comments^=:---",
 })
