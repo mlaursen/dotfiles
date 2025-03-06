@@ -23,11 +23,11 @@ if vim.fn.has("nvim-0.11") == 0 then
   del({ "i", "s" }, "<S-Tab>")
 end
 
-set("s", "<C-j>", function()
+set({ "i", "s" }, "<C-j>", function()
   return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<C-j>"
 end, { expr = true, desc = "Jump Next" }
 )
-set("s", "<C-k>", function()
+set({ "i", "s" }, "<C-k>", function()
   return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<C-j>"
 end, { expr = true, desc = "Jump Previous" }
 )
