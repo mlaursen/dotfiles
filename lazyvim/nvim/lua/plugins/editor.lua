@@ -175,15 +175,53 @@ return {
         end,
         desc = "git open in browser (git browse)"
       },
-
     },
     opts = {
       picker = {
+        actions = {
+          ---@type snacks.picker.Action.spec
+          git_stash_drop = function(picker, item)
+            if not item then
+              return
+            end
+
+            -- I don't know how to refresh the items, so close and reopen
+            picker:close()
+            local cmd = { "git", "stash", "drop", item.stash }
+            Snacks.picker.util.cmd(cmd, function()
+              Snacks.notify("Stash droped: `" .. item.stash .. "`", { title = "Snacks Picker" })
+            end, { cwd = item.cwd })
+            Snacks.picker.git_stash()
+          end,
+          ---@type snacks.picker.Action.spec
+          git_stash_apply = function(picker, item, other)
+            if not item then
+              return
+            end
+
+            -- I don't know how to refresh the items, so close and reopen
+            picker:close()
+            local cmd = { "git", "stash", "apply", item.stash }
+            Snacks.picker.util.cmd(cmd, function()
+              Snacks.notify("Stash applied: `" .. item.stash .. "`", { title = "Snacks Picker" })
+            end, { cwd = item.cwd })
+            Snacks.picker.git_stash()
+          end
+        },
         sources = {
           projects = {
             dev = { "~/code" },
-            projeccts = { "~/dotfiles" },
+            projects = { "~/dotfiles" },
           },
+          git_stash = {
+            win = {
+              input = {
+                keys = {
+                  ["<c-x>"] = { "git_stash_drop", mode = { "n", "i" } }
+                }
+              }
+            }
+          }
         },
       },
     },
