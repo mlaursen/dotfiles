@@ -189,7 +189,7 @@ return {
             picker:close()
             local cmd = { "git", "stash", "drop", item.stash }
             Snacks.picker.util.cmd(cmd, function()
-              Snacks.notify("Stash droped: `" .. item.stash .. "`", { title = "Snacks Picker" })
+              Snacks.notify("Stash dropped: `" .. item.stash .. "`", { title = "Snacks Picker" })
             end, { cwd = item.cwd })
             Snacks.picker.git_stash()
           end,
