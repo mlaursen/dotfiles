@@ -11,6 +11,7 @@ brew 'ripgrep'
 brew 'tree'
 brew 'watchman'
 brew 'bat'
+brew 'fd'
 
 cask 'iterm2'
 cask 'the-unarchiver'

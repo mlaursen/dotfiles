@@ -1,0 +1,4 @@
+#/bin/sh
+
+# https://gist.github.com/angelo-v/e0208a18d455e2e6ea3c40ad637aac53?permalink_comment_id=3150988#gistcomment-3150988
+jq -R 'split(".") | .[0],.[1] | @base64d | fromjson' <<< "$1"
