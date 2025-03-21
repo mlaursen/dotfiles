@@ -13,6 +13,8 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "scss",
       })
+
+      opts.highlight.disable = { "scss" }
     end,
   },
 }
