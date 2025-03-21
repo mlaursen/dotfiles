@@ -194,18 +194,16 @@ return {
             Snacks.picker.git_stash()
           end,
           ---@type snacks.picker.Action.spec
-          git_stash_apply = function(picker, item, other)
+          git_stash_apply = function(picker, item)
             if not item then
               return
             end
 
-            -- I don't know how to refresh the items, so close and reopen
-            picker:close()
             local cmd = { "git", "stash", "apply", item.stash }
             Snacks.picker.util.cmd(cmd, function()
               Snacks.notify("Stash applied: `" .. item.stash .. "`", { title = "Snacks Picker" })
             end, { cwd = item.cwd })
-            Snacks.picker.git_stash()
+            picker:close()
           end,
         },
         sources = {
