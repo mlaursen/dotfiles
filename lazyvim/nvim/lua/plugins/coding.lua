@@ -76,6 +76,13 @@ return {
           },
         },
       },
+      snippets = {
+        -- make it so it only jumps. it should not expand stuff like the default implementation
+        jump = function(direction)
+          local ls = require("luasnip")
+          return ls.jumpable(direction) and ls.jump(direction)
+        end,
+      },
       keymap = {
         preset = "none",
         ["<Tab>"] = { "select_next", "fallback" },
