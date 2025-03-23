@@ -207,6 +207,12 @@ return {
           end,
         },
         sources = {
+          -- show hidden files by default. I rely on gitignore and would prefer
+          -- to disable this if I don't want to find it
+          files = {
+            hidden = true,
+          },
+
           projects = {
             dev = { "~/code" },
             projects = { "~/dotfiles" },
