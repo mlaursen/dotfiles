@@ -6,7 +6,7 @@ local o = vim.opt
 o.autowrite = false
 -- do not sync yanks with clipboard. I prefer using a register for that instead
 -- so I have separate clipboards
-o.clipboard = ""
+-- o.clipboard = ""
 -- I like having to press tab to complete something while typing instead of
 -- having to select the item to complete it. also add noinsert to prevent
 -- autocomplete behavior with CopilotChat
