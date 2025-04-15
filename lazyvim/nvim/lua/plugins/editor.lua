@@ -213,9 +213,11 @@ return {
             hidden = true,
           },
 
+          ---@type snacks.picker.projects.Config
           projects = {
             dev = { "~/code" },
             projects = { "~/dotfiles" },
+            confirm = "picker",
           },
           git_stash = {
             win = {
