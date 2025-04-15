@@ -5,6 +5,43 @@ return {
       "nvim-neotest/neotest-jest",
       "marilari88/neotest-vitest",
     },
+
+    -- NOTE: The easiest way to do this is to create a `.lazy.lua` in the repo and define it with something like:
+    --
+    -- ```lua
+    -- return {
+    --   {
+    --     "nvim-neotest/neotest",
+    --     dependencies = {
+    --       "marilari88/neotest-vitest",
+    --     },
+    --     opts = {
+    --       adapters = {
+    --         -- add any custom options here
+    --         ["neotest-vitest"] = {}
+    --       }
+    --     }
+    --   }
+    -- }
+    -- ```
+    --
+    -- or with jest:
+    -- ```lua
+    -- return {
+    --   {
+    --     "nvim-neotest/neotest",
+    --     dependencies = {
+    --       "marilari88/neotest-jest",
+    --     },
+    --     opts = {
+    --       adapters = {
+    --         -- add any custom options here
+    --         ["neotest-jest"] = {}
+    --       }
+    --     }
+    --   }
+    -- }
+    -- ```
     opts = function(_, opts)
       if vim.g.current_neotest_framework == "jest" then
         table.insert(
