@@ -232,6 +232,13 @@ return {
             all = true,
           },
         },
+
+        formatters = {
+          file = {
+            -- do not truncate the paths since it makes finding files difficult
+            truncate = 10000,
+          },
+        },
       },
     },
   },
