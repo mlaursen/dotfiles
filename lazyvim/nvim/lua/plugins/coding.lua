@@ -45,16 +45,28 @@ return {
   },
 
   {
+    "saghen/blink.compat",
+    -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
+    version = "*",
+    -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+    lazy = true,
+    -- make sure to set opts so that lazy.nvim calls blink.compat's setup
+    opts = {},
+  },
+
+  {
     "saghen/blink.cmp",
     enabled = vim.g.is_blink_enabled,
     dependencies = {
       "L3MON4D3/LuaSnip",
       "moyiz/blink-emoji.nvim",
+      "hrsh7th/cmp-calc",
     },
     opts = {
       sources = {
         default = {
           "emoji",
+          "calc",
         },
         providers = {
           emoji = {
@@ -62,6 +74,10 @@ return {
             name = "Emoji",
             score_offset = 15,
             opts = { insert = true },
+          },
+          calc = {
+            name = "calc",
+            module = "blink.compat.source",
           },
         },
       },
