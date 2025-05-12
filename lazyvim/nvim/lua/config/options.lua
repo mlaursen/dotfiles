@@ -15,8 +15,8 @@ o.completeopt = "menu,preview,noinsert"
 o.conceallevel = 0 -- I do not like concealing markup
 
 -- line numbers mean nothing and relative line numbers are even worse
-o.number = false
-o.relativenumber = false
+-- o.number = false
+-- o.relativenumber = false
 
 -- do not use the weird shifting width cursor and set it back to the vim
 -- version
