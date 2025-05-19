@@ -29,7 +29,12 @@ return {
         mode = { "i", "s" },
         function()
           local ls = require("luasnip")
-          ls.expand()
+
+          -- need to call ls.expandable() first so that any "cached" snippet is
+          -- correctly refreshed
+          if ls.expandable() then
+            ls.expand({})
+          end
         end,
       },
     },
