@@ -1,3 +1,5 @@
+[tag]
+  gpgsign = true
 [commit]
   gpgsign = true
 [user]
