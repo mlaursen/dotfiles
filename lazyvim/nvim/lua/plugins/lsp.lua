@@ -95,25 +95,15 @@ return {
       -- LSP Server Settings
       ---@type lspconfig.options
       servers = {
-        -- tsserver = {
-        --   settings = {
-        --     javascript = {
-        --       format = {
-        --         enable = false,
-        --       },
-        --     },
-        --     typescript = {
-        --       format = {
-        --         enable = false,
-        --       },
-        --       suggest = {
-        --         autoImports = false,
-        --         completeFunctionCalls = false,
-        --         includeCompletionsForImportStatements = false,
-        --       },
-        --     },
-        --   },
-        -- },
+        vtsls = {
+          settings = {
+            typescript = {
+              preferences = {
+                autoImportSpecifierExcludeRegexes = { "^@mui/[^/]+$" },
+              },
+            },
+          },
+        },
         stylelint_lsp = {
           filetypes = { "css", "scss" },
           settings = {
