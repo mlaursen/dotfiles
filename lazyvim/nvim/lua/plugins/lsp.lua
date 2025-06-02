@@ -99,7 +99,7 @@ return {
           settings = {
             typescript = {
               preferences = {
-                autoImportSpecifierExcludeRegexes = { "^@mui/[^/]+$" },
+                autoImportSpecifierExcludeRegexes = { "^@mui/(?!x-)[^/]+$" },
               },
             },
           },
