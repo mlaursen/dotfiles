@@ -57,7 +57,7 @@ end
 
 -- why the fuck would you add animations to vim?
 vim.g.snacks_animate = false
-vim.g.lazyvim_blink_main = true
+-- vim.g.lazyvim_blink_main = true
 
 vim.g.current_neotest_framework = "jest"
 -- vim.g.current_neotest_framework = "vitest"
