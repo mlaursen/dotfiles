@@ -32,6 +32,15 @@ return {
 
             return vim.fn.getcwd()
           end,
+          jestCommand = function(file)
+            -- when running in the react-md monorepo, I want to use `pnpm test` when running all tests
+            -- since it uses turbo to run
+            if string.match(file, "react%-md$") then
+              return "pnpm test -- --"
+            end
+
+            return require("neotest-jest.jest-util").getJestCommand(vim.fn.expand("%:p:h"))
+          end,
         },
       },
     },
