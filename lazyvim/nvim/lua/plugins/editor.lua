@@ -152,7 +152,8 @@ return {
       -- disable
       { "<leader>gY" },
       { "<leader>gb" },
-      { "<leader>gB" },
+      -- { "<leader>gB" },
+      { "<leader>gB", "<cmd>Git blame<cr>", desc = "blame" },
 
       {
         "<leader>gC",
