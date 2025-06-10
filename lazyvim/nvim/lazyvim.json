@@ -1,6 +1,5 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.ai.copilot-chat",
     "lazyvim.plugins.extras.coding.blink",
     "lazyvim.plugins.extras.coding.luasnip",
     "lazyvim.plugins.extras.coding.neogen",

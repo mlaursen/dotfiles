@@ -1,4 +1,3 @@
-local use_code_companion = true
 return {
   {
     -- minimal copy from `LazyExtra ai.copilot` that just enables the `Copilot
@@ -15,41 +14,40 @@ return {
       },
     },
   },
-  {
-    "CopilotChat.nvim",
-    enabled = not use_code_companion,
-    opts = {
-      -- window = {
-      --   layout = "float",
-      -- },
-      auto_insert_mode = false,
-      mappings = {
-        reset = {
-          normal = "<C-r>",
-          insert = "<C-r>",
-        },
-      },
-    },
-  },
-  {
-    "ravitemer/mcphub.nvim",
-    enabled = use_code_companion,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
-    config = function()
-      require("mcphub").setup()
-    end,
-  },
+  -- NOTE: Must enable CopilotChat extra as well for markup changes
+  -- {
+  --   "CopilotChat.nvim",
+  --   enabled = not use_code_companion,
+  --   opts = {
+  --     -- window = {
+  --     --   layout = "float",
+  --     -- },
+  --     auto_insert_mode = false,
+  --     mappings = {
+  --       reset = {
+  --         normal = "<C-r>",
+  --         insert = "<C-r>",
+  --       },
+  --     },
+  --   },
+  -- },
+
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "ravitemer/mcphub.nvim",
+      {
+        "ravitemer/mcphub.nvim",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+        },
+        build = "npm install -g mcp-hub@latest",
+        config = function()
+          require("mcphub").setup()
+        end,
+      },
     },
-    enabled = use_code_companion,
     keys = {
       { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
       {
@@ -60,20 +58,6 @@ return {
         desc = "Toggle (CodeCompanion Chat)",
         mode = { "n", "v" },
       },
-      -- {
-      --   "<leader>aq",
-      --   function()
-      --     vim.ui.input({
-      --       prompt = "Quick Chat: ",
-      --     }, function(input)
-      --       if input ~= "" then
-      --         require("codecompanion").chat({ input })
-      --       end
-      --     end)
-      --   end,
-      --   desc = "Quick Chat (CopilotChat)",
-      --   mode = { "n", "v" },
-      -- },
       {
         "<leader>ap",
         function()
@@ -116,6 +100,13 @@ return {
                 number = false,
               },
             },
+          },
+          diff = {
+            enabled = true,
+            -- close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
+            -- layout = "vertical", -- vertical|horizontal split for default provider
+            -- opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
+            -- provider = "default", -- default|mini_diff
           },
         },
         strategies = {
