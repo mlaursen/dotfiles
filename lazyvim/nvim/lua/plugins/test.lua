@@ -17,6 +17,7 @@ return {
             extra_args = { "-u" },
           })
         end,
+        desc = "Update Snapshot (Neotest)",
       },
     },
     opts = {
