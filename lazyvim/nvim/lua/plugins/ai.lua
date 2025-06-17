@@ -39,6 +39,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       {
         "ravitemer/mcphub.nvim",
+        enabled = false,
         dependencies = {
           "nvim-lua/plenary.nvim",
         },
