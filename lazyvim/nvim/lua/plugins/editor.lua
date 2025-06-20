@@ -233,6 +233,21 @@ return {
           git_branches = {
             all = true,
           },
+
+          explorer = {
+            win = {
+              input = {
+                keys = {
+                  ["<esc>"] = { "", mode = "n" },
+                },
+              },
+              list = {
+                keys = {
+                  ["<esc>"] = { "", mode = "n" },
+                },
+              },
+            },
+          },
         },
 
         formatters = {
