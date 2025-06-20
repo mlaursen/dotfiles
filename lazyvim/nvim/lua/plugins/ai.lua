@@ -134,7 +134,8 @@ return {
               },
               clear = {
                 modes = {
-                  n = "gx",
+                  -- do not use the default of gx since it means I can't open links
+                  n = "gR",
                 },
                 index = 6,
                 callback = "keymaps.clear",
