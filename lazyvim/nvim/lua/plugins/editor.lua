@@ -219,7 +219,7 @@ return {
           projects = {
             dev = { "~/code" },
             projects = { "~/dotfiles" },
-            -- confirm = "picker",
+            confirm = "picker",
           },
           git_stash = {
             win = {
