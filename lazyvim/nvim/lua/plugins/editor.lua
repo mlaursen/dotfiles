@@ -20,25 +20,6 @@ return {
   },
 
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      filesystem = {
-        -- follow_current_file = { enabled = false },
-        filtered_items = {
-          always_show = {
-            ".env.local",
-            ".env.development.local",
-            ".env.production.local",
-          },
-          hide_dotfiles = false,
-        },
-        git_status = false,
-        buffers = false,
-      },
-    },
-  },
-
-  {
     "vimwiki/vimwiki",
     lazy = "VeryLazy",
     cmd = {

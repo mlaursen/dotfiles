@@ -141,6 +141,8 @@ return {
         },
         strategies = {
           chat = {
+            adapter = "anthropic",
+            model = "claude-sonnet-4-20250514",
             roles = {
               user = vim.env.USER or "Me",
             },

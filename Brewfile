@@ -14,6 +14,7 @@ brew 'bat'
 brew 'fd'
 brew 'luarocks'
 brew 'go'
+Brew 'tree-sitter-cli'
 
 cask 'iterm2'
 cask 'the-unarchiver'
