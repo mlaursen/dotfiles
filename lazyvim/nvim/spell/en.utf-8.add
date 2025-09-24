@@ -270,3 +270,11 @@ focusables
 serializable
 Middleware
 memoized
+textarea
+Timeblock
+dnd
+Inversed
+updatable
+Konva
+rerender
+rerendered
