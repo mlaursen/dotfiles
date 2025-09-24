@@ -225,6 +225,8 @@ return {
               list = {
                 keys = {
                   ["<esc>"] = { "", mode = "n" },
+                  ["v"] = "edit_vsplit",
+                  ["s"] = "edit_split",
                 },
               },
             },
