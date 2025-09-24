@@ -103,6 +103,10 @@ return {
                   -- no `import {} from "@mui/material"`, but `import {} from "@mui/x-*"`
                   "^@mui/(?!x-)[^/]+$",
 
+                  -- normally don't want to import from these
+                  "^@mui/system",
+                  "^@emotion/",
+
                   -- i normally want vitest or jest instead
                   "^node:test$",
 
