@@ -232,6 +232,9 @@ sudo apt install python3-neovim
 # install rust (if not using homebrew)
 curl https://sh.rustup.rs -sSf | sh
 
+# install tree-sitter (WSL only.; Use homebrew for Mac)
+cargo install tree-sitter-cli --locked
+
 # Start nvim to start installing packages
 nvim
 ```
