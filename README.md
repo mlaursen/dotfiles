@@ -99,6 +99,13 @@ ln -s ~/dotfiles/.editorconfig ~/.editorconfig
 ln -s ~/dotfiles/lazyvim/nvim ~/.config/nvim
 ```
 
+Copy `.zshrc.local.template` to `.zshrc.local` and add any environment
+variables:
+
+```sh
+cp ~/dotfiles/.zshrc.local.template ~/.zshrc.local
+```
+
 ### Install packages
 
 #### Mac

@@ -1,0 +1,3 @@
+# environment variables that should not be committed
+export GITHUB_TOKEN=
+export ANTHROPIC_API_KEY=
