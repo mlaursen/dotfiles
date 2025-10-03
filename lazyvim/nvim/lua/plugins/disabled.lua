@@ -16,4 +16,7 @@ return {
   -- { "lewis6991/gitsigns.nvim",      enabled = false },
 
   { "nvim-mini/mini.pairs", enabled = false },
+
+  -- seems to be breaking things
+  { "nvim-mini/mini.ai", enabled = false },
 }
