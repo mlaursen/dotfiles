@@ -15,7 +15,7 @@ return {
         "scss",
       })
 
-      -- opts.highlight.disable = { "scss" }
+      opts.highlight.disable = { "scss" }
     end,
   },
 }
