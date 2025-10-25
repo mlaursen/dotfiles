@@ -76,8 +76,7 @@ return {
       codelens = {
         -- enabled = false,
       },
-      -- add any global capabilities here
-      capabilities = {},
+
       -- options for vim.lsp.buf.format
       -- `bufnr` and `filter` is handled by the LazyVim formatter,
       -- but can be also overridden when specified
@@ -186,6 +185,21 @@ return {
             },
           },
         },
+
+        ["*"] = {
+          keys = {
+            {
+              "<leader>cq",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  filter = is_quickfix,
+                })
+              end,
+              desc = "Code action quickfix",
+            },
+          },
+        },
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
@@ -200,22 +214,5 @@ return {
       --   -- ["*"] = function(server, opts) end,
       -- },
     },
-
-    init = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-
-      -- allow quick fixes with eslint for type imports, react hook dependency
-      -- arrays, etc
-      keys[#keys + 1] = {
-        "<leader>cq",
-        function()
-          vim.lsp.buf.code_action({
-            apply = true,
-            filter = is_quickfix,
-          })
-        end,
-        desc = "Code action quickfix",
-      }
-    end,
   },
 }
