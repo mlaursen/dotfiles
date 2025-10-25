@@ -93,6 +93,7 @@ return {
       },
 
       -- LSP Server Settings
+      -- https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
       ---@type lspconfig.options
       servers = {
         vtsls = {
