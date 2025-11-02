@@ -17,8 +17,16 @@ return {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
     dependencies = {
-      "mlaursen/vim-react-snippets",
-      "mlaursen/mlaursen-vim-snippets",
+      {
+        "mlaursen/vim-react-snippets",
+        -- dir = "~/code/vim-react-snippets",
+        opts = {},
+      },
+      {
+        "mlaursen/mlaursen-vim-snippets",
+        -- dir = "~/code/mlaursen-vim-snippets",
+        opts = {},
+      },
     },
     ---@type LazyKeysSpec[]
     keys = {
@@ -39,8 +47,8 @@ return {
       },
     },
     opts = function()
-      require("vim-react-snippets").lazy_load()
-      require("mlaursen-vim-snippets").lazy_load()
+      -- require("vim-react-snippets").lazy_load()
+      -- require("mlaursen-vim-snippets").lazy_load()
 
       if vim.g.is_blink_enabled then
         -- defaults to `NonText` which is not visible for me with the menu bg
