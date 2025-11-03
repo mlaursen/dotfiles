@@ -16,8 +16,6 @@ o.clipboard = ""
 -- autocomplete behavior with CopilotChat
 o.completeopt = "menu,preview,noinsert"
 
-o.conceallevel = 0 -- I do not like concealing markup
-
 -- do not use the weird shifting width cursor and set it back to the vim
 -- version
 o.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
