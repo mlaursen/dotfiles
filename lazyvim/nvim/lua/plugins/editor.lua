@@ -20,27 +20,6 @@ return {
   },
 
   {
-    -- NOTE: Using neo-tree instead of editor.snacks_explorer since there are
-    -- issues in WSL (?) while the tree is visible. The tree cursor will
-    -- constantly flash and prevent the correct file from being selected
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      sources = { "filesystem" },
-      filesystem = {
-        -- follow_current_file = { enabled = false },
-        filtered_items = {
-          always_show = {
-            ".env.local",
-            ".env.development.local",
-            ".env.production.local",
-          },
-          hide_dotfiles = false,
-        },
-      },
-    },
-  },
-
-  {
     "vimwiki/vimwiki",
     lazy = "VeryLazy",
     cmd = {
@@ -240,14 +219,14 @@ return {
             win = {
               input = {
                 keys = {
+                  -- do not close if I hit esc twice. only allow `q`
                   ["<esc>"] = { "", mode = "n" },
                 },
               },
               list = {
                 keys = {
+                  -- do not close if I hit esc twice. only allow `q`
                   ["<esc>"] = { "", mode = "n" },
-                  ["v"] = "edit_vsplit",
-                  ["s"] = "edit_split",
                 },
               },
             },
