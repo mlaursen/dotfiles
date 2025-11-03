@@ -4,6 +4,10 @@
 local o = vim.opt
 
 o.autowrite = false
+
+-- this fixes watch mode for @swc/cli
+o.writebackup = false
+
 -- do not sync yanks with clipboard. I prefer using a register for that instead
 -- so I have separate clipboards
 o.clipboard = ""
