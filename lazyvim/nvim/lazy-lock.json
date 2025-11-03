@@ -31,7 +31,6 @@
   "mini.icons": { "branch": "main", "commit": "ff2e4f1d29f659cc2bad0f9256f2f6195c6b2428" },
   "mlaursen-vim-snippets": { "branch": "main", "commit": "7aa3aae7507c688ff3241de787d1432ffb263985" },
   "neo-tree.nvim": { "branch": "main", "commit": "92d1e014c25b71a66e8cddd556db63f5883aa9f9" },
-  "neogen": { "branch": "main", "commit": "d7f9461727751fb07f82011051338a9aba07581d" },
   "neotest": { "branch": "master", "commit": "366175e1e74ff112787f9adbfb072eeaedd2a88e" },
   "neotest-jest": { "branch": "main", "commit": "5dc15386a2b04080fd24901eb2450aaf787bd172" },
   "neotest-vitest": { "branch": "main", "commit": "8763a872947df9b9f6bf20f62f51d244c460055e" },
