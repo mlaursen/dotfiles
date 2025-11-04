@@ -46,10 +46,6 @@ return {
         end,
       },
     },
-    opts = function()
-      -- defaults to `NonText` which is not visible for me with the menu bg
-      vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { link = "Comment" })
-    end,
   },
 
   {
