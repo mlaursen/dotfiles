@@ -24,7 +24,14 @@ return {
     opts = {
       adapters = {
         -- if I need to override stuff, just add a `.lazy.lua` to the repo to add additional config
-        ["neotest-vitest"] = {},
+        ["neotest-vitest"] = {
+          filter_dir = function(name, rel_path, root)
+            return name ~= "node_modules" and name ~= "__snapshots__"
+          end,
+          is_test_file = function(file_path)
+            return string.match(file_path, "__tests__")
+          end,
+        },
         ["neotest-jest"] = {
           -- see section around monorepos
           cwd = function(file)
