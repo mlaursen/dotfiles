@@ -106,6 +106,13 @@ variables:
 cp ~/dotfiles/.zshrc.local.template ~/.zshrc.local
 ```
 
+Copy `.gitconfig-mlaursen.template` to `.gitconfig-mlaursen` and add the
+[signing key](#setup-gpg-for-signing-commits):
+
+```sh
+cp ~/dotfiles/.gitconfig-mlaursen.template ~/.gitconfig-mlaursen
+```
+
 ### Install packages
 
 #### Mac

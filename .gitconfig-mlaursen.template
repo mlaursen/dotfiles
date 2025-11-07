@@ -1,0 +1,9 @@
+[user]
+  name = Mikkel Laursen
+  email = mlaursen03@gmail.com
+[tag]
+  gpgsign = true
+[commit]
+  gpgsign = true
+[user]
+  # signingkey = REPLACE WITH KEY HERE

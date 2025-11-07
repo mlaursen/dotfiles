@@ -1,6 +1,0 @@
-[tag]
-  gpgsign = true
-[commit]
-  gpgsign = true
-[user]
-  # signingkey = REPLACE WITH KEY HERE
