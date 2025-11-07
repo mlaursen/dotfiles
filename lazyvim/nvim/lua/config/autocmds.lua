@@ -22,3 +22,9 @@ autocmd("FileType", {
   pattern = "lua",
   command = "set comments^=:---",
 })
+
+autocmd("BufReadPost", {
+  group = augroup("filetypeplugin", { clear = false }),
+  pattern = ".gitconfig-*",
+  command = "setlocal ft=gitconfig",
+})
