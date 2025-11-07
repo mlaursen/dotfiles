@@ -28,3 +28,10 @@ autocmd("BufReadPost", {
   pattern = ".gitconfig-*",
   command = "setlocal ft=gitconfig",
 })
+
+autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    require("render-markdown").disable()
+  end,
+})
