@@ -59,7 +59,7 @@
   "ts-comments.nvim": { "branch": "main", "commit": "123a9fb12e7229342f807ec9e6de478b1102b041" },
   "ultisnips": { "branch": "master", "commit": "35252b3327bf0cb55136399dfe615637093a8291" },
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
-  "vim-react-snippets": { "branch": "main", "commit": "e8ad2ac3365d7973f7f22ac62d4d14c3465276c3" },
+  "vim-react-snippets": { "branch": "main", "commit": "cae124a8b1c96f6233069895a1280c8c64aa3478" },
   "vim-repeat": { "branch": "master", "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vimwiki": { "branch": "dev", "commit": "72792615e739d0eb54a9c8f7e0a46a6e2407c9e8" },
