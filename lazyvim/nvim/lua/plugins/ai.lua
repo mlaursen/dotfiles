@@ -12,7 +12,7 @@ return {
     opts = {
       suggestion = {
         enabled = false,
-        auto_trigger = true,
+        auto_trigger = false,
         hide_during_completion = true,
       },
     },
@@ -37,6 +37,7 @@ return {
 
   {
     "coder/claudecode.nvim",
+    enabled = use_claude_code,
     opts = {
       terminal = {
         ---@module "snacks"
