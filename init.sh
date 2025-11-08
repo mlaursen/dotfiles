@@ -15,7 +15,7 @@ fi
 
 cd "$HOME/dotfiles"
 
-dotfiles=( ".zshrc" ".gitconfig" ".dir_colors" ".tmux.conf" ".editorconfig" )
+dotfiles=(".zshrc" ".gitconfig" ".dir_colors" ".tmux.conf" ".editorconfig")
 
 echo ""
 echo "Symlinking default dotfiles with backups..."
@@ -31,7 +31,6 @@ for file in "${dotfiles[@]}"; do
   fi
 done
 
-
 echo ""
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
   echo "Installing oh-my-zsh"
@@ -40,7 +39,7 @@ if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
   ln -s "$HOME/dotfiles/mlaursen.zsh-theme" "$HOME/.oh-my-zsh/themes/mlaursen.zsh-theme"
 fi
 
-if [ ! -x "$(command -v stack)"]; then
+if [ ! -x "$(command -v stack)" ]; then
   echo ""
   echo "Installing haskell-stack"
   # sudo yum install stack -y
@@ -75,7 +74,6 @@ echo ""
 echo "Installing yarn"
 volta install yarn@1
 volta install yarn
-
 
 echo ""
 echo "Adding $current_os specific functionality..."
@@ -129,23 +127,23 @@ cd "$code_dir/zsh-git-prompt"
 # +++ b/haskell/stack.yaml
 # @@ -1,14 +1,18 @@
 #  # For more information, see: https://github.com/commercialhaskell/stack/blob/release/doc/yaml_configuration.md
-# 
+#
 #  # Specifies the GHC version and set of packages available (e.g., lts-3.5, nightly-2015-09-21, ghc-7.10.2)
 # -resolver: lts-5.0
 # +resolver:
 # +  compiler: ghc-8.10.7
-# 
+#
 #  # Local packages, usually specified by relative directory name
 #  packages:
 #  - '.'
-# 
+#
 #  # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 # -extra-deps: []
 # +extra-deps:
 # +  - QuickCheck-2.14.2
 # +  - random-1.2.1.1
 # +  - splitmix-0.1.0.4
-# 
+#
 #  # Override default flag values for local packages and extra-deps
 #  flags: {}
 stack setup
@@ -154,7 +152,6 @@ stack build && stack install
 echo ""
 echo "Initializing neovim..."
 ln -s "$HOME/dotfiles/lazyvim/nvim" "~/.config/nvim"
-
 
 if [[ "$current_os" = "Mac" ]]; then
   pip3 install neovim
@@ -169,3 +166,4 @@ echo "Update the default shell to be zsh: \`chsh -s /usr/zsh\` (requires logout)
 echo "If the command above fails, run \`chsh -l\` to find the zsh path"
 echo ""
 echo "Run 'nvim' to install remaining packages and get started"
+
