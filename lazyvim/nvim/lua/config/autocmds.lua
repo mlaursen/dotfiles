@@ -32,6 +32,6 @@ autocmd("BufReadPost", {
 autocmd("FileType", {
   pattern = "markdown",
   callback = function()
-    require("render-markdown").disable()
+    vim.opt_local.conceallevel = 0
   end,
 })
