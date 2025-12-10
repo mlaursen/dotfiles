@@ -35,3 +35,9 @@ autocmd("FileType", {
     vim.opt_local.conceallevel = 0
   end,
 })
+autocmd("FileType", {
+  pattern = "markdown.mdx",
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+})
