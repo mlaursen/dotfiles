@@ -2,7 +2,8 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
-      { "marilari88/neotest-vitest", url = "https://github.com/mlaursen/neotest-vitest" },
+      { "marilari88/neotest-vitest" },
+      -- { "marilari88/neotest-vitest", url = "https://github.com/mlaursen/neotest-vitest" },
       -- { "nvim-neotest/neotest-jest", url = "https://github.com/mlaursen/neotest-jest" },
       { "nvim-neotest/neotest-jest" },
     },
