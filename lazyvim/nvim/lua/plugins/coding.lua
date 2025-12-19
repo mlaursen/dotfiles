@@ -136,4 +136,10 @@ return {
     "tpope/vim-repeat",
     event = { "InsertEnter", "VeryLazy" },
   },
+
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {},
+  },
 }
