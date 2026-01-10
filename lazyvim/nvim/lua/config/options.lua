@@ -28,9 +28,9 @@ o.splitright = false
 -- press tab twice to autocomplete
 o.wildmode = "full"
 
-o.spell = true
-o.spelllang = { "en_us" }
-o.spelloptions = "camel"
+-- o.spell = true
+-- o.spelllang = { "en_us" }
+-- o.spelloptions = "camel"
 
 -- enable the clipboard within WSL
 if os.getenv("WSL_DISTRO_NAME") ~= nil then

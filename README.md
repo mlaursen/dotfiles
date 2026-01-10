@@ -97,6 +97,9 @@ ln -s ~/dotfiles/.dir_colors ~/.dir_colors
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.editorconfig ~/.editorconfig
 ln -s ~/dotfiles/lazyvim/nvim ~/.config/nvim
+
+mkdir ~/.config/cspell
+ln -s ~/dotfiles/cspell.json ~/.config/cspell/cspell.json
 ```
 
 Copy `.zshrc.local.template` to `.zshrc.local` and add any environment

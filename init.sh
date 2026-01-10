@@ -153,6 +153,9 @@ echo ""
 echo "Initializing neovim..."
 ln -s "$HOME/dotfiles/lazyvim/nvim" "~/.config/nvim"
 
+mkdir "~/.config/cspell"
+ln -s "$HOME/dotfiles/cspell.json" "~/.config/cspell/cspell.json"
+
 if [[ "$current_os" = "Mac" ]]; then
   pip3 install neovim
 else
@@ -166,4 +169,3 @@ echo "Update the default shell to be zsh: \`chsh -s /usr/zsh\` (requires logout)
 echo "If the command above fails, run \`chsh -l\` to find the zsh path"
 echo ""
 echo "Run 'nvim' to install remaining packages and get started"
-

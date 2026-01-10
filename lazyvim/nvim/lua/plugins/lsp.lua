@@ -49,6 +49,7 @@ return {
         -- "sonarlint-language-server",
         "yaml-language-server",
         "some-sass-language-server",
+        "cspell-lsp",
       },
     },
   },

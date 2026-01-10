@@ -1,0 +1,30 @@
+{
+  "ignoreWords": [
+    "cnbuilder",
+    "viewbox",
+    "codegen",
+    "rgba",
+    "labelledby",
+    "fieldset",
+    "progressbar",
+    "menuitemradio",
+    "currentcolor",
+    "stylesheet",
+    "nvim",
+    "lsp",
+    "lspconfig",
+    "mqtt",
+    "nextjs",
+    "lazyvim",
+    "roboto"
+  ],
+  "userWords": [
+    "Mikkel",
+    "Laursen",
+    "mlaursen",
+    "focusable",
+    "noninteractive",
+    "noninteractable",
+    "renderable"
+  ]
+}
