@@ -1,11 +1,12 @@
 local use_claude_code = vim.env.ANTHROPIC_API_KEY and vim.env.ANTHROPIC_API_KEY ~= "" and true or false
+local use_copilot_auth = false
 
 return {
   {
     -- minimal copy from `LazyExtra ai.copilot` that just enables the `Copilot
     -- auth` part. I don't want any of the suggestions
     "zbirenbaum/copilot.lua",
-    enabled = not use_claude_code,
+    enabled = not use_claude_code and use_copilot_auth,
     cmd = "Copilot",
     build = ":Copilot auth",
     event = "BufReadPost",
