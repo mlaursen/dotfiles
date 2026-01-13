@@ -16,15 +16,26 @@
     "mqtt",
     "nextjs",
     "lazyvim",
-    "roboto"
+    "shiki",
+    "shikijs",
+    "roboto",
+    "vite",
+    "vitest"
   ],
   "userWords": [
     "Mikkel",
     "Laursen",
     "mlaursen",
+    "Poppulo",
     "focusable",
+    "hoverable",
     "noninteractive",
     "noninteractable",
-    "renderable"
+    "unpushed",
+    "renderable",
+    "interactable",
+    "keyline",
+    "keylines",
+    "tooltipped"
   ]
 }
