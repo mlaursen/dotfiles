@@ -67,20 +67,14 @@ return {
     },
     opts = {
       sources = {
-        default = {
-          "emoji",
-          "calc",
-        },
+        compat = { "calc" },
+        default = { "emoji" },
         providers = {
           emoji = {
             module = "blink-emoji",
             name = "Emoji",
             score_offset = 15,
             opts = { insert = true },
-          },
-          calc = {
-            name = "calc",
-            module = "blink.compat.source",
           },
         },
       },
