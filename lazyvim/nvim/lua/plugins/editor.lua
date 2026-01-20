@@ -134,9 +134,27 @@ return {
       -- disable
       { "<leader>gY" },
       { "<leader>gb" },
-      -- { "<leader>gB" },
       { "<leader>gB", "<cmd>Git blame<cr>", desc = "blame" },
+      { "<leader>gp" },
 
+      -- https://github.com/folke/snacks.nvim/blob/fe7cfe9800a182274d0f868a74b7263b8c0c020b/docs/gh.md#-usage
+      -- remap from gp and gP since I use those
+      {
+        "<leader>gr",
+        function()
+          Snacks.picker.gh_pr()
+        end,
+        desc = "GitHub Pull Requests (open)",
+      },
+      {
+        "<leader>gR",
+        function()
+          Snacks.picker.gh_pr({ state = "all" })
+        end,
+        desc = "GitHub Pull Requests (all)",
+      },
+
+      --
       {
         "<leader>gC",
         function()
