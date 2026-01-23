@@ -136,6 +136,7 @@ return {
       { "<leader>gb" },
       { "<leader>gB", "<cmd>Git blame<cr>", desc = "blame" },
       { "<leader>gp" },
+      { "<leader>gP" },
 
       -- https://github.com/folke/snacks.nvim/blob/fe7cfe9800a182274d0f868a74b7263b8c0c020b/docs/gh.md#-usage
       -- remap from gp and gP since I use those
