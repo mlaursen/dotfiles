@@ -119,6 +119,9 @@ return {
 
                   -- I don't need imports from these most of the time
                   "^(node_modules/|next/dist/|typescript)",
+
+                  -- I use other test libraries
+                  "^react-dom/test-utils",
                 },
               },
             },
