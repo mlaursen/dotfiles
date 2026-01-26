@@ -1,5 +1,6 @@
 {
   "ignoreWords": [
+    "mlaursen",
     "cnbuilder",
     "viewbox",
     "codegen",
@@ -22,7 +23,7 @@
     "vite",
     "vitest"
   ],
-  "userWords": [
+  "words": [
     "Mikkel",
     "Laursen",
     "mlaursen",
@@ -36,6 +37,7 @@
     "interactable",
     "keyline",
     "keylines",
-    "tooltipped"
+    "tooltipped",
+    "wrappable"
   ]
 }
