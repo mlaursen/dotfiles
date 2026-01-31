@@ -7,7 +7,6 @@
     "lazyvim.plugins.extras.coding.mini-comment",
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.editor.dial",
-    "lazyvim.plugins.extras.editor.mini-diff",
     "lazyvim.plugins.extras.editor.outline",
     "lazyvim.plugins.extras.editor.overseer",
     "lazyvim.plugins.extras.editor.snacks_explorer",
@@ -31,4 +30,3 @@
   },
   "version": 8
 }
-
