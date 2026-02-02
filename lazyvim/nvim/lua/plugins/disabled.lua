@@ -12,7 +12,7 @@ return {
   -- indentation never really matters for me and this plugin makes it even
   -- noisier with animations. disabling the animation still makes it too
   -- visible
-  { "folke/flash.nvim", enabled = false },
+  -- { "folke/flash.nvim", enabled = false },
   -- { "lewis6991/gitsigns.nvim",      enabled = false },
 
   -- seems to be breaking things

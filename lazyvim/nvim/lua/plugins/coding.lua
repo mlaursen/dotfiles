@@ -120,6 +120,7 @@ return {
   {
     "tpope/vim-surround",
     event = { "InsertEnter", "VeryLazy" },
+    enabled = false,
     ---@type LazyKeysSpec[]
     keys = {
       { "S", mode = "x", "<plug>VSurround" },
