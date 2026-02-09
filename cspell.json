@@ -20,6 +20,9 @@
     "shiki",
     "shikijs",
     "roboto",
+    "describedby",
+    "valuenow",
+    "roledescription",
     "vite",
     "vitest"
   ],
@@ -38,6 +41,8 @@
     "keyline",
     "keylines",
     "tooltipped",
+    "focusables",
+    "loopable",
     "wrappable"
   ]
 }
