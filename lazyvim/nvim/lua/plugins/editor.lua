@@ -1,6 +1,7 @@
 return {
   {
     "tpope/vim-fugitive",
+    enabled = false,
     lazy = "VeryLazy",
     cmd = {
       "G",
@@ -17,6 +18,112 @@ return {
       { "<leader>gP", "<cmd>Git push -u origin HEAD<cr>", desc = "push" },
       { "<leader>gl", "<cmd>Git log<cr>", desc = "log" },
       { "<leader>gD", "<cmd>Gvdiffsplit!<cr>", desc = "Diff split (vertical)" },
+      --
+      -- { "s", group = "file", desc = "Stage" },
+      -- { "u", group = "file", desc = "Unstage" },
+      -- { "-", group = "file", desc = "Stage or unstage" },
+      -- { "U", group = "file", desc = "Unstage everything" },
+      -- { "X", group = "file", desc = "Discard " },
+      -- { "=", group = "file", desc = "Toggle inline diff" },
+      -- { ">", group = "file", desc = "Insert inline diff" },
+      -- { "<", group = "file", desc = "Remove inline diff" },
+      -- { "gI", group = "file", desc = "Add file to .git/info/exclude" },
+      -- { "I", group = "file", desc = "Git add/reset --patch" },
+      -- { "P", group = "file", desc = "Git add/reset --patch" },
+      --
+      -- { "dd", desc = ":Gdiffsplit" },
+      -- { "dv", desc = ":Gvdiffsplit" },
+      -- { "ds", desc = ":Gdiffsplit" },
+      -- { "dh", desc = ":Gdiffsplit" },
+      -- { "dq", desc = "Close other diffs" },
+      -- { "d?", desc = "Diff help" },
+      --
+      -- { "o", desc = "Open" },
+      -- { "gO", desc = "Open in vsplit" },
+      -- { "O", desc = "Open in tab" },
+      -- { "p", desc = "Preview" },
+      -- { "~", desc = "Open nth ancestor" },
+      -- { "P", desc = "Open nth parent" },
+      -- { "C", desc = "Open commit" },
+      -- { "(", desc = "Next file, hunk, revision" },
+      -- { ")", desc = "Prev file, hunk, revision" },
+      -- { "[c", desc = "Prev hunk" },
+      -- { "]c", desc = "Next hunk" },
+      -- { "[/", desc = "Prev file" },
+      -- { "[m", desc = "Prev file" },
+      -- { "]/", desc = "Next file" },
+      -- { "]m", desc = "Next file" },
+      -- { "i", desc = "Jump to next file/hunk" },
+      -- { "[[", desc = "Jump backward" },
+      -- { "]]", desc = "Jump forward" },
+      -- { "[]", desc = "Jump ends backward" },
+      -- { "][", desc = "Jump ends forward" },
+      -- { "*", desc = "Search for +-" },
+      -- { "#", desc = "Search for +- (backward)" },
+      --
+      -- { "gu", group = "file", desc = "Go to Untracked/unstaged" },
+      -- { "gU", group = "file", desc = "Go to Unstaged" },
+      -- { "gs", group = "file", desc = "Go to Staged" },
+      -- { "gp", group = "file", desc = "Go to Unpushed" },
+      -- { "gP", group = "file", desc = "Go to Unpulled" },
+      -- { "gr", group = "file", desc = "Go to Rebasing" },
+      -- { "gi", group = "file", desc = "Go to .git/info/exclude" },
+      --
+      -- { "cc", desc = "Commit" },
+      -- { "cvc", desc = "Commit -v" },
+      -- { "ca", desc = "Amend commit" },
+      -- { "cva", desc = "Amend commit -v" },
+      -- { "ce", desc = "Edit commit" },
+      -- { "cw", desc = "Reword commit" },
+      -- { "cW", desc = "amend! reword commit" },
+      -- { "cF", desc = "fixup! reword commit" },
+      -- { "cs", desc = "squash! commit" },
+      -- { "cS", desc = "squash! rebase" },
+      -- { "cn", desc = "squash! commit edit" },
+      -- { "c<space>", desc = "Git commit ..." },
+      --
+      -- { "crc", desc = "Revert" },
+      -- { "crn", desc = "Revert --no-edit" },
+      -- { "cr<space>", desc = "Git revert ..." },
+      -- { "cm<space>", desc = "Git merge ..." },
+      -- { "c?", desc = "Commit help" },
+      --
+      -- { "coo", desc = "Checkout" },
+      -- { "cb<space>", desc = "Git branch ..." },
+      -- { "co<space>", desc = "Git checkout ..." },
+      -- { "cb?", desc = "Checkout help" },
+      -- { "co?", desc = "Checkout help" },
+      --
+      -- { "cz", desc = "+stash" },
+      -- { "czz", desc = "Stash" },
+      -- { "czw", desc = "Stash --keep-index" },
+      -- { "czs", desc = "Stash push" },
+      -- { "czA", desc = "Apply stash" },
+      -- { "cza", desc = "Apply stash preserve index" },
+      -- { "czP", desc = "Pop stash" },
+      -- { "czp", desc = "Pop stash preserve index" },
+      -- { "cz<space>", desc = "Git stash ..." },
+      -- { "cz?", desc = "Stash help" },
+      --
+      -- { "r", desc = "+rebase" },
+      -- { "ri", desc = "Interactive rebase" },
+      -- { "u", desc = "Interactive rebase" },
+      -- { "rf", desc = "Rebase autosquash" },
+      -- { "ru", desc = "upstream rebase" },
+      -- { "rp", desc = "push rebase" },
+      -- { "rr", desc = "resume rebase" },
+      -- { "rs", desc = "Skip current commit rebase" },
+      -- { "ra", desc = "Abort rebase" },
+      -- { "re", desc = "Edit rebase todo list" },
+      -- { "rw", desc = "Reword rebase" },
+      -- { "rm", desc = "Edit rebase" },
+      -- { "rd", desc = "Drop rebase" },
+      -- { "r<space>", desc = "Git rebase ..." },
+      -- { "r?", desc = "Rebase help" },
+      --
+      -- { "gq", desc = "Close" },
+      -- { ":", desc = "Command line" },
+      -- { "g?", desc = "help" },
     },
   },
 
@@ -133,51 +240,51 @@ return {
     "folke/snacks.nvim",
     keys = {
       -- disable
-      { "<leader>gY" },
-      { "<leader>gb" },
-      { "<leader>gB", "<cmd>Git blame<cr>", desc = "blame" },
-      { "<leader>gp" },
-      { "<leader>gP" },
+      -- { "<leader>gY" },
+      -- { "<leader>gb" },
+      -- { "<leader>gB", "<cmd>Git blame<cr>", desc = "blame" },
+      -- { "<leader>gp" },
+      -- { "<leader>gP" },
 
       -- https://github.com/folke/snacks.nvim/blob/fe7cfe9800a182274d0f868a74b7263b8c0c020b/docs/gh.md#-usage
       -- remap from gp and gP since I use those
-      {
-        "<leader>gr",
-        function()
-          Snacks.picker.gh_pr()
-        end,
-        desc = "GitHub Pull Requests (open)",
-      },
-      {
-        "<leader>gR",
-        function()
-          Snacks.picker.gh_pr({ state = "all" })
-        end,
-        desc = "GitHub Pull Requests (all)",
-      },
+      -- {
+      --   "<leader>gr",
+      --   function()
+      --     Snacks.picker.gh_pr()
+      --   end,
+      --   desc = "GitHub Pull Requests (open)",
+      -- },
+      -- {
+      --   "<leader>gR",
+      --   function()
+      --     Snacks.picker.gh_pr({ state = "all" })
+      --   end,
+      --   desc = "GitHub Pull Requests (all)",
+      -- },
 
       --
-      {
-        "<leader>gC",
-        function()
-          Snacks.picker.git_log_file()
-        end,
-        desc = "Commits (current file)",
-      },
-      {
-        "<leader>gb",
-        function()
-          Snacks.picker.git_branches()
-        end,
-        desc = "git branches",
-      },
-      {
-        "<leader>gO",
-        function()
-          Snacks.gitbrowse()
-        end,
-        desc = "git open in browser (git browse)",
-      },
+      -- {
+      --   "<leader>gC",
+      --   function()
+      --     Snacks.picker.git_log_file()
+      --   end,
+      --   desc = "Commits (current file)",
+      -- },
+      -- {
+      --   "<leader>gb",
+      --   function()
+      --     Snacks.picker.git_branches()
+      --   end,
+      --   desc = "git branches",
+      -- },
+      -- {
+      --   "<leader>gO",
+      --   function()
+      --     Snacks.gitbrowse()
+      --   end,
+      --   desc = "git open in browser (git browse)",
+      -- },
     },
     opts = {
       picker = {

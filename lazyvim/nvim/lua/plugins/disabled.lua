@@ -13,9 +13,9 @@ return {
   -- noisier with animations. disabling the animation still makes it too
   -- visible
   -- { "folke/flash.nvim", enabled = false },
-  -- { "lewis6991/gitsigns.nvim",      enabled = false },
+  -- { "lewis6991/gitsigns.nvim", enabled = false },
 
   -- seems to be breaking things
-  { "nvim-mini/mini.ai", enabled = false },
+  -- { "nvim-mini/mini.ai", enabled = false },
   { "nvim-mini/mini.pairs", enabled = false },
 }
