@@ -262,9 +262,4 @@ return {
       },
     },
   },
-
-  {
-    "stevearc/overseer.nvim",
-    url = "https://github.com/mlaursen/overseer.nvim",
-  },
 }
