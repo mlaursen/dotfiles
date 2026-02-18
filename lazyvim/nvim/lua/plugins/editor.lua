@@ -3,6 +3,7 @@ return {
     "tpope/vim-fugitive",
     lazy = "VeryLazy",
     cmd = {
+      "G",
       "Git",
       "Gwrite",
       "Gread",
