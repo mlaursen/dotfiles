@@ -61,13 +61,8 @@ else
   alias ls='ls -AF --color=auto'
 fi
 
-# I switch between these two a lot. just swap to `1 -eq 1` if I want nvim
-if [[ 1 -eq 1 ]]; then
-  alias vim='nvim'
-  export EDITOR='nvim'
-else
-  export EDITOR='vim'
-fi
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"

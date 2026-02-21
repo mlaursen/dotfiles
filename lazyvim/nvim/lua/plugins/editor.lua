@@ -367,6 +367,9 @@ return {
           },
         },
       },
+      lazygit = {
+        editCommand = "nvim",
+      },
     },
   },
 }
