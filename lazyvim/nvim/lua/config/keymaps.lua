@@ -7,15 +7,6 @@ local del = vim.keymap.del
 -- remove the save behavior
 del({ "i", "x", "n", "s" }, "<C-s>")
 
--- remove lazygit mappings that don't have another mapping for with vim-fugitive/fzf-lua
--- del("n", "<leader>gg")
--- del("n", "<leader>gG")
--- del("n", "<leader>gb")
--- del("n", "<leader>gB")
--- del("n", "<leader>gf")
--- del("n", "<leader>gl")
--- del("n", "<leader>gL")
-
 -- I like `<C-j>` and `<C-k>` for jumping snippets instead
 -- Tab is to move through menus
 if vim.fn.has("nvim-0.11") == 0 then

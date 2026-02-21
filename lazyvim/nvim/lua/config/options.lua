@@ -58,7 +58,6 @@ vim.g.snacks_animate = false
 -- vim.g.lazyvim_blink_main = true
 --
 vim.g.lazyvim_picker = "snacks"
--- vim.g.lazyvim_picker = "fzf"
 
 -- vim.g.lazyvim_cmp = "auto"
 vim.g.lazyvim_cmp = "blink.cmp"
