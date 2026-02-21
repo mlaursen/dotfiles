@@ -132,6 +132,7 @@ return {
           },
 
           explorer = {
+            hidden = true,
             win = {
               input = {
                 keys = {
