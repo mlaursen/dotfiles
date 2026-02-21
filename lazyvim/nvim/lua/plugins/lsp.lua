@@ -149,7 +149,7 @@ return {
         -- use somesass_ls instead
         cssls = { enabled = false },
         somesass_ls = {
-          root_dir = require("lspconfig.util").root_pattern("package.json", ".git"),
+          -- root_dir = require("lspconfig.util").root_pattern("package.json", ".git"),
           settings = {
             somesass = {
               css = {
