@@ -6,7 +6,14 @@
 [push]
   default = upstream
 [merge]
+  prompt = false
   keepBackup = false
+  tool = nvimdiff
+  conflictstyle = diff3
+[diff]
+  tool = nvimdiff
+  guitool = nvimdiff
+  prompt = false
 [alias]
   commita = commit --amend --no-edit
   ckb = checkout -b
