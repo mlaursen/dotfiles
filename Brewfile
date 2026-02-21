@@ -1,6 +1,7 @@
 tap 'homebrew/cask'
 
 brew 'git'
+brew 'lazygit'
 brew 'python3'
 brew 'neovim'
 # brew 'ruby'

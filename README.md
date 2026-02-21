@@ -144,6 +144,22 @@ sudo apt install libfuse2t64
 sudo apt install python3-pip ripgrep fd-find unzip
 ```
 
+LazyGit will also need to be installed:
+
+- [Installation](https://github.com/jesseduffield/lazygit/tree/master?tab=readme-ov-file#installation)
+- [Ubuntu](https://github.com/jesseduffield/lazygit/tree/master?tab=readme-ov-file#debian-and-ubuntu)
+
+```sh
+# Ubuntu 24.10 or greater:
+sudo apt install lazygit
+
+# others
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit -D -t /usr/local/bin/
+```
+
 ### Switch to zsh and setup [oh my zsh](https://ohmyz.sh/)
 
 ```sh
