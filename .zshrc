@@ -49,7 +49,6 @@ alias vim=nvim
 if [ -x "$(command -v brew)" ]; then
   # cheating and considering this mac specific stuff only
   alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
-  alias vim='mvim -v'
   alias ls='ls -AFG'
 
   # Allows <ctrl-s> in mac
