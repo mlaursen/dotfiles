@@ -68,9 +68,9 @@ return {
       inlay_hints = {
         enabled = false,
       },
-      codelens = {
-        -- enabled = false,
-      },
+      -- codelens = {
+      --   enabled = false,
+      -- },
 
       -- options for vim.lsp.buf.format
       -- `bufnr` and `filter` is handled by the LazyVim formatter,
@@ -78,12 +78,6 @@ return {
       format = {
         formatting_options = nil,
         timeout_ms = nil,
-      },
-
-      diagnostics = {
-        -- inline virtual diagnostics is way too noisy use Trouble or jumping
-        -- to diagnostics to see the messages instead
-        virtual_text = false,
       },
 
       -- LSP Server Settings

@@ -20,3 +20,16 @@ end, { expr = true, desc = "Jump Next" })
 set({ "i", "s" }, "<C-k>", function()
   return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<C-j>"
 end, { expr = true, desc = "Jump Previous" })
+
+-- NOTE: This _should_ be in the nvim-lspconfig keys instead, but it's not
+-- appearing in which-key there for some reason
+local function toggle_virtual_text()
+  local current = vim.diagnostic.config().virtual_text
+  vim.diagnostic.config({ virtual_text = not current })
+
+  set("n", "<leader>ux", toggle_virtual_text, {
+    desc = current and "Enable Virtual Text" or "Disable Virtual Text",
+  })
+end
+
+set("n", "<leader>ux", toggle_virtual_text, { desc = "Disable Virtual Text" })
