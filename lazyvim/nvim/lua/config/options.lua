@@ -64,3 +64,5 @@ vim.g.lazyvim_cmp = "blink.cmp"
 
 -- i want to enforce a .prettierrc file
 vim.g.lazyvim_prettier_needs_config = true
+--currently broke, so swapped to eslint_d with conform
+vim.g.lazyvim_eslint_auto_format = false

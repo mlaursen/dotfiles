@@ -35,21 +35,15 @@ return {
     opts = {
       --  https://mason-registry.dev/registry/list
       ensure_installed = {
-        -- "css-lsp",
+        "cspell-lsp",
+
         "cssmodules-language-server",
-        "eslint-lsp",
+        "some-sass-language-server",
+
+        -- this is the only one supported by conform
+        "eslint_d",
         "graphql-language-service-cli",
         "html-lsp",
-        "json-lsp",
-        "js-debug-adapter",
-        "lua-language-server",
-        "prettier",
-        "stylelint-lsp",
-        "stylua",
-        -- "sonarlint-language-server",
-        "yaml-language-server",
-        "some-sass-language-server",
-        "cspell-lsp",
       },
     },
   },
