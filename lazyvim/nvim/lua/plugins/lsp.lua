@@ -80,6 +80,12 @@ return {
         timeout_ms = nil,
       },
 
+      diagnostics = {
+        -- inline virtual diagnostics is way too noisy by default
+        -- enable with `<leader>ux`, or jump to diagnostics
+        virtual_text = false,
+      },
+
       -- LSP Server Settings
       -- https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
       ---@type lspconfig.options

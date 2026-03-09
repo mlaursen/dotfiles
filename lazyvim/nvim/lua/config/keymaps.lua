@@ -32,4 +32,4 @@ local function toggle_virtual_text()
   })
 end
 
-set("n", "<leader>ux", toggle_virtual_text, { desc = "Disable Virtual Text" })
+set("n", "<leader>ux", toggle_virtual_text, { desc = "Enable Virtual Text" })
