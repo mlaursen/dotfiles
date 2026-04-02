@@ -66,3 +66,5 @@ vim.g.lazyvim_cmp = "blink.cmp"
 vim.g.lazyvim_prettier_needs_config = true
 -- currently broke, so swapped to eslint_d with conform
 vim.g.lazyvim_eslint_auto_format = false
+
+vim.g.lazyvim_ts_lsp = "tsgo"
