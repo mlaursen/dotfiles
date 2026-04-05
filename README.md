@@ -98,6 +98,9 @@ ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.editorconfig ~/.editorconfig
 ln -s ~/dotfiles/lazyvim/nvim ~/.config/nvim
 
+mkdir ~/.config/lazygit
+ln -s ~/dotfiles/lazygit.yml ~/.config/lazygit/config.yml
+
 mkdir ~/.config/cspell
 ln -s ~/dotfiles/cspell.json ~/.config/cspell/cspell.json
 ```
