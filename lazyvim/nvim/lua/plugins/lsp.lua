@@ -121,12 +121,6 @@ return {
             },
           },
         },
-        stylelint_lsp = {
-          filetypes = { "css", "scss" },
-          settings = {
-            stylelintplus = {},
-          },
-        },
         yamlls = {
           settings = {
             yaml = {
