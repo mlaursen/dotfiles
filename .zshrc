@@ -42,6 +42,7 @@ alias mkdir='mkdir -pv'
 
 alias reso='source ~/.zshrc'
 alias rmd='cd ~/code/react-md'
+alias pkgs='cd ~/code/npm-packages'
 alias dotfiles='cd ~/dotfiles'
 
 alias vim=nvim
