@@ -26,7 +26,8 @@ end
 ---@param action LspCodeAction
 ---@return boolean
 local function is_quickfix(action)
-  return action.isPreferred or is_exhaustive_deps(action)
+  return (action.isPreferred and string.sub(action.kind, 1, #"refactor.extract") ~= "refactor.extract")
+    or is_exhaustive_deps(action)
 end
 
 return {
