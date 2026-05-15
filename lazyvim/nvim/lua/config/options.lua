@@ -34,6 +34,9 @@ o.wildmode = "full"
 
 -- enable the clipboard within WSL
 if os.getenv("WSL_DISTRO_NAME") ~= nil then
+  -- shared clipboard makes things super slow even for normal pasting. so force delete here
+  -- can always do the whole `"*y` if needed
+  o.clipboard = ""
   vim.g.clipboard = {
     name = "WslClipboard",
     copy = {
