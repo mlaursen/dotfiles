@@ -14,6 +14,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "scss",
       })
+      vim.list_extend(opts.ensure_installed, { "htmldjango" })
 
       opts.highlight.disable = { "scss" }
     end,

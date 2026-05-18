@@ -45,6 +45,9 @@ return {
         "eslint_d",
         "graphql-language-service-cli",
         "html-lsp",
+
+        "jinja-lsp",
+        "djlint",
       },
     },
   },
@@ -176,6 +179,22 @@ return {
                 workspaceSymbol = { enabled = true },
               },
             },
+          },
+        },
+
+        jinja_lsp = {
+          filetypes = { "htmldjango", "python", "jinja", "rust" },
+          -- capabilities = require("blink.cmp").get_lsp_capabilities(),
+          root_markers = {
+            { "pyproject.toml", "Cargo.toml" },
+            "package.json",
+            ".git",
+          },
+          settings = {
+            template_extensions = { "njk" },
+            templates = "./src",
+            backend = { "./src" },
+            lang = "python",
           },
         },
 
