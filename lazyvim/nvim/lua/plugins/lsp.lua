@@ -98,6 +98,7 @@ return {
           settings = {
             typescript = {
               preferences = {
+                preferTypeOnlyAutoImports = false,
                 autoImportSpecifierExcludeRegexes = {
                   -- no `import {} from "@mui/material"`, but `import {} from "@mui/x-*"`
                   "^@mui/(?!x-)[^/]+$",
