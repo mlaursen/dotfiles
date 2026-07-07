@@ -3,7 +3,7 @@
 version="$1"
 
 if [ -z "$version" ]; then
-  print "Usage: update-nvim 0.12.0"
+  print "Usage: wsl-update-nvim 0.12.0"
   exit 1
 fi
 
