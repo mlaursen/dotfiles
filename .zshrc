@@ -63,6 +63,10 @@ else
   alias ls='ls -AF --color=auto'
 fi
 
+if [[ -d "$HOME/dotfiles/bin" ]]; then
+  path=("$HOME/dotfiles/bin" $path)
+fi
+
 export EDITOR='nvim'
 export VISUAL='nvim'
 
