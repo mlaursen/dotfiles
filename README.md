@@ -238,9 +238,17 @@ flags: {}
 
 ### Install node
 
-Install [volta](volta.sh) to manage node and package managers
+Install [mise](https://mise.jdx.dev/getting-started.html) or [volta](volta.sh)
+to manage node and package managers:
 
 ```sh
+# mise
+brew install mise
+curl https://mise.run | sh
+
+mise use --global node@24.18.0 pnpm@11.13.0 yarn@4.17.0
+
+# volta
 curl https://get.volta.sh | bash
 source ~/.zshrc
 
