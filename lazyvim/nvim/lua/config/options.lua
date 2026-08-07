@@ -30,23 +30,23 @@ o.wildmode = "full"
 -- o.spelloptions = "camel"
 
 -- enable the clipboard within WSL
-if os.getenv("WSL_DISTRO_NAME") ~= nil then
-  -- shared clipboard makes things super slow even for normal pasting. so force delete here
-  -- can always do the whole `"*y` if needed
-  o.clipboard = ""
-  vim.g.clipboard = {
-    name = "WslClipboard",
-    copy = {
-      ["+"] = "clip.exe",
-      ["*"] = "clip.exe",
-    },
-    paste = {
-      ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
-    cache_enabled = true,
-  }
-end
+-- if os.getenv("WSL_DISTRO_NAME") ~= nil then
+--   -- shared clipboard makes things super slow even for normal pasting. so force delete here
+--   -- can always do the whole `"*y` if needed
+--   o.clipboard = ""
+--   vim.g.clipboard = {
+--     name = "WslClipboard",
+--     copy = {
+--       ["+"] = "clip.exe",
+--       ["*"] = "clip.exe",
+--     },
+--     paste = {
+--       ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--       ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--     },
+--     cache_enabled = true,
+--   }
+-- end
 
 if vim.fn.executable("volta") then
   -- https://github.com/volta-cli/volta/issues/866#issuecomment-1470067688
