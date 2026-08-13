@@ -8,5 +8,6 @@ return {
   { "folke/tokyonight.nvim", enabled = false },
   { "catppuccin/nvim", enabled = false },
 
-  -- { "nvim-mini/mini.pairs", enabled = false },
+  -- this one does not do pairing within strings so it's a dealbreaker
+  { "nvim-mini/mini.pairs", enabled = false },
 }
