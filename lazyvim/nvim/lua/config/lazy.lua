@@ -14,17 +14,51 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-  spec = {
-    -- add LazyVim and import its plugins
-    {
-      "LazyVim/LazyVim",
-      import = "lazyvim.plugins",
-      opts = { colorscheme = "nightfox" },
-    },
-    -- import/override with your plugins
-    { import = "plugins" },
+local spec = {
+  -- add LazyVim and import its plugins
+  {
+    "LazyVim/LazyVim",
+    import = "lazyvim.plugins",
+    opts = { colorscheme = "nightfox" },
   },
+}
+
+if os.getenv("USE_OXC") == "true" then
+  --- @type boolean?
+  vim.g.mlaursen_use_oxc = true
+  table.insert(spec, { import = "lazyvim.plugins.extras.lang.typescript.oxc" })
+else
+  table.insert(spec, { import = "lazyvim.plugins.extras.formatting.prettier" })
+  table.insert(spec, { import = "lazyvim.plugins.extras.linting.eslint" })
+end
+
+if os.getenv("USE_TSC") == "true" then
+  --- @type boolean?
+  vim.g.mlaursen_use_tsc = true
+  table.insert(spec, { import = "lazyvim.plugins.extras.lang.typescript.tsgo" })
+end
+
+if os.getenv("USE_LIT") == "true" then
+  --- @type boolean?
+  vim.g.mlaursen_use_lit = true
+end
+
+if os.getenv("USE_GRAPHQL") == "true" then
+  --- @type boolean?
+  vim.g.mlaursen_use_graphql = true
+end
+
+if os.getenv("USE_TERRAFORM") == "true" then
+  --- @type boolean?
+  vim.g.mlaursen_use_terraform = true
+  table.insert(spec, { import = "lazyvim.plugins.extras.lang.terraform" })
+end
+
+-- import/override with your plugins
+table.insert(spec, { import = "plugins" })
+
+require("lazy").setup({
+  spec = spec,
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
     -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.

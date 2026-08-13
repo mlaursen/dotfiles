@@ -1,3 +1,9 @@
 # environment variables that should not be committed
+export USE_OXC=
+export USE_TSC=
+export USE_LIT=
+export USE_GRAPHQL=
+export USE_COPILOT=
+export USE_TERRAFORM=
 export GITHUB_RELEASE_TOKEN=
 export ANTHROPIC_API_KEY=
