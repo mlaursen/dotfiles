@@ -26,7 +26,7 @@
   "mini.diff": { "branch": "main", "commit": "626b8a5b93874c4d05ca25aedec56cfff0b378fb" },
   "mini.hipatterns": { "branch": "main", "commit": "7c840c71d6a91f53d734cab2b6fe2290d285ec3b" },
   "mini.icons": { "branch": "main", "commit": "98faae31e9be1cc054ae63485e58ceb185efcad0" },
-  "mini.pairs": { "branch": "main", "commit": "d5a29b6254dad07757832db505ea5aeab9aad43a" },
+  "mini.pairs": { "branch": "main", "commit": "b1c5a726921b7a8c9321e9a7a208aa0571de5810" },
   "mini.surround": { "branch": "main", "commit": "8d5d0c5aa92449368ac251e85451d79d8f69d296" },
   "mlaursen-vim-snippets": { "branch": "main", "commit": "9dbe100f853c0b911ce8afc414093bd909e83554" },
   "neotest": { "branch": "master", "commit": "1c529a1ef9c82e8131e872368415cecc2bb86ea2" },
