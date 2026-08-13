@@ -144,6 +144,11 @@ sudo apt install libfuse2t64
 
 # install other packages/dependencies (not sure of full list atm)
 sudo apt install python3-pip ripgrep fd-find unzip
+
+# Install latest stable version of git
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update
+sudo apt install git
 ```
 
 LazyGit will also need to be installed:
@@ -152,12 +157,13 @@ LazyGit will also need to be installed:
 - [Ubuntu](https://github.com/jesseduffield/lazygit/tree/master?tab=readme-ov-file#debian-and-ubuntu)
 
 ```sh
-# Ubuntu 24.10 or greater:
+# Ubuntu 25.10 or greater:
 sudo apt install lazygit
 
 # others
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+LAZYGIT_ARCH=$(uname -m | sed -e 's/aarch64/arm64/')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_${LAZYGIT_ARCH}.tar.gz"
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 ```
