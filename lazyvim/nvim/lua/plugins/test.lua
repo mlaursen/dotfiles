@@ -1,3 +1,11 @@
+local function find_root(path)
+  local found = vim.fs.find("package.json", {
+    path = vim.fn.fnamemodify(path, ":h"),
+    upward = true,
+  })[1]
+  return found and vim.fn.fnamemodify(found, ":h") or vim.fn.getcwd()
+end
+
 return {
   {
     "nvim-neotest/neotest",
@@ -33,20 +41,14 @@ return {
         ["neotest-jest"] = {
           -- see section around monorepos
           cwd = function(file)
-            if string.find(file, "/packages/") then
-              return string.match(file, "(.-/[^/]+/)src")
-            end
-
-            return vim.fn.getcwd()
+            return find_root(file)
           end,
-          jestCommand = function(file)
-            -- when running in the react-md monorepo, I want to use `pnpm test` when running all tests
-            -- since it uses turbo to run
-            if string.match(file, "react%-md$") then
-              return "pnpm test -- --"
-            end
-
-            return require("neotest-jest.jest-util").getJestCommand(vim.fn.expand("%:p:h"))
+          env = {
+            NODE_OPTIONS = "--experimental-vm-modules",
+            NODE_NO_WARNINGS = 1,
+          },
+          jestConfigFile = function(path)
+            return find_root(path) .. "/jest.config.js"
           end,
         },
       },
