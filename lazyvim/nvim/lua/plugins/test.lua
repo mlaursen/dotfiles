@@ -29,9 +29,6 @@ return {
           filter_dir = function(name, rel_path, root)
             return name ~= "node_modules" and name ~= "__snapshots__"
           end,
-          is_test_file = function(file_path)
-            return string.match(file_path, "__tests__")
-          end,
         },
         ["neotest-jest"] = {
           -- see section around monorepos
