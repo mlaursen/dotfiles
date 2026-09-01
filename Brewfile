@@ -1,4 +1,5 @@
-tap 'homebrew/cask'
+# tap 'homebrew/cask'
+
 
 brew 'git'
 brew 'lazygit'
@@ -15,7 +16,7 @@ brew 'bat'
 brew 'fd'
 brew 'luarocks'
 brew 'go'
-Brew 'tree-sitter-cli'
+brew 'tree-sitter-cli'
 
 cask 'iterm2'
 cask 'the-unarchiver'
