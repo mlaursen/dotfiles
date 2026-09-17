@@ -35,7 +35,7 @@ end
 if os.getenv("USE_TSC") == "true" then
   --- @type boolean?
   vim.g.mlaursen_use_tsc = true
-  table.insert(spec, { import = "lazyvim.plugins.extras.lang.typescript.tsgo" })
+  table.insert(spec, { import = "lazyvim.plugins.extras.lang.typescript.tsc" })
 end
 
 if os.getenv("USE_LIT") == "true" then

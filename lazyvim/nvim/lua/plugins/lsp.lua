@@ -118,7 +118,7 @@ if not vim.g.mlaursen_use_oxc then
 end
 
 if vim.g.mlaursen_use_tsc then
-  servers.tsgo = {
+  servers.tsc = {
     settings = {
       typescript = {
         preferences = {
