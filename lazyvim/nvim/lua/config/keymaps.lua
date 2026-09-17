@@ -33,3 +33,8 @@ local function toggle_virtual_text()
 end
 
 set("n", "<leader>ux", toggle_virtual_text, { desc = "Enable Virtual Text" })
+
+set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Exit terminal mode and go to window below" })
+set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Exit terminal mode and go to window above" })
+set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Exit terminal mode and go to window left" })
+set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Exit terminal mode and go to window right" })
