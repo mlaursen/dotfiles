@@ -91,10 +91,6 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-if [ "$USE_VOLTA" = "true" ] || ! command -v mise >/dev/null 2>&1; then
-  export VOLTA_HOME="$HOME/.volta"
-  export PATH="$VOLTA_HOME/bin:$PATH"
-  export VOLTA_FEATURE_PNPM=1
-else
+if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh --shims)"
 fi
