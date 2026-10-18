@@ -28,6 +28,28 @@ return {
       desc = "Overseer: New Task",
     },
     {
+      "<leader>os",
+      function()
+        local overseer = require("overseer")
+        local tasks = overseer.list_tasks({ include_ephemeral = true, status = { "SUCCESS" } })
+        for _, task in ipairs(tasks) do
+          task:dispose(true)
+        end
+      end,
+      desc = "Overseer: Clear SUCCESS Tasks",
+    },
+    {
+      "<leader>of",
+      function()
+        local overseer = require("overseer")
+        local tasks = overseer.list_tasks({ include_ephemeral = true, status = { "FAILURE" } })
+        for _, task in ipairs(tasks) do
+          task:dispose(true)
+        end
+      end,
+      desc = "Overseer: Clear FAILURE Tasks",
+    },
+    {
       "<leader>oc",
       function()
         local overseer = require("overseer")
